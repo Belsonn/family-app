@@ -1,0 +1,43 @@
+<div class="container">
+  <div>
+    <input type="button" (click)="setCurrentMonth()" value="today" />
+    <input type="button" (click)="decreaseMonth()" value="-" />
+    <input type="button" (click)="increaseMonth()" value="+" />
+  </div>
+{{displayMonth}}
+  <table class="calendar-table" *ngIf="calendar">
+    <thead>
+      <tr>
+        <th>Po</th>
+        <th>Wt</th>
+        <th>Śr</th>
+        <th>Cz</th>
+        <th>Pi</th>
+        <th>So</th>
+        <th>Ni</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of calendar | chunk: 7; let i = index">
+        <td
+          matRipple
+          [matRippleCentered]="true"
+          [matRippleRadius]="15"
+          (click)="onDateClick(c)"
+          class="calendar-day"
+          [ngClass]="{ 'past-date': c.isPastDate, today: c.isToday}"
+          *ngFor="let c of row; let j = index"
+        >
+          <div
+            class="calendar-day-header"
+            [ngClass]="{ 'blue-date': c.isToday, 'not-this-month': c.date.getMonth()!==monthSelected, 'active-date': c.isClicked}"
+          >
+            <p [ngClass]="{'has-event':c.hasEvent}" class="calendar-day-number">{{ c.date.getDate() }}</p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p *ngIf=(calendarDayInstance)>{{calendarDayInstance.date.getDate()}}  {{monthNames[calendarDayInstance.date.getMonth()]}} </p>
+  <button mat-button>Dodaj wydarzenie</button>
+</div>

@@ -22,7 +22,9 @@ export class MenuComponent implements OnInit {
   settingsIcon = settingsIcon;
 
   constructor() { }
-
+  onTest(){
+    console.log("elo");
+  }
   ngOnInit(): void {
   }
 

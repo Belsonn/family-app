@@ -2,14 +2,27 @@
   <div class="header">
     <div class="header__name">Family Name</div>
     <div class="header__chat">
-      <button class="header__chat--icon" mat-button>
-        <ic-icon icon="chatBubbleLine"></ic-icon>
-      </button>
+      <mat-icon
+        class="header__chat__button"
+        (click)="onTest()"
+        matBadge="8"
+        matBadgePosition="before"
+        matBadgeColor="accent"
+        ><ic-icon
+        matRipple
+        [matRippleRadius]="20"
+          class="header__chat__button--icon"
+          icon="chatBubbleLine"
+        ></ic-icon
+      ></mat-icon>
+      <!-- <button     mat-button>
+        <ic-icon class="header__chat__button--icon" icon="chatBubbleLine"></ic-icon>
+      </button> -->
     </div>
   </div>
   <div class="boxes">
     <div class="boxes__row">
-      <button mat-raised-button class="boxes__row__box">
+      <button mat-raised-button class="boxes__row__box" routerLink="calendar">
         <div class="boxes__row__box--icon">
           <ic-icon icon="planner"></ic-icon>
         </div>
