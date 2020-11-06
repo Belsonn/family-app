@@ -1,0 +1,57 @@
+.header {
+  margin: 2rem 0;
+  display: flex;
+  justify-content: space-between;
+  &__name {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  &__chat {
+    // font-size: 2rem;
+    &--icon{
+        padding-bottom: 0.2rem;
+        font-size: 1.7rem;
+        text-align: center;
+    }
+  }
+}
+.boxes {
+  // margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+
+    &__box {
+      width: 47%;
+      height: 100%;
+      padding-bottom: 1rem;
+      border-radius: 10px;
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      &--icon {
+        margin-top: 0.7rem;
+        text-align: center;
+        font-size: 3rem;
+      }
+      &--name {
+        text-align: center;
+        font-size: 1.4rem;
+        font-weight: 600;
+      }
+      &--description {
+        text-align: center;
+        font-size: 0.7rem;
+        line-height: 0.6rem;
+        color: #9c9a9a;
+      }
+    }
+  }
+}
+
+.icon {
+  &--basket {
+    color: #fc031c;
+  }
+}
