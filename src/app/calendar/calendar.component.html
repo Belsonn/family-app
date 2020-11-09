@@ -1,10 +1,16 @@
 <div class="container">
-  <div>
+  <!-- <div>
     <input type="button" (click)="setCurrentMonth()" value="today" />
     <input type="button" (click)="decreaseMonth()" value="-" />
     <input type="button" (click)="increaseMonth()" value="+" />
+  </div> -->
+  <div class="calendar-header">
+    <div routerLink=".." class="calendar-header--menu-icon"><ic-icon icon="menuGridO"></ic-icon></div>
+    <div (click)="decreaseMonth()" class="calendar-header--left-icon"><ic-icon icon="arrowLeftAlt2"></ic-icon></div>
+    <div (click)="setCurrentMonth()" class="calendar-header--date">{{displayDate}}</div>
+    <div (click)="increaseMonth()" class="calendar-header--right-icon"><ic-icon icon="arrowRightAlt2"></ic-icon></div>
+    <div class="calendar-header--add-icon"><ic-icon icon="plusLine"></ic-icon></div>
   </div>
-{{displayMonth}}
   <table class="calendar-table" *ngIf="calendar">
     <thead>
       <tr>
@@ -38,6 +44,15 @@
       </tr>
     </tbody>
   </table>
-  <p *ngIf=(calendarDayInstance)>{{calendarDayInstance.date.getDate()}}  {{monthNames[calendarDayInstance.date.getMonth()]}} </p>
-  <button mat-button>Dodaj wydarzenie</button>
+  
+  <p class="day-header">{{calendarDayInstance.date.getDate()}} {{monthNames[calendarDayInstance.date.getMonth()]}}</p>
+  
+  <div class="events">
+    <div *ngFor="let event of calendarDayInstance.events" class="events__row">
+      <div class="events__row--icon"> </div>
+      <div class="events__row--title">{{event.title}}</div>
+      <div *ngIf="!eventLongerThan1Day(event)" class="events__row--hours">{{event.startDate | date:'HH:mm'}} - {{event.endDate | date:'HH:mm'}}</div>
+      <div *ngIf="eventLongerThan1Day(event)" class="events__row--hours">{{event.startDate | date:'dd/MM/yy'}} - {{event.endDate | date:'dd/MM/yy'}}</div>
+    </div>
+  </div>
 </div>

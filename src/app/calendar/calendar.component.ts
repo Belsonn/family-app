@@ -1,5 +1,9 @@
-import { DYNAMIC_TYPE } from '@angular/compiler';
 import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
+import baselineEvent from '@iconify-icons/ic/baseline-event';
+import menuGridO from '@iconify-icons/gg/menu-grid-o';
+import arrowLeftAlt2 from '@iconify-icons/dashicons/arrow-left-alt2'
+import arrowRightAlt2 from '@iconify-icons/dashicons/arrow-right-alt2'
+import plusLine from '@iconify-icons/clarity/plus-line';
 
 export class CalendarDay {
   public date: Date;
@@ -8,6 +12,7 @@ export class CalendarDay {
   public isToday: boolean;
   public isClicked: boolean = false;
   public hasEvent: boolean = false;
+  public events: CalendarEvent[];
 
   public getDateString() {
     return this.date.toISOString().split('T')[0];
@@ -17,21 +22,15 @@ export class CalendarDay {
     this.date = d;
     this.isPastDate = d.setHours(0, 0, 0, 0) < new Date().setHours(0, 0, 0, 0);
     this.isToday = d.setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0);
+    this.events = [];
   }
 }
 
-export class CalendarEvent {
-  public title: string;
-  public startDate: Date;
-  public endDate: Date;
-  public allDay: boolean;
-
-  constructor(title: string, startDate: Date, endDate:Date, allDay: boolean){
-    this.title = title;
-    this.startDate = startDate;
-    this.endDate = endDate;
-    this.allDay = allDay;
-  }
+export interface CalendarEvent {
+  title: string;
+  startDate: Date;
+  endDate: Date;
+  allDay: boolean;
 }
 
 @Pipe({
@@ -59,6 +58,16 @@ export class ChunkPipe implements PipeTransform {
   styleUrls: ['./calendar.component.scss'],
 })
 export class CalendarComponent implements OnInit {
+  // Icons Block
+
+  baselineEvent = baselineEvent;
+  menuGridO = menuGridO;
+  arrowRightAlt2 = arrowRightAlt2;
+  arrowLeftAlt2 = arrowLeftAlt2;
+  plusLine = plusLine;
+
+
+  
   public calendar: CalendarDay[] = [];
   public monthNames = [
     'January',
@@ -74,20 +83,37 @@ export class CalendarComponent implements OnInit {
     'November',
     'December',
   ];
-  public displayMonth: string;
+  public displayDate: string;
   monthSelected: number;
   private monthIndex: number = 0;
   calendarDayInstance;
-  dummyEventStart : Date;
-  dummyEventEnd : Date;
-  calendarEvents: CalendarEvent[] = [new CalendarEvent("test", new Date(), new Date(), true), new CalendarEvent("test 3", new Date(), new Date(), true)]
+  calendarEvents: CalendarEvent[] = [];
+  // TO DELETE LATER
+  dummyEventStart: Date;
+  dummyEventEnd: Date;
+  element: CalendarEvent;
 
   ngOnInit(): void {
-    this.dummyEventStart = new Date();
-    this.dummyEventStart.setDate(15);
-    this.dummyEventEnd = new Date();
-    this.dummyEventEnd.setDate(18);
-    this.calendarEvents.push(new CalendarEvent("test3", this.dummyEventStart, this.dummyEventEnd, true));
+    let testEvent = {
+      title: 'TEST20',
+      startDate: new Date(),
+      endDate: new Date(),
+      allDay: true,
+    }
+    testEvent.startDate.setDate(7);
+    testEvent.endDate.setDate(13);
+    this.element = {
+      title: 'TEST1ASD ASDSADAS DSADAS DSADSAD ASDS A0',
+      startDate: new Date(),
+      endDate: new Date(),
+      allDay: true,
+    };
+    
+    this.calendarEvents.push(this.element);
+    this.calendarEvents.push(testEvent);
+    this.calendarEvents.push(testEvent);
+    this.calendarEvents.push(testEvent);
+    this.calendarEvents.push(testEvent);
     this.generateCalendarDays(this.monthIndex);
     this.monthSelected = new Date().getMonth();
   }
@@ -100,27 +126,42 @@ export class CalendarComponent implements OnInit {
     let day: Date = new Date(
       new Date().setMonth(new Date().getMonth() + monthIndex)
     );
-
-    // set the dispaly month for UI
-    this.displayMonth = this.monthNames[day.getMonth()];
+    // set the dispaly date for UI
+    const today = new Date();
+    this.displayDate = `${today.getDate()} ${this.monthNames[today.getMonth()]}`
 
     let startingDateOfCalendar = this.getStartDateForCalendar(day);
 
     let dateToAdd = startingDateOfCalendar;
-
     for (let i = 0; i < 42; i++) {
       const day = new CalendarDay(new Date(dateToAdd));
+
       // Set clicked date to today at init
       if (day.isToday) {
         day.isClicked = true;
         this.calendarDayInstance = day;
       }
+
       // Check if day has events.
-      this.calendarEvents.forEach(element => {
-        if(element.startDate.setHours(0, 0, 0, 0)<=day.date.setHours(0, 0, 0, 0) && element.endDate.setHours(0, 0, 0, 0)>=day.date.setHours(0, 0, 0, 0)){
+      for (let i = 0; i < this.calendarEvents.length; i++) {
+        let element = this.calendarEvents[i];
+
+        // Prepare 2 variables to check day with events
+        let startDate = new Date();
+        let endDate = new Date();
+
+        startDate.setTime(element.startDate.getTime());
+        endDate.setTime(element.endDate.getTime());
+
+        if (
+          startDate.setHours(0, 0, 0, 0) <= day.date.setHours(0, 0, 0, 0) &&
+          endDate.setHours(0, 0, 0, 0) >= day.date.setHours(0, 0, 0, 0)
+        ) {
           day.hasEvent = true;
+          day.events.push(this.calendarEvents[i]);
         }
-      });
+      }
+
       this.calendar.push(day);
       dateToAdd = new Date(dateToAdd.setDate(dateToAdd.getDate() + 1));
     }
@@ -152,8 +193,6 @@ export class CalendarComponent implements OnInit {
   }
 
   public onDateClick(calendarDay) {
-    console.log(calendarDay, ' XD ', this.calendarEvents);
-
     //Reset old day clicked
     if (this.calendarDayInstance) {
       this.calendarDayInstance.isClicked = false;
@@ -161,6 +200,14 @@ export class CalendarComponent implements OnInit {
 
     this.calendarDayInstance = calendarDay;
     calendarDay.isClicked = true;
+  }
+
+  public eventLongerThan1Day(event: CalendarEvent){
+    if(event.startDate.getDate() !== event.endDate.getDate() && event.endDate.getTime()-event.startDate.getTime()>86400000){
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public increaseMonth() {
