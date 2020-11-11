@@ -1,8 +1,10 @@
 @import "~src/scss/variables.scss";
+@import "~src/scss/animations.scss";
 
 
 .calendar-header{
   display:flex;
+  justify-content: space-between;
   margin-top: 1rem;
 
   &--menu-icon{
@@ -15,9 +17,11 @@
     padding: 0 0.5rem;
   }
   &--date{  
-    margin: 0 1rem;
+    width: 130px;
     text-align: center;
     padding-top: 0.5rem;
+    font-weight: 600;
+    color: $blue-primary;
   }
   &--right-icon{
     font-size: 1.6rem;
@@ -27,6 +31,11 @@
     font-size: 1.6rem;
     padding: 0 0.5rem;
     margin-left: auto;
+  }
+
+  &--left-icon:active, &--right-icon:active{
+    animation-name: upToDownButton;
+    animation-duration: 0.2s;
   }
 }
 

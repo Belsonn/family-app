@@ -1,56 +1,13 @@
-import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import baselineEvent from '@iconify-icons/ic/baseline-event';
 import menuGridO from '@iconify-icons/gg/menu-grid-o';
 import arrowLeftAlt2 from '@iconify-icons/dashicons/arrow-left-alt2'
 import arrowRightAlt2 from '@iconify-icons/dashicons/arrow-right-alt2'
 import plusLine from '@iconify-icons/clarity/plus-line';
-
-export class CalendarDay {
-  public date: Date;
-  public title: string;
-  public isPastDate: boolean;
-  public isToday: boolean;
-  public isClicked: boolean = false;
-  public hasEvent: boolean = false;
-  public events: CalendarEvent[];
-
-  public getDateString() {
-    return this.date.toISOString().split('T')[0];
-  }
-
-  constructor(d: Date) {
-    this.date = d;
-    this.isPastDate = d.setHours(0, 0, 0, 0) < new Date().setHours(0, 0, 0, 0);
-    this.isToday = d.setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0);
-    this.events = [];
-  }
-}
-
-export interface CalendarEvent {
-  title: string;
-  startDate: Date;
-  endDate: Date;
-  allDay: boolean;
-}
-
-@Pipe({
-  name: 'chunk',
-})
-export class ChunkPipe implements PipeTransform {
-  transform(calendarDaysArray: any, chunkSize: number): any {
-    let calendarDays = [];
-    let weekDays = [];
-
-    calendarDaysArray.map((day, index) => {
-      weekDays.push(day);
-      if (++index % chunkSize === 0) {
-        calendarDays.push(weekDays);
-        weekDays = [];
-      }
-    });
-    return calendarDays;
-  }
-}
+import { CalendarDay } from '../utils/CalendarDay.class';
+import { CalendarEvent } from '../utils/CalendarEvent.model';
+import { MatDialog } from '@angular/material/dialog';
+import { CalendarModalComponent } from './calendar-modal/calendar-modal.component';
 
 @Component({
   selector: 'app-calendar',
@@ -85,6 +42,7 @@ export class CalendarComponent implements OnInit {
   ];
   public displayDate: string;
   monthSelected: number;
+
   private monthIndex: number = 0;
   calendarDayInstance;
   calendarEvents: CalendarEvent[] = [];
@@ -92,6 +50,8 @@ export class CalendarComponent implements OnInit {
   dummyEventStart: Date;
   dummyEventEnd: Date;
   element: CalendarEvent;
+
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
     let testEvent = {
@@ -127,8 +87,7 @@ export class CalendarComponent implements OnInit {
       new Date().setMonth(new Date().getMonth() + monthIndex)
     );
     // set the dispaly date for UI
-    const today = new Date();
-    this.displayDate = `${today.getDate()} ${this.monthNames[today.getMonth()]}`
+    this.displayDate = `${this.monthNames[day.getMonth()]} ${day.getFullYear()}`
 
     let startingDateOfCalendar = this.getStartDateForCalendar(day);
 
@@ -208,6 +167,16 @@ export class CalendarComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  public addEvent() { 
+    const dialogRef = this.dialog.open(CalendarModalComponent, {
+      data: {}
+    })
+
+    dialogRef.afterClosed().subscribe(res => {
+      console.log(res);
+    })
   }
 
   public increaseMonth() {
