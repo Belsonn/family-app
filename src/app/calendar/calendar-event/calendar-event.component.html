@@ -1,0 +1,110 @@
+<div class="container">
+  <mat-vertical-stepper class="stepper" [linear]="!true" #stepper>
+    <mat-step>
+        <ng-template matStepLabel>Nazwa wydarzenia</ng-template>
+        <mat-form-field class = "formField">
+          <mat-label>Nazwa</mat-label>
+          <input [(ngModel)]="title" matInput required />
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Dalej</button>
+        </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Typ wydarzenia</ng-template>
+      <mat-radio-group [(ngModel)]="longEvent" class = "radio-group">
+        <mat-radio-button class="radio-group--button" [value]="false">Jeden dzień</mat-radio-button>
+        <mat-radio-button class="radio-group--button" [value]="true">Wiele dni</mat-radio-button>
+      </mat-radio-group>
+      <div class="stepper__buttons">
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Kiedy?</ng-template>
+      <ng-container *ngIf="!longEvent">
+        <div class="shortEvent">
+          <mat-form-field class="formField" appearance="fill">
+            <mat-label>Data początkowa</mat-label>
+            <input matInput [(ngModel)]="startDateShort" [matDatepicker]="startDateShortPicker" disabled />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="startDateShortPicker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker
+              touchUi
+              #startDateShortPicker
+              disabled="false"
+            ></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="formField" appearance="outline">
+            <mat-label>Godzina rozpoczęcia</mat-label>
+            <input matInput [(ngModel)]="startTime" [max]="endTime" [ngxTimepicker]="startPicker" [format]="24" readonly/>
+            <ngx-material-timepicker [theme]="pickerTheme" #startPicker></ngx-material-timepicker>
+          </mat-form-field>
+          <mat-form-field class="formField" appearance="outline">
+            <mat-label>Godzina zakończenia</mat-label>
+            <input matInput [(ngModel)]="endTime" [min]="startTime" [ngxTimepicker]="endPicker" [format]="24" readonly/>
+            <ngx-material-timepicker [theme]="pickerTheme" #endPicker></ngx-material-timepicker>
+          </mat-form-field>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="longEvent">
+        <div class="longEvent">
+          <mat-form-field class="formField" appearance="fill">
+            <mat-label>Data rozpoczęcia</mat-label>
+            <input matInput [(ngModel)]="startDate" (dateInput)="calcEndDate()" [matDatepicker]="startDatePicker" disabled />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="startDatePicker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker
+              touchUi
+              #startDatePicker
+              disabled="false"
+            ></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="formField" appearance="fill">
+            <mat-label>Data zakończenia</mat-label>
+            <input matInput [(ngModel)]="endDate" [min]="minEndDate" [matDatepicker]="endDatePicker" disabled />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="endDatePicker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker
+              touchUi
+              #endDatePicker
+              disabled="false"
+            ></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </ng-container>
+      <div class="stepper__buttons">
+        <button (click)="onTest1(stepper)" mat-button>TESTUJ</button>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Gotowe</ng-template>
+      <div class="overview">
+        <div class="overview--title">
+          <h3>{{title}}</h3>
+        </div>
+        <div *ngIf="!longEvent" class="overview__short">
+          <div class="overview__short-startDate">
+            <p>{{startDateShort | date: 'dd MMMM yyyy'}}, {{startTime}} - {{endTime}}</p>
+            <p></p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+</div>
+
+<button (click)="onTest()" mat-button>TESTUJ</button>

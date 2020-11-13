@@ -1,0 +1,27 @@
+.stepper {
+    margin: 0 auto;
+    
+    &__buttons{
+        margin-top:0.7rem;
+    }
+}
+.radio-group{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &--button {
+        margin-top: 0.9rem;
+    }
+}
+.formField {
+    margin-top: 0.3rem;
+    width: 90%;
+}
+.overview{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
