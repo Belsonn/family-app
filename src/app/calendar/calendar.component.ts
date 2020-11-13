@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import baselineEvent from '@iconify-icons/ic/baseline-event';
 import menuGridO from '@iconify-icons/gg/menu-grid-o';
-import arrowLeftAlt2 from '@iconify-icons/dashicons/arrow-left-alt2'
-import arrowRightAlt2 from '@iconify-icons/dashicons/arrow-right-alt2'
+import arrowLeftAlt2 from '@iconify-icons/dashicons/arrow-left-alt2';
+import arrowRightAlt2 from '@iconify-icons/dashicons/arrow-right-alt2';
 import plusLine from '@iconify-icons/clarity/plus-line';
 import { CalendarDay } from '../utils/CalendarDay.class';
 import { CalendarEvent } from '../utils/CalendarEvent.model';
 import { MatDialog } from '@angular/material/dialog';
 import { CalendarModalComponent } from './calendar-modal/calendar-modal.component';
+import { MonthNames } from '../utils/CalendarMonthNames';
 
 @Component({
   selector: 'app-calendar',
@@ -23,23 +24,8 @@ export class CalendarComponent implements OnInit {
   arrowLeftAlt2 = arrowLeftAlt2;
   plusLine = plusLine;
 
-
-  
   public calendar: CalendarDay[] = [];
-  public monthNames = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
+  public monthNames = MonthNames;
   public displayDate: string;
   monthSelected: number;
 
@@ -59,7 +45,7 @@ export class CalendarComponent implements OnInit {
       startDate: new Date(),
       endDate: new Date(),
       allDay: true,
-    }
+    };
     testEvent.startDate.setDate(7);
     testEvent.endDate.setDate(13);
     this.element = {
@@ -68,7 +54,7 @@ export class CalendarComponent implements OnInit {
       endDate: new Date(),
       allDay: true,
     };
-    
+
     this.calendarEvents.push(this.element);
     this.calendarEvents.push(testEvent);
     this.calendarEvents.push(testEvent);
@@ -87,7 +73,9 @@ export class CalendarComponent implements OnInit {
       new Date().setMonth(new Date().getMonth() + monthIndex)
     );
     // set the dispaly date for UI
-    this.displayDate = `${this.monthNames[day.getMonth()]} ${day.getFullYear()}`
+    this.displayDate = `${
+      this.monthNames[day.getMonth()]
+    } ${day.getFullYear()}`;
 
     let startingDateOfCalendar = this.getStartDateForCalendar(day);
 
@@ -161,22 +149,25 @@ export class CalendarComponent implements OnInit {
     calendarDay.isClicked = true;
   }
 
-  public eventLongerThan1Day(event: CalendarEvent){
-    if(event.startDate.getDate() !== event.endDate.getDate() && event.endDate.getTime()-event.startDate.getTime()>86400000){
+  public eventLongerThan1Day(event: CalendarEvent) {
+    if (
+      event.startDate.getDate() !== event.endDate.getDate() &&
+      event.endDate.getTime() - event.startDate.getTime() > 86400000
+    ) {
       return true;
     } else {
       return false;
     }
   }
 
-  public addEvent() { 
+  public addEvent() {
     const dialogRef = this.dialog.open(CalendarModalComponent, {
-      data: {}
-    })
+      data: {},
+    });
 
-    dialogRef.afterClosed().subscribe(res => {
+    dialogRef.afterClosed().subscribe((res) => {
       console.log(res);
-    })
+    });
   }
 
   public increaseMonth() {
