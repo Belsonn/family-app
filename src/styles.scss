@@ -1,15 +1,27 @@
-
 /* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
+// @import '~@angular/material/theming';
 
-html, body { height: 100%; }
+// $custom-typography: mat-typography-config($font-family: '"Source Sans Pro", sans-serif;');
+// @include mat-core($custom-typography);
+
+html,
 body {
-    margin: 0;
-    font-family: 'Source Sans Pro', sans-serif;
+  height: 100%;
 }
-button:focus, button:active:focus, button.active:focus {
-    outline: none !important;
-    outline-style: none !important;
-    }
-
-
+body {
+  margin: 0;
+  font-family: "Source Sans Pro", sans-serif !important;
+}
+button:focus,
+button:active:focus,
+button.active:focus {
+  outline: none !important;
+  outline-style: none !important;
+}
+input:focus,
+input:active:focus,
+input.active:focus {
+  outline: none !important;
+  outline-style: none !important;
+}

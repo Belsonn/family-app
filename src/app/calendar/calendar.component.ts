@@ -9,6 +9,9 @@ import { CalendarEvent } from '../utils/CalendarEvent.model';
 import { MatDialog } from '@angular/material/dialog';
 import { CalendarModalComponent } from './calendar-modal/calendar-modal.component';
 import { MonthNames } from '../utils/CalendarMonthNames';
+import { CalendarService } from './calendar.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-calendar',
@@ -32,12 +35,16 @@ export class CalendarComponent implements OnInit {
   private monthIndex: number = 0;
   calendarDayInstance;
   calendarEvents: CalendarEvent[] = [];
+  swipingRight = false;
+  swipingLeft = false;
+  swipingTimerRight;
+  swipingTimerLeft;
   // TO DELETE LATER
   dummyEventStart: Date;
   dummyEventEnd: Date;
   element: CalendarEvent;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private calendarService: CalendarService, private router: Router) {}
 
   ngOnInit(): void {
     let testEvent = {
@@ -55,11 +62,10 @@ export class CalendarComponent implements OnInit {
       allDay: true,
     };
 
-    this.calendarEvents.push(this.element);
-    this.calendarEvents.push(testEvent);
-    this.calendarEvents.push(testEvent);
-    this.calendarEvents.push(testEvent);
-    this.calendarEvents.push(testEvent);
+    this.calendarService.calendarEvents.push(this.element);
+    this.calendarService.calendarEvents.push(testEvent);
+    this.calendarService.calendarEvents.push(testEvent);
+    this.calendarEvents = this.calendarService.calendarEvents;
     this.generateCalendarDays(this.monthIndex);
     this.monthSelected = new Date().getMonth();
   }
@@ -84,9 +90,14 @@ export class CalendarComponent implements OnInit {
       const day = new CalendarDay(new Date(dateToAdd));
 
       // Set clicked date to today at init
-      if (day.isToday) {
+      if (day.isToday && !this.calendarDayInstance) {
         day.isClicked = true;
         this.calendarDayInstance = day;
+      }
+      if(this.calendarDayInstance && this.calendarDayInstance.date.getTime() == day.date.getTime()){
+       
+          day.isClicked = true;
+        
       }
 
       // Check if day has events.
@@ -161,13 +172,17 @@ export class CalendarComponent implements OnInit {
   }
 
   public addEvent() {
-    const dialogRef = this.dialog.open(CalendarModalComponent, {
-      data: {},
-    });
+    // const dialogRef = this.dialog.open(CalendarModalComponent, {
+    //   data: {},
+    // });
 
-    dialogRef.afterClosed().subscribe((res) => {
-      console.log(res);
-    });
+    // dialogRef.afterClosed().subscribe((res) => {
+    //   console.log(res);
+    // });
+
+    this.calendarService.dayClicked = this.calendarDayInstance.date;
+    this.router.navigate(['calendar', 'event'])
+
   }
 
   public increaseMonth() {
@@ -184,12 +199,37 @@ export class CalendarComponent implements OnInit {
   public decreaseMonth() {
     this.monthIndex--;
     this.monthSelected--;
-
+    
     if (this.monthSelected < 0) {
       this.monthSelected = 11;
     }
 
     this.generateCalendarDays(this.monthIndex);
+  }
+
+  swipeRight() {
+    if(this.swipingRight) {
+      clearTimeout(this.swipingTimerRight);
+    }
+    this.swipingRight = true;
+    this.swipingTimerRight = setTimeout(() => {
+      this.swipingRight = false;
+    },1000);
+
+    this.decreaseMonth();
+
+  }
+  swipeLeft() {
+    if(this.swipingLeft) {
+      clearTimeout(this.swipingTimerLeft);
+    }
+    this.swipingLeft = true;
+    this.swipingTimerLeft = setTimeout(() => {
+      this.swipingLeft = false;
+    },1000);
+
+    this.increaseMonth();
+
   }
 
   public setCurrentMonth() {

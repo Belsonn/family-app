@@ -1,13 +1,13 @@
-<div (swipeleft)="increaseMonth()" (swipeRight)="decreaseMonth()" class="container">
+<div (swipeleft)="swipeLeft()" (swipeRight)="swipeRight()" class="container">
   <div class="calendar-header">
     <div routerLink=".." class="calendar-header--menu-icon"><ic-icon icon="menuGridO"></ic-icon></div>
-    <div (click)="decreaseMonth()" class="calendar-header--left-icon"><ic-icon icon="arrowLeftAlt2"></ic-icon></div>
+    <div (click)="swipeRight()" class="calendar-header--left-icon"><ic-icon icon="arrowLeftAlt2"></ic-icon></div>
     <div (click)="setCurrentMonth()" class="calendar-header--date">{{displayDate}}</div>
-    <div (click)="increaseMonth()" class="calendar-header--right-icon"><ic-icon icon="arrowRightAlt2"></ic-icon></div>
-    <div routerLink="event" class="calendar-header--add-icon"><ic-icon icon="plusLine"></ic-icon></div>
+    <div (click)="swipeLeft()" class="calendar-header--right-icon"><ic-icon icon="arrowRightAlt2"></ic-icon></div>
+    <div (click)="addEvent()" class="calendar-header--add-icon"><ic-icon icon="plusLine"></ic-icon></div>
     <!-- <div (click)="addEvent()" class="calendar-header--add-icon"><ic-icon icon="plusLine"></ic-icon></div> -->
   </div>
-  <table class="calendar-table" *ngIf="calendar">
+  <table class="calendar-table" [ngClass]="{'calendar-table--swipingRight': swipingRight, 'calendar-table--swipingLeft': swipingLeft}"  *ngIf="calendar">
     <thead>
       <tr>
         <th>Po</th>

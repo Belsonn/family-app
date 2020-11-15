@@ -59,6 +59,15 @@
     padding: 0.75rem;
     vertical-align: center;
   }
+  td{
+    width: 1%;
+  }
+  &--swipingRight{
+    animation: swipingRightCalendar 1s linear;
+  }
+  &--swipingLeft{
+    animation: swipingLeftCalendar 1s linear;
+  }
 }
 
 .calendar-day {
