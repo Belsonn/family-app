@@ -95,9 +95,8 @@ export class CalendarComponent implements OnInit {
         this.calendarDayInstance = day;
       }
       if(this.calendarDayInstance && this.calendarDayInstance.date.getTime() == day.date.getTime()){
-       
           day.isClicked = true;
-        
+          this.calendarDayInstance = day;
       }
 
       // Check if day has events.

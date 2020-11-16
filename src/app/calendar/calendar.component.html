@@ -1,4 +1,4 @@
-<div (swipeleft)="swipeLeft()" (swipeRight)="swipeRight()" class="container">
+<div class="container">
   <div class="calendar-header">
     <div routerLink=".." class="calendar-header--menu-icon"><ic-icon icon="menuGridO"></ic-icon></div>
     <div (click)="swipeRight()" class="calendar-header--left-icon"><ic-icon icon="arrowLeftAlt2"></ic-icon></div>
@@ -7,7 +7,7 @@
     <div (click)="addEvent()" class="calendar-header--add-icon"><ic-icon icon="plusLine"></ic-icon></div>
     <!-- <div (click)="addEvent()" class="calendar-header--add-icon"><ic-icon icon="plusLine"></ic-icon></div> -->
   </div>
-  <table class="calendar-table" [ngClass]="{'calendar-table--swipingRight': swipingRight, 'calendar-table--swipingLeft': swipingLeft}"  *ngIf="calendar">
+  <table (swipeleft)="swipeLeft()" (swipeRight)="swipeRight()" class="calendar-table" [ngClass]="{'calendar-table--swipingRight': swipingRight, 'calendar-table--swipingLeft': swipingLeft}"  *ngIf="calendar">
     <thead>
       <tr>
         <th>Po</th>
@@ -47,7 +47,7 @@
     <div *ngFor="let event of calendarDayInstance.events" class="events__row">
       <div class="events__row--icon"> </div>
       <div class="events__row--title">{{event.title}}</div>
-      <div *ngIf="!eventLongerThan1Day(event)" class="events__row--hours">{{event.startDate | date:'HH:mm'}} - {{event.endDate | date:'HH:mm'}}</div>
+      <div *ngIf="!eventLongerThan1Day(event)" class="events__row--hours"><span *ngIf="!event.allDay">{{event.startDate | date:'HH:mm'}} - {{event.endDate | date:'HH:mm'}}</span></div>
       <div *ngIf="eventLongerThan1Day(event)" class="events__row--hours">{{event.startDate | date:'dd/MM/yy'}} - {{event.endDate | date:'dd/MM/yy'}}</div>
     </div>
   </div>
