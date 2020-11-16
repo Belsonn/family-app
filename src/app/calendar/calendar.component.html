@@ -10,13 +10,13 @@
   <table (swipeleft)="swipeLeft()" (swipeRight)="swipeRight()" class="calendar-table" [ngClass]="{'calendar-table--swipingRight': swipingRight, 'calendar-table--swipingLeft': swipingLeft}"  *ngIf="calendar">
     <thead>
       <tr>
-        <th>Po</th>
-        <th>Wt</th>
-        <th>Śr</th>
-        <th>Cz</th>
-        <th>Pi</th>
-        <th>So</th>
-        <th>Ni</th>
+        <th i18n="1Day">Mo</th>
+        <th i18n="2Day">Tu</th>
+        <th i18n="3Day">We</th>
+        <th i18n="4Day">Th</th>
+        <th i18n="5Day">Fr</th>
+        <th i18n="6Day">Sa</th>
+        <th i18n="7Day">Su</th>
       </tr>
     </thead>
     <tbody>
@@ -47,7 +47,7 @@
     <div *ngFor="let event of calendarDayInstance.events" class="events__row">
       <div class="events__row--icon"> </div>
       <div class="events__row--title">{{event.title}}</div>
-      <div *ngIf="!eventLongerThan1Day(event)" class="events__row--hours"><span *ngIf="!event.allDay">{{event.startDate | date:'HH:mm'}} - {{event.endDate | date:'HH:mm'}}</span></div>
+      <div *ngIf="!eventLongerThan1Day(event)" class="events__row--hours"><span *ngIf="!event.allDay">{{event.startDate | date:'HH:mm'}} - {{event.endDate | date:'HH:mm'}}</span><span i18n="allDay" *ngIf="event.allDay">Whole day</span></div>
       <div *ngIf="eventLongerThan1Day(event)" class="events__row--hours">{{event.startDate | date:'dd/MM/yy'}} - {{event.endDate | date:'dd/MM/yy'}}</div>
     </div>
   </div>

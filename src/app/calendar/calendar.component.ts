@@ -213,7 +213,7 @@ export class CalendarComponent implements OnInit {
     this.swipingRight = true;
     this.swipingTimerRight = setTimeout(() => {
       this.swipingRight = false;
-    },1000);
+    },1500);
 
     this.decreaseMonth();
 
@@ -225,7 +225,7 @@ export class CalendarComponent implements OnInit {
     this.swipingLeft = true;
     this.swipingTimerLeft = setTimeout(() => {
       this.swipingLeft = false;
-    },1000);
+    },1500);
 
     this.increaseMonth();
 

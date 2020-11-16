@@ -63,10 +63,10 @@
     width: 1%;
   }
   &--swipingRight{
-    animation: swipingRightCalendar 1s linear;
+    animation: swipingRightCalendar 1s ease-in;
   }
   &--swipingLeft{
-    animation: swipingLeftCalendar 1s linear;
+    animation: swipingLeftCalendar 1s ease-in;
   }
 }
 

@@ -13,6 +13,12 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n":{
+        "sourceLocale": "en-US",
+        "locales": {
+        "pl": "src/locale/messages.pl.xlf"
+      }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -22,6 +28,7 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
+            "localize": true,
             "aot": true,
             "assets": [
               "src/favicon.ico",
@@ -61,8 +68,12 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "pl": {
+              "localize": ["pl"]
             }
           }
+
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -72,7 +83,10 @@
           "configurations": {
             "production": {
               "browserTarget": "family-app:build:production"
-            }
+            },
+            "pl": {
+              "browserTarget": "family-app:build:pl"
+            } 
           }
         },
         "extract-i18n": {
