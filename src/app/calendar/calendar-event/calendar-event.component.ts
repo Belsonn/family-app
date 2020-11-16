@@ -25,6 +25,9 @@ export class CalendarEventComponent implements OnInit {
   //SHORT
   allDay: boolean = false;
 
+  //LONG
+  minEndDate: Date;
+
   //FormControls
   titleFormGroup: FormGroup;
   shortEventFormGroup: FormGroup;
@@ -46,8 +49,8 @@ export class CalendarEventComponent implements OnInit {
     this.shortEventFormGroup = this._formBuilder.group({
       allDayControl: [''],
       shortDateControl: ['', Validators.required],
-      startTimeControl: ['', Validators.required],
-      endTimeControl: ['', Validators.required],
+      startTimeControl: [null, Validators.required],
+      endTimeControl: [null, Validators.required],
     });
     this.longEventFormGroup = this._formBuilder.group({
       startDateControl: ['', Validators.required],
@@ -60,17 +63,23 @@ export class CalendarEventComponent implements OnInit {
       this.longEventFormGroup.patchValue({
         startDateControl: this.calendarService.dayClicked,
       });
-      // this.calcEndDate();
+      this.calcEndDate();
     }
   }
 
   calcEndDate() {
-    // const time = this.startDate.setDate(this.startDate.getDate() + 1);
-    // this.minEndDate = new Date(time);
-    // if (this.endDate < this.minEndDate) {
-    //   this.endDate = this.minEndDate;
-    // }
+    this.minEndDate = new Date();
+
+    //Setting minEnd to 1 day after start
+    this.minEndDate.setDate(this.longEventFormGroup.controls.startDateControl.value.getDate() + 1);
+
+    // If startDate is after endDate -> change endDate
+    if (this.longEventFormGroup.controls.endDateControl.value < this.minEndDate) {
+      this.longEventFormGroup.patchValue({ endDateControl: this.minEndDate});
+    }
   }
+
+  // Disabling time if event is allDay
   allDayChange(event) {
     if (event.checked) {
       this.shortEventFormGroup.get('startTimeControl').disable();
@@ -95,30 +104,43 @@ export class CalendarEventComponent implements OnInit {
       endDate: new Date(),
       allDay: false,
     };
+
     event.title = this.titleFormGroup.controls.titleControl.value;
+
     if (!this.longEvent) {
+
+      // Set same date for start and end
       let startDate = new Date(
         this.shortEventFormGroup.controls.shortDateControl.value
       );
       let endDate = new Date(
         this.shortEventFormGroup.controls.shortDateControl.value
       );
+      event.allDay = true;
 
-      const startTimeArray = this.shortEventFormGroup.controls.startTimeControl.value.split(
-        ':'
-      );
-      startDate.setHours(parseInt(startTimeArray[0]));
-      startDate.setMinutes(parseInt(startTimeArray[1]));
+      // If event is not allDay
+      if(!this.shortEventFormGroup.controls.allDayControl.value) {
+        event.allDay = false;
 
-      const endTimeArray = this.shortEventFormGroup.controls.endTimeControl.value.split(
-        ':'
-      );
-      endDate.setHours(parseInt(endTimeArray[0]));
-      endDate.setMinutes(parseInt(endTimeArray[1]));
-
+        //Start - hours and minutes
+        const startTimeArray = this.shortEventFormGroup.controls.startTimeControl.value.split(
+          ':'
+        );
+        startDate.setHours(parseInt(startTimeArray[0]));
+        startDate.setMinutes(parseInt(startTimeArray[1]));
+  
+        // End - hours and minutes
+        const endTimeArray = this.shortEventFormGroup.controls.endTimeControl.value.split(
+          ':'
+        );
+        endDate.setHours(parseInt(endTimeArray[0]));
+        endDate.setMinutes(parseInt(endTimeArray[1]));
+      }
+      
+      // set event Date to modified date
       event.startDate = startDate;
       event.endDate = endDate;
-      event.allDay = this.shortEventFormGroup.controls.allDayControl.value;
+
     } else {
       event.startDate = this.longEventFormGroup.controls.startDateControl.value;
       event.endDate = this.longEventFormGroup.controls.endDateControl.value;
