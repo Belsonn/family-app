@@ -1,3 +1,4 @@
+<button mat-button (click)="onTest()">TESTUJ</button>
 <div class="container">
   <div class="calendar-header">
     <div routerLink=".." class="calendar-header--menu-icon"><ic-icon icon="menuGridO"></ic-icon></div>
@@ -44,7 +45,7 @@
   <p class="day-header">{{calendarDayInstance.date.getDate()}} {{monthNames[calendarDayInstance.date.getMonth()]}}</p>
   
   <div class="events">
-    <div *ngFor="let event of calendarDayInstance.events" class="events__row">
+  <div *ngFor="let event of calendarDayInstance.events; let i = index" class="events__row" style="--animation-order:{{i}};">
       <div class="events__row--icon"> </div>
       <div class="events__row--title">{{event.title}}</div>
       <div *ngIf="!eventLongerThan1Day(event)" class="events__row--hours"><span *ngIf="!event.allDay">{{event.startDate | date:'HH:mm'}} - {{event.endDate | date:'HH:mm'}}</span><span i18n="allDay" *ngIf="event.allDay">Whole day</span></div>

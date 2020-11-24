@@ -25,3 +25,11 @@ input.active:focus {
   outline: none !important;
   outline-style: none !important;
 }
+
+.timepicker-overlay {
+  z-index: 10000000 !important;
+}
+
+.timepicker-backdrop-overlay {
+  z-index: 10000000 !important;
+}

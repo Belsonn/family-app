@@ -7,11 +7,11 @@ import plusLine from '@iconify-icons/clarity/plus-line';
 import { CalendarDay } from '../utils/CalendarDay.class';
 import { CalendarEvent } from '../utils/CalendarEvent.model';
 import { MatDialog } from '@angular/material/dialog';
-import { CalendarModalComponent } from './calendar-modal/calendar-modal.component';
 import { MonthNames } from '../utils/CalendarMonthNames';
 import { CalendarService } from './calendar.service';
 import { Router } from '@angular/router';
-
+import { CalendarEventComponent } from './calendar-event/calendar-event.component';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
   selector: 'app-calendar',
@@ -43,8 +43,19 @@ export class CalendarComponent implements OnInit {
   dummyEventStart: Date;
   dummyEventEnd: Date;
   element: CalendarEvent;
+  element2: CalendarEvent;
+  element3: CalendarEvent;
+  // eventDayInstance;
+  // eventDayLastMonthInstance;
+  // timeInstance;
+  monthlyEventInstance;
 
-  constructor(public dialog: MatDialog, private calendarService: CalendarService, private router: Router) {}
+  constructor(
+    public dialog: MatDialog,
+    private calendarService: CalendarService,
+    private router: Router,
+    private deviceService: DeviceDetectorService
+  ) {}
 
   ngOnInit(): void {
     let testEvent = {
@@ -52,22 +63,54 @@ export class CalendarComponent implements OnInit {
       startDate: new Date(),
       endDate: new Date(),
       allDay: true,
+      repeat: null,
     };
     testEvent.startDate.setDate(7);
     testEvent.endDate.setDate(13);
     this.element = {
-      title: 'TEST1ASD ASDSADAS DSADAS DSADSAD ASDS A0',
+      title: 'TEST1',
       startDate: new Date(),
       endDate: new Date(),
       allDay: true,
+      repeat: {
+        repeatType: 'Daily',
+        repeatEvery: 10,
+      },
     };
-
-    this.calendarService.calendarEvents.push(this.element);
-    this.calendarService.calendarEvents.push(testEvent);
-    this.calendarService.calendarEvents.push(testEvent);
+    this.element2 = {
+      title: 'Weekly TEST',
+      startDate: new Date(),
+      endDate: new Date(),
+      allDay: true,
+      repeat: {
+        repeatType: 'Weekly',
+        repeatEvery: 2,
+      },
+    };
+    this.element3 = {
+      title: 'Monthly TEST',
+      startDate: new Date(),
+      endDate: new Date(),
+      allDay: true,
+      repeat: {
+        repeatType: 'Monthly',
+        repeatEvery: 1,
+      },
+    };
+    this.element.startDate.setDate(1);
+    this.element.endDate.setDate(1);
+    // this.calendarService.calendarEvents.push(this.element);
+    this.calendarService.calendarEvents.push(this.element2);
+    this.calendarService.calendarEvents.push(this.element3);
+    // this.calendarService.calendarEvents.push(testEvent);
+    // this.calendarService.calendarEvents.push(testEvent);
     this.calendarEvents = this.calendarService.calendarEvents;
     this.generateCalendarDays(this.monthIndex);
     this.monthSelected = new Date().getMonth();
+  }
+
+  onTest(){
+    
   }
 
   private generateCalendarDays(monthIndex: number): void {
@@ -82,6 +125,7 @@ export class CalendarComponent implements OnInit {
     this.displayDate = `${
       this.monthNames[day.getMonth()]
     } ${day.getFullYear()}`;
+    this.monthSelected = day.getMonth();
 
     let startingDateOfCalendar = this.getStartDateForCalendar(day);
 
@@ -94,9 +138,12 @@ export class CalendarComponent implements OnInit {
         day.isClicked = true;
         this.calendarDayInstance = day;
       }
-      if(this.calendarDayInstance && this.calendarDayInstance.date.getTime() == day.date.getTime()){
-          day.isClicked = true;
-          this.calendarDayInstance = day;
+      if (
+        this.calendarDayInstance &&
+        this.calendarDayInstance.date.getTime() == day.date.getTime()
+      ) {
+        day.isClicked = true;
+        this.calendarDayInstance = day;
       }
 
       // Check if day has events.
@@ -109,16 +156,48 @@ export class CalendarComponent implements OnInit {
 
         startDate.setTime(element.startDate.getTime());
         endDate.setTime(element.endDate.getTime());
+        startDate.setHours(0, 0, 0, 0);
+        endDate.setHours(0, 0, 0, 0);
+        day.date.setHours(0, 0, 0, 0);
+        day.date.setHours(0, 0, 0, 0);
 
         if (
-          startDate.setHours(0, 0, 0, 0) <= day.date.setHours(0, 0, 0, 0) &&
-          endDate.setHours(0, 0, 0, 0) >= day.date.setHours(0, 0, 0, 0)
+          startDate.getTime() <= day.date.getTime() &&
+          endDate.getTime() >= day.date.getTime()
         ) {
           day.hasEvent = true;
           day.events.push(this.calendarEvents[i]);
         }
-      }
 
+        // REPEAT BLOCK
+        if (element.repeat) {
+          let time;
+
+          // Set time differnce between dates
+          if(element.repeat.repeatType == 'Daily') {
+            time = 86400000 * element.repeat.repeatEvery
+          }
+          else if(element.repeat.repeatType == 'Weekly') {
+            time = 86400000 * 7 * element.repeat.repeatEvery
+          } 
+
+          //TODO
+          else if(element.repeat.repeatType == "Monthly"){
+            
+          }
+        
+          // Check if timezone is correctly set
+          if(day.date.getTimezoneOffset() != startDate.getTimezoneOffset()) {
+            let offset = (day.date.getTimezoneOffset() - startDate.getTimezoneOffset()) * 60 * 1000;
+            startDate.setTime(startDate.getTime() + offset);
+          }
+          // Check event startDate and substraction between dates must be 0 mod time
+          if(day.date > startDate && ((day.date.getTime() - startDate.getTime())%time == 0)){
+            day.hasEvent = true;
+            day.events.push(this.calendarEvents[i]);
+          }
+        }
+      }
       this.calendar.push(day);
       dateToAdd = new Date(dateToAdd.setDate(dateToAdd.getDate() + 1));
     }
@@ -127,6 +206,19 @@ export class CalendarComponent implements OnInit {
     if (this.monthSelected > 11 || this.monthSelected < 0) {
       this.monthSelected = 0;
     }
+  }
+
+  getDaysOfMonth(month, year): number {
+    month++;
+    if (month > 11) {
+      month = 0;
+      year++;
+    }
+    if (month < 0) {
+      month = 11;
+      year--;
+    }
+    return new Date(year, month, 0).getDate();
   }
 
   private getStartDateForCalendar(selectedDate: Date) {
@@ -154,7 +246,7 @@ export class CalendarComponent implements OnInit {
     if (this.calendarDayInstance) {
       this.calendarDayInstance.isClicked = false;
     }
-
+    console.log(calendarDay, calendarDay.date.getTime());
     this.calendarDayInstance = calendarDay;
     calendarDay.isClicked = true;
   }
@@ -171,17 +263,18 @@ export class CalendarComponent implements OnInit {
   }
 
   public addEvent() {
-    // const dialogRef = this.dialog.open(CalendarModalComponent, {
-    //   data: {},
-    // });
-
-    // dialogRef.afterClosed().subscribe((res) => {
-    //   console.log(res);
-    // });
-
     this.calendarService.dayClicked = this.calendarDayInstance.date;
-    this.router.navigate(['calendar', 'event'])
+    if (this.deviceService.isMobile()) {
+      this.router.navigate(['calendar', 'event']);
+    } else {
+      const dialogRef = this.dialog.open(CalendarEventComponent, {
+        data: {},
+      });
 
+      dialogRef.afterClosed().subscribe((res) => {
+        this.generateCalendarDays(this.monthIndex);
+      });
+    }
   }
 
   public increaseMonth() {
@@ -198,7 +291,7 @@ export class CalendarComponent implements OnInit {
   public decreaseMonth() {
     this.monthIndex--;
     this.monthSelected--;
-    
+
     if (this.monthSelected < 0) {
       this.monthSelected = 11;
     }
@@ -207,28 +300,26 @@ export class CalendarComponent implements OnInit {
   }
 
   swipeRight() {
-    if(this.swipingRight) {
+    if (this.swipingRight) {
       clearTimeout(this.swipingTimerRight);
     }
     this.swipingRight = true;
     this.swipingTimerRight = setTimeout(() => {
       this.swipingRight = false;
-    },1500);
+    }, 1500);
 
     this.decreaseMonth();
-
   }
   swipeLeft() {
-    if(this.swipingLeft) {
+    if (this.swipingLeft) {
       clearTimeout(this.swipingTimerLeft);
     }
     this.swipingLeft = true;
     this.swipingTimerLeft = setTimeout(() => {
       this.swipingLeft = false;
-    },1500);
+    }, 1500);
 
     this.increaseMonth();
-
   }
 
   public setCurrentMonth() {

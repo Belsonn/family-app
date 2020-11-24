@@ -1,5 +1,5 @@
 <div class="container">
-  <mat-vertical-stepper class="stepper" [linear]="true" #stepper>
+  <mat-vertical-stepper class="stepper" [linear]="!true" #stepper>
     <mat-step [stepControl]="titleFormGroup">
       <form [formGroup]="titleFormGroup">
         <ng-template i18n="event_stepper_title" matStepLabel>Event title</ng-template>
@@ -158,6 +158,39 @@
           </div>
         </form>
     </mat-step>
+    <mat-step [stepControl]="repeatFormGroup">
+      <form [formGroup]="repeatFormGroup">
+        <ng-template i18n="event_stepper_repeat" matStepLabel>Repeat?</ng-template>
+        <div class="repeat">
+          <mat-slide-toggle (change)="repeatToggle($event)" formControlName="repeatToggleControl">Repeat?</mat-slide-toggle>
+          <mat-form-field appearance="fill">
+            <mat-label>How often?</mat-label>
+            <mat-select formControlName="repeatTypeControl">
+              <mat-option *ngFor="let repeatType of repeatTypes" [value]="repeatType">{{repeatType}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Every?</mat-label>
+            <mat-select *ngIf="repeatFormGroup.controls.repeatTypeControl.value=='Daily'" formControlName="repeatEveryControl">
+              <mat-option *ngFor="let repeatEvery of repeatDaily" [value]="repeatEvery">{{repeatEvery}} <span>days</span></mat-option>
+            </mat-select>
+            <mat-select *ngIf="repeatFormGroup.controls.repeatTypeControl.value=='Weekly'"  formControlName="repeatEveryControl">
+              <mat-option  *ngFor="let repeatEvery of repeatWeekly" [value]="repeatEvery">{{repeatEvery}} <span>weeks</span></mat-option>
+            </mat-select>
+            <mat-select *ngIf="repeatFormGroup.controls.repeatTypeControl.value=='Monthly'" formControlName="repeatEveryControl">
+              <mat-option *ngFor="let repeatEvery of repeatMonthly" [value]="repeatEvery">{{repeatEvery}} <span>months</span></mat-option>
+            </mat-select>
+            <mat-select disabled *ngIf="!repeatFormGroup.controls.repeatTypeControl.value" formControlName="repeatEveryControl">
+              <mat-option></mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="stepper__buttons">
+          <button i18n="event_button_previous" mat-button matStepperPrevious>Back</button>
+          <button i18n="event_button_next" mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
     <mat-step>
       <ng-template i18n="event_stepper_rdy" matStepLabel>Ready</ng-template>
       <div class="overview">
@@ -204,7 +237,8 @@
       </div>
       <div>
         <button i18n="event_button_previous" mat-button matStepperPrevious>Back</button>
-        <button i18n="event_button_confirm" mat-button (click)="addEvent()">Add</button>
+        <button *ngIf="deviceService.isMobile()" i18n="event_button_confirm" mat-button (click)="addEvent()">Add</button>
+        <button *ngIf="!deviceService.isMobile()" i18n="event_button_confirm" mat-button mat-dialog-close (click)="addEvent()">Add</button>
       </div>
     </mat-step>
   </mat-vertical-stepper>
