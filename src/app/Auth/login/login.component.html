@@ -1,0 +1,56 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div *ngIf="!isLoading" class="container">
+  <div class="header">
+    <div class="header__logo"><img class="header__logo--resize" src="./../../assets/Family-Time-Logo.png" alt="Logo"></div>
+    <div class="header__title">Sign in</div>
+  </div>
+  <form (submit)="onLogin(loginForm)" #loginForm="ngForm" class="login">
+    <!-- <div *ngIf="error" class="alert alert-danger" role="alert">
+          Podałeś zły e-mail, hasło lub Twoje konto jest nieaktywne.
+        </div> -->
+    <div class="login__row">
+      <ic-icon [ngClass]="{'login__row--icon--red': emailInput.invalid && emailInput.touched}" class="login__row--icon" icon="emailLine"></ic-icon>
+      <mat-form-field class="login__row--form-field">
+        <mat-label>E-mail</mat-label>
+        <input
+          matInput
+          name="email"
+          ngModel
+          type="email"
+          #emailInput="ngModel"
+          email
+          required
+        />
+        <mat-error *ngIf="emailInput.invalid"
+          >Please provide a valid email address</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div class="login__row">
+      <ic-icon [ngClass]="{'login__row--icon--red': passwordInput.invalid && passwordInput.touched}" class="login__row--icon" icon="lockPasswordLine"></ic-icon>
+      <mat-form-field class="login__row--form-field">
+        <mat-label>Password</mat-label>
+        <input
+          type="password"
+          name="password"
+          ngModel
+          #passwordInput="ngModel"
+          matInput
+          required
+        />
+      </mat-form-field>
+    </div>
+    <div class="login__button">
+      <button mat-ripple class="btn login__button--primary" type="submit">
+        Login
+      </button>
+    </div>
+  </form>
+
+  <div class="bottom">
+    <div class="bottom__text">
+      Don't have an account?
+      <a [routerLink]="['','signup']" class="bottom__text--signup">Sign up</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+<div class="container">
+    <div class="header">
+        <div class="header__logo"><img class="header__logo--resize" src="./../../assets/Family-Time-Logo.png" alt="Logo"></div>
+      <div class="header__title">Create an account</div>
+    </div>
+    <form (submit)="onSignup(signupForm)" #signupForm="ngForm" class="login">
+      <!-- <div *ngIf="error" class="alert alert-danger" role="alert">
+            Podałeś zły e-mail, hasło lub Twoje konto jest nieaktywne.
+          </div> -->
+      <div class="login__row">
+        <ic-icon [ngClass]="{'login__row--icon--red': emailInput.invalid && emailInput.touched}" class="login__row--icon" icon="emailLine"></ic-icon>
+        <mat-form-field class="login__row--form-field">
+          <mat-label>E-mail</mat-label>
+          <input
+            matInput
+            name="email"
+            ngModel
+            type="email"
+            #emailInput="ngModel"
+            email
+            required
+          />
+          <mat-error *ngIf="emailInput.invalid"
+            >Please provide a valid email address</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="login__row">
+        <ic-icon [ngClass]="{'login__row--icon--red': passwordInput.invalid && passwordInput.touched}" class="login__row--icon" icon="lockPasswordLine"></ic-icon>
+        <mat-form-field class="login__row--form-field">
+          <mat-label>Password</mat-label>
+          <input
+            type="password"
+            name="password"
+            ngModel
+            #passwordInput="ngModel"
+            matInput
+            required
+            minlength="6"
+          />
+          <mat-error *ngIf="passwordInput.invalid"
+          >Password must have at least 6 characters.</mat-error
+        >
+        </mat-form-field>
+      </div>
+      <div class="login__row">
+        <ic-icon [ngClass]="{'login__row--icon--red': passwordConfirmInput.invalid && passwordConfirmInput.touched}" class="login__row--icon" icon="lockPasswordLine"></ic-icon>
+        <mat-form-field class="login__row--form-field">
+          <mat-label>Confirm Password</mat-label>
+          <input
+            type="password"
+            name="passwordConfirm"
+            ngModel
+            #passwordConfirmInput="ngModel"
+            matInput
+            required
+            minlength="6"
+          />
+        </mat-form-field>
+      </div>
+      <div class="login__button">
+        <button mat-ripple class="btn login__button--primary" type="submit">
+          Signup
+        </button>
+      </div>
+    </form>
+  
+    <div class="bottom">
+      <div class="bottom__text">
+        Already have an account?
+        <a [routerLink]="['','login']" class="bottom__text--signup">Sign in</a>
+      </div>
+    </div>
+  </div>
+  

@@ -8,16 +8,22 @@
 html,
 body {
   height: 100%;
+  width: 100%;
 }
 body {
   margin: 0;
+  box-sizing: border-box;
   font-family: "Source Sans Pro", sans-serif !important;
+}
+
+*:focus{
+  outline: none !important;
+  outline-style: none !important;
 }
 button:focus,
 button:active:focus,
 button.active:focus {
-  outline: none !important;
-  outline-style: none !important;
+  outline: 0 !important;
 }
 input:focus,
 input:active:focus,
@@ -25,6 +31,18 @@ input.active:focus {
   outline: none !important;
   outline-style: none !important;
 }
+
+.mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #00d4ff!important;
+}
+
+mat-spinner{
+  top: 30%;
+  margin: 0 auto;
+}
+
+
+
 
 .timepicker-overlay {
   z-index: 10000000 !important;

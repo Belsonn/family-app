@@ -45,6 +45,7 @@
     "@iconify/icons-emojione-v1": "^1.0.7",
     "@iconify/icons-flat-color-icons": "^1.0.5",
     "@iconify/icons-noto-v1": "^1.0.6",
+    "@iconify/icons-ri": "^1.0.1",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",

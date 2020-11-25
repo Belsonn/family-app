@@ -12,6 +12,8 @@ import plusLine from '@iconify-icons/clarity/plus-line';
 import bxCalendarCheck from '@iconify-icons/bx/bx-calendar-check';
 import bxCalendarX from '@iconify-icons/bx/bx-calendar-x';
 import outlineAccessTime from '@iconify-icons/ic/outline-access-time';
+import emailLine from '@iconify/icons-clarity/email-line';
+import lockPasswordLine from '@iconify/icons-ri/lock-password-line';
 
 export const appIcons = {
   planner,
@@ -28,4 +30,6 @@ export const appIcons = {
   bxCalendarCheck,
   bxCalendarX,
   outlineAccessTime,
+  emailLine,
+  lockPasswordLine,
 };

@@ -19,6 +19,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import {MatSelectModule} from '@angular/material/select';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuComponent } from './menu/menu.component';
@@ -29,6 +30,9 @@ import { ChunkPipe } from './utils/Chunk.pipe';
 import { HammerModule } from '@angular/platform-browser';
 import { CalendarEventComponent } from './calendar/calendar-event/calendar-event.component';
 import { TasksComponent } from './tasks/tasks.component';
+import { HomeScreenComponent } from './home-screen/home-screen.component';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +42,9 @@ import { TasksComponent } from './tasks/tasks.component';
     ChunkPipe,
     CalendarEventComponent,
     TasksComponent,
+    HomeScreenComponent,
+    LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,6 +67,7 @@ import { TasksComponent } from './tasks/tasks.component';
     MatCheckboxModule,
     MatSlideToggleModule,
     MatSelectModule,
+    MatProgressSpinnerModule,
     NgxMaterialTimepickerModule,
     HammerModule,
   ],
