@@ -1,61 +1,61 @@
-<div class="container">
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div *ngIf="!isLoading" class="container">
     <div class="header">
-        <div class="header__logo"><img class="header__logo--resize" src="./../../assets/Family-Time-Logo.png" alt="Logo"></div>
+        <div class="header__logo"><img (click)="onNavigate()" class="header__logo--resize" src="./../../assets/Family-Time-Logo.png" alt="Logo"></div>
       <div class="header__title">Create an account</div>
     </div>
-    <form (submit)="onSignup(signupForm)" #signupForm="ngForm" class="login">
+    <p *ngIf="info">Wszystko git</p>
+    <form (submit)="onSignup()" [formGroup]="signupFormGroup" class="login">
       <!-- <div *ngIf="error" class="alert alert-danger" role="alert">
             Podałeś zły e-mail, hasło lub Twoje konto jest nieaktywne.
           </div> -->
       <div class="login__row">
-        <ic-icon [ngClass]="{'login__row--icon--red': emailInput.invalid && emailInput.touched}" class="login__row--icon" icon="emailLine"></ic-icon>
+        <ic-icon [ngClass]="{'login__row--icon--red': signupFormGroup.controls.email.invalid && signupFormGroup.controls.email.touched}" class="login__row--icon" icon="emailLine"></ic-icon>
         <mat-form-field class="login__row--form-field">
           <mat-label>E-mail</mat-label>
           <input
             matInput
             name="email"
-            ngModel
-            type="email"
-            #emailInput="ngModel"
-            email
+            formControlName="email"
             required
           />
-          <mat-error *ngIf="emailInput.invalid"
+          <mat-error *ngIf="signupFormGroup.controls.email.invalid"
             >Please provide a valid email address</mat-error
           >
         </mat-form-field>
       </div>
       <div class="login__row">
-        <ic-icon [ngClass]="{'login__row--icon--red': passwordInput.invalid && passwordInput.touched}" class="login__row--icon" icon="lockPasswordLine"></ic-icon>
+        <ic-icon [ngClass]="{'login__row--icon--red': signupFormGroup.controls.password.invalid && signupFormGroup.controls.password.touched}" class="login__row--icon" icon="lockPasswordLine"></ic-icon>
         <mat-form-field class="login__row--form-field">
           <mat-label>Password</mat-label>
           <input
             type="password"
             name="password"
-            ngModel
-            #passwordInput="ngModel"
+            formControlName="password"
             matInput
-            required
             minlength="6"
+            required
           />
-          <mat-error *ngIf="passwordInput.invalid"
+          <mat-error *ngIf="signupFormGroup.controls.password.invalid"
           >Password must have at least 6 characters.</mat-error
         >
         </mat-form-field>
       </div>
       <div class="login__row">
-        <ic-icon [ngClass]="{'login__row--icon--red': passwordConfirmInput.invalid && passwordConfirmInput.touched}" class="login__row--icon" icon="lockPasswordLine"></ic-icon>
+        <ic-icon [ngClass]="{'login__row--icon--red': signupFormGroup.controls.passwordConfirm.invalid && signupFormGroup.controls.passwordConfirm.touched}" class="login__row--icon" icon="lockPasswordLine"></ic-icon>
         <mat-form-field class="login__row--form-field">
           <mat-label>Confirm Password</mat-label>
           <input
             type="password"
             name="passwordConfirm"
-            ngModel
-            #passwordConfirmInput="ngModel"
+            formControlName="passwordConfirm"
             matInput
-            required
             minlength="6"
+            required
           />
+          <mat-error *ngIf="signupFormGroup.controls.passwordConfirm.invalid"
+          >Passwords are not the same.</mat-error
+        >
         </mat-form-field>
       </div>
       <div class="login__button">

@@ -1,43 +1,44 @@
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 <div *ngIf="!isLoading" class="container">
   <div class="header">
-    <div class="header__logo"><img class="header__logo--resize" src="./../../assets/Family-Time-Logo.png" alt="Logo"></div>
+    <div class="header__logo"><img (click)="onNavigate()" class="header__logo--resize" src="./../../assets/Family-Time-Logo.png" alt="Logo"></div>
     <div class="header__title">Sign in</div>
   </div>
-  <form (submit)="onLogin(loginForm)" #loginForm="ngForm" class="login">
+  <form (submit)="onLogin()" [formGroup]="loginFormGroup" class="login">
     <!-- <div *ngIf="error" class="alert alert-danger" role="alert">
           Podałeś zły e-mail, hasło lub Twoje konto jest nieaktywne.
         </div> -->
+      <p *ngIf="info">WSZYSTKO GIT</p>
     <div class="login__row">
-      <ic-icon [ngClass]="{'login__row--icon--red': emailInput.invalid && emailInput.touched}" class="login__row--icon" icon="emailLine"></ic-icon>
+      <ic-icon [ngClass]="{'login__row--icon--red': loginFormGroup.controls.email.invalid && loginFormGroup.controls.email.touched}" class="login__row--icon" icon="emailLine"></ic-icon>
       <mat-form-field class="login__row--form-field">
         <mat-label>E-mail</mat-label>
         <input
           matInput
           name="email"
-          ngModel
-          type="email"
-          #emailInput="ngModel"
-          email
+          formControlName="email"
           required
         />
-        <mat-error *ngIf="emailInput.invalid"
-          >Please provide a valid email address</mat-error
-        >
+        <mat-error *ngIf="loginFormGroup.controls.email.invalid"
+        >Please provide a valid email address</mat-error
+      >
       </mat-form-field>
     </div>
     <div class="login__row">
-      <ic-icon [ngClass]="{'login__row--icon--red': passwordInput.invalid && passwordInput.touched}" class="login__row--icon" icon="lockPasswordLine"></ic-icon>
+      <ic-icon [ngClass]="{'login__row--icon--red': loginFormGroup.controls.password.invalid && loginFormGroup.controls.password.touched}" class="login__row--icon" icon="lockPasswordLine"></ic-icon>
       <mat-form-field class="login__row--form-field">
         <mat-label>Password</mat-label>
         <input
           type="password"
           name="password"
-          ngModel
-          #passwordInput="ngModel"
+          formControlName="password"
+          minlength="6"
           matInput
           required
         />
+        <mat-error *ngIf="loginFormGroup.controls.password.invalid"
+        >Password must have at least 6 characters.</mat-error
+      >
       </mat-form-field>
     </div>
     <div class="login__button">

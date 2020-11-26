@@ -33,6 +33,8 @@ import { TasksComponent } from './tasks/tasks.component';
 import { HomeScreenComponent } from './home-screen/home-screen.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,7 @@ import { SignupComponent } from './auth/signup/signup.component';
     SignupComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
@@ -71,7 +74,7 @@ import { SignupComponent } from './auth/signup/signup.component';
     NgxMaterialTimepickerModule,
     HammerModule,
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
