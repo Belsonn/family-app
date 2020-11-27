@@ -1,5 +1,6 @@
 /* Importing Bootstrap SCSS file. */
 @import "~bootstrap/scss/bootstrap";
+@import "~src/scss/variables.scss";
 // @import '~@angular/material/theming';
 
 // $custom-typography: mat-typography-config($font-family: '"Source Sans Pro", sans-serif;');
@@ -13,7 +14,7 @@ body {
 body {
   margin: 0;
   box-sizing: border-box;
-  font-family: "Source Sans Pro", sans-serif !important;
+  font-family: $font-family-1 !important;
 }
 
 *:focus{
@@ -50,4 +51,36 @@ mat-spinner{
 
 .timepicker-backdrop-overlay {
   z-index: 10000000 !important;
+}
+
+.scrollbar{
+  --scrollbar-padding: 10px;
+  // --scrollbar-track-color: transparent;
+  // --scrollbar-wrapper-color: transparent;
+  // --scrollbar-thumb-color: rgba(152, 81, 180, 1);
+  --scrollbar-size: 4px;
+  
+}
+
+.container{
+  // padding-top: 2rem;
+  background: white;
+  max-width: 500px;
+  height: 100%;
+  border-radius: 3rem;
+  overflow: auto;
+}
+
+
+@media(max-width:500px){
+  .container{
+    border-radius: 0;
+  }
+  .scrollbar{
+    --scrollbar-padding: 0px;
+    // --scrollbar-track-color: transparent;
+    // --scrollbar-wrapper-color: transparent;
+    // --scrollbar-thumb-color: rgba(152, 81, 180, 1);
+    --scrollbar-size: 0px;
+  }
 }

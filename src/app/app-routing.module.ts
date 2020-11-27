@@ -30,12 +30,12 @@ const routes: Routes = [
     component: TasksComponent
   },
   {
-    path: 'home',
-    component: HomeScreenComponent
+    path: 'menu',
+    component: MenuComponent 
   },
   {
     path: '',
-    component: MenuComponent 
+    component: HomeScreenComponent
   },
   
 ];

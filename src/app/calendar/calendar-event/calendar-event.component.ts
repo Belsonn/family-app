@@ -197,8 +197,6 @@ export class CalendarEventComponent implements OnInit {
     }
 
     this.calendarService.calendarEvents.push(event);
-    if(this.deviceService.isMobile()){
-      this.router.navigate(['/calendar']);
-    }
+    this.router.navigate(['/calendar']);
   }
 }

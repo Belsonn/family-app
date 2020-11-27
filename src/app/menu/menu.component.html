@@ -1,51 +1,44 @@
 <div class="container">
-  <div class="header">
+  <div class="wrapper-flex-center">
+    <img [routerLink]="['']" class="img-resize150" src="./../../assets/Family-Time-Logo-3alt.png" alt="Logo">
+  </div>
+  <div class="mt-2rem mb-2rem wrapper-flex-center">
     <div class="header__name">Family Name</div>
-    <div class="header__chat">
-      <mat-icon
-        class="header__chat__button"
-        (click)="onTest()"
-        matBadge="8"
-        matBadgePosition="before"
-        matBadgeColor="accent"
-        ><ic-icon
-        matRipple
-        [matRippleRadius]="20"
-          class="header__chat__button--icon"
-          icon="chatBubbleLine"
-        ></ic-icon
-      ></mat-icon>
-      <!-- <button     mat-button>
-        <ic-icon class="header__chat__button--icon" icon="chatBubbleLine"></ic-icon>
-      </button> -->
-    </div>
   </div>
   <div class="boxes">
     <div class="boxes__row">
-      <button mat-raised-button class="boxes__row__box" routerLink="calendar">
+      <button
+        mat-raised-button
+        class="boxes__row__box"
+        [routerLink]="['', 'calendar']"
+      >
         <div class="boxes__row__box--icon">
           <ic-icon icon="planner"></ic-icon>
         </div>
         <div i18n="menu_calendar" class="boxes__row__box--name">Calendar</div>
-        <div i18n="menu_calendar_desc" class="boxes__row__box--description">05 listopada 2020</div>
+        <div i18n="menu_calendar_desc" class="boxes__row__box--description">
+          05 listopada 2020
+        </div>
       </button>
       <button mat-raised-button class="boxes__row__box">
         <div class="boxes__row__box--icon">
           <ic-icon icon="shoppingCart"></ic-icon>
         </div>
-        <div i18n="menu_shoppingCart" class="boxes__row__box--name">Shopping Cart</div>
+        <div i18n="menu_shoppingCart" class="boxes__row__box--name">
+          Shopping Cart
+        </div>
         <div class="boxes__row__box--description">2 Banany, Śmietana</div>
       </button>
     </div>
     <div class="boxes__row">
-      <button mat-raised-button class="boxes__row__box">
+      <button mat-raised-button class="boxes__row__box" [routerLink]="['']">
         <div class="boxes__row__box--icon">
           <ic-icon icon="familyManWomanGirlBoy"></ic-icon>
         </div>
-        <div i18n="menu_family" class="boxes__row__box--name">Family</div>
+        <div i18n="menu_family" class="boxes__row__box--name">HOME</div>
         <div class="boxes__row__box--description">4 członków</div>
       </button>
-      <button mat-raised-button class="boxes__row__box">
+      <button mat-raised-button class="boxes__row__box" routerLink="tasks">
         <div class="boxes__row__box--icon">
           <ic-icon icon="todoList"></ic-icon>
         </div>
@@ -56,11 +49,15 @@
       </button>
     </div>
     <div class="boxes__row">
-      <button mat-raised-button class="boxes__row__box">
+      <button
+        mat-raised-button
+        class="boxes__row__box"
+        [routerLink]="['', 'login']"
+      >
         <div class="boxes__row__box--icon">
           <ic-icon icon="familyManWomanGirlBoy"></ic-icon>
         </div>
-        <div i18n="menu_family" class="boxes__row__box--name">Family</div>
+        <div i18n="menu_family" class="boxes__row__box--name">LOGIN</div>
         <div class="boxes__row__box--description">4 członków</div>
       </button>
       <button mat-raised-button class="boxes__row__box">

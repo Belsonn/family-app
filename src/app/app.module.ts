@@ -21,6 +21,7 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import {MatSelectModule} from '@angular/material/select';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
+import { NgScrollbarModule } from 'ngx-scrollbar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuComponent } from './menu/menu.component';
 import { IconModule } from '@visurel/iconify-angular';
@@ -73,6 +74,10 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     MatProgressSpinnerModule,
     NgxMaterialTimepickerModule,
     HammerModule,
+    NgScrollbarModule.withConfig({
+      appearance: "standard",
+      visibility: "hover"
+    })
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent],

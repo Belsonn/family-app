@@ -31,6 +31,8 @@ export class CalendarComponent implements OnInit {
   public monthNames = MonthNames;
   public displayDate: string;
   monthSelected: number;
+  hover = "hover"
+  standard = "standard"
 
   private monthIndex: number = 0;
   calendarDayInstance;
@@ -264,17 +266,18 @@ export class CalendarComponent implements OnInit {
 
   public addEvent() {
     this.calendarService.dayClicked = this.calendarDayInstance.date;
-    if (this.deviceService.isMobile()) {
-      this.router.navigate(['calendar', 'event']);
-    } else {
-      const dialogRef = this.dialog.open(CalendarEventComponent, {
-        data: {},
-      });
+    this.router.navigate(['calendar', 'event']);
+    // if (this.deviceService.isMobile()) {
+    //   this.router.navigate(['calendar', 'event']);
+    // } else {
+    //   const dialogRef = this.dialog.open(CalendarEventComponent, {
+    //     data: {},
+    //   });
 
-      dialogRef.afterClosed().subscribe((res) => {
-        this.generateCalendarDays(this.monthIndex);
-      });
-    }
+    //   dialogRef.afterClosed().subscribe((res) => {
+    //     this.generateCalendarDays(this.monthIndex);
+    //   });
+    // }
   }
 
   public increaseMonth() {

@@ -1,5 +1,13 @@
 @import "~src/scss/variables.scss";
 @import "~src/scss/animations.scss";
+@import "~src/scss/common.scss";
+@import "~src/scss/utils.scss";
+
+.container{
+  overflow: hidden;
+  padding-left: 24px;
+}
+
 
 
 .calendar-header{
@@ -197,6 +205,15 @@
       font-size: 0.8rem;
       min-width: 90px;
     }
+  }
+}
+
+.no-events{
+  &__title{
+    color: $blue-primary-1;
+    font-family: $font-family-2;
+    font-size: 1.3rem;
+    margin-top: 1.3rem;
   }
 }
 

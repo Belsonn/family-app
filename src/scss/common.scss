@@ -1,0 +1,65 @@
+@import "~src/scss/variables.scss";
+
+.bttn-primary {
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 10rem;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  position: relative;
+  font-size: 1.2rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.bttn-white {
+  background-color: white;
+  color: #000;
+}
+.bttn-blue {
+  background-color: $blue-primary-1;
+  color: #fff;
+}
+.bttn-big{
+    padding: 1rem 4rem;
+}
+.bttn-medium{
+    padding: 1rem 2rem;
+}
+
+.bttn-clickable {
+    &:hover {
+        transform: translateY(-0.2rem);
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    }
+    &:active {
+        transform: translateY(0.1rem);
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 4px 12px;
+    }
+}
+
+.bttn-animated {
+  animation: buttonIn 2s ease-out;
+}
+.wrapper-flex-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.flex-column {
+  flex-direction: column;
+}
+
+.img-resize80{
+    height: 80px;
+    width: 80px;
+}
+.img-resize150{
+    height: 150px;
+    width: 150px;
+}
+
+

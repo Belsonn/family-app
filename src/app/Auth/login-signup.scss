@@ -1,26 +1,15 @@
+@import "~src/scss/variables.scss";
+@import "~src/scss/common.scss";
+@import "~src/scss/utils.scss";
+
 .container {
     overflow: hidden;
   }
   
   :host ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
-    background: linear-gradient(
-      90deg,
-      rgba(0, 212, 255, 1) 0%,
-      rgba(86, 86, 185, 1) 50%,
-      rgba(152, 81, 180, 1) 100%
-    );
+    background: $linear-gradient-90-1
   }
   .header {
-    &__logo{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 1rem;
-        &--resize{
-            width: 150px;
-            height: 150px;
-        }
-      }
     &__title {
       font-size: 2rem;
       text-align: center;
@@ -74,21 +63,11 @@
         letter-spacing: 2px;
         height: 3rem;
         outline: none !important;
-        background: linear-gradient(
-          90deg,
-          rgba(0, 212, 255, 1) 0%,
-          rgba(86, 86, 185, 1) 50%,
-          rgba(152, 81, 180, 1) 100%
-        );
+        background: $linear-gradient-90-1;
         position: relative;
         z-index: 100;
         &:before {
-          background: linear-gradient(
-            90deg,
-            rgba(152, 81, 180, 1) 0%,
-            rgba(86, 86, 185, 1) 50%,
-            rgba(0, 212, 255, 1) 100%
-          );
+          background: $linear-gradient-90-1-reverse;
           content: '';    
           display: block;
           height: 100%;
