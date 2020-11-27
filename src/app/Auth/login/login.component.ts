@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   lockPasswordLine = lockPasswordLine;
 
   isLoading = false;
-  info: boolean = false;
+  error: boolean = false;
 
   loginFormGroup: FormGroup;
   
@@ -49,9 +49,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.authService.login(this.loginFormGroup.controls.email.value, this.loginFormGroup.controls.password.value).subscribe(res=>{
       this.authService.onAuth(res);
       this.isLoading = false;
-      this.router.navigate(['menu']);
+      this.router.navigate(['app','menu']);
     }, err => {
       this.isLoading = false;
+      this.error = true;
+      this.loginFormGroup.get("password").setValue("");
     })
   }
 

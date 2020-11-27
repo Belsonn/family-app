@@ -38,7 +38,7 @@ input.active:focus {
 }
 
 mat-spinner{
-  top: 30%;
+  top: 50%;
   margin: 0 auto;
 }
 
@@ -62,25 +62,22 @@ mat-spinner{
   
 }
 
-.container{
-  // padding-top: 2rem;
-  background: white;
-  max-width: 500px;
-  height: 100%;
-  border-radius: 3rem;
-  overflow: auto;
+ic-icon{
+  display:flex;
+  align-items: center;
+  justify-content: center;
 }
-
 
 @media(max-width:500px){
   .container{
     border-radius: 0;
   }
-  .scrollbar{
-    --scrollbar-padding: 0px;
-    // --scrollbar-track-color: transparent;
-    // --scrollbar-wrapper-color: transparent;
-    // --scrollbar-thumb-color: rgba(152, 81, 180, 1);
-    --scrollbar-size: 0px;
-  }
+  // .scrollbar{
+  //   --scrollbar-padding: 0px;
+  //   // --scrollbar-track-color: transparent;
+  //   // --scrollbar-wrapper-color: transparent;
+  //   // --scrollbar-thumb-color: rgba(152, 81, 180, 1);
+  //   --scrollbar-size: 0px;
+  // }
 }
+

@@ -1,58 +1,78 @@
-<div class="container">
-  <mat-spinner *ngIf="isLoading"></mat-spinner>
-  <div *ngIf="!isLoading">
-    <div class="header">
-      <div class="wrapper-flex-center"><img [routerLink]="['']" class="img-resize150" src="./../../assets/Family-Time-Logo-3alt.png" alt="Logo"></div>
-      <div class="header__title">Sign in</div>
+<div *ngIf="isLoading" class="spinner">
+  <mat-spinner></mat-spinner>
+</div>
+<div *ngIf="!isLoading">
+  <div class="header">
+    <div class="wrapper-flex-center mt-1rem">
+      <img
+        [routerLink]="['']"
+        class="img-resize150"
+        src="./../../assets/Family-Time-Logo-3alt.png"
+        alt="Logo"
+      />
+    </div>
+    <div class="header__title">Sign in</div>
   </div>
   <form (submit)="onLogin()" [formGroup]="loginFormGroup" class="login">
-    <!-- <div *ngIf="error" class="alert alert-danger" role="alert">
+    <div *ngIf="error" class="wrapper-flex-center error" role="alert">
       Podałeś zły e-mail, hasło lub Twoje konto jest nieaktywne.
-        </div> -->
-        <div class="login__row">
-          <ic-icon [ngClass]="{'login__row--icon--red': loginFormGroup.controls.email.invalid && loginFormGroup.controls.email.touched}" class="login__row--icon" icon="emailLine"></ic-icon>
-          <mat-form-field class="login__row--form-field">
-            <mat-label>E-mail</mat-label>
-        <input
-        matInput
-          name="email"
-          formControlName="email"
-          required
-          />
-          <mat-error *ngIf="loginFormGroup.controls.email.invalid"
-        >Please provide a valid email address</mat-error
+        </div>
+    <div class="login__row mt-1rem">
+      <ic-icon
+        [ngClass]="{
+          'login__row--icon--red':
+            loginFormGroup.controls.email.invalid &&
+            loginFormGroup.controls.email.touched
+        }"
+        class="login__row--icon"
+        icon="emailLine"
+      ></ic-icon>
+      <mat-form-field class="login__row--form-field">
+        <mat-label>E-mail</mat-label>
+        <input matInput name="email" formControlName="email" required />
+        <mat-error *ngIf="loginFormGroup.controls.email.invalid"
+          >Please provide a valid email address</mat-error
         >
       </mat-form-field>
     </div>
     <div class="login__row">
-      <ic-icon [ngClass]="{'login__row--icon--red': loginFormGroup.controls.password.invalid && loginFormGroup.controls.password.touched}" class="login__row--icon" icon="lockPasswordLine"></ic-icon>
+      <ic-icon
+        [ngClass]="{
+          'login__row--icon--red':
+            loginFormGroup.controls.password.invalid &&
+            loginFormGroup.controls.password.touched
+        }"
+        class="login__row--icon"
+        icon="lockPasswordLine"
+      ></ic-icon>
       <mat-form-field class="login__row--form-field">
         <mat-label>Password</mat-label>
         <input
-        type="password"
-        name="password"
+          type="password"
+          name="password"
           formControlName="password"
           minlength="6"
           matInput
           required
-          />
-          <mat-error *ngIf="loginFormGroup.controls.password.invalid"
+        />
+        <mat-error *ngIf="loginFormGroup.controls.password.invalid"
           >Password must have at least 6 characters.</mat-error
-          >
-        </mat-form-field>
-      </div>
+        >
+      </mat-form-field>
+    </div>
     <div class="login__button">
       <button mat-ripple class="btn login__button--primary" type="submit">
         Login
       </button>
     </div>
   </form>
-  
+
   <div class="bottom">
     <div class="bottom__text">
       Don't have an account?
-      <a [routerLink]="['','signup']" class="bottom__text--signup">Sign up</a>
+      <a [routerLink]="['', 'app', 'signup']" class="bottom__text--signup"
+        >Sign up</a
+      >
     </div>
   </div>
-</div>
 </div>

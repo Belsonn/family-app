@@ -1,7 +1,4 @@
-<div class="container">
-  <ng-scrollbar class="scrollbar">
-
-    <mat-vertical-stepper class="stepper" [linear]="true" #stepper>
+    <mat-vertical-stepper class="stepper" [linear]="!true" #stepper>
       <mat-step [stepControl]="titleFormGroup">
         <form [formGroup]="titleFormGroup">
         <ng-template i18n="event_stepper_title" matStepLabel>Event title</ng-template>
@@ -163,9 +160,9 @@
         <mat-step [stepControl]="repeatFormGroup">
           <form [formGroup]="repeatFormGroup">
         <ng-template i18n="event_stepper_repeat" matStepLabel>Repeat?</ng-template>
-        <div class="repeat">
-          <mat-slide-toggle (change)="repeatToggle($event)" formControlName="repeatToggleControl">Repeat?</mat-slide-toggle>
-          <mat-form-field appearance="fill">
+        <div class="flex flex-column">
+          <mat-slide-toggle class="mt-1rem" (change)="repeatToggle($event)" formControlName="repeatToggleControl">Repeat?</mat-slide-toggle>
+          <mat-form-field class="mt-1rem" appearance="fill">
             <mat-label>How often?</mat-label>
             <mat-select formControlName="repeatTypeControl">
               <mat-option *ngFor="let repeatType of repeatTypes" [value]="repeatType">{{repeatType}}</mat-option>
@@ -245,6 +242,4 @@
     </mat-step>
   </mat-vertical-stepper>
   <button (click)="onTest()" mat-button>TESTUJ</button>
-</ng-scrollbar>
-</div>
 

@@ -7,41 +7,47 @@ import { TasksComponent } from './tasks/tasks.component';
 import { HomeScreenComponent } from './home-screen/home-screen.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { AppContainerComponent } from './app-container/app-container.component';
 
 const routes: Routes = [
   {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'signup',
-    component: SignupComponent
-  },
-  {
-    path: 'calendar',
-    component: CalendarComponent,
-  },
-  {
-    path:'calendar/event',
-    component: CalendarEventComponent
-  },
-  {
-    path:'tasks',
-    component: TasksComponent
-  },
-  {
-    path: 'menu',
-    component: MenuComponent 
+    path: 'app',
+    component: AppContainerComponent,
+    children: [
+      {
+        path: 'login',
+        component: LoginComponent,
+      },
+      {
+        path: 'signup',
+        component: SignupComponent,
+      },
+      {
+        path: 'calendar',
+        component: CalendarComponent,
+      },
+      {
+        path: 'calendar/event',
+        component: CalendarEventComponent,
+      },
+      {
+        path: 'tasks',
+        component: TasksComponent,
+      },
+      {
+        path: 'menu',
+        component: MenuComponent,
+      },
+    ],
   },
   {
     path: '',
-    component: HomeScreenComponent
+    component: HomeScreenComponent,
   },
-  
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

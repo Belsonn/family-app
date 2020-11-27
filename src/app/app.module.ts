@@ -36,6 +36,8 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { PhoneBarComponent } from './phone-bar/phone-bar.component';
+import { AppContainerComponent } from './app-container/app-container.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     HomeScreenComponent,
     LoginComponent,
     SignupComponent,
+    PhoneBarComponent,
+    AppContainerComponent,
   ],
   imports: [
     HttpClientModule,
@@ -76,7 +80,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     HammerModule,
     NgScrollbarModule.withConfig({
       appearance: "standard",
-      visibility: "hover"
+      visibility: "always"
     })
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],

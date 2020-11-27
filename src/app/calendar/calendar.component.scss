@@ -3,16 +3,11 @@
 @import "~src/scss/common.scss";
 @import "~src/scss/utils.scss";
 
-.container{
-  overflow: hidden;
-  padding-left: 24px;
-}
-
-
 
 .calendar-header{
   display:flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 1rem;
 
   &--menu-icon{
@@ -27,7 +22,6 @@
   &--date{  
     width: 130px;
     text-align: center;
-    padding-top: 0.5rem;
     font-weight: 600;
     color: $blue-primary;
   }

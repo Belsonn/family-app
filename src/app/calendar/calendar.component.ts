@@ -96,7 +96,7 @@ export class CalendarComponent implements OnInit {
       allDay: true,
       repeat: {
         repeatType: 'Monthly',
-        repeatEvery: 1,
+        repeatEvery: 3,
       },
     };
     this.element.startDate.setDate(1);
@@ -113,6 +113,10 @@ export class CalendarComponent implements OnInit {
 
   onTest(){
     
+  }
+
+  isMobile(): boolean{
+    return this.deviceService.isMobile();
   }
 
   private generateCalendarDays(monthIndex: number): void {
@@ -185,16 +189,21 @@ export class CalendarComponent implements OnInit {
 
           //TODO
           else if(element.repeat.repeatType == "Monthly"){
-            
+            let startMonths = startDate.getFullYear() * 12 + startDate.getMonth();
+            let dayMonths = day.date.getFullYear() * 12 + day.date.getMonth();
+            if(day.date > startDate && day.date.getDate() == startDate.getDate() && (dayMonths - startMonths)%element.repeat.repeatEvery == 0){
+              day.hasEvent = true;
+              day.events.push(this.calendarEvents[i]);
+            }
           }
-        
+          
           // Check if timezone is correctly set
-          if(day.date.getTimezoneOffset() != startDate.getTimezoneOffset()) {
+          if(time && day.date.getTimezoneOffset() != startDate.getTimezoneOffset()) {
             let offset = (day.date.getTimezoneOffset() - startDate.getTimezoneOffset()) * 60 * 1000;
             startDate.setTime(startDate.getTime() + offset);
           }
           // Check event startDate and substraction between dates must be 0 mod time
-          if(day.date > startDate && ((day.date.getTime() - startDate.getTime())%time == 0)){
+          if(time && day.date > startDate && ((day.date.getTime() - startDate.getTime())%time == 0)){
             day.hasEvent = true;
             day.events.push(this.calendarEvents[i]);
           }
@@ -248,7 +257,6 @@ export class CalendarComponent implements OnInit {
     if (this.calendarDayInstance) {
       this.calendarDayInstance.isClicked = false;
     }
-    console.log(calendarDay, calendarDay.date.getTime());
     this.calendarDayInstance = calendarDay;
     calendarDay.isClicked = true;
   }
@@ -266,18 +274,7 @@ export class CalendarComponent implements OnInit {
 
   public addEvent() {
     this.calendarService.dayClicked = this.calendarDayInstance.date;
-    this.router.navigate(['calendar', 'event']);
-    // if (this.deviceService.isMobile()) {
-    //   this.router.navigate(['calendar', 'event']);
-    // } else {
-    //   const dialogRef = this.dialog.open(CalendarEventComponent, {
-    //     data: {},
-    //   });
-
-    //   dialogRef.afterClosed().subscribe((res) => {
-    //     this.generateCalendarDays(this.monthIndex);
-    //   });
-    // }
+    this.router.navigate(['', 'app', 'calendar', 'event']);
   }
 
   public increaseMonth() {

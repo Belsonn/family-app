@@ -1,0 +1,22 @@
+@import "~src/scss/common.scss";
+
+.container {
+  background: white;
+  max-width: 500px;
+  height: 100%;
+  border-radius: 3rem;
+  padding-top: 0;
+  overflow: hidden;
+}
+
+@media (max-width: 500px) {
+  .container {
+    border-radius: 0;
+  }
+  .phonebar{
+      display: none;
+  }
+}
+
+
+

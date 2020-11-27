@@ -1,16 +1,12 @@
-<div class="container">
-  <div class="wrapper-flex-center">
+ <div class="wrapper-flex-center mt-15rem">
     <img [routerLink]="['']" class="img-resize150" src="./../../assets/Family-Time-Logo-3alt.png" alt="Logo">
   </div>
-  <div class="mt-2rem mb-2rem wrapper-flex-center">
-    <div class="header__name">Family Name</div>
-  </div>
-  <div class="boxes">
+  <div class="boxes mt-4rem">
     <div class="boxes__row">
       <button
         mat-raised-button
         class="boxes__row__box"
-        [routerLink]="['', 'calendar']"
+        [routerLink]="['','app', 'calendar']"
       >
         <div class="boxes__row__box--icon">
           <ic-icon icon="planner"></ic-icon>
@@ -25,7 +21,7 @@
           <ic-icon icon="shoppingCart"></ic-icon>
         </div>
         <div i18n="menu_shoppingCart" class="boxes__row__box--name">
-          Shopping Cart
+          Shopping
         </div>
         <div class="boxes__row__box--description">2 Banany, Śmietana</div>
       </button>
@@ -38,7 +34,7 @@
         <div i18n="menu_family" class="boxes__row__box--name">HOME</div>
         <div class="boxes__row__box--description">4 członków</div>
       </button>
-      <button mat-raised-button class="boxes__row__box" routerLink="tasks">
+      <button mat-raised-button class="boxes__row__box" [routerLink]="['','app','tasks']">
         <div class="boxes__row__box--icon">
           <ic-icon icon="todoList"></ic-icon>
         </div>
@@ -48,11 +44,11 @@
         </div>
       </button>
     </div>
-    <div class="boxes__row">
+    <div class="boxes__row pb-2rem">
       <button
         mat-raised-button
         class="boxes__row__box"
-        [routerLink]="['', 'login']"
+        [routerLink]="['','app', 'login']"
       >
         <div class="boxes__row__box--icon">
           <ic-icon icon="familyManWomanGirlBoy"></ic-icon>
@@ -69,4 +65,3 @@
       </button>
     </div>
   </div>
-</div>

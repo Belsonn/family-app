@@ -1,7 +1,7 @@
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 <div *ngIf="!isLoading" class="container">
     <div class="header">
-        <div class="wrapper-flex-center"><img (click)="onNavigate()" class="img-resize150" src="./../../assets/Family-Time-Logo-3alt.png" alt="Logo"></div>
+        <div class="wrapper-flex-center mt-1rem"><img (click)="onNavigate()" class="img-resize150" src="./../../assets/Family-Time-Logo-3alt.png" alt="Logo"></div>
       <div class="header__title">Create an account</div>
     </div>
     <p *ngIf="info">Wszystko git</p>
@@ -68,7 +68,7 @@
     <div class="bottom">
       <div class="bottom__text">
         Already have an account?
-        <a [routerLink]="['','login']" class="bottom__text--signup">Sign in</a>
+        <a [routerLink]="['','app','login']" class="bottom__text--signup">Sign in</a>
       </div>
     </div>
   </div>

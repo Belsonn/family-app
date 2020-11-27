@@ -7,14 +7,6 @@
   padding: 2rem 0;
 }
 
-.container{
-  padding-top: 2rem;
-  background: white;
-  max-width: 500px;
-  height: 100%;
-  border-radius: 3rem;
-}
-
 .header {
   text-align: center;
   &__name {
@@ -40,11 +32,11 @@
   flex-direction: column;
   &__row {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     margin-bottom: 1.5rem;
-
+    padding: 0 0.5rem;
     &__box {
-      width: 40%;
+      width: 47%;
       height: 100%;
       padding-bottom: 1rem;
       padding: 0 1rem 1rem 1rem;
@@ -83,5 +75,16 @@
   }
   .spacer{
     padding:0;
+  }
+}
+
+@media(min-width:501px){
+  .boxes{
+    &__row{
+      justify-content: space-evenly;
+      &__box{
+        width:40%;
+      }
+    }
   }
 }

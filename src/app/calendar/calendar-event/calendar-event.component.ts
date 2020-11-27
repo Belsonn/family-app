@@ -197,6 +197,6 @@ export class CalendarEventComponent implements OnInit {
     }
 
     this.calendarService.calendarEvents.push(event);
-    this.router.navigate(['/calendar']);
+    this.router.navigate(['','app','calendar']);
   }
 }

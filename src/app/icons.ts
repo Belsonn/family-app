@@ -14,6 +14,9 @@ import bxCalendarX from '@iconify-icons/bx/bx-calendar-x';
 import outlineAccessTime from '@iconify-icons/ic/outline-access-time';
 import emailLine from '@iconify/icons-clarity/email-line';
 import lockPasswordLine from '@iconify/icons-ri/lock-password-line';
+import batteryFull from '@iconify/icons-bi/battery-full';
+import signalIcon from '@iconify/icons-uil/signal';
+import wifiIcon from '@iconify/icons-bi/wifi';
 
 export const appIcons = {
   planner,
@@ -32,4 +35,7 @@ export const appIcons = {
   outlineAccessTime,
   emailLine,
   lockPasswordLine,
+  batteryFull,
+  signalIcon,
+  wifiIcon
 };

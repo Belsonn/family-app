@@ -1,0 +1,26 @@
+@import "~src/scss/variables.scss";
+@import "~src/scss/utils.scss";
+
+.bar {
+  padding: 0 2rem;
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  &--icon {
+    padding: 0 0.3rem;
+    font-size: 1.6rem;
+  }
+  &__start {
+    display: flex;
+    align-items: center;
+    &--time {
+      font-family: $font-family-2;
+      font-size: 1.3rem;
+    }
+  }
+  &__end {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

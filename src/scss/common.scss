@@ -1,5 +1,21 @@
 @import "~src/scss/variables.scss";
 
+.background {
+  height: 100%;
+  width: 100%;
+  background-image: $linear-gradient-180-08,
+    url(./../assets/Family-background2.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  overflow: hidden;
+}
+.spacer {
+  height: 100%;
+  padding: 2rem 0;
+}
+
+
 .bttn-primary {
   text-transform: uppercase;
   text-decoration: none;
@@ -24,9 +40,9 @@
 }
 .bttn-big{
     padding: 1rem 4rem;
-}
+  }
 .bttn-medium{
-    padding: 1rem 2rem;
+  padding: 1rem 2rem;
 }
 
 .bttn-clickable {
@@ -45,12 +61,14 @@
 }
 .wrapper-flex-center {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 .flex-column {
   flex-direction: column;
+}
+.flex{
+  display: flex;
 }
 
 .img-resize80{
@@ -62,4 +80,32 @@
     width: 150px;
 }
 
+.spinner{
+  height:400px;
+}
 
+@media (max-width: 500px) {
+  .spacer {
+    padding: 0;
+  }
+}
+
+@media (min-width: 800px) {
+  .background {
+    background-image: $linear-gradient-180-08,
+      url(./../assets/Family-background.jpg);
+  }
+}
+@media(max-height: 900px){
+    .spacer{
+      padding: 0;
+    }
+}
+
+.error{
+  background: $red-primary-1;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  text-align: center;
+  color: white;
+}

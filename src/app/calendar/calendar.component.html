@@ -1,8 +1,6 @@
 <!-- <button mat-button (click)="onTest()">TESTUJ</button> -->
-<div class="container">
-  <ng-scrollbar class="scrollbar">
     <div class="calendar-header">
-      <div [routerLink]="['', 'menu']" class="calendar-header--menu-icon">
+      <div [routerLink]="['','app', 'menu']" class="calendar-header--menu-icon">
         <ic-icon icon="menuGridO"></ic-icon>
       </div>
       <div (click)="swipeRight()" class="calendar-header--left-icon">
@@ -95,13 +93,11 @@
         </div>
       </div>
     </div>
-    <div  *ngIf="calendarDayInstance.events.length < 1" class="wrapper-flex-center flex-column">
+    <div  *ngIf="calendarDayInstance.events.length < 1" class="wrapper-flex-center flex-column pb-3">
       <div class="no-events__title">
-        No events scheduled for that day
+        No events scheduled for this day
       </div>
       <button (click)="addEvent()" class="bttn-primary bttn-blue bttn-clickable bttn-medium mt-2rem">
         Add Event
       </button>
     </div>
-  </ng-scrollbar>
-</div>
