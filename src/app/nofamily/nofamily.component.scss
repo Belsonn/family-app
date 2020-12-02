@@ -1,0 +1,17 @@
+@import "~src/scss/main.scss";
+
+:host ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
+    background: $linear-gradient-90-1
+  }
+
+.form{
+    &__row--form-field{
+        width: 70%;
+    }
+    &__row--icon{
+        font-size:1.8rem;
+    }
+    &__button--primary{
+        width:60%;
+    }
+}

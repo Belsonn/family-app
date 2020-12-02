@@ -5,13 +5,13 @@
       <div class="header__title">Create an account</div>
     </div>
     <p *ngIf="info">Wszystko git</p>
-    <form (submit)="onSignup()" [formGroup]="signupFormGroup" class="login">
+    <form (submit)="onSignup()" [formGroup]="signupFormGroup" class="form">
       <!-- <div *ngIf="error" class="alert alert-danger" role="alert">
             Podałeś zły e-mail, hasło lub Twoje konto jest nieaktywne.
           </div> -->
-      <div class="login__row">
-        <ic-icon [ngClass]="{'login__row--icon--red': signupFormGroup.controls.email.invalid && signupFormGroup.controls.email.touched}" class="login__row--icon" icon="emailLine"></ic-icon>
-        <mat-form-field class="login__row--form-field">
+      <div class="form__row">
+        <ic-icon [ngClass]="{'form__row--icon--red': signupFormGroup.controls.email.invalid && signupFormGroup.controls.email.touched}" class="login__row--icon" icon="emailLine"></ic-icon>
+        <mat-form-field class="form__row--form-field">
           <mat-label>E-mail</mat-label>
           <input
             matInput
@@ -24,9 +24,9 @@
           >
         </mat-form-field>
       </div>
-      <div class="login__row">
-        <ic-icon [ngClass]="{'login__row--icon--red': signupFormGroup.controls.password.invalid && signupFormGroup.controls.password.touched}" class="login__row--icon" icon="lockPasswordLine"></ic-icon>
-        <mat-form-field class="login__row--form-field">
+      <div class="form__row">
+        <ic-icon [ngClass]="{'form__row--icon--red': signupFormGroup.controls.password.invalid && signupFormGroup.controls.password.touched}" class="form__row--icon" icon="lockPasswordLine"></ic-icon>
+        <mat-form-field class="form__row--form-field">
           <mat-label>Password</mat-label>
           <input
             type="password"
@@ -41,9 +41,9 @@
         >
         </mat-form-field>
       </div>
-      <div class="login__row">
-        <ic-icon [ngClass]="{'login__row--icon--red': signupFormGroup.controls.passwordConfirm.invalid && signupFormGroup.controls.passwordConfirm.touched}" class="login__row--icon" icon="lockPasswordLine"></ic-icon>
-        <mat-form-field class="login__row--form-field">
+      <div class="form__row">
+        <ic-icon [ngClass]="{'form__row--icon--red': signupFormGroup.controls.passwordConfirm.invalid && signupFormGroup.controls.passwordConfirm.touched}" class="form__row--icon" icon="lockPasswordLine"></ic-icon>
+        <mat-form-field class="form__row--form-field">
           <mat-label>Confirm Password</mat-label>
           <input
             type="password"
@@ -58,8 +58,8 @@
         >
         </mat-form-field>
       </div>
-      <div class="login__button">
-        <button mat-ripple class="btn login__button--primary" type="submit">
+      <div class="form__button">
+        <button mat-ripple class="btn form__button--primary" type="submit">
           Signup
         </button>
       </div>

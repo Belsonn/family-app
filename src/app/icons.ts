@@ -18,6 +18,8 @@ import batteryFull from '@iconify/icons-bi/battery-full';
 import signalIcon from '@iconify/icons-uil/signal';
 import wifiIcon from '@iconify/icons-bi/wifi';
 import arrowBackUp from '@iconify/icons-tabler/arrow-back-up';
+import keyIcon from '@iconify-icons/bi/key';
+import usergroupAddOutlined from '@iconify-icons/ant-design/usergroup-add-outlined';
 
 export const appIcons = {
   planner,
@@ -40,4 +42,6 @@ export const appIcons = {
   signalIcon,
   wifiIcon,
   arrowBackUp,
+  keyIcon,
+  usergroupAddOutlined
 };

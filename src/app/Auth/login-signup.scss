@@ -1,8 +1,5 @@
 @import "~src/scss/main.scss";
-.container {
-    overflow: hidden;
-  }
-  
+
   :host ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
     background: $linear-gradient-90-1
   }
@@ -12,75 +9,6 @@
       text-align: center;
       font-weight: 800;
       margin-top: 1rem;
-    }
-  }
-  
-  .login {
-    margin-top: 3rem;
-    &__row{
-      display:flex;
-      width: 100%;
-      justify-content: center;
-      align-items: center;
-      padding: 0 1rem;
-      margin-top: 1rem;
-   
-      &--icon{
-        font-size: 1.5rem;
-        margin-right: 1rem;
-  
-        &--red{
-          color: #f44336;
-        }
-      }
-  
-      &--form-field {
-        max-width: 400px;
-        width: 100%;
-        margin-right:1rem;
-      }
-    }
-  
-  
-    &__button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-  
-      &--primary {
-        width: 85%;
-        max-width: 400px;
-        text-align: center;
-        font-weight: 600;
-        color: white;
-        margin: 0 auto;
-        margin-top: 3rem;
-        border-radius: 1.5rem;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        height: 3rem;
-        outline: none !important;
-        background: $linear-gradient-90-1;
-        position: relative;
-        z-index: 100;
-        &:before {
-          background: $linear-gradient-90-1-reverse;
-          content: '';    
-          display: block;
-          height: 100%;
-          position: absolute;
-          top: 0; left: 0;
-          opacity: 0;
-          width: 100%;
-          z-index: -100;
-          transition: opacity 0.5s;
-        }
-        &:hover {
-          &:before {
-              opacity: 1; 
-            }
-        }
-      }
     }
   }
   .bottom {

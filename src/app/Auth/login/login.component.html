@@ -17,17 +17,17 @@
     <div *ngIf="error" class="wrapper-flex-center error" role="alert">
       Podałeś zły e-mail, hasło lub Twoje konto jest nieaktywne.
         </div>
-    <div class="login__row mt-1rem">
+    <div class="form__row mt-1rem">
       <ic-icon
         [ngClass]="{
-          'login__row--icon--red':
+          'form__row--icon--red':
             loginFormGroup.controls.email.invalid &&
             loginFormGroup.controls.email.touched
         }"
-        class="login__row--icon"
+        class="form__row--icon"
         icon="emailLine"
       ></ic-icon>
-      <mat-form-field class="login__row--form-field">
+      <mat-form-field class="form__row--form-field">
         <mat-label>E-mail</mat-label>
         <input matInput name="email" formControlName="email" required />
         <mat-error *ngIf="loginFormGroup.controls.email.invalid"
@@ -35,17 +35,17 @@
         >
       </mat-form-field>
     </div>
-    <div class="login__row">
+    <div class="form__row">
       <ic-icon
         [ngClass]="{
-          'login__row--icon--red':
+          'form__row--icon--red':
             loginFormGroup.controls.password.invalid &&
             loginFormGroup.controls.password.touched
         }"
-        class="login__row--icon"
+        class="form__row--icon"
         icon="lockPasswordLine"
       ></ic-icon>
-      <mat-form-field class="login__row--form-field">
+      <mat-form-field class="form__row--form-field">
         <mat-label>Password</mat-label>
         <input
           type="password"
@@ -60,8 +60,8 @@
         >
       </mat-form-field>
     </div>
-    <div class="login__button">
-      <button mat-ripple class="btn login__button--primary" type="submit">
+    <div class="form__button">
+      <button mat-ripple class="btn form__button--primary" type="submit">
         Login
       </button>
     </div>
