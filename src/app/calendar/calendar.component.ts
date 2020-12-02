@@ -78,6 +78,7 @@ export class CalendarComponent implements OnInit {
         repeatType: 'Daily',
         repeatEvery: 10,
       },
+      color:"#A34F41"
     };
     this.element2 = {
       title: 'Weekly TEST',
@@ -88,6 +89,7 @@ export class CalendarComponent implements OnInit {
         repeatType: 'Weekly',
         repeatEvery: 2,
       },
+      color:"#A34F41"
     };
     this.element3 = {
       title: 'Monthly TEST',
@@ -98,6 +100,7 @@ export class CalendarComponent implements OnInit {
         repeatType: 'Monthly',
         repeatEvery: 3,
       },
+      color:"#A34F41"
     };
     this.element.startDate.setDate(1);
     this.element.endDate.setDate(1);

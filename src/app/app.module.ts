@@ -20,6 +20,9 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import {MatSelectModule} from '@angular/material/select';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { ColorPickerModule } from 'ngx-color-picker';
+import { AngularColorfulModule } from 'angular-colorful';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -38,6 +41,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { PhoneBarComponent } from './phone-bar/phone-bar.component';
 import { AppContainerComponent } from './app-container/app-container.component';
+import { NofamilyComponent } from './nofamily/nofamily.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +56,7 @@ import { AppContainerComponent } from './app-container/app-container.component';
     SignupComponent,
     PhoneBarComponent,
     AppContainerComponent,
+    NofamilyComponent,
   ],
   imports: [
     HttpClientModule,
@@ -62,6 +67,7 @@ import { AppContainerComponent } from './app-container/app-container.component';
     NgbModule,
     FormsModule,
     IconModule,
+    ColorPickerModule,
     MatButtonModule,
     MatRippleModule,
     MatBadgeModule,
@@ -75,8 +81,10 @@ import { AppContainerComponent } from './app-container/app-container.component';
     MatCheckboxModule,
     MatSlideToggleModule,
     MatSelectModule,
+    MatExpansionModule,
     MatProgressSpinnerModule,
     NgxMaterialTimepickerModule,
+    AngularColorfulModule,
     HammerModule,
     NgScrollbarModule.withConfig({
       appearance: "standard",

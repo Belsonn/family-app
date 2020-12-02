@@ -17,6 +17,7 @@ import lockPasswordLine from '@iconify/icons-ri/lock-password-line';
 import batteryFull from '@iconify/icons-bi/battery-full';
 import signalIcon from '@iconify/icons-uil/signal';
 import wifiIcon from '@iconify/icons-bi/wifi';
+import arrowBackUp from '@iconify/icons-tabler/arrow-back-up';
 
 export const appIcons = {
   planner,
@@ -37,5 +38,6 @@ export const appIcons = {
   lockPasswordLine,
   batteryFull,
   signalIcon,
-  wifiIcon
+  wifiIcon,
+  arrowBackUp,
 };

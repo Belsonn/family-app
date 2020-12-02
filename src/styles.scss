@@ -80,4 +80,15 @@ ic-icon{
   //   --scrollbar-size: 0px;
   // }
 }
+.bttn-picker {
+  background-color: $violet-primary;
+  border: none;
+  color: white;
+  font-size: 1.3rem;
+  border-radius: 20px;
+  padding: 0.3rem 1.5rem;
+}
+.picker-handler{
+    touch-action: none;
+}
 

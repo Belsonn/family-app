@@ -1,42 +1,52 @@
-@import "~src/scss/variables.scss";
-@import "~src/scss/common.scss";
-@import "~src/scss/utils.scss";
+@import "~src/scss/main.scss";
 
 .stepper {
-    margin: 0 auto;
-    
-    &__buttons{
-        margin-top:0.7rem;
-    }
-}
-.radio-group{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  margin: 0 auto;
 
-    &--button {
-        margin-top: 0.9rem;
-    }
+  &__buttons {
+    margin-top: 0.7rem;
+  }
+}
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &--button {
+    margin-top: 0.9rem;
+  }
 }
 .formField {
-    margin-top: 0.3rem;
-    width: 90%;
+  margin-top: 0.3rem;
+  width: 90%;
 }
-.overview{
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    &__long{
-        &--icon{
-            font-size: 2rem;
-            margin-right: 0.5rem;
-            color: $blue-primary;
-        }
-        &--date{
-            font-weight: 500;
-            margin-top: 0.7rem;
-        }
+.overview {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  &__long {
+    &--icon {
+      font-size: 2rem;
+      margin-right: 0.5rem;
+      color: $blue-primary;
     }
+    &--date {
+      font-weight: 500;
+      margin-top: 0.7rem;
+    }
+  }
 }
+
+::ng-deep .mat-step-header {
+  .mat-step-icon-selected,
+  .mat-step-icon-state-edit {
+    background-color: $blue-primary-1;
+  }
+}
+
+:host ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
+  background: $linear-gradient-90-1;
+}
+

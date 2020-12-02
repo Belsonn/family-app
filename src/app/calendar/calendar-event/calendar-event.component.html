@@ -1,245 +1,340 @@
-    <mat-vertical-stepper class="stepper" [linear]="!true" #stepper>
-      <mat-step [stepControl]="titleFormGroup">
-        <form [formGroup]="titleFormGroup">
-        <ng-template i18n="event_stepper_title" matStepLabel>Event title</ng-template>
+<div class="flex flex-align-center">
+  <ic-icon
+    [routerLink]="['', 'app', 'calendar']"
+    mat-ripple
+    class="font-size-16rem ml-1rem mt-1rem border-radius-10"
+    icon="arrowBackUp"
+  ></ic-icon>
+</div>
+<mat-vertical-stepper class="stepper" [linear]="!true" #stepper>
+  <mat-step [stepControl]="titleFormGroup">
+    <form [formGroup]="titleFormGroup">
+      <ng-template i18n="event_stepper_title" matStepLabel
+        >Event title</ng-template
+      >
+      <div class="flex flex-align-center picker-handler">
+        <span
+          class="dot dot-big mr-1rem"
+          [style.background]="color"
+          [cpOKButton]="true"
+          [cpOKButtonText]="apply"
+          [cpOKButtonClass]="'bttn-picker'"
+          [cpAlphaChannel]="'disabled'"
+          [cpDisableInput] = "'true'"
+          [(colorPicker)]="color"
+        ></span>
         <mat-form-field class="formField">
           <mat-label i18n="event_title">Title</mat-label>
-          <input name="title" formControlName="titleControl" matInput required />
+          <input
+            name="title"
+            formControlName="titleControl"
+            matInput
+            required
+          />
           <mat-error i18n="event_title_error" *ngIf="titleFormGroup.invalid">
             Please provide a title.
           </mat-error>
         </mat-form-field>
-        <div class="stepper__buttons">
-          <button i18n="event_button_next" mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-    <mat-step>
-      <ng-template i18n="event_stepper_type" matStepLabel>Event type</ng-template>
-      <mat-radio-group [(ngModel)]="longEvent" class="radio-group">
-        <mat-radio-button i18n="event_type_short" class="radio-group--button" [value]="false"
-          >One day</mat-radio-button
-          >
-          <mat-radio-button i18n="event_type_long" class="radio-group--button" [value]="true"
-          >More days</mat-radio-button
-          >
-      </mat-radio-group>
+      </div>
       <div class="stepper__buttons">
-        <button i18n="event_button_previous" mat-button matStepperPrevious>Back</button>
         <button i18n="event_button_next" mat-button matStepperNext>Next</button>
       </div>
-    </mat-step>
-    <mat-step *ngIf="!longEvent" [stepControl]="shortEventFormGroup">
-      <form [formGroup]="shortEventFormGroup">
-        <ng-template i18n="event_stepper_when" matStepLabel>When?</ng-template>
-        <div class="shortEvent">
-          <mat-form-field class="formField" appearance="fill">
-            <mat-label i18n="event_startDate">Start Date</mat-label>
-            <input
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template i18n="event_stepper_type" matStepLabel>Event type</ng-template>
+    <mat-radio-group [(ngModel)]="longEvent" (change)="disableRepeat($event)" class="radio-group">
+      <mat-radio-button
+        i18n="event_type_short"
+        class="radio-group--button"
+        [value]="false"
+        >One day</mat-radio-button
+      >
+      <mat-radio-button
+        i18n="event_type_long"
+        class="radio-group--button"
+        [value]="true"
+        >More days</mat-radio-button
+      >
+    </mat-radio-group>
+    <div class="stepper__buttons">
+      <button i18n="event_button_previous" mat-button matStepperPrevious>
+        Back
+      </button>
+      <button i18n="event_button_next" mat-button matStepperNext>Next</button>
+    </div>
+  </mat-step>
+  <mat-step *ngIf="!longEvent" [stepControl]="shortEventFormGroup">
+    <form [formGroup]="shortEventFormGroup">
+      <ng-template i18n="event_stepper_when" matStepLabel>When?</ng-template>
+      <div class="shortEvent">
+        <mat-form-field class="formField" appearance="fill">
+          <mat-label i18n="event_startDate">Start Date</mat-label>
+          <input
             matInput
             name="shortDate"
-              formControlName="shortDateControl"
-              [matDatepicker]="startDateShortPicker"
-              required
-              readonly
-              />
-              <mat-datepicker-toggle
-              matSuffix
-              [for]="startDateShortPicker"
-              ></mat-datepicker-toggle>
-              <mat-datepicker
-              touchUi
-              #startDateShortPicker
-              disabled="false"
-              ></mat-datepicker>
-            </mat-form-field>
-            <div>
-              <mat-checkbox
-              i18n="event_allday"
-              name="allDay"
-              formControlName="allDayControl"
-              (change)="allDayChange($event)"
-            >
+            formControlName="shortDateControl"
+            [matDatepicker]="startDateShortPicker"
+            required
+            readonly
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="startDateShortPicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker
+            touchUi
+            #startDateShortPicker
+            disabled="false"
+          ></mat-datepicker>
+        </mat-form-field>
+        <div>
+          <mat-checkbox
+            i18n="event_allday"
+            name="allDay"
+            formControlName="allDayControl"
+            (change)="allDayChange($event)"
+          >
             Whole day
           </mat-checkbox>
         </div>
-          <mat-form-field class="formField" appearance="outline">
-            <mat-label i18n="event_startTime">Start Time</mat-label>
-            <input
-              matInput
-              name="startTime"
-              formControlName="startTimeControl"
-              [max]="shortEventFormGroup.controls.endTimeControl.value"
-              [ngxTimepicker]="startPicker"
-              [format]="24"
-              readonly
-              required
-              />
-              <ngx-material-timepicker
-              [theme]="pickerTheme"
-              #startPicker
-              ></ngx-material-timepicker>
-            </mat-form-field>
-            <mat-form-field class="formField" appearance="outline">
-              <mat-label i18n="event_startTime">End Time</mat-label>
-              <input
-              matInput
-              name="endTime"
-              formControlName="endTimeControl"
-              [min]="shortEventFormGroup.controls.startTimeControl.value"
-              [ngxTimepicker]="endPicker"
-              [format]="24"
-              readonly
-              required
-              />
-              <ngx-material-timepicker
-              [theme]="pickerTheme"
-              #endPicker
-              ></ngx-material-timepicker>
-            </mat-form-field>
-          </div>
-          <div class="stepper__buttons">
-            <button i18n="event_button_previous" mat-button matStepperPrevious>Back</button>
-            <button i18n="event_button_next" mat-button matStepperNext>Next</button>
-          </div>
-        </form>
-      </mat-step>
-      <mat-step *ngIf="longEvent" [stepControl]="longEventFormGroup">
-        <form [formGroup]="longEventFormGroup">
-          <ng-template i18n="event_stepper_when" matStepLabel>When?</ng-template>
-          <div class="longEvent">
-            <mat-form-field class="formField" appearance="fill">
-              <mat-label i18n="event_startDate">Start Date</mat-label>
-              <input
-              matInput
-              name="startDate"
-              formControlName="startDateControl"
-              (dateInput)="calcEndDate()"
-                [matDatepicker]="startDatePicker"
-                required
-                readonly
-                />
-                <mat-datepicker-toggle
-                matSuffix
-                [for]="startDatePicker"
-                ></mat-datepicker-toggle>
-                <mat-datepicker
-                touchUi
-                #startDatePicker
-                disabled="false"
-              ></mat-datepicker>
-            </mat-form-field>
-            <mat-form-field class="formField" appearance="fill">
-              <mat-label i18n="event_endDate">End Date</mat-label>
-              <input
-              matInput
-              name="endDate"
-              formControlName="endDateControl"
-              [min]="minEndDate"
-              [matDatepicker]="endDatePicker"
-                required
-                readonly
-                />
-                <mat-datepicker-toggle
-                matSuffix
-                [for]="endDatePicker"
-                ></mat-datepicker-toggle>
-                <mat-datepicker
-                touchUi
-                #endDatePicker
-                disabled="false"
-                ></mat-datepicker>
-              </mat-form-field>
-            </div>
-            <div class="stepper__buttons">
-              <button i18n="event_button_previous" mat-button matStepperPrevious>Back</button>
-              <button i18n="event_button_next" mat-button matStepperNext>Next</button>
-            </div>
-          </form>
-        </mat-step>
-        <mat-step [stepControl]="repeatFormGroup">
-          <form [formGroup]="repeatFormGroup">
-        <ng-template i18n="event_stepper_repeat" matStepLabel>Repeat?</ng-template>
-        <div class="flex flex-column">
-          <mat-slide-toggle class="mt-1rem" (change)="repeatToggle($event)" formControlName="repeatToggleControl">Repeat?</mat-slide-toggle>
-          <mat-form-field class="mt-1rem" appearance="fill">
-            <mat-label>How often?</mat-label>
-            <mat-select formControlName="repeatTypeControl">
-              <mat-option *ngFor="let repeatType of repeatTypes" [value]="repeatType">{{repeatType}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field appearance="fill">
-            <mat-label>Every?</mat-label>
-            <mat-select *ngIf="repeatFormGroup.controls.repeatTypeControl.value=='Daily'" formControlName="repeatEveryControl">
-              <mat-option *ngFor="let repeatEvery of repeatDaily" [value]="repeatEvery">{{repeatEvery}} <span>days</span></mat-option>
-            </mat-select>
-            <mat-select *ngIf="repeatFormGroup.controls.repeatTypeControl.value=='Weekly'"  formControlName="repeatEveryControl">
-              <mat-option  *ngFor="let repeatEvery of repeatWeekly" [value]="repeatEvery">{{repeatEvery}} <span>weeks</span></mat-option>
-            </mat-select>
-            <mat-select *ngIf="repeatFormGroup.controls.repeatTypeControl.value=='Monthly'" formControlName="repeatEveryControl">
-              <mat-option *ngFor="let repeatEvery of repeatMonthly" [value]="repeatEvery">{{repeatEvery}} <span>months</span></mat-option>
-            </mat-select>
-            <mat-select disabled *ngIf="!repeatFormGroup.controls.repeatTypeControl.value" formControlName="repeatEveryControl">
-              <mat-option></mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="stepper__buttons">
-          <button i18n="event_button_previous" mat-button matStepperPrevious>Back</button>
-          <button i18n="event_button_next" mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-    <mat-step>
-      <ng-template i18n="event_stepper_rdy" matStepLabel>Ready</ng-template>
-      <div class="overview">
-        <div class="overview--title">
-          <h3>{{ titleFormGroup.value.titleControl }}</h3>
-        </div>
-        <div *ngIf="!longEvent" class="overview__short">
-          <div class="overview__short-startDate">
-            <p>
-              <ic-icon
+        <mat-form-field class="formField" appearance="outline">
+          <mat-label i18n="event_startTime">Start Time</mat-label>
+          <input
+            matInput
+            name="startTime"
+            formControlName="startTimeControl"
+            [max]="shortEventFormGroup.controls.endTimeControl.value"
+            [ngxTimepicker]="startPicker"
+            [format]="24"
+            readonly
+            required
+          />
+          <ngx-material-timepicker
+            [theme]="pickerTheme"
+            #startPicker
+          ></ngx-material-timepicker>
+        </mat-form-field>
+        <mat-form-field class="formField" appearance="outline">
+          <mat-label i18n="event_startTime">End Time</mat-label>
+          <input
+            matInput
+            name="endTime"
+            formControlName="endTimeControl"
+            [min]="shortEventFormGroup.controls.startTimeControl.value"
+            [ngxTimepicker]="endPicker"
+            [format]="24"
+            readonly
+            required
+          />
+          <ngx-material-timepicker
+            [theme]="pickerTheme"
+            #endPicker
+          ></ngx-material-timepicker>
+        </mat-form-field>
+      </div>
+      <div class="stepper__buttons">
+        <button i18n="event_button_previous" mat-button matStepperPrevious>
+          Back
+        </button>
+        <button i18n="event_button_next" mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step *ngIf="longEvent" [stepControl]="longEventFormGroup">
+    <form [formGroup]="longEventFormGroup">
+      <ng-template i18n="event_stepper_when" matStepLabel>When?</ng-template>
+      <div class="longEvent">
+        <mat-form-field class="formField" appearance="fill">
+          <mat-label i18n="event_startDate">Start Date</mat-label>
+          <input
+            matInput
+            name="startDate"
+            formControlName="startDateControl"
+            (dateInput)="calcEndDate()"
+            [matDatepicker]="startDatePicker"
+            required
+            readonly
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="startDatePicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker
+            touchUi
+            #startDatePicker
+            disabled="false"
+          ></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="formField" appearance="fill">
+          <mat-label i18n="event_endDate">End Date</mat-label>
+          <input
+            matInput
+            name="endDate"
+            formControlName="endDateControl"
+            [min]="minEndDate"
+            [matDatepicker]="endDatePicker"
+            required
+            readonly
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="endDatePicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker
+            touchUi
+            #endDatePicker
+            disabled="false"
+          ></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="stepper__buttons">
+        <button i18n="event_button_previous" mat-button matStepperPrevious>
+          Back
+        </button>
+        <button i18n="event_button_next" mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="repeatFormGroup">
+    <form [formGroup]="repeatFormGroup">
+      <ng-template i18n="event_stepper_repeat" matStepLabel
+        >Repeat?</ng-template
+      >
+      <div class="flex flex-column">
+        <mat-slide-toggle
+          class="mt-1rem"
+          (change)="repeatToggle($event)"
+          formControlName="repeatToggleControl"
+          >Repeat? <span *ngIf="longEvent">(It only supports one day events)</span></mat-slide-toggle
+        >
+        <mat-form-field class="mt-1rem" appearance="fill">
+          <mat-label>How often?</mat-label>
+          <mat-select formControlName="repeatTypeControl">
+            <mat-option
+              *ngFor="let repeatType of repeatTypes"
+              [value]="repeatType"
+              >{{ repeatType }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Every?</mat-label>
+          <mat-select
+            *ngIf="repeatFormGroup.controls.repeatTypeControl.value == 'Daily'"
+            formControlName="repeatEveryControl"
+          >
+            <mat-option
+              *ngFor="let repeatEvery of repeatDaily"
+              [value]="repeatEvery"
+              >{{ repeatEvery }} <span>days</span></mat-option
+            >
+          </mat-select>
+          <mat-select
+            *ngIf="repeatFormGroup.controls.repeatTypeControl.value == 'Weekly'"
+            formControlName="repeatEveryControl"
+          >
+            <mat-option
+              *ngFor="let repeatEvery of repeatWeekly"
+              [value]="repeatEvery"
+              >{{ repeatEvery }} <span>weeks</span></mat-option
+            >
+          </mat-select>
+          <mat-select
+            *ngIf="
+              repeatFormGroup.controls.repeatTypeControl.value == 'Monthly'
+            "
+            formControlName="repeatEveryControl"
+          >
+            <mat-option
+              *ngFor="let repeatEvery of repeatMonthly"
+              [value]="repeatEvery"
+              >{{ repeatEvery }} <span>months</span></mat-option
+            >
+          </mat-select>
+          <mat-select
+            disabled
+            *ngIf="!repeatFormGroup.controls.repeatTypeControl.value"
+            formControlName="repeatEveryControl"
+          >
+            <mat-option></mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="stepper__buttons">
+        <button i18n="event_button_previous" mat-button matStepperPrevious>
+          Back
+        </button>
+        <button i18n="event_button_next" mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template i18n="event_stepper_rdy" matStepLabel>Ready</ng-template>
+    <div class="overview">
+      <div class="overview--title">
+        <h3>{{ titleFormGroup.value.titleControl }}</h3>
+      </div>
+      <div *ngIf="!longEvent" class="overview__short">
+        <div class="overview__short-startDate">
+          <p>
+            <ic-icon
               class="overview__long--icon"
               icon="bxCalendarCheck"
-              ></ic-icon>
-              {{ shortEventFormGroup.controls.shortDateControl.value | date: "dd MMMM yyyy" }}
-            </p>
-            <p>
-              <ic-icon
-                class="overview__long--icon"
-                icon="outlineAccessTime"
-                ></ic-icon>
-                <span *ngIf="!shortEventFormGroup.controls.allDayControl.value">{{ shortEventFormGroup.controls.startTimeControl.value }} - {{ shortEventFormGroup.controls.endTimeControl.value }}</span>
-                <span i18n="event_allday" *ngIf="shortEventFormGroup.controls.allDayControl.value">Whole day</span>
-              </p>
-            </div>
-          </div>
-        <div *ngIf="longEvent" class="overview__long">
-          <div class="overview__long">
-            <p class="overview__long--date">
-              <ic-icon
+            ></ic-icon>
+            {{
+              shortEventFormGroup.controls.shortDateControl.value
+                | date: "dd MMMM yyyy"
+            }}
+          </p>
+          <p>
+            <ic-icon
               class="overview__long--icon"
-              icon="bxCalendarCheck"
-              ></ic-icon>
-              {{ longEventFormGroup.controls.startDateControl.value | date: "dd MMMM yyyy" }}
-            </p>
-            <p class="overview__long--date">
-              <ic-icon
-              class="overview__long--icon"
-              icon="bxCalendarX"
-              ></ic-icon>
-              {{ longEventFormGroup.controls.endDateControl.value | date: "dd MMMM yyyy" }}
-            </p>
-          </div>
+              icon="outlineAccessTime"
+            ></ic-icon>
+            <span *ngIf="!shortEventFormGroup.controls.allDayControl.value"
+              >{{ shortEventFormGroup.controls.startTimeControl.value }} -
+              {{ shortEventFormGroup.controls.endTimeControl.value }}</span
+            >
+            <span
+              i18n="event_allday"
+              *ngIf="shortEventFormGroup.controls.allDayControl.value"
+              >Whole day</span
+            >
+          </p>
         </div>
       </div>
-      <div>
-        <button i18n="event_button_previous" mat-button matStepperPrevious>Back</button>
-        <button i18n="event_button_confirm" mat-button (click)="addEvent()">Add</button>
-        <!-- <button *ngIf="!deviceService.isMobile()" i18n="event_button_confirm" mat-button mat-dialog-close (click)="addEvent()">Add</button> -->
+      <div *ngIf="longEvent" class="overview__long">
+        <div class="overview__long">
+          <p class="overview__long--date">
+            <ic-icon
+              class="overview__long--icon"
+              icon="bxCalendarCheck"
+            ></ic-icon>
+            {{
+              longEventFormGroup.controls.startDateControl.value
+                | date: "dd MMMM yyyy"
+            }}
+          </p>
+          <p class="overview__long--date">
+            <ic-icon class="overview__long--icon" icon="bxCalendarX"></ic-icon>
+            {{
+              longEventFormGroup.controls.endDateControl.value
+                | date: "dd MMMM yyyy"
+            }}
+          </p>
+        </div>
       </div>
-    </mat-step>
-  </mat-vertical-stepper>
-  <button (click)="onTest()" mat-button>TESTUJ</button>
-
+    </div>
+    <div>
+      <button i18n="event_button_previous" mat-button matStepperPrevious>
+        Back
+      </button>
+      <button i18n="event_button_confirm" mat-button (click)="addEvent()">
+        Add
+      </button>
+      <!-- <button *ngIf="!deviceService.isMobile()" i18n="event_button_confirm" mat-button mat-dialog-close (click)="addEvent()">Add</button> -->
+    </div>
+  </mat-step>
+</mat-vertical-stepper>
+<button (click)="onTest()" mat-button>TESTUJ</button>

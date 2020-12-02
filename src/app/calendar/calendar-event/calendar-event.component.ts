@@ -3,14 +3,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
 import { MonthNames } from '../../utils/CalendarMonthNames';
 import { pickerTheme } from '../../utils/TimePickerTheme';
-import bxCalendarCheck from '@iconify-icons/bx/bx-calendar-check';
-import bxCalendarX from '@iconify-icons/bx/bx-calendar-x';
-import outlineAccessTime from '@iconify-icons/ic/outline-access-time';
 import { CalendarEvent } from 'src/app/utils/CalendarEvent.model';
 import { CalendarService } from '../calendar.service';
 import { Router } from '@angular/router';
 import { DeviceDetectorService } from 'ngx-device-detector';
 
+import bxCalendarCheck from '@iconify-icons/bx/bx-calendar-check';
+import bxCalendarX from '@iconify-icons/bx/bx-calendar-x';
+import outlineAccessTime from '@iconify-icons/ic/outline-access-time';
+import arrowBackUp from '@iconify/icons-tabler/arrow-back-up';
 
 @Component({
   selector: 'app-calendar-event',
@@ -21,8 +22,12 @@ export class CalendarEventComponent implements OnInit {
   bxCalendarCheck = bxCalendarCheck;
   bxCalendarX = bxCalendarX;
   outlineAccessTime = outlineAccessTime;
+  arrowBackUp = arrowBackUp;
+  true = true;
+  apply = $localize`Apply`;
 
   longEvent: boolean = false;
+  color: String;
 
   //SHORT
   allDay: boolean = false;
@@ -64,6 +69,7 @@ export class CalendarEventComponent implements OnInit {
       });
       this.calcEndDate();
     }
+    this.color = "#9851b4"
   }
 
   initAllFormGroups() {
@@ -85,7 +91,15 @@ export class CalendarEventComponent implements OnInit {
       repeatTypeControl: [{value: 'Daily', disabled: true}, Validators.required],
       repeatEveryControl: [{value: '', disabled: true}, Validators.required],
     })
-    
+  
+  }
+
+  disableRepeat(event){
+    if(event.value){
+      this.repeatFormGroup.get('repeatToggleControl').disable();
+    }else {
+      this.repeatFormGroup.get('repeatToggleControl').enable();
+    }
   }
 
   calcEndDate() {
@@ -138,14 +152,17 @@ export class CalendarEventComponent implements OnInit {
 
   onTest() {
     console.log(this.repeatFormGroup)
+    console.log(this.color);
   }
+
   addEvent() {
     let event: CalendarEvent = {
       title: '',
       startDate: new Date(),
       endDate: new Date(),
       allDay: false,
-      repeat: null
+      repeat: null,
+      color: this.color
     };
 
     event.title = this.titleFormGroup.controls.titleControl.value;

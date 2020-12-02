@@ -2,32 +2,12 @@ $blue-primary: #346beb;
 $blue-primary-1: #00d4ff;
 $blue-primary-1rgba: rgba(0, 212, 255, 1);
 $pink-primary-1: #9851b4;
-$pink-primary-1rgba:  rgba(152, 81, 180, 1);
+$pink-primary-1rgba: rgba(152, 81, 180, 1);
+$violet-primary: #5656b9;
 $red-primary-1: #e65050;
 
 $font-family-1: "Source Sans Pro", sans-serif;
 $font-family-2: "Quicksand", sans-serif;
-
-
-
-$linear-gradient-180-08: linear-gradient(
-  180deg,
-  rgba(0, 212, 255, 0.8) 0%,
-  rgba(86, 86, 185, 0.8) 50%,
-  rgba(152, 81, 180, 0.8) 100%
-);
-$linear-gradient-90-1: linear-gradient(
-  90deg,
-  rgba(0, 212, 255, 1) 0%,
-  rgba(86, 86, 185, 1) 50%,
-  rgba(152, 81, 180, 1) 100%
-);
-$linear-gradient-90-1-reverse: linear-gradient(
-  90deg,
-  rgba(152, 81, 180, 1) 0%,
-  rgba(86, 86, 185, 1) 50%,
-  rgba(0, 212, 255, 1) 100%
-);
 
 $box-shadow-primary: rgba(149, 157, 165, 0.2) 8px 8px 24px;
 $box-shadow-secondary: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,

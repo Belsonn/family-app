@@ -1,4 +1,5 @@
 @import "~src/scss/variables.scss";
+@import "~src/scss/gradients.scss";
 
 .background {
   height: 100%;
@@ -14,7 +15,41 @@
   height: 100%;
   padding: 2rem 0;
 }
+.dot {
+  border-radius: 50%;
+  display: inline-block;
+}
 
+.dot-position{
+  position: absolute;
+  top:35%;
+
+}
+// .dot-small{
+
+// }
+.dot-medium{
+  height: 12px;
+  width: 12px;
+}
+.dot-big{
+  height: 25px;
+  width: 25px;
+}
+
+.dot-wrapper{
+  position: relative;
+}
+
+.relative{
+  position: relative;
+}
+.flex-space-beetwen{
+  justify-content: space-between;
+}
+.width-100{
+  width: 100%;
+}
 
 .bttn-primary {
   text-transform: uppercase;
@@ -36,6 +71,10 @@
 }
 .bttn-blue {
   background-color: $blue-primary-1;
+  color: #fff;
+}
+.bttn-violet {
+  background-color: $violet-primary;
   color: #fff;
 }
 .bttn-big{
@@ -69,6 +108,12 @@
 }
 .flex{
   display: flex;
+}
+.flex-align-center{
+  align-items: center;
+}
+.flex-row{
+  flex-direction: row;
 }
 
 .img-resize80{
