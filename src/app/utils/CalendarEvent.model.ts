@@ -1,13 +1,14 @@
 export interface Repeat{
-  repeatType: string;
-  repeatEvery: number;
+  repeatType: String;
+  repeatEvery
 }
 
 
 export interface CalendarEvent {
-    title: string;
+    title: String;
     startDate: Date;
     endDate: Date;
-    allDay: boolean;
+    allDay: Boolean;
     repeat: Repeat
+    color: String;
   }
