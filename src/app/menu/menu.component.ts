@@ -5,6 +5,8 @@ import chatBubbleLine from '@iconify/icons-clarity/chat-bubble-line';
 import familyManWomanGirlBoy from '@iconify/icons-emojione-v1/family-man-woman-girl-boy';
 import todoList from '@iconify/icons-flat-color-icons/todo-list';
 import settingsIcon from '@iconify/icons-flat-color-icons/settings';
+import { AuthService } from '../auth/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,11 +23,14 @@ export class MenuComponent implements OnInit {
   todoList = todoList;
   settingsIcon = settingsIcon;
 
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router) { }
   onTest(){
     console.log("elo");
   }
   ngOnInit(): void {
   }
 
+  onLogout() {
+    this.authService.logout();
+  }
 }

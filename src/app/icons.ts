@@ -20,6 +20,13 @@ import wifiIcon from '@iconify/icons-bi/wifi';
 import arrowBackUp from '@iconify/icons-tabler/arrow-back-up';
 import keyIcon from '@iconify-icons/bi/key';
 import usergroupAddOutlined from '@iconify-icons/ant-design/usergroup-add-outlined';
+import userOutlined from '@iconify-icons/ant-design/user-outlined';
+import genderMale from '@iconify-icons/carbon/gender-male';
+import genderFemale from '@iconify-icons/carbon/gender-female';
+import childIcon from '@iconify-icons/cil/child';
+import adultIcon from '@iconify-icons/el/adult';
+import calendarBlank from '@iconify-icons/mdi/calendar-blank';
+import calendarBlankMultiple from '@iconify-icons/mdi/calendar-blank-multiple';
 
 export const appIcons = {
   planner,
@@ -43,5 +50,14 @@ export const appIcons = {
   wifiIcon,
   arrowBackUp,
   keyIcon,
-  usergroupAddOutlined
+  usergroupAddOutlined,
+  userOutlined,
+  genderMale,
+  genderFemale,
+  childIcon,
+  adultIcon,
+  calendarBlank,
+  calendarBlankMultiple,
+
+  
 };

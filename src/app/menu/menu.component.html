@@ -1,6 +1,6 @@
- <div class="wrapper-flex-center mt-15rem">
+ <!-- <div class="wrapper-flex-center mt-15rem">
     <img [routerLink]="['']" class="img-resize150" src="./../../assets/Family-Time-Logo-3alt.png" alt="Logo">
-  </div>
+  </div> -->
   <div class="boxes mt-4rem">
     <div class="boxes__row">
       <button
@@ -16,7 +16,7 @@
           05 listopada 2020
         </div>
       </button>
-      <button mat-raised-button class="boxes__row__box">
+      <button [routerLink]="['', 'app', 'configureAccount']" mat-raised-button class="boxes__row__box">
         <div class="boxes__row__box--icon">
           <ic-icon icon="shoppingCart"></ic-icon>
         </div>
@@ -54,6 +54,26 @@
           <ic-icon icon="familyManWomanGirlBoy"></ic-icon>
         </div>
         <div i18n="menu_family" class="boxes__row__box--name">LOGIN</div>
+        <div class="boxes__row__box--description">4 członków</div>
+      </button>
+      <button [routerLink]="['','app','join']" mat-raised-button class="boxes__row__box">
+        <div class="boxes__row__box--icon">
+          <ic-icon icon="settingsIcon"></ic-icon>
+        </div>
+        <div i18n="menu_settings" class="boxes__row__box--name">Settings</div>
+        <div class="boxes__row__box--description">Zmień ustawienia</div>
+      </button>
+    </div>
+    <div class="boxes__row pb-2rem">
+      <button
+        mat-raised-button
+        class="boxes__row__box"
+        (click)="onLogout()"
+      >
+        <div class="boxes__row__box--icon">
+          <ic-icon icon="familyManWomanGirlBoy"></ic-icon>
+        </div>
+        <div i18n="menu_family" class="boxes__row__box--name">WYLOGUJ SIE</div>
         <div class="boxes__row__box--description">4 członków</div>
       </button>
       <button [routerLink]="['','app','join']" mat-raised-button class="boxes__row__box">

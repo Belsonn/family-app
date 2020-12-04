@@ -9,6 +9,7 @@ import { HomeScreenComponent } from './home-screen/home-screen.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AppContainerComponent } from './app-container/app-container.component';
+import { NamecreatorComponent } from './namecreator/namecreator.component';
 
 const routes: Routes = [
   {
@@ -25,7 +26,11 @@ const routes: Routes = [
       },
       {
         path: 'join',
-        component: NofamilyComponent
+        component: NofamilyComponent,
+      },
+      {
+        path: 'configureAccount',
+        component: NamecreatorComponent,
       },
       {
         path: 'calendar',

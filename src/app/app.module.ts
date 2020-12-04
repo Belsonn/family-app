@@ -42,6 +42,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { PhoneBarComponent } from './phone-bar/phone-bar.component';
 import { AppContainerComponent } from './app-container/app-container.component';
 import { NofamilyComponent } from './nofamily/nofamily.component';
+import { NamecreatorComponent } from './namecreator/namecreator.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { NofamilyComponent } from './nofamily/nofamily.component';
     PhoneBarComponent,
     AppContainerComponent,
     NofamilyComponent,
+    NamecreatorComponent,
   ],
   imports: [
     HttpClientModule,
