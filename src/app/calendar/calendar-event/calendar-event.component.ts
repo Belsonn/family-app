@@ -12,6 +12,8 @@ import bxCalendarCheck from '@iconify-icons/bx/bx-calendar-check';
 import bxCalendarX from '@iconify-icons/bx/bx-calendar-x';
 import outlineAccessTime from '@iconify-icons/ic/outline-access-time';
 import arrowBackUp from '@iconify/icons-tabler/arrow-back-up';
+import calendarBlank from '@iconify-icons/mdi/calendar-blank';
+import calendarBlankMultiple from '@iconify-icons/mdi/calendar-blank-multiple';
 
 @Component({
   selector: 'app-calendar-event',
@@ -23,6 +25,8 @@ export class CalendarEventComponent implements OnInit {
   bxCalendarX = bxCalendarX;
   outlineAccessTime = outlineAccessTime;
   arrowBackUp = arrowBackUp;
+  calendarBlank = calendarBlank;
+  calendarBlankMultiple = calendarBlankMultiple;
   true = true;
   apply = $localize`Apply`;
 
@@ -37,6 +41,7 @@ export class CalendarEventComponent implements OnInit {
 
   //FormControls
   titleFormGroup: FormGroup;
+  radioFormGroup: FormGroup;
   shortEventFormGroup: FormGroup;
   longEventFormGroup: FormGroup;
   repeatFormGroup: FormGroup;
@@ -46,7 +51,7 @@ export class CalendarEventComponent implements OnInit {
   repeatDaily = [];
   repeatWeekly = [];
   repeatMonthly = [];
-  
+
   pickerTheme: NgxMaterialTimepickerTheme = pickerTheme;
 
   constructor(
@@ -56,9 +61,11 @@ export class CalendarEventComponent implements OnInit {
     public deviceService: DeviceDetectorService
   ) {}
 
+
   ngOnInit() {
     this.initAllFormGroups();
     this.fillRepeatArrays();
+    this.onRepeatChange();
 
     if (this.calendarService.dayClicked) {
       this.shortEventFormGroup.patchValue({
@@ -69,7 +76,7 @@ export class CalendarEventComponent implements OnInit {
       });
       this.calcEndDate();
     }
-    this.color = "#9851b4"
+    this.color = '#9851b4';
   }
 
   initAllFormGroups() {
@@ -88,29 +95,40 @@ export class CalendarEventComponent implements OnInit {
     });
     this.repeatFormGroup = this._formBuilder.group({
       repeatToggleControl: '',
-      repeatTypeControl: [{value: 'Daily', disabled: true}, Validators.required],
-      repeatEveryControl: [{value: '', disabled: true}, Validators.required],
-    })
-  
+      repeatTypeControl: [
+        { value: 'Daily', disabled: true },
+        Validators.required,
+      ],
+      repeatEveryControl: [{ value: '', disabled: true }, Validators.required],
+    });
+    this.radioFormGroup = this._formBuilder.group({
+      longEvent: ['', Validators.required],
+    });
   }
 
-  disableRepeat(event){
-    if(event.value){
-      this.repeatFormGroup.get('repeatToggleControl').disable();
-    }else {
-      this.repeatFormGroup.get('repeatToggleControl').enable();
-    }
+  onRepeatChange() {
+    this.radioFormGroup.get('longEvent').valueChanges.subscribe((value) => {
+      if (value) {
+        this.repeatFormGroup.get('repeatToggleControl').disable();
+      } else {
+        this.repeatFormGroup.get('repeatToggleControl').enable();
+      }
+    });
   }
 
   calcEndDate() {
     this.minEndDate = new Date();
 
     //Setting minEnd to 1 day after start
-    this.minEndDate.setDate(this.longEventFormGroup.controls.startDateControl.value.getDate() + 1);
+    this.minEndDate.setDate(
+      this.longEventFormGroup.controls.startDateControl.value.getDate() + 1
+    );
 
     // If startDate is after endDate -> change endDate
-    if (this.longEventFormGroup.controls.endDateControl.value < this.minEndDate) {
-      this.longEventFormGroup.patchValue({ endDateControl: this.minEndDate});
+    if (
+      this.longEventFormGroup.controls.endDateControl.value < this.minEndDate
+    ) {
+      this.longEventFormGroup.patchValue({ endDateControl: this.minEndDate });
     }
   }
 
@@ -126,21 +144,21 @@ export class CalendarEventComponent implements OnInit {
   }
 
   fillRepeatArrays() {
-    for(let i = 1; i<=12; i++) {
-      if(i<=4){
+    for (let i = 1; i <= 12; i++) {
+      if (i <= 4) {
         this.repeatDaily.push(i);
         this.repeatWeekly.push(i);
         this.repeatMonthly.push(i);
-      } else if( i<=7){
+      } else if (i <= 7) {
         this.repeatDaily.push(i);
         this.repeatMonthly.push(i);
-      } else{
+      } else {
         this.repeatMonthly.push(i);
       }
     }
   }
 
-  repeatToggle(event){
+  repeatToggle(event) {
     if (event.checked) {
       this.repeatFormGroup.get('repeatTypeControl').enable();
       this.repeatFormGroup.get('repeatEveryControl').enable();
@@ -151,7 +169,7 @@ export class CalendarEventComponent implements OnInit {
   }
 
   onTest() {
-    console.log(this.repeatFormGroup)
+    console.log(this.repeatFormGroup);
     console.log(this.color);
   }
 
@@ -162,13 +180,12 @@ export class CalendarEventComponent implements OnInit {
       endDate: new Date(),
       allDay: false,
       repeat: null,
-      color: this.color
+      color: this.color,
     };
 
     event.title = this.titleFormGroup.controls.titleControl.value;
 
     if (!this.longEvent) {
-
       // Set same date for start and end
       let startDate = new Date(
         this.shortEventFormGroup.controls.shortDateControl.value
@@ -179,7 +196,7 @@ export class CalendarEventComponent implements OnInit {
       event.allDay = true;
 
       // If event is not allDay
-      if(!this.shortEventFormGroup.controls.allDayControl.value) {
+      if (!this.shortEventFormGroup.controls.allDayControl.value) {
         event.allDay = false;
 
         //Start - hours and minutes
@@ -188,7 +205,7 @@ export class CalendarEventComponent implements OnInit {
         );
         startDate.setHours(parseInt(startTimeArray[0]));
         startDate.setMinutes(parseInt(startTimeArray[1]));
-  
+
         // End - hours and minutes
         const endTimeArray = this.shortEventFormGroup.controls.endTimeControl.value.split(
           ':'
@@ -196,24 +213,23 @@ export class CalendarEventComponent implements OnInit {
         endDate.setHours(parseInt(endTimeArray[0]));
         endDate.setMinutes(parseInt(endTimeArray[1]));
       }
-      
+
       // set event Date to modified date
       event.startDate = startDate;
       event.endDate = endDate;
-
     } else {
       event.startDate = this.longEventFormGroup.controls.startDateControl.value;
       event.endDate = this.longEventFormGroup.controls.endDateControl.value;
     }
 
-    if(this.repeatFormGroup.controls.repeatToggleControl.value){
+    if (this.repeatFormGroup.controls.repeatToggleControl.value) {
       event.repeat = {
         repeatType: this.repeatFormGroup.controls.repeatTypeControl.value,
-        repeatEvery: this.repeatFormGroup.controls.repeatEveryControl.value
-      }
+        repeatEvery: this.repeatFormGroup.controls.repeatEveryControl.value,
+      };
     }
 
     this.calendarService.calendarEvents.push(event);
-    this.router.navigate(['','app','calendar']);
+    this.router.navigate(['', 'app', 'calendar']);
   }
 }

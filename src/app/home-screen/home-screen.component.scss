@@ -34,8 +34,22 @@
 
 }
 
+.custom-flex{
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+  text-align: center;
+}
+
+.custom-margin{
+  margin-top: 2rem;
+}
 .spacer{
   padding: 0;
+}
+.custom-padding{
+  padding: 1rem 2rem;
 }
 
 
@@ -45,5 +59,14 @@
       width: 200px;
       height: 200px;
     }
+  }
+  .custom-flex{
+    flex-direction: row;
+  }
+  .custom-margin{
+    margin: 0 1rem;
+  }
+  .custom-padding{
+    padding: 1rem 4rem;
   }
 }

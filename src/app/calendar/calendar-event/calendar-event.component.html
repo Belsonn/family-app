@@ -20,7 +20,7 @@
           [cpOKButtonText]="apply"
           [cpOKButtonClass]="'bttn-picker'"
           [cpAlphaChannel]="'disabled'"
-          [cpDisableInput] = "'true'"
+          [cpDisableInput]="'true'"
           [(colorPicker)]="color"
         ></span>
         <mat-form-field class="formField">
@@ -43,20 +43,48 @@
   </mat-step>
   <mat-step>
     <ng-template i18n="event_stepper_type" matStepLabel>Event type</ng-template>
-    <mat-radio-group [(ngModel)]="longEvent" (change)="disableRepeat($event)" class="radio-group">
-      <mat-radio-button
-        i18n="event_type_short"
-        class="radio-group--button"
-        [value]="false"
-        >One day</mat-radio-button
+    <form
+      [formGroup]="radioFormGroup"
+      class="radio-group"
+    >
+      <label
+        [ngClass]="{
+          'radio-checked': !radioFormGroup.controls.longEvent.value
+        }"
+        mat-ripple
+        class="radio-label text-center"
       >
-      <mat-radio-button
-        i18n="event_type_long"
-        class="radio-group--button"
-        [value]="true"
-        >More days</mat-radio-button
+        <div class="flex flex-column flex-align-center custom-width p-1rem">
+          <input
+            name="longEvent"
+            formControlName="longEvent"
+            type="radio"
+            [value]="false"
+          />
+          <ic-icon class="font-size-15rem" icon="calendarBlank"></ic-icon>
+          <span class="text-center mt-05rem">One day</span>
+        </div>
+      </label>
+      <label
+        [ngClass]="{ 'radio-checked': radioFormGroup.controls.longEvent.value }"
+        mat-ripple
+        class="radio-label text-center"
       >
-    </mat-radio-group>
+        <div class="flex flex-column flex-align-center p-1rem">
+          <input
+            name="longEvent"
+            formControlName="longEvent"
+            type="radio"
+            [value]="true"
+          />
+          <ic-icon
+            class="font-size-15rem"
+            icon="calendarBlankMultiple"
+          ></ic-icon>
+          <span class="text-center mt-05rem">More days</span>
+        </div>
+      </label>
+    </form>
     <div class="stepper__buttons">
       <button i18n="event_button_previous" mat-button matStepperPrevious>
         Back
@@ -64,7 +92,10 @@
       <button i18n="event_button_next" mat-button matStepperNext>Next</button>
     </div>
   </mat-step>
-  <mat-step *ngIf="!longEvent" [stepControl]="shortEventFormGroup">
+  <mat-step
+    *ngIf="!radioFormGroup.controls.longEvent.value"
+    [stepControl]="shortEventFormGroup"
+  >
     <form [formGroup]="shortEventFormGroup">
       <ng-template i18n="event_stepper_when" matStepLabel>When?</ng-template>
       <div class="shortEvent">
@@ -141,7 +172,10 @@
       </div>
     </form>
   </mat-step>
-  <mat-step *ngIf="longEvent" [stepControl]="longEventFormGroup">
+  <mat-step
+    *ngIf="radioFormGroup.controls.longEvent.value"
+    [stepControl]="longEventFormGroup"
+  >
     <form [formGroup]="longEventFormGroup">
       <ng-template i18n="event_stepper_when" matStepLabel>When?</ng-template>
       <div class="longEvent">
@@ -206,7 +240,10 @@
           class="mt-1rem"
           (change)="repeatToggle($event)"
           formControlName="repeatToggleControl"
-          >Repeat? <span *ngIf="longEvent">(It only supports one day events)</span></mat-slide-toggle
+          >Repeat?
+          <span *ngIf="radioFormGroup.controls.longEvent.value"
+            >(It only supports one day events)</span
+          ></mat-slide-toggle
         >
         <mat-form-field class="mt-1rem" appearance="fill">
           <mat-label>How often?</mat-label>

@@ -12,12 +12,18 @@
       <h4 class="heading--secondary">
         Plan events, organize tasks with your children.
       </h4>
-      <div class="mt-4rem">
+      <div class="custom-flex mt-4rem">
         <button
           [routerLink]="['app','login']"
-          class="bttn-primary bttn-white bttn-animated bttn-big bttn-clickable"
+          class="bttn-primary bttn-white bttn-animated bttn-big bttn-clickable custom-padding custom-margin"
         >
-          Get Started
+          Create an account
+        </button>
+        <button
+          [routerLink]="['app','join']"
+          class="bttn-primary bttn-white bttn-animated bttn-big bttn-clickable custom-padding custom-margin"
+        >
+          Enter without an account
         </button>
       </div>
     </div>
