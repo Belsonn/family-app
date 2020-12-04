@@ -1,0 +1,120 @@
+<div>
+  <div class="text-center font-family-2 mt-2rem font-size-2rem">Configure your account.</div>
+  <form class="form" [formGroup]="nameFormGroup">
+    <div class="form__row">
+      <ic-icon
+        [ngClass]="{
+          'form__row--icon--red':
+            nameFormGroup.controls.name.invalid &&
+            nameFormGroup.controls.name.touched
+        }"
+        class="form__row--icon"
+        icon="userOutlined"
+      ></ic-icon>
+      <mat-form-field class="form__row--form-field">
+        <mat-label>Your first name</mat-label>
+        <input
+          formControlName="name"
+          minlength="3"
+          maxlength="20"
+          matInput
+          required
+        />
+        <mat-error *ngIf="nameFormGroup.controls.name.invalid"
+          >Name should have at least 3 characters</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div class="form__row">
+      <ic-icon
+        [ngClass]="{
+          'form__row--icon--red':
+            nameFormGroup.controls.name.invalid &&
+            nameFormGroup.controls.name.touched
+        }"
+        class="form__row--icon"
+        icon="lockPasswordLine"
+      ></ic-icon>
+      <mat-form-field class="form__row--form-field">
+        <mat-label>Password</mat-label>
+        <input
+          formControlName="password"
+          type="password"
+          minlength="6"
+          matInput
+          required
+        />
+        <mat-error *ngIf="nameFormGroup.controls.password.invalid"
+          >Password should have at least 6 characters</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div class="flex flex-column mt-1rem">
+      <div class="wrapper-flex-center font-size-2rem mb-1rem">
+        <label>Gender: </label>
+      </div>
+      <div class="radio-group">
+        <label [ngClass]="{'radio-checked radio-checked-male': nameFormGroup.controls.gender.value==='male'}" mat-ripple class="radio-label">
+          <div class="flex flex-column flex-align-center pb-1rem pt-1rem pr-2rem pl-2rem">
+            <input
+              name="gender"
+              formControlName="gender"
+              type="radio"
+              value="male"
+            />
+            <ic-icon class="font-size-15rem" icon="genderMale"></ic-icon>
+            <span class="font-size-15rem">Male</span>
+          </div>
+        </label>
+        <label [ngClass]="{'radio-checked radio-checked-female': nameFormGroup.controls.gender.value==='female'}" mat-ripple class="radio-label">
+          <div class="flex flex-column flex-align-center pb-1rem pt-1rem pr-2rem pl-2rem">
+          <input
+            name="gender"
+            formControlName="gender"
+            type="radio"
+            value="female"
+          />
+          <ic-icon class="font-size-15rem" icon="genderFemale"></ic-icon>
+          <span class="font-size-15rem">Female</span>
+        </div>
+        </label>
+      </div>
+    </div>
+    <div class="flex flex-column mt-1rem">
+      <div class="wrapper-flex-center font-size-2rem mb-1rem">
+        <label>Role: </label>
+      </div>
+      <div class="radio-group">
+        <label [ngClass]="{'radio-checked radio-checked-parent': nameFormGroup.controls.role.value==='parent'}" mat-ripple class="radio-label">
+          <div class="flex flex-column flex-align-center pb-1rem pt-1rem pr-2rem pl-2rem">
+            <input
+              name="role"
+              formControlName="role"
+              type="radio"
+              value="parent"
+            />
+            <ic-icon class="font-size-15rem" icon="adultIcon"></ic-icon>
+            <span class="font-size-15rem">Parent</span>
+          </div>
+        </label>
+        <label [ngClass]="{'radio-checked radio-checked-child': nameFormGroup.controls.role.value==='child'}" mat-ripple class="radio-label">
+          <div class="flex flex-column flex-align-center pb-1rem pt-1rem pr-2rem pl-2rem">
+          <input
+            name="role"
+            formControlName="role"
+            type="radio"
+            value="child"
+          />
+          <ic-icon class="font-size-15rem" icon="childIcon"></ic-icon>
+          <span class="font-size-15rem">Child</span>
+        </div>
+        </label>
+      </div>
+    </div>
+    <div class="form__button mt-3rem mb-1rem">
+      <button (click)="onCreateUser()" class="btn bttn-primary bttn-clickable bttn-violet bttn-big">
+        Continue
+      </button>
+    </div>
+  </form>
+</div>

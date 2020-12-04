@@ -1,34 +1,72 @@
 <div>
+  <div
+    *ngIf="inviteError"
+    class="wrapper-flex-center error mt-2rem mb-1rem"
+    role="alert"
+  >
+    The invite code you entered is incorrect.
+  </div>
   <div class="text-center mt-3rem font-size-2rem">Join your family...</div>
-  <form action="submit" class="form" [formGroup]="inviteFormGroup">
+  <form class="form" [formGroup]="inviteFormGroup">
     <div class="form__row">
-      <ic-icon [ngClass]="{'form__row--icon--red': inviteFormGroup.controls.inviteCode.invalid && inviteFormGroup.controls.inviteCode.touched}" class="form__row--icon" icon="keyIcon"></ic-icon>
+      <ic-icon
+        [ngClass]="{
+          'form__row--icon--red':
+            inviteFormGroup.controls.inviteCode.invalid &&
+            inviteFormGroup.controls.inviteCode.touched
+        }"
+        class="form__row--icon"
+        icon="keyIcon"
+      ></ic-icon>
       <mat-form-field class="form__row--form-field">
         <mat-label>Invite code</mat-label>
-        <input name="inviteCode" formControlName="inviteCode" minlength="6" maxlength="6" matInput />
+        <input
+          formControlName="inviteCode"
+          minlength="6"
+          maxlength="6"
+          matInput
+        />
         <mat-error *ngIf="inviteFormGroup.controls.inviteCode.invalid"
           >Please provide a valid invite code.</mat-error
         >
       </mat-form-field>
     </div>
-    <div class="form__button">
-        <button type="submit" class="btn form__button--primary">Join</button>
+    <div class="form__button mt-2rem">
+      <button
+        (click)="onJoin()"
+        class="btn bttn-primary bttn-clickable bttn-violet bttn-medium"
+      >
+        Join
+      </button>
     </div>
   </form>
   <div class="text-center mt-7rem font-size-2rem">...or create a new one.</div>
   <form class="form" [formGroup]="familyFormGroup">
     <div class="form__row">
-      <ic-icon [ngClass]="{'form__row--icon--red': familyFormGroup.controls.familyName.invalid && familyFormGroup.controls.familyName.touched}" class="form__row--icon" icon="usergroupAddOutlined"></ic-icon>
+      <ic-icon
+        [ngClass]="{
+          'form__row--icon--red':
+            familyFormGroup.controls.familyName.invalid &&
+            familyFormGroup.controls.familyName.touched
+        }"
+        class="form__row--icon"
+        icon="usergroupAddOutlined"
+      ></ic-icon>
       <mat-form-field class="form__row--form-field">
         <mat-label>Family name</mat-label>
-        <input name="familyName" formControlName="familyName" maxlength="20" matInput/>
+        <input formControlName="familyName" maxlength="20" matInput />
         <mat-error *ngIf="familyFormGroup.controls.familyName.invalid"
           >Please provide a name of your family.</mat-error
         >
       </mat-form-field>
     </div>
-    <div class="form__button">
-        <button (click)="onTest()" class="btn form__button--primary">Create</button>
+    <div class="form__button mt-2rem mb-1rem">
+      <button
+        (click)="onCreate()"
+        class="btn bttn-primary bttn-clickable bttn-violet bttn-medium"
+      >
+        Create
+      </button>
     </div>
   </form>
 </div>
