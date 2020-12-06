@@ -18,8 +18,8 @@ body {
 }
 
 *:focus{
-  outline: none !important;
-  outline-style: none !important;
+  outline: 0 !important;
+  // box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
 }
 button:focus,
 button:active:focus,
@@ -36,13 +36,6 @@ input.active:focus {
 .mat-progress-spinner circle, .mat-spinner circle {
     stroke: #00d4ff!important;
 }
-
-mat-spinner{
-  top: 50%;
-  margin: 0 auto;
-}
-
-
 
 
 .timepicker-overlay {

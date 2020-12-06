@@ -11,6 +11,15 @@
   background-size: cover;
   overflow: hidden;
 }
+.spinner-wrapper {
+  display: flex;
+  margin: 7rem auto;
+  justify-content: center;
+  align-items: center;
+}
+.spinner{
+  margin: 0 auto;
+}
 .spacer {
   height: 100%;
   padding: 2rem 0;

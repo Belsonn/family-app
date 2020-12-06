@@ -16,6 +16,18 @@
     transform: translate(0);
   }
 }
+@keyframes buttonIn2 {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(2rem);
+    transform: translateY(2rem);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate(0);
+    transform: translate(0);
+  }
+}
 // $balloonX: 0.4rem;
 // $balloon-X: -0.4rem;
 
