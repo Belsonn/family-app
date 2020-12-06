@@ -1,3 +1,4 @@
+import { FamilyService } from './../family.service';
 import { Component, OnInit } from '@angular/core';
 
 import keyIcon from '@iconify-icons/bi/key';
@@ -21,7 +22,11 @@ export class NofamilyComponent implements OnInit {
   inviteError: boolean = false;
   basicError: boolean = false;
 
-  constructor(private familyJoinCreateService: FamilyJoinCreateService, private router: Router) {}
+  constructor(
+    private familyJoinCreateService: FamilyJoinCreateService,
+    private familyService: FamilyService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.inviteFormGroup = new FormGroup({});
@@ -37,29 +42,28 @@ export class NofamilyComponent implements OnInit {
     );
   }
 
-  onTest() {
-  }
+  onTest() {}
 
-  onJoin(){
-    if(this.inviteFormGroup.invalid){
+  onJoin() {
+    if (this.inviteFormGroup.invalid) {
       return;
     }
-    this.familyJoinCreateService.type = "join";
-    this.familyJoinCreateService.inviteCode = this.inviteFormGroup.controls.inviteCode.value;
-    this.familyJoinCreateService.checkCode().subscribe(res =>{
-      if(res.data.exists){
-        this.router.navigate(['', 'app', 'configureAccount']);
+    this.familyJoinCreateService.type = 'join';
+    this.familyJoinCreateService.checkCode(this.inviteFormGroup.controls.inviteCode.value).subscribe((res) => {
+      if (res.data.exists) {
+        this.familyService.familyId = res.data.familyId;
+        this.familyJoinCreateService.familyid = res.data.familyId;
+        this.router.navigate(['', 'app', 'pickuser']);
       } else {
         this.inviteError = true;
       }
-    })
-
+    });
   }
-  onCreate(){
-    if(this.familyFormGroup.invalid){
+  onCreate() {
+    if (this.familyFormGroup.invalid) {
       return;
     }
-    this.familyJoinCreateService.type = "create";
+    this.familyJoinCreateService.type = 'create';
     this.familyJoinCreateService.familyName = this.familyFormGroup.controls.familyName.value;
     this.router.navigate(['', 'app', 'configureAccount']);
   }

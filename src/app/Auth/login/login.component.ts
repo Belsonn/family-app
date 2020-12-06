@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.authService.login(this.loginFormGroup.controls.email.value, this.loginFormGroup.controls.password.value).subscribe(res=>{
       this.authService.onAuth(res);
       this.isLoading = false;
-      this.router.navigate(['app','menu']);
+      this.router.navigate(['']);
     }, err => {
       this.isLoading = false;
       this.error = true;

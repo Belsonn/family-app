@@ -1,12 +1,19 @@
- <!-- <div class="wrapper-flex-center mt-15rem">
+<!-- <div class="wrapper-flex-center mt-15rem">
     <img [routerLink]="['']" class="img-resize150" src="./../../assets/Family-Time-Logo-3alt.png" alt="Logo">
   </div> -->
-  <div class="boxes mt-4rem">
+<div *ngIf="isLoading" class="spinner-wrapper">
+  <mat-spinner class="spinner"></mat-spinner>
+</div>
+<div *ngIf="!isLoading">
+  <div *ngIf="user" class="wrapper-flex-center mt-2rem font-size-15rem">
+    Hello {{ user.name }}
+  </div>
+  <div class="boxes mt-2rem">
     <div class="boxes__row">
       <button
         mat-raised-button
         class="boxes__row__box"
-        [routerLink]="['','app', 'calendar']"
+        [routerLink]="['', 'app', 'calendar']"
       >
         <div class="boxes__row__box--icon">
           <ic-icon icon="planner"></ic-icon>
@@ -16,7 +23,11 @@
           05 listopada 2020
         </div>
       </button>
-      <button [routerLink]="['', 'app', 'configureAccount']" mat-raised-button class="boxes__row__box">
+      <button
+        [routerLink]="['', 'app', 'configureAccount']"
+        mat-raised-button
+        class="boxes__row__box"
+      >
         <div class="boxes__row__box--icon">
           <ic-icon icon="shoppingCart"></ic-icon>
         </div>
@@ -34,7 +45,11 @@
         <div i18n="menu_family" class="boxes__row__box--name">HOME</div>
         <div class="boxes__row__box--description">4 członków</div>
       </button>
-      <button mat-raised-button class="boxes__row__box" [routerLink]="['','app','tasks']">
+      <button
+        mat-raised-button
+        class="boxes__row__box"
+        [routerLink]="['', 'app', 'tasks']"
+      >
         <div class="boxes__row__box--icon">
           <ic-icon icon="todoList"></ic-icon>
         </div>
@@ -48,7 +63,7 @@
       <button
         mat-raised-button
         class="boxes__row__box"
-        [routerLink]="['','app', 'login']"
+        [routerLink]="['', 'app', 'login']"
       >
         <div class="boxes__row__box--icon">
           <ic-icon icon="familyManWomanGirlBoy"></ic-icon>
@@ -56,32 +71,39 @@
         <div i18n="menu_family" class="boxes__row__box--name">LOGIN</div>
         <div class="boxes__row__box--description">4 członków</div>
       </button>
-      <button [routerLink]="['','app','join']" mat-raised-button class="boxes__row__box">
+      <button
+        [routerLink]="['', 'app', 'join']"
+        mat-raised-button
+        class="boxes__row__box"
+      >
         <div class="boxes__row__box--icon">
           <ic-icon icon="settingsIcon"></ic-icon>
         </div>
-        <div i18n="menu_settings" class="boxes__row__box--name">Settings</div>
+        <div i18n="menu_settings" class="boxes__row__box--name">DOŁĄCZ</div>
         <div class="boxes__row__box--description">Zmień ustawienia</div>
       </button>
     </div>
     <div class="boxes__row pb-2rem">
-      <button
-        mat-raised-button
-        class="boxes__row__box"
-        (click)="onLogout()"
-      >
+      <button mat-raised-button class="boxes__row__box" (click)="onLogout()">
         <div class="boxes__row__box--icon">
           <ic-icon icon="familyManWomanGirlBoy"></ic-icon>
         </div>
         <div i18n="menu_family" class="boxes__row__box--name">WYLOGUJ SIE</div>
         <div class="boxes__row__box--description">4 członków</div>
       </button>
-      <button [routerLink]="['','app','join']" mat-raised-button class="boxes__row__box">
+      <button
+        [routerLink]="['', 'app', 'pickuser']"
+        mat-raised-button
+        class="boxes__row__box"
+      >
         <div class="boxes__row__box--icon">
           <ic-icon icon="settingsIcon"></ic-icon>
         </div>
-        <div i18n="menu_settings" class="boxes__row__box--name">Settings</div>
+        <div i18n="menu_settings" class="boxes__row__box--name">
+          WYBIERZ USERA
+        </div>
         <div class="boxes__row__box--description">Zmień ustawienia</div>
       </button>
     </div>
   </div>
+</div>

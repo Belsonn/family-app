@@ -49,10 +49,10 @@
         >
       </mat-form-field>
     </div>
-    <div class="flex flex-column mt-1rem">
-      <div class="wrapper-flex-center font-size-2rem mb-1rem">
+    <div class="flex flex-column mt-3rem">
+      <!-- <div class="wrapper-flex-center font-size-2rem mb-1rem">
         <label>Gender: </label>
-      </div>
+      </div> -->
       <div class="radio-group">
         <label [ngClass]="{'radio-checked radio-checked-male': nameFormGroup.controls.gender.value==='male'}" mat-ripple class="radio-label">
           <div class="flex flex-column flex-align-center pb-1rem pt-1rem pr-2rem pl-2rem">
@@ -80,10 +80,10 @@
         </label>
       </div>
     </div>
-    <div class="flex flex-column mt-1rem">
-      <div class="wrapper-flex-center font-size-2rem mb-1rem">
+    <div class="flex flex-column mt-3rem">
+      <!-- <div class="wrapper-flex-center font-size-2rem mb-1rem">
         <label>Role: </label>
-      </div>
+      </div> -->
       <div class="radio-group">
         <label [ngClass]="{'radio-checked radio-checked-parent': nameFormGroup.controls.role.value==='parent'}" mat-ripple class="radio-label">
           <div class="flex flex-column flex-align-center pb-1rem pt-1rem pr-2rem pl-2rem">
@@ -111,7 +111,7 @@
         </label>
       </div>
     </div>
-    <div class="form__button mt-3rem mb-1rem">
+    <div class="form__button mt-7rem mb-1rem">
       <button (click)="onCreateUser()" class="btn bttn-primary bttn-clickable bttn-violet bttn-big">
         Continue
       </button>

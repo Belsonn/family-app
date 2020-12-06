@@ -1,3 +1,4 @@
+import { PickUserComponent } from './pick-user/pick-user.component';
 import { NofamilyComponent } from './nofamily/nofamily.component';
 import { MenuComponent } from './menu/menu.component';
 import { NgModule } from '@angular/core';
@@ -31,6 +32,10 @@ const routes: Routes = [
       {
         path: 'configureAccount',
         component: NamecreatorComponent,
+      },
+      {
+        path: 'pickuser',
+        component: PickUserComponent,
       },
       {
         path: 'calendar',

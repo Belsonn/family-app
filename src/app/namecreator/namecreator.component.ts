@@ -10,6 +10,7 @@ import lockPasswordLine from '@iconify/icons-ri/lock-password-line';
 
 import { FamilyJoinCreateService } from '../familyJoinCreate.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-namecreator',
@@ -26,11 +27,13 @@ export class NamecreatorComponent implements OnInit {
 
   constructor(
     private familyJoinCreateService: FamilyJoinCreateService,
+    private authService: AuthService,
     private router: Router
   ) {}
 
   nameFormGroup: FormGroup;
   gender: string;
+  isLoading = false;
 
   ngOnInit(): void {
     this.nameFormGroup = new FormGroup({});
@@ -60,7 +63,7 @@ export class NamecreatorComponent implements OnInit {
     if (this.nameFormGroup.invalid) {
       return;
     }
-
+    this.isLoading = true;
     this.familyJoinCreateService.userName = this.nameFormGroup.controls.name.value;
     this.familyJoinCreateService.gender = this.nameFormGroup.controls.gender.value;
     this.familyJoinCreateService.role = this.nameFormGroup.controls.role.value;
@@ -70,9 +73,17 @@ export class NamecreatorComponent implements OnInit {
     }
 
     if (this.familyJoinCreateService.type == 'create') {
-      this.familyJoinCreateService.createFamily().subscribe(res => {
-        
+      this.familyJoinCreateService.createFamily().subscribe((res) => {
+        this.authService.onLocalAuth(res);
+        this.router.navigate(['']);
+      });
+    }
+    if(this.familyJoinCreateService.type == 'join'){
+      this.familyJoinCreateService.joinFamily().subscribe(res => {
+        this.authService.onLocalAuth(res);
+        this.router.navigate(['']);
       })
+
     }
   }
 }

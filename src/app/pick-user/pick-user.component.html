@@ -1,0 +1,72 @@
+<div *ngIf="isLoading" class="spinner-wrapper">
+  <mat-spinner class="spinner"></mat-spinner>
+</div>
+<div *ngIf="!isLoading">
+  <div class="wrapper-flex-center mt-2rem">
+    <div (click)="resetUser()" class="font-size-2rem">Enter as</div>
+  </div>
+  <div
+    mat-ripple
+    *ngFor="let user of users"
+    (click)="onSelectedUser(user)"
+    class="box flex flex-align-center mt-1rem position-relative pt-1rem pb-1rem"
+  >
+    <div class="dot dot-medium dot-position ml-2rem"></div>
+    <div class="flex flex-column ml-4rem">
+      <div class="box--name">{{ user.name }}</div>
+      <div class="box--year">14/05/1998</div>
+    </div>
+  </div>
+
+  <div class="wrapper-flex-center mt-2rem">
+    <div
+      [routerLink]="['', 'app', 'configureAccount']"
+      mat-ripple
+      class="btn add-button flex"
+    >
+      <ic-icon class="font-size-15rem mr-1rem" icon="plusLine"></ic-icon>
+      Create new
+    </div>
+  </div>
+
+  <div class="animate" *ngIf="selectedUser">
+    <div class="wrapper-flex-center mt-2rem font-size-18rem">
+      {{ selectedUser.name }}
+    </div>
+    <form class="form mt-1rem" [formGroup]="loggingFormGroup">
+      <div class="form__row">
+        <ic-icon
+          [ngClass]="{
+            'form__row--icon--red':
+              loggingFormGroup.controls.password.invalid &&
+              loggingFormGroup.controls.password.touched
+          }"
+          class="form__row--icon"
+          icon="lockPasswordLine"
+        ></ic-icon>
+        <mat-form-field class="form__row--form-field">
+          <mat-label>Password</mat-label>
+          <input
+            formControlName="password"
+            type="password"
+            minlength="6"
+            matInput
+            required
+          />
+          <mat-error *ngIf="loggingFormGroup.controls.password.invalid"
+            >Password should have at least 6 characters</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="form__button mt-3rem mb-1rem">
+        <button
+          mat-ripple
+          (click)="onLogin()"
+          class="btn bttn-primary bttn-clickable bttn-violet bttn-big"
+        >
+          Enter
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

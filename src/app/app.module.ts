@@ -43,6 +43,7 @@ import { PhoneBarComponent } from './phone-bar/phone-bar.component';
 import { AppContainerComponent } from './app-container/app-container.component';
 import { NofamilyComponent } from './nofamily/nofamily.component';
 import { NamecreatorComponent } from './namecreator/namecreator.component';
+import { PickUserComponent } from './pick-user/pick-user.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { NamecreatorComponent } from './namecreator/namecreator.component';
     AppContainerComponent,
     NofamilyComponent,
     NamecreatorComponent,
+    PickUserComponent,
   ],
   imports: [
     HttpClientModule,
