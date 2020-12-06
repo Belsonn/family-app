@@ -1,3 +1,4 @@
+import { FamilyService } from './../family.service';
 import { Component, OnInit } from '@angular/core';
 import baselineEvent from '@iconify-icons/ic/baseline-event';
 import menuGridO from '@iconify-icons/gg/menu-grid-o';
@@ -34,6 +35,8 @@ export class CalendarComponent implements OnInit {
   hover = "hover"
   standard = "standard"
 
+  isLoading = false;
+
   private monthIndex: number = 0;
   calendarDayInstance;
   calendarEvents: CalendarEvent[] = [];
@@ -41,85 +44,49 @@ export class CalendarComponent implements OnInit {
   swipingLeft = false;
   swipingTimerRight;
   swipingTimerLeft;
-  // TO DELETE LATER
-  dummyEventStart: Date;
-  dummyEventEnd: Date;
-  element: CalendarEvent;
-  element2: CalendarEvent;
-  element3: CalendarEvent;
-  // eventDayInstance;
-  // eventDayLastMonthInstance;
-  // timeInstance;
+
+  
   monthlyEventInstance;
 
   constructor(
     public dialog: MatDialog,
     private calendarService: CalendarService,
     private router: Router,
-    private deviceService: DeviceDetectorService
+    private deviceService: DeviceDetectorService,
+    private familyService: FamilyService
   ) {}
 
   ngOnInit(): void {
-    let testEvent = {
-      title: 'TEST20',
-      startDate: new Date(),
-      endDate: new Date(),
-      allDay: true,
-      repeat: null,
-    };
-    testEvent.startDate.setDate(7);
-    testEvent.endDate.setDate(13);
-    this.element = {
-      title: 'TEST1',
-      startDate: new Date(),
-      endDate: new Date(),
-      allDay: true,
-      repeat: {
-        repeatType: 'Daily',
-        repeatEvery: 10,
-      },
-      color:"#A34F41"
-    };
-    this.element2 = {
-      title: 'Weekly TEST',
-      startDate: new Date(),
-      endDate: new Date(),
-      allDay: true,
-      repeat: {
-        repeatType: 'Weekly',
-        repeatEvery: 2,
-      },
-      color:"#A34F41"
-    };
-    this.element3 = {
-      title: 'Monthly TEST',
-      startDate: new Date(),
-      endDate: new Date(),
-      allDay: true,
-      repeat: {
-        repeatType: 'Monthly',
-        repeatEvery: 3,
-      },
-      color:"#A34F41"
-    };
-    this.element.startDate.setDate(1);
-    this.element.endDate.setDate(1);
-    // this.calendarService.calendarEvents.push(this.element);
-    this.calendarService.calendarEvents.push(this.element2);
-    this.calendarService.calendarEvents.push(this.element3);
-    // this.calendarService.calendarEvents.push(testEvent);
-    // this.calendarService.calendarEvents.push(testEvent);
-    this.calendarEvents = this.calendarService.calendarEvents;
-    this.generateCalendarDays(this.monthIndex);
-    this.monthSelected = new Date().getMonth();
+    this.isLoading = true;
+
+    if(!this.familyService.familyId){
+      this.router.navigate(['']);
+    } else {
+      this.calendarService.getEvents(this.familyService.familyId).subscribe(res => {
+
+        let events = res.data.events;
+  
+        for(let i = 0; i < res.results; i++){
+          events[i].startDate = new Date(events[i].startDate);
+          events[i].endDate = new Date(events[i].endDate);
+        }
+  
+        this.calendarEvents = events;
+  
+        
+        this.generateCalendarDays(this.monthIndex);
+        this.monthSelected = new Date().getMonth();
+        this.isLoading = false;
+      })
+
+    }
+
+
+   
   }
 
   onTest(){
     
-  }
-
-  isMobile(): boolean{
-    return this.deviceService.isMobile();
   }
 
   private generateCalendarDays(monthIndex: number): void {

@@ -175,7 +175,8 @@ export class CalendarEventComponent implements OnInit {
 
   addEvent() {
     let event: CalendarEvent = {
-      title: '',
+      _id: null,
+      name: '',
       startDate: new Date(),
       endDate: new Date(),
       allDay: false,
@@ -183,7 +184,7 @@ export class CalendarEventComponent implements OnInit {
       color: this.color,
     };
 
-    event.title = this.titleFormGroup.controls.titleControl.value;
+    event.name = this.titleFormGroup.controls.titleControl.value;
 
     if (!this.longEvent) {
       // Set same date for start and end

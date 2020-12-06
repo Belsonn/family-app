@@ -1,4 +1,8 @@
 <!-- <button mat-button (click)="onTest()">TESTUJ</button> -->
+<div *ngIf="isLoading" class="spinner-wrapper">
+  <mat-spinner class="spinner"></mat-spinner>
+</div>
+<div *ngIf="!isLoading">
 <div class="calendar-header">
   <div [routerLink]="['', 'app', 'menu']" class="calendar-header--menu-icon">
     <ic-icon icon="menuGridO"></ic-icon>
@@ -88,7 +92,7 @@
             class="dot dot-medium ml-1rem mr-1rem"
           ></div>
         </div>
-        <div class="events__row--title">{{ event.title }}</div>
+        <div class="events__row--title">{{ event.name }}</div>
         <div *ngIf="!eventLongerThan1Day(event)" class="events__row--hours">
           <span *ngIf="!event.allDay"
             >{{ event.startDate | date: "HH:mm" }} -
@@ -114,6 +118,7 @@
   >
     Add Event
   </button>
+</div>
 </div>
 
 <!-- <div class="dot-wrapper mr-1rem ml-1rem">
