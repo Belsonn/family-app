@@ -21,6 +21,7 @@ export class FamilyJoinCreateService {
   userName: string;
   password: string;
   gender: string;
+  dateOfBirth: Date;
   role: string;
   // isAuthenticated: boolean = false;
 
@@ -37,6 +38,7 @@ export class FamilyJoinCreateService {
         username: this.userName,
         gender: this.gender,
         role: this.role,
+        dateOfBirth: this.dateOfBirth, 
         password: this.password,
         familyname: this.familyName,
       }
@@ -50,6 +52,7 @@ export class FamilyJoinCreateService {
         username: this.userName,
         gender: this.gender,
         role: this.role,
+        dateOfBirth: this.dateOfBirth, 
         password: this.password,
         familyid: this.familyid,
       }

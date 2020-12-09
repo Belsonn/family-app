@@ -5,7 +5,7 @@ export interface Repeat{
 
 
 export interface CalendarEvent {
-    _id: String,
+    _id?: String,
     name: String;
     startDate: Date;
     endDate: Date;

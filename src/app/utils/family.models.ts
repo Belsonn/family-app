@@ -1,8 +1,11 @@
+import { CalendarEvent } from './CalendarEvent.model';
 export interface FamilyUser {
     _id: string,
     name: string,
     family: string,
     gender: string,
+    dateOfBirth: Date,
+    photo: string,
     role: string,
     user: string,
 }
@@ -13,7 +16,8 @@ export interface Family {
     name: string,
     createdBy: string,
     createdAt: Date,
-    inviteToken: string
+    inviteToken: string,
+    events: [CalendarEvent]
 }
 
 export interface FamilyResponse {

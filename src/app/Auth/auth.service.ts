@@ -123,6 +123,7 @@ export class AuthService {
             this.familyUserId = localInfo.familyUserId;
             this.isLocalAuthenticated = true;
             this.authLocalStatus.next(true);
+            this.router.navigate(['', 'app', 'menu'])
           }
         }
       );

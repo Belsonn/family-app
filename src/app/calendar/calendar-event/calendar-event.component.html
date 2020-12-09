@@ -6,13 +6,13 @@
     icon="arrowBackUp"
   ></ic-icon>
 </div>
-<mat-vertical-stepper class="stepper" [linear]="!true" #stepper>
+<mat-vertical-stepper class="stepper" [linear]="true" #stepper>
   <mat-step [stepControl]="titleFormGroup">
     <form [formGroup]="titleFormGroup">
       <ng-template i18n="event_stepper_title" matStepLabel
         >Event title</ng-template
       >
-      <div class="flex flex-align-center picker-handler">
+      <div class="flex flex-align-center picker-handler mt-1rem">
         <span
           class="dot dot-big mr-1rem"
           [style.background]="color"
@@ -36,16 +36,16 @@
           </mat-error>
         </mat-form-field>
       </div>
-      <div class="stepper__buttons">
+      <div class="stepper__buttons mt-1rem">
         <button i18n="event_button_next" mat-button matStepperNext>Next</button>
       </div>
     </form>
   </mat-step>
   <mat-step>
-    <ng-template i18n="event_stepper_type" matStepLabel>Event type</ng-template>
+    <ng-template i18n="event_stepper_type"  matStepLabel>Event type</ng-template>
     <form
       [formGroup]="radioFormGroup"
-      class="radio-group"
+      class="radio-group mt-1rem"
     >
       <label
         [ngClass]="{
@@ -85,7 +85,7 @@
         </div>
       </label>
     </form>
-    <div class="stepper__buttons">
+    <div class="stepper__buttons mt-1rem">
       <button i18n="event_button_previous" mat-button matStepperPrevious>
         Back
       </button>
@@ -98,7 +98,7 @@
   >
     <form [formGroup]="shortEventFormGroup">
       <ng-template i18n="event_stepper_when" matStepLabel>When?</ng-template>
-      <div class="shortEvent">
+      <div class="shortEvent mt-1rem">
         <mat-form-field class="formField" appearance="fill">
           <mat-label i18n="event_startDate">Start Date</mat-label>
           <input
@@ -114,7 +114,6 @@
             [for]="startDateShortPicker"
           ></mat-datepicker-toggle>
           <mat-datepicker
-            touchUi
             #startDateShortPicker
             disabled="false"
           ></mat-datepicker>
@@ -164,7 +163,7 @@
           ></ngx-material-timepicker>
         </mat-form-field>
       </div>
-      <div class="stepper__buttons">
+      <div class="stepper__buttons mt-1rem">
         <button i18n="event_button_previous" mat-button matStepperPrevious>
           Back
         </button>
@@ -178,7 +177,7 @@
   >
     <form [formGroup]="longEventFormGroup">
       <ng-template i18n="event_stepper_when" matStepLabel>When?</ng-template>
-      <div class="longEvent">
+      <div class="longEvent mt-1rem">
         <mat-form-field class="formField" appearance="fill">
           <mat-label i18n="event_startDate">Start Date</mat-label>
           <input
@@ -195,7 +194,6 @@
             [for]="startDatePicker"
           ></mat-datepicker-toggle>
           <mat-datepicker
-            touchUi
             #startDatePicker
             disabled="false"
           ></mat-datepicker>
@@ -216,13 +214,12 @@
             [for]="endDatePicker"
           ></mat-datepicker-toggle>
           <mat-datepicker
-            touchUi
             #endDatePicker
             disabled="false"
           ></mat-datepicker>
         </mat-form-field>
       </div>
-      <div class="stepper__buttons">
+      <div class="stepper__buttons mt-1rem">
         <button i18n="event_button_previous" mat-button matStepperPrevious>
           Back
         </button>
@@ -235,9 +232,8 @@
       <ng-template i18n="event_stepper_repeat" matStepLabel
         >Repeat?</ng-template
       >
-      <div class="flex flex-column">
+      <div class="flex flex-column mt-1rem">
         <mat-slide-toggle
-          class="mt-1rem"
           (change)="repeatToggle($event)"
           formControlName="repeatToggleControl"
           >Repeat?
@@ -255,7 +251,7 @@
             >
           </mat-select>
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field class ="mt-05rem" appearance="fill">
           <mat-label>Every?</mat-label>
           <mat-select
             *ngIf="repeatFormGroup.controls.repeatTypeControl.value == 'Daily'"
@@ -298,7 +294,7 @@
           </mat-select>
         </mat-form-field>
       </div>
-      <div class="stepper__buttons">
+      <div class="stepper__buttons mt-1rem">
         <button i18n="event_button_previous" mat-button matStepperPrevious>
           Back
         </button>

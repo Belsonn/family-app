@@ -1,3 +1,5 @@
+import { EditMeComponent } from './edit-me/edit-me.component';
+import { FamilyComponent } from './family/family.component';
 import { PickUserComponent } from './pick-user/pick-user.component';
 import { NofamilyComponent } from './nofamily/nofamily.component';
 import { MenuComponent } from './menu/menu.component';
@@ -36,6 +38,14 @@ const routes: Routes = [
       {
         path: 'pickuser',
         component: PickUserComponent,
+      },
+      {
+        path: 'updateAccount',
+        component: EditMeComponent,
+      },
+      {
+        path: 'family',
+        component: FamilyComponent,
       },
       {
         path: 'calendar',

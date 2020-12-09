@@ -25,6 +25,9 @@
 .mt-7rem {
   margin-top: 7rem;
 }
+.mr-05rem {
+  margin-right: 0.5rem;
+}
 .mr-1rem {
   margin-right: 1rem;
 }
@@ -231,4 +234,16 @@
 }
 .border-radius-40{
   border-radius: 40px;
+}
+
+
+.violet{
+  color: $violet-primary;
+}
+
+.font-family-1{
+  font-family: $font-family-1;
+}
+.font-family-2{
+  font-family: $font-family-2;
 }

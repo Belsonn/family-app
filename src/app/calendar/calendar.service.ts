@@ -15,4 +15,8 @@ export class CalendarService {
   getEvents(familyId) {
     return this.http.get<EventsResponse>(`${environment.apiURL}family/${familyId}/events`);
   }
+
+  addEvent(familyId, event : CalendarEvent) {
+    return this.http.post<EventsResponse>(`${environment.apiURL}family/${familyId}/addEvent`, event)
+  }
 }

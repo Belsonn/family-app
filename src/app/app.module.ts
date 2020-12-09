@@ -23,6 +23,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { AngularColorfulModule } from 'angular-colorful';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { FileUploadModule } from 'ng2-file-upload';
 
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -44,6 +45,8 @@ import { AppContainerComponent } from './app-container/app-container.component';
 import { NofamilyComponent } from './nofamily/nofamily.component';
 import { NamecreatorComponent } from './namecreator/namecreator.component';
 import { PickUserComponent } from './pick-user/pick-user.component';
+import { FamilyComponent } from './family/family.component';
+import { EditMeComponent } from './edit-me/edit-me.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +64,8 @@ import { PickUserComponent } from './pick-user/pick-user.component';
     NofamilyComponent,
     NamecreatorComponent,
     PickUserComponent,
+    FamilyComponent,
+    EditMeComponent,
   ],
   imports: [
     HttpClientModule,
@@ -71,6 +76,7 @@ import { PickUserComponent } from './pick-user/pick-user.component';
     NgbModule,
     FormsModule,
     IconModule,
+    FileUploadModule,
     ColorPickerModule,
     MatButtonModule,
     MatRippleModule,
