@@ -48,6 +48,8 @@ export class EditMeComponent implements OnInit {
     const formData = new FormData();
     formData.append('photo', file);
     this.familyService.changePhoto(formData).subscribe(res => {
+      this.familyService.family = res.data.family;
+      this.familyService.photoUpdate(this.familyService.family);
       this.familyUser = res.data.familyUser;
       this.familyUser.photo = `${this.familyUser.photo}?${Date.now()}`
     }, err => {

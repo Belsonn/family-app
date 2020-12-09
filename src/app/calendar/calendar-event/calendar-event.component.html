@@ -129,24 +129,40 @@
 
 
  -->
- 
+
     <mat-step>
       <ng-template i18n="event_stepper_assign" matStepLabel
         >Assign members</ng-template
       >
-      <div  class="wrapper-flex-center mtb-1rem ">
-        <div (click)="onSelectAll()" mat-ripple class="flex violet border-radius-20 ptb-1rem prl-2rem">
+      <div class="wrapper-flex-center mtb-1rem">
+        <div
+          (click)="onSelectAll()"
+          mat-ripple
+          class="flex violet border-radius-20 ptb-1rem prl-2rem"
+        >
           <ic-icon class="font-size-15rem mr-05rem" icon="peopleIcon"></ic-icon>
           <div>Przydziel wszystkich</div>
         </div>
       </div>
       <div class="flex flex-align-center flex-wrap flex-space-evenly">
-        <div mat-ripple (click)="onSelectUser(familyUser)" [ngClass]="{'box-selected': familyUser.isSelected}" *ngFor="let familyUser of familyUsers; let i = index " class="box flex flex-column">
-          <div class="wrapper-flex-center">
-            <img src="{{ familyUser.user.photo }}" class="photo photo-50" alt="user-photo" />
+        <button
+          mat-ripple
+          (click)="onSelectUser(familyUser)"
+          [ngClass]="{ 'box-selected': familyUser.isSelected }"
+          *ngFor="let familyUser of familyUsers; let i = index"
+          class="box flex flex-column btn"
+        >
+          <div class="wrapper-flex-center width-100">
+            <img
+              src="{{ familyUser.user.photo }}"
+              class="photo photo-50"
+              alt="user-photo"
+            />
           </div>
-            <div class="wrapper-flex-center mt-05rem">{{familyUser.user.name}}</div>
-        </div>
+          <div class="wrapper-flex-center mt-05rem width-100">
+            {{ familyUser.user.name }}
+          </div>
+        </button>
       </div>
       <div class="stepper__buttons mt-1rem">
         <button i18n="event_button_previous" mat-button matStepperPrevious>

@@ -25,6 +25,13 @@ export class FamilyService {
   }
 
   changePhoto(photo){
-    return this.http.patch<FamilyUserResponse>(`${environment.apiURL}familyUser/${this.familyUserId}/addPhoto`, photo);
+    return this.http.patch<MeAndFamilyResponse>(`${environment.apiURL}familyUser/${this.familyUserId}/addPhoto`, photo);
   }
+
+  photoUpdate(family: Family){
+    family.users.forEach(el => {
+      el.photo = `${el.photo}?${Date.now()}`;
+    })
+  }
+
 }
