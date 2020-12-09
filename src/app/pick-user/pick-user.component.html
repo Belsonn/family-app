@@ -11,10 +11,12 @@
     (click)="onSelectedUser(user)"
     class="box flex flex-align-center mt-1rem position-relative pt-1rem pb-1rem"
   >
-    <div class="dot dot-medium dot-position ml-2rem"></div>
-    <div class="flex flex-column ml-4rem">
+    <div class="ml-1rem">
+      <img src="{{ user.photo }}" class="photo photo-50" alt="user-photo" />
+    </div>
+    <div class="flex flex-column ml-1rem">
       <div class="box--name">{{ user.name }}</div>
-      <div class="box--year">14/05/1998</div>
+      <div class="box--year">{{ user.dateOfBirth | date: "dd/MM/yyyy" }}</div>
     </div>
   </div>
 

@@ -27,6 +27,9 @@ import childIcon from '@iconify-icons/cil/child';
 import adultIcon from '@iconify-icons/el/adult';
 import calendarBlank from '@iconify-icons/mdi/calendar-blank';
 import calendarBlankMultiple from '@iconify-icons/mdi/calendar-blank-multiple';
+import userEdit from '@iconify-icons/fa-solid/user-edit';
+import birthdayCake from '@iconify-icons/cil/birthday-cake';
+import cameraChange from '@iconify/icons-uil/camera-change';
 
 export const appIcons = {
   planner,
@@ -58,6 +61,8 @@ export const appIcons = {
   adultIcon,
   calendarBlank,
   calendarBlankMultiple,
-
+  userEdit,
+  birthdayCake,
+  cameraChange,
   
 };

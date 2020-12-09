@@ -1,13 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import userOutlined from '@iconify-icons/ant-design/user-outlined';
-import genderMale from '@iconify-icons/carbon/gender-male';
-import genderFemale from '@iconify-icons/carbon/gender-female';
-import childIcon from '@iconify-icons/cil/child';
-import adultIcon from '@iconify-icons/el/adult';
-import lockPasswordLine from '@iconify/icons-ri/lock-password-line';
-
 import { FamilyJoinCreateService } from '../familyJoinCreate.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
@@ -18,12 +11,6 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./namecreator.component.scss'],
 })
 export class NamecreatorComponent implements OnInit {
-  userOutlined = userOutlined;
-  genderMale = genderMale;
-  genderFemale = genderFemale;
-  childIcon = childIcon;
-  adultIcon = adultIcon;
-  lockPasswordLine = lockPasswordLine;
 
   constructor(
     private familyJoinCreateService: FamilyJoinCreateService,
@@ -53,6 +40,10 @@ export class NamecreatorComponent implements OnInit {
       'password',
       new FormControl('', [Validators.required])
     );
+    this.nameFormGroup.addControl(
+      'dateOfBirth',
+      new FormControl('', [Validators.required])
+    );
   }
 
   onTest() {
@@ -66,6 +57,7 @@ export class NamecreatorComponent implements OnInit {
     this.isLoading = true;
     this.familyJoinCreateService.userName = this.nameFormGroup.controls.name.value;
     this.familyJoinCreateService.gender = this.nameFormGroup.controls.gender.value;
+    this.familyJoinCreateService.dateOfBirth = this.nameFormGroup.controls.dateOfBirth.value;
     this.familyJoinCreateService.role = this.nameFormGroup.controls.role.value;
 
     if (this.nameFormGroup.controls.password.value) {

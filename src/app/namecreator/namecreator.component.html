@@ -1,5 +1,7 @@
 <div>
-  <div class="text-center font-family-2 mt-2rem font-size-2rem">Configure your account.</div>
+  <div class="text-center font-family-2 mt-2rem font-size-2rem">
+    Configure your account.
+  </div>
   <form class="form" [formGroup]="nameFormGroup">
     <div class="form__row">
       <ic-icon
@@ -29,6 +31,40 @@
       <ic-icon
         [ngClass]="{
           'form__row--icon--red':
+            nameFormGroup.controls.dateOfBirth.invalid &&
+            nameFormGroup.controls.dateOfBirth.touched
+        }"
+        class="form__row--icon"
+        icon="birthdayCake"
+      ></ic-icon>
+      <mat-form-field class="form__row--form-field">
+        <mat-label>Date of birth</mat-label>
+        <input
+          formControlName="dateOfBirth"
+          matInput
+          [matDatepicker]="dateOfBirth"
+          readonly
+          required
+        />
+        <mat-datepicker-toggle
+          class="font-size-2rem"
+          matSuffix
+          [for]="dateOfBirth"
+        ></mat-datepicker-toggle>
+        <mat-datepicker
+          #dateOfBirth
+          startView="multi-year"
+          disabled="false"
+        ></mat-datepicker>
+        <mat-error *ngIf="nameFormGroup.controls.dateOfBirth.invalid"
+          >Please provide date of birth.</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div class="form__row">
+      <ic-icon
+        [ngClass]="{
+          'form__row--icon--red':
             nameFormGroup.controls.name.invalid &&
             nameFormGroup.controls.name.touched
         }"
@@ -49,13 +85,23 @@
         >
       </mat-form-field>
     </div>
+
     <div class="flex flex-column mt-3rem">
       <!-- <div class="wrapper-flex-center font-size-2rem mb-1rem">
         <label>Gender: </label>
       </div> -->
       <div class="radio-group">
-        <label [ngClass]="{'radio-checked radio-checked-male': nameFormGroup.controls.gender.value==='male'}" mat-ripple class="radio-label">
-          <div class="flex flex-column flex-align-center pb-1rem pt-1rem pr-2rem pl-2rem">
+        <label
+          [ngClass]="{
+            'radio-checked radio-checked-male':
+              nameFormGroup.controls.gender.value === 'male'
+          }"
+          mat-ripple
+          class="radio-label"
+        >
+          <div
+            class="flex flex-column flex-align-center pb-1rem pt-1rem pr-2rem pl-2rem"
+          >
             <input
               name="gender"
               formControlName="gender"
@@ -66,17 +112,26 @@
             <span class="font-size-15rem">Male</span>
           </div>
         </label>
-        <label [ngClass]="{'radio-checked radio-checked-female': nameFormGroup.controls.gender.value==='female'}" mat-ripple class="radio-label">
-          <div class="flex flex-column flex-align-center pb-1rem pt-1rem pr-2rem pl-2rem">
-          <input
-            name="gender"
-            formControlName="gender"
-            type="radio"
-            value="female"
-          />
-          <ic-icon class="font-size-15rem" icon="genderFemale"></ic-icon>
-          <span class="font-size-15rem">Female</span>
-        </div>
+        <label
+          [ngClass]="{
+            'radio-checked radio-checked-female':
+              nameFormGroup.controls.gender.value === 'female'
+          }"
+          mat-ripple
+          class="radio-label"
+        >
+          <div
+            class="flex flex-column flex-align-center pb-1rem pt-1rem pr-2rem pl-2rem"
+          >
+            <input
+              name="gender"
+              formControlName="gender"
+              type="radio"
+              value="female"
+            />
+            <ic-icon class="font-size-15rem" icon="genderFemale"></ic-icon>
+            <span class="font-size-15rem">Female</span>
+          </div>
         </label>
       </div>
     </div>
@@ -85,8 +140,17 @@
         <label>Role: </label>
       </div> -->
       <div class="radio-group">
-        <label [ngClass]="{'radio-checked radio-checked-parent': nameFormGroup.controls.role.value==='parent'}" mat-ripple class="radio-label">
-          <div class="flex flex-column flex-align-center pb-1rem pt-1rem pr-2rem pl-2rem">
+        <label
+          [ngClass]="{
+            'radio-checked radio-checked-parent':
+              nameFormGroup.controls.role.value === 'parent'
+          }"
+          mat-ripple
+          class="radio-label"
+        >
+          <div
+            class="flex flex-column flex-align-center pb-1rem pt-1rem pr-2rem pl-2rem"
+          >
             <input
               name="role"
               formControlName="role"
@@ -97,22 +161,34 @@
             <span class="font-size-15rem">Parent</span>
           </div>
         </label>
-        <label [ngClass]="{'radio-checked radio-checked-child': nameFormGroup.controls.role.value==='child'}" mat-ripple class="radio-label">
-          <div class="flex flex-column flex-align-center pb-1rem pt-1rem pr-2rem pl-2rem">
-          <input
-            name="role"
-            formControlName="role"
-            type="radio"
-            value="child"
-          />
-          <ic-icon class="font-size-15rem" icon="childIcon"></ic-icon>
-          <span class="font-size-15rem">Child</span>
-        </div>
+        <label
+          [ngClass]="{
+            'radio-checked radio-checked-child':
+              nameFormGroup.controls.role.value === 'child'
+          }"
+          mat-ripple
+          class="radio-label"
+        >
+          <div
+            class="flex flex-column flex-align-center pb-1rem pt-1rem pr-2rem pl-2rem"
+          >
+            <input
+              name="role"
+              formControlName="role"
+              type="radio"
+              value="child"
+            />
+            <ic-icon class="font-size-15rem" icon="childIcon"></ic-icon>
+            <span class="font-size-15rem">Child</span>
+          </div>
         </label>
       </div>
     </div>
-    <div class="form__button mt-7rem mb-1rem">
-      <button (click)="onCreateUser()" class="btn bttn-primary bttn-clickable bttn-violet bttn-big">
+    <div class="form__button mt-4rem mb-1rem">
+      <button
+        (click)="onCreateUser()"
+        class="btn bttn-primary bttn-clickable bttn-violet bttn-big"
+      >
         Continue
       </button>
     </div>
