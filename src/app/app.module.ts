@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, LOCALE_ID} from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import localePl from '@angular/common/locales/pl';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,13 +16,14 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
-import {MatSelectModule} from '@angular/material/select';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { AngularColorfulModule } from 'angular-colorful';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { FileUploadModule } from 'ng2-file-upload';
 
 import { NgScrollbarModule } from 'ngx-scrollbar';
@@ -93,15 +94,18 @@ import { EditMeComponent } from './edit-me/edit-me.component';
     MatSelectModule,
     MatExpansionModule,
     MatProgressSpinnerModule,
+    MatSnackBarModule,
     NgxMaterialTimepickerModule,
     AngularColorfulModule,
     HammerModule,
     NgScrollbarModule.withConfig({
-      appearance: "standard",
-      visibility: "always"
-    })
+      appearance: 'standard',
+      visibility: 'always',
+    }),
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

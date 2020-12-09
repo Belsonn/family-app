@@ -14,7 +14,7 @@
   box-shadow: $box-shadow-strong;
   border-radius: 20px;
   margin-top: 1rem;
-  color: $violet-primary;
+  color: $violet-1;
   
   // font-size: 1.4rem;
   font-weight: 300;
@@ -22,8 +22,8 @@
 }
 
 .box-selected{
-  border: 2px $violet-primary-light solid;
-  // background: $violet-primary-light;
+  border: 2px $violet-1-light solid;
+  // background: $violet-1-light;
   // color: #fff;
 }
 
@@ -48,7 +48,7 @@
     &--icon {
       font-size: 2rem;
       margin-right: 0.5rem;
-      color: $blue-primary;
+      color: $light-blue-1;
     }
     &--date {
       font-weight: 500;
@@ -60,7 +60,7 @@
 ::ng-deep .mat-step-header {
   .mat-step-icon-selected,
   .mat-step-icon-state-edit {
-    background-color: $blue-primary-1;
+    background-color: $light-blue-1;
   }
 }
 

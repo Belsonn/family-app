@@ -1,7 +1,7 @@
 @import "~src/scss/main.scss";
 
 .dot{
-    background-color: $violet-primary;
+    background-color: $violet-1;
     &-position{
         top: 40%;
     }
@@ -14,7 +14,7 @@
 
 .add-button{
     // box-shadow: $box-shadow-primary;
-    color: $violet-primary;
+    color: $violet-1;
     border-radius: 20px;
 }
 .form__row--form-field{

@@ -78,11 +78,11 @@
   color: #000;
 }
 .bttn-blue {
-  background-color: $blue-primary-1;
+  background-color: $light-blue-1;
   color: #fff;
 }
 .bttn-violet {
-  background-color: $violet-primary;
+  background-color: $violet-1;
   color: #fff;
 }
 .bttn-big {
@@ -161,7 +161,7 @@
       margin-right: 1rem;
 
       &--red {
-        color: #f44336;
+        color: $red-1;
       }
     }
 
@@ -216,6 +216,9 @@
     }
   }
 }
+.violet{
+  color: $violet-1;
+}
 
 .radio-group{
   display: flex;
@@ -249,6 +252,8 @@
   height: 200px;
 }
 
+
+
 .radio-label{
   box-shadow: $box-shadow-primary;
   border-radius: 20px;
@@ -256,7 +261,7 @@
 }
 
 .radio-checked{
-  background: $violet-primary;
+  background: $violet-1;
   color: white;
 }
 
@@ -281,7 +286,7 @@
 }
 
 .error {
-  background: $red-primary-1;
+  background: $red-1;
   padding: 1rem 2rem;
   border-radius: 2rem;
   text-align: center;

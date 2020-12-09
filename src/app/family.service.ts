@@ -23,6 +23,10 @@ export class FamilyService {
     return this.http.get<MeAndFamilyResponse>(`${environment.apiURL}family/myFamily`)
   }
 
+  updateMe(updateInfo){
+    return this.http.patch<FamilyUserResponse>(`${environment.apiURL}familyUser/updateMe`, updateInfo);
+  }
+
   changePhoto(photo){
     return this.http.patch<MeAndFamilyResponse>(`${environment.apiURL}familyUser/addPhoto`, photo);
   }

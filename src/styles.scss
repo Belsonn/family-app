@@ -3,7 +3,7 @@
 @import "~src/scss/variables.scss";
 // @import '~@angular/material/theming';
 
-// $custom-typography: mat-typography-config($font-family: '"Source Sans Pro", sans-serif;');
+// $custom-typography: mat-typography-config($font-family: '"Source Sans Pro", sans-serif;)';
 // @include mat-core($custom-typography);
 
 html,
@@ -14,6 +14,7 @@ body {
 body {
   margin: 0;
   box-sizing: border-box;
+  background-color: $background-gray;
   font-family: $font-family-2 !important;
 }
 
@@ -74,7 +75,7 @@ ic-icon{
   // }
 }
 .bttn-picker {
-  background-color: $violet-primary;
+  background-color: $violet-1;
   border: none;
   color: white;
   font-size: 1.3rem;
@@ -83,5 +84,10 @@ ic-icon{
 }
 .picker-handler{
     touch-action: none;
+}
+
+.snack-bar{
+  background-color: $violet-1-light;
+  color: #fff;
 }
 

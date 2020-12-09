@@ -8,13 +8,13 @@
   margin-top: 1rem;
 
   &--menu-icon{
-    color: $violet-primary;
+    color: $violet-1;
     font-size: 1.6rem;
     padding: 0 0.5rem;
     margin-right: auto;
   }
   &--left-icon{
-    color: $violet-primary;
+    color: $violet-1;
     font-size: 1.6rem;
     padding: 0 0.5rem;
   }
@@ -22,15 +22,15 @@
     width: 130px;
     text-align: center;
     font-weight: 600;
-    color: $violet-primary;
+    color: $violet-1;
   }
   &--right-icon{
-    color: $violet-primary;
+    color: $violet-1;
     font-size: 1.6rem;
     padding: 0 0.5rem;
   }
   &--add-icon{
-    color: $violet-primary;
+    color: $violet-1;
     font-size: 1.6rem;
     padding: 0 0.5rem;
     margin-left: auto;
@@ -104,7 +104,7 @@
   margin: 0 auto;
 
   &::before {
-    background: $violet-primary;
+    background: $violet-1;
     border-radius: 50%;
     width: 30px;
     content: "";
@@ -132,7 +132,7 @@
 
 .day-header{
   overflow: hidden;
-  color: $violet-primary;
+  color: $violet-1;
   text-align: center;
   font-weight: 600;
   &::before, &::after {
@@ -206,7 +206,7 @@
 
 .no-events{
   &__title{
-    color: $violet-primary;
+    color: $violet-1;
     font-family: $font-family-2;
     font-size: 1.3rem;
     margin-top: 1.3rem;

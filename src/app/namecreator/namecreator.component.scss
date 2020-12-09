@@ -30,7 +30,7 @@
 }
 
 .radio-checked-male{
-  background: $blue-primary;
+  background: $blue-1;
 }
 .radio-checked-female{
   background: $pink-2;
@@ -45,20 +45,20 @@
 
 
 ::ng-deep .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
-  background-color: $pink-primary-1 !important;
+  background-color: $pink-1 !important;
 }
 ::ng-deep .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
-  background-color: $pink-primary-1;
+  background-color: $pink-1;
 }
 
 ::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
-  background-color: $pink-primary-1;
+  background-color: $pink-1;
 }
 
 ::ng-deep
   .mat-radio-button.mat-accent.mat-radio-checked
   .mat-radio-outer-circle {
-  border-color: $pink-primary-1;
+  border-color: $pink-1;
 }
 @media (min-width: 450px) {
   .custom-flex {
