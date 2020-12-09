@@ -1,8 +1,5 @@
 import { FamilyService } from './../family.service';
 import { Component, OnInit } from '@angular/core';
-
-import keyIcon from '@iconify-icons/bi/key';
-import usergroupAddOutlined from '@iconify-icons/ant-design/usergroup-add-outlined';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FamilyJoinCreateService } from '../familyJoinCreate.service';
 import { Router } from '@angular/router';
@@ -13,8 +10,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./nofamily.component.scss'],
 })
 export class NofamilyComponent implements OnInit {
-  keyIcon = keyIcon;
-  usergroupAddOutlined = usergroupAddOutlined;
 
   inviteFormGroup: FormGroup;
   familyFormGroup: FormGroup;

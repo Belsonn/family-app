@@ -1,3 +1,4 @@
+import { FamilyService } from './../../family.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
@@ -6,27 +7,12 @@ import { pickerTheme } from '../../utils/TimePickerTheme';
 import { CalendarEvent } from 'src/app/utils/CalendarEvent.model';
 import { CalendarService } from '../calendar.service';
 import { Router } from '@angular/router';
-import { DeviceDetectorService } from 'ngx-device-detector';
-
-import bxCalendarCheck from '@iconify-icons/bx/bx-calendar-check';
-import bxCalendarX from '@iconify-icons/bx/bx-calendar-x';
-import outlineAccessTime from '@iconify-icons/ic/outline-access-time';
-import arrowBackUp from '@iconify/icons-tabler/arrow-back-up';
-import calendarBlank from '@iconify-icons/mdi/calendar-blank';
-import calendarBlankMultiple from '@iconify-icons/mdi/calendar-blank-multiple';
-
 @Component({
   selector: 'app-calendar-event',
   templateUrl: './calendar-event.component.html',
   styleUrls: ['./calendar-event.component.scss'],
 })
 export class CalendarEventComponent implements OnInit {
-  bxCalendarCheck = bxCalendarCheck;
-  bxCalendarX = bxCalendarX;
-  outlineAccessTime = outlineAccessTime;
-  arrowBackUp = arrowBackUp;
-  calendarBlank = calendarBlank;
-  calendarBlankMultiple = calendarBlankMultiple;
   true = true;
   apply = $localize`Apply`;
 
@@ -57,8 +43,8 @@ export class CalendarEventComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private calendarService: CalendarService,
+    private familyService: FamilyService,
     private router: Router,
-    public deviceService: DeviceDetectorService
   ) {}
 
 
@@ -175,7 +161,6 @@ export class CalendarEventComponent implements OnInit {
 
   addEvent() {
     let event: CalendarEvent = {
-      _id: null,
       name: '',
       startDate: new Date(),
       endDate: new Date(),
@@ -230,7 +215,8 @@ export class CalendarEventComponent implements OnInit {
       };
     }
 
-    this.calendarService.calendarEvents.push(event);
-    this.router.navigate(['', 'app', 'calendar']);
+    this.calendarService.addEvent(this.familyService.familyId, event).subscribe(res => {
+      this.router.navigate(['', 'app', 'calendar']);
+    })
   }
 }

@@ -1,12 +1,11 @@
 import { FamilyService } from './../family.service';
 import { FamilyUser } from './../utils/family.models';
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import planner from '@iconify/icons-flat-color-icons/planner';
-import shoppingCart from '@iconify/icons-noto-v1/shopping-cart';
-import chatBubbleLine from '@iconify/icons-clarity/chat-bubble-line';
-import familyManWomanGirlBoy from '@iconify/icons-emojione-v1/family-man-woman-girl-boy';
-import todoList from '@iconify/icons-flat-color-icons/todo-list';
-import settingsIcon from '@iconify/icons-flat-color-icons/settings';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
 
@@ -18,28 +17,30 @@ import { Router } from '@angular/router';
 export class MenuComponent implements OnInit {
   isLoading = false;
 
-  planner = planner;
-  shoppingCart = shoppingCart;
-  chatBubbleLine = chatBubbleLine;
-  familyManWomanGirlBoy = familyManWomanGirlBoy;
-  todoList = todoList;
-  settingsIcon = settingsIcon;
   user: FamilyUser;
 
   constructor(
     private authService: AuthService,
     private familyService: FamilyService,
-    private router: Router,
+    private router: Router
   ) {}
   onTest() {
     console.log('elo');
   }
   ngOnInit(): void {
     this.isLoading = true;
+
+    // No auth data 
     if (!this.familyService.familyId || !this.familyService.familyUserId) {
       this.router.navigate(['']);
     }
-    if (this.familyService.familyId && this.familyService.familyUserId) {
+    // Check if data has been loaded
+    if (this.familyService.family && this.familyService.familyUser) {
+      this.user = this.familyService.familyUser;
+      this.isLoading = false;
+    }
+    // Load Data
+    else if (this.familyService.familyId && this.familyService.familyUserId) {
       this.familyService
         .getMeAndFamily(
           this.familyService.familyId,
@@ -47,6 +48,8 @@ export class MenuComponent implements OnInit {
         )
         .subscribe((res) => {
           this.user = res.data.familyUser;
+          this.familyService.family = res.data.family;
+          this.familyService.familyUser = res.data.familyUser;
           this.isLoading = false;
         });
     }

@@ -4,8 +4,6 @@ import { FamilyJoinCreateService } from './../familyJoinCreate.service';
 import { FamilyService } from './../family.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import plusLine from '@iconify-icons/clarity/plus-line';
-import lockPasswordLine from '@iconify/icons-ri/lock-password-line';
 import { FamilyUser } from '../utils/family.models';
 
 @Component({
@@ -14,8 +12,6 @@ import { FamilyUser } from '../utils/family.models';
   styleUrls: ['./pick-user.component.scss'],
 })
 export class PickUserComponent implements OnInit {
-  plusLine = plusLine;
-  lockPasswordLine = lockPasswordLine;
 
 
   isLoading = false;

@@ -1,18 +1,11 @@
 import { FamilyService } from './../family.service';
 import { Component, OnInit } from '@angular/core';
-import baselineEvent from '@iconify-icons/ic/baseline-event';
-import menuGridO from '@iconify-icons/gg/menu-grid-o';
-import arrowLeftAlt2 from '@iconify-icons/dashicons/arrow-left-alt2';
-import arrowRightAlt2 from '@iconify-icons/dashicons/arrow-right-alt2';
-import plusLine from '@iconify-icons/clarity/plus-line';
 import { CalendarDay } from '../utils/CalendarDay.class';
 import { CalendarEvent } from '../utils/CalendarEvent.model';
 import { MatDialog } from '@angular/material/dialog';
 import { MonthNames } from '../utils/CalendarMonthNames';
 import { CalendarService } from './calendar.service';
 import { Router } from '@angular/router';
-import { CalendarEventComponent } from './calendar-event/calendar-event.component';
-import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
   selector: 'app-calendar',
@@ -22,18 +15,10 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 export class CalendarComponent implements OnInit {
   // Icons Block
 
-  baselineEvent = baselineEvent;
-  menuGridO = menuGridO;
-  arrowRightAlt2 = arrowRightAlt2;
-  arrowLeftAlt2 = arrowLeftAlt2;
-  plusLine = plusLine;
-
   public calendar: CalendarDay[] = [];
   public monthNames = MonthNames;
   public displayDate: string;
   monthSelected: number;
-  hover = "hover"
-  standard = "standard"
 
   isLoading = false;
 
@@ -52,7 +37,6 @@ export class CalendarComponent implements OnInit {
     public dialog: MatDialog,
     private calendarService: CalendarService,
     private router: Router,
-    private deviceService: DeviceDetectorService,
     private familyService: FamilyService
   ) {}
 
@@ -80,9 +64,7 @@ export class CalendarComponent implements OnInit {
       })
 
     }
-
-
-   
+  
   }
 
   onTest(){
