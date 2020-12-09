@@ -76,8 +76,6 @@ export class CalendarEventComponent implements OnInit {
           isSelected: false,
         });
       });
-
-      console.log(this.familyUsers);
       this.color = '#9851b4';
       this.isLoading = false;
     }
@@ -261,7 +259,7 @@ export class CalendarEventComponent implements OnInit {
     }
 
     this.calendarService
-      .addEvent(this.familyService.familyId, event)
+      .addEvent(event)
       .subscribe((res) => {
         this.router.navigate(['', 'app', 'calendar']);
       });

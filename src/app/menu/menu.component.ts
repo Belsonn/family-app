@@ -29,30 +29,13 @@ export class MenuComponent implements OnInit {
   }
   ngOnInit(): void {
     this.isLoading = true;
-
-    // No auth data 
-    if (!this.familyService.familyId || !this.familyService.familyUserId) {
-      this.router.navigate(['']);
-    }
-    // Check if data has been loaded
-    if (this.familyService.family && this.familyService.familyUser) {
+    this.familyService.getMeAndFamily().subscribe((res) => {
+      this.familyService.family = res.data.family;
+      this.familyService.familyUser = res.data.familyUser;
       this.user = this.familyService.familyUser;
       this.isLoading = false;
-    }
-    // Load Data
-    else if (this.familyService.familyId && this.familyService.familyUserId) {
-      this.familyService
-        .getMeAndFamily(
-          this.familyService.familyId,
-          this.familyService.familyUserId
-        )
-        .subscribe((res) => {
-          this.user = res.data.familyUser;
-          this.familyService.family = res.data.family;
-          this.familyService.familyUser = res.data.familyUser;
-          this.isLoading = false;
-        });
-    }
+    });
+
   }
 
   onLogout() {

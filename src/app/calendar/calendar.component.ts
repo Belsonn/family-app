@@ -13,7 +13,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./calendar.component.scss'],
 })
 export class CalendarComponent implements OnInit {
-  // Icons Block
 
   public calendar: CalendarDay[] = [];
   public monthNames = MonthNames;
@@ -43,10 +42,10 @@ export class CalendarComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading = true;
 
-    if(!this.familyService.familyId){
+    if(!this.familyService.family){
       this.router.navigate(['']);
     } else {
-      this.calendarService.getEvents(this.familyService.familyId).subscribe(res => {
+      this.calendarService.getEvents().subscribe(res => {
 
         let events = res.data.events;
   

@@ -5,7 +5,10 @@ import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { createFamilyResponse, MeAndFamilyResponse } from '../utils/family.models';
+import {
+  createFamilyResponse,
+  MeAndFamilyResponse,
+} from '../utils/family.models';
 import { AuthResponse } from './../utils/authResponse.model';
 import { UserModelResponse } from './../utils/user.model';
 import { FamilyService } from '../family.service';
@@ -25,12 +28,12 @@ export class AuthService {
   );
 
   private authStatus = new Subject<boolean>();
-  private authLocalStatus = new Subject<boolean>();
+  // private authLocalStatus = new Subject<boolean>();
 
   constructor(
     private http: HttpClient,
-    private FamilyService: FamilyService,
-    private FamilyJoinCreateService: FamilyJoinCreateService,
+    private familyService: FamilyService,
+    private familyJoinCreateService: FamilyJoinCreateService,
     private router: Router
   ) {}
 
@@ -58,9 +61,9 @@ export class AuthService {
   getAuthStatus() {
     return this.authStatus.asObservable();
   }
-  getAuthLocalStatus() {
-    return this.authLocalStatus.asObservable();
-  }
+  // getAuthLocalStatus() {
+  //   return this.authLocalStatus.asObservable();
+  // }
   getEmailValidator() {
     return this.emailValidator;
   }
@@ -68,65 +71,29 @@ export class AuthService {
   onAuth(response: AuthResponse) {
     if (response.token) {
       this.token = response.token;
-      this.userId = response.data.user._id;
       this.isAuthenticated = true;
-      this.authType = 'account';
       this.authStatus.next(true);
       this.saveAuthData(response.token, response.expiresIn);
-    }
-  }
+      // this.userId = response.data.user._id;
 
-  onLocalAuth(response: MeAndFamilyResponse) {
-    if (response.data) {
-      this.authType = 'local';
-      console.log(response);
+      this.router.navigate(['', 'app', 'menu'])
 
-      this.familyToken = response.data.family.inviteToken;
-      this.userId = response.data.familyUser._id;
-      this.isLocalAuthenticated = true;
-
-      this.FamilyService.familyUserId = response.data.familyUser._id;
-      this.FamilyService.familyId = response.data.family._id;
-
-      this.authLocalStatus.next(true);
-
-      this.saveLocalData(this.userId, this.familyToken);
     }
   }
 
   autoAuth() {
     const authInfo = this.getAuthData();
-    const localInfo = this.getLocalData();
-    if (!authInfo && !localInfo) {
+    if (!authInfo) {
       return;
     }
-    if (authInfo) {
+    else {
       const now = new Date();
       const expires = authInfo.expirationDate.getTime() - now.getTime();
       if (expires > 0) {
         this.token = authInfo.token;
         this.isAuthenticated = true;
-        this.authType = 'account';
         this.authStatus.next(true);
-        this.getMe().subscribe((res) => {
-          this.userId = res.data.user._id;
-        });
       }
-    } else if (localInfo) {
-      this.FamilyJoinCreateService.checkCode(localInfo.familyToken).subscribe(
-        (res) => {
-          if (res.data.exists) {
-            this.FamilyService.familyId = res.data.familyId;
-            this.FamilyService.familyUserId = localInfo.familyUserId;
-            this.familyToken = localInfo.familyToken;
-            this.authType = 'local';
-            this.familyUserId = localInfo.familyUserId;
-            this.isLocalAuthenticated = true;
-            this.authLocalStatus.next(true);
-            this.router.navigate(['', 'app', 'menu'])
-          }
-        }
-      );
     }
   }
 
@@ -156,13 +123,8 @@ export class AuthService {
   logout() {
     this.token = null;
     this.isAuthenticated = false;
-    this.isLocalAuthenticated = false;
-    this.authType = null;
-    this.familyUserId = null;
-    this.familyToken = null;
     this.userId = null;
     this.clearAuthData();
-    this.authLocalStatus.next(false);
     this.authStatus.next(false);
     this.router.navigate(['/']);
   }
@@ -175,29 +137,12 @@ export class AuthService {
     localStorage.setItem('token', token);
     localStorage.setItem('expirationDate', expirationDate);
   }
-  private saveLocalData(familyUserId: string, familyToken: string) {
-    localStorage.setItem('familyUserId', familyUserId);
-    localStorage.setItem('familyToken', familyToken);
-  }
 
   private clearAuthData() {
     localStorage.removeItem('token');
     localStorage.removeItem('expirationDate');
-    localStorage.removeItem('familyUserId');
-    localStorage.removeItem('familyToken');
   }
 
-  private getLocalData() {
-    const familyUserId = localStorage.getItem('familyUserId');
-    const familyToken = localStorage.getItem('familyToken');
-    if (!familyUserId || !familyToken) {
-      return;
-    }
-    return {
-      familyUserId: familyUserId,
-      familyToken: familyToken,
-    };
-  }
 
   private getAuthData() {
     const token = localStorage.getItem('token');

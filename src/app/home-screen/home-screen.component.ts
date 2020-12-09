@@ -13,7 +13,6 @@ export class HomeScreenComponent implements OnInit {
   isLocalAuthenticated = false;
   isLoading = false;
   private authStatus: Subscription;
-  private authLocalStatus: Subscription;
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
@@ -23,20 +22,12 @@ export class HomeScreenComponent implements OnInit {
       .getAuthStatus()
       .subscribe((isAuthenticated) => {
         this.isAuthenticated = isAuthenticated;
-        if(this.isAuthenticated){
+        if (this.isAuthenticated) {
           this.router.navigate(['', 'app', 'menu']);
         }
       });
-    this.authLocalStatus = this.authService
-      .getAuthLocalStatus()
-      .subscribe((isAuthenticated) => {
-        this.isLocalAuthenticated = isAuthenticated;
-        if(this.isLocalAuthenticated){
-          this.router.navigate(['', 'app', 'menu']);
-        }
-      });
-      if(this.isAuthenticated || this.isLocalAuthenticated){
-        this.router.navigate(['', 'app', 'menu']);
-      }
+    if (this.isAuthenticated) {
+      this.router.navigate(['', 'app', 'menu']);
+    }
   }
 }

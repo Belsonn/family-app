@@ -12,11 +12,11 @@ export class CalendarService {
   calendarEvents: CalendarEvent[] = [];
   dayClicked: Date;
 
-  getEvents(familyId) {
-    return this.http.get<EventsResponse>(`${environment.apiURL}family/${familyId}/events`);
+  getEvents() {
+    return this.http.get<EventsResponse>(`${environment.apiURL}family/events`);
   }
 
-  addEvent(familyId, event : CalendarEvent) {
-    return this.http.post<EventsResponse>(`${environment.apiURL}family/${familyId}/addEvent`, event)
+  addEvent(event : CalendarEvent) {
+    return this.http.post<EventsResponse>(`${environment.apiURL}family/addEvent`, event)
   }
 }

@@ -63,9 +63,7 @@ export class PickUserComponent implements OnInit {
       this.selectedUser._id,
       this.loggingFormGroup.controls.password.value
     ).subscribe((res) => {
-      this.familyService.familyUserId = res.data.familyUser._id;
-      this.authService.onLocalAuth(res);
-      this.router.navigate(['','app','menu']);
+      this.authService.onAuth(res)
     }, err => {
       this.error = true;
     });

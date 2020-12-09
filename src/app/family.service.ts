@@ -14,18 +14,17 @@ export class FamilyService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  getFamily(familyid) {
+  getFamily(familyId) {
     return this.http.get<FamilyResponse>(
-      `${environment.apiURL}family/${familyid}`
+      `${environment.apiURL}family/family/${familyId}`
     );
   }
-  // api/family/familyuser
-  getMeAndFamily(familyid, userid) {
-    return this.http.get<MeAndFamilyResponse>(`${environment.apiURL}family/${familyid}/${userid}`)
+  getMeAndFamily() {
+    return this.http.get<MeAndFamilyResponse>(`${environment.apiURL}family/myFamily`)
   }
 
   changePhoto(photo){
-    return this.http.patch<MeAndFamilyResponse>(`${environment.apiURL}familyUser/${this.familyUserId}/addPhoto`, photo);
+    return this.http.patch<MeAndFamilyResponse>(`${environment.apiURL}familyUser/addPhoto`, photo);
   }
 
   photoUpdate(family: Family){

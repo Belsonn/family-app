@@ -1,3 +1,4 @@
+import { AuthResponse } from './utils/authResponse.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -32,7 +33,7 @@ export class FamilyJoinCreateService {
   }
 
   createFamily() {
-    return this.http.post<MeAndFamilyResponse>(
+    return this.http.post<AuthResponse>(
       `${environment.apiURL}family/nouser/create`,
       {
         username: this.userName,
@@ -46,7 +47,7 @@ export class FamilyJoinCreateService {
   }
 
   joinFamily() {
-    return this.http.post<MeAndFamilyResponse>(
+    return this.http.post<AuthResponse>(
       `${environment.apiURL}family/join`,
       {
         username: this.userName,
@@ -60,7 +61,7 @@ export class FamilyJoinCreateService {
   }
 
   loginToFamily(familyUserId, password) {
-    return this.http.post<MeAndFamilyResponse>(
+    return this.http.post<AuthResponse>(
       `${environment.apiURL}familyUser/login`,
       { familyUserId: familyUserId, password: password }
     );

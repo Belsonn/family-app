@@ -25,10 +25,10 @@ export class FamilyComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading = true;
 
-    if(!this.familyService.familyId){
+    if(!this.familyService.family._id){
       this.router.navigate(['','app', 'menu'])
     } else {
-      this.loggedUserId = this.familyService.familyUserId;
+      this.loggedUserId = this.familyService.familyUser._id;
       this.family = this.familyService.family;
       this.isLoading = false;
     }

@@ -66,13 +66,13 @@ export class NamecreatorComponent implements OnInit {
 
     if (this.familyJoinCreateService.type == 'create') {
       this.familyJoinCreateService.createFamily().subscribe((res) => {
-        this.authService.onLocalAuth(res);
+        this.authService.onAuth(res);
         this.router.navigate(['']);
       });
     }
     if(this.familyJoinCreateService.type == 'join'){
       this.familyJoinCreateService.joinFamily().subscribe(res => {
-        this.authService.onLocalAuth(res);
+        this.authService.onAuth(res);
         this.router.navigate(['']);
       })
 
