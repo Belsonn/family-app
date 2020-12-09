@@ -1,0 +1,13 @@
+@import "~src/scss/main.scss";
+
+.dot{
+    background-color: $violet-primary;
+    &-position{
+        top: 40%;
+    }
+}
+
+.box{
+    box-shadow: $box-shadow-primary;
+    border-radius: 20px;
+}

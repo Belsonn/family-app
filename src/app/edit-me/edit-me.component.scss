@@ -1,0 +1,9 @@
+@import "~src/scss/main.scss";
+
+input[type="file"] {
+    display: none;
+}
+
+.photo-upload {
+    padding: 0.5rem;
+}

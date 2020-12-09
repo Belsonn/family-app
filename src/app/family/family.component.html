@@ -1,0 +1,47 @@
+<div *ngIf="isLoading" class="spinner-wrapper">
+  <mat-spinner class="spinner"></mat-spinner>
+</div>
+<div *ngIf="!isLoading">
+  <div class="flex flex-align-center mt-1rem">
+    <ic-icon
+      [routerLink]="['', 'app', 'menu']"
+      mat-ripple
+      class="font-size-16rem ml-1rem mt-1rem border-radius-10"
+      icon="arrowBackUp"
+    ></ic-icon>
+  </div>
+  <div class="wrapper-flex-center font-size-2rem">
+    {{ family.name }}
+  </div>
+  <div class ="mb-2rem pr-1rem pl-1rem">
+    <div
+      (click)="onTest()"
+      *ngFor="let familyuser of family.users; let i = index"
+      mat-ripple
+      class="box flex flex-align-center mt-1rem position-relative pt-1rem pb-1rem"
+    >
+      <div class="ml-1rem">
+        <img src="{{ familyuser.photo }}" class="photo photo-50" alt="" />
+      </div>
+      <div class="flex flex-space-beetwen width-100">
+        <div class="flex flex-column ml-1rem">
+          <div class="box--name">{{ familyuser.name }}</div>
+          <div class="box--year">
+            {{ familyuser.dateOfBirth | date: "dd/MM/yyyy" }}
+          </div>
+        </div>
+        <div
+          (click)="onEdit(); $event.stopPropagation()"
+          *ngIf="familyuser._id == loggedUserId"
+          class="flex flex-align-center mr-2rem"
+        >
+          <ic-icon
+            mat-ripple
+            class="font-size-16rem border-radius-10 violet"
+            icon="userEdit"
+          ></ic-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
