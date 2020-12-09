@@ -30,6 +30,7 @@ import calendarBlankMultiple from '@iconify-icons/mdi/calendar-blank-multiple';
 import userEdit from '@iconify-icons/fa-solid/user-edit';
 import birthdayCake from '@iconify-icons/cil/birthday-cake';
 import cameraChange from '@iconify/icons-uil/camera-change';
+import peopleIcon from '@iconify/icons-ion/people';
 
 export const appIcons = {
   planner,
@@ -64,5 +65,6 @@ export const appIcons = {
   userEdit,
   birthdayCake,
   cameraChange,
+  peopleIcon,
   
 };

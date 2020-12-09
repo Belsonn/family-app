@@ -7,6 +7,7 @@ import { pickerTheme } from '../../utils/TimePickerTheme';
 import { CalendarEvent } from 'src/app/utils/CalendarEvent.model';
 import { CalendarService } from '../calendar.service';
 import { Router } from '@angular/router';
+import { FamilyUser } from 'src/app/utils/family.models';
 @Component({
   selector: 'app-calendar-event',
   templateUrl: './calendar-event.component.html',
@@ -15,6 +16,7 @@ import { Router } from '@angular/router';
 export class CalendarEventComponent implements OnInit {
   true = true;
   apply = $localize`Apply`;
+  isLoading = false;
 
   longEvent: boolean = false;
   color: String;
@@ -32,6 +34,8 @@ export class CalendarEventComponent implements OnInit {
   longEventFormGroup: FormGroup;
   repeatFormGroup: FormGroup;
 
+  familyUsers: { user: FamilyUser; isSelected: Boolean }[] = [];
+
   monthNames = MonthNames;
   repeatTypes = [$localize`Daily`, $localize`Weekly`, $localize`Monthly`];
   repeatDaily = [];
@@ -44,25 +48,39 @@ export class CalendarEventComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private calendarService: CalendarService,
     private familyService: FamilyService,
-    private router: Router,
+    private router: Router
   ) {}
 
-
   ngOnInit() {
-    this.initAllFormGroups();
-    this.fillRepeatArrays();
-    this.onRepeatChange();
+    this.isLoading = true;
+    if (!this.familyService.family) {
+      this.router.navigate(['', 'app', 'menu']);
+    } else {
+      this.initAllFormGroups();
+      this.fillRepeatArrays();
+      this.onRepeatChange();
 
-    if (this.calendarService.dayClicked) {
-      this.shortEventFormGroup.patchValue({
-        shortDateControl: this.calendarService.dayClicked,
+      if (this.calendarService.dayClicked) {
+        this.shortEventFormGroup.patchValue({
+          shortDateControl: this.calendarService.dayClicked,
+        });
+        this.longEventFormGroup.patchValue({
+          startDateControl: this.calendarService.dayClicked,
+        });
+        this.calcEndDate();
+      }
+
+      this.familyService.family.users.map((user) => {
+        this.familyUsers.push({
+          user: user,
+          isSelected: false,
+        });
       });
-      this.longEventFormGroup.patchValue({
-        startDateControl: this.calendarService.dayClicked,
-      });
-      this.calcEndDate();
+
+      console.log(this.familyUsers);
+      this.color = '#9851b4';
+      this.isLoading = false;
     }
-    this.color = '#9851b4';
   }
 
   initAllFormGroups() {
@@ -90,6 +108,33 @@ export class CalendarEventComponent implements OnInit {
     this.radioFormGroup = this._formBuilder.group({
       longEvent: ['', Validators.required],
     });
+  }
+
+  onSelectUser(familyUser) {
+    familyUser.isSelected = !familyUser.isSelected;
+  }
+  onSelectAll() {
+    let allSelected = true;
+    this.familyUsers.forEach((el) => {
+      if (!el.isSelected) {
+        allSelected = false;
+      }
+    });
+    if (allSelected) {
+      this.familyUsers = this.familyUsers.map((el) => {
+        return {
+          user: el.user,
+          isSelected: !el.isSelected,
+        };
+      });
+    } else {
+      this.familyUsers = this.familyUsers.map((el) => {
+        return {
+          user: el.user,
+          isSelected: true,
+        };
+      });
+    }
   }
 
   onRepeatChange() {
@@ -215,8 +260,10 @@ export class CalendarEventComponent implements OnInit {
       };
     }
 
-    this.calendarService.addEvent(this.familyService.familyId, event).subscribe(res => {
-      this.router.navigate(['', 'app', 'calendar']);
-    })
+    this.calendarService
+      .addEvent(this.familyService.familyId, event)
+      .subscribe((res) => {
+        this.router.navigate(['', 'app', 'calendar']);
+      });
   }
 }
