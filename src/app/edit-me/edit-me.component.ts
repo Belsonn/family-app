@@ -72,7 +72,7 @@ export class EditMeComponent implements OnInit {
     };
 
     this.familyService.updateMe(updateInfo).subscribe((res) => {
-      this._snackBar.open('Your profile have been updated.', null, {
+      this._snackBar.open('Your profile has been updated.', null, {
         duration: 3000,
         panelClass: ['snack-bar']
       });

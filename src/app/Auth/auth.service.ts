@@ -1,39 +1,25 @@
-import { FamilyJoinCreateService } from './../familyJoinCreate.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import {
-  createFamilyResponse,
-  MeAndFamilyResponse,
-} from '../utils/family.models';
 import { AuthResponse } from './../utils/authResponse.model';
 import { UserModelResponse } from './../utils/user.model';
-import { FamilyService } from '../family.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private isAuthenticated = false;
-  private isLocalAuthenticated = false;
-  private authType: string;
   private token: string;
   private userId: string;
-  private familyUserId: string;
-  private familyToken: string;
-  private familyId: string;
   private emailValidator = Validators.pattern(
     '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'
   );
 
   private authStatus = new Subject<boolean>();
-  // private authLocalStatus = new Subject<boolean>();
 
   constructor(
     private http: HttpClient,
-    private familyService: FamilyService,
-    private familyJoinCreateService: FamilyJoinCreateService,
     private router: Router
   ) {}
 
@@ -43,27 +29,12 @@ export class AuthService {
   getIsAuthenticated() {
     return this.isAuthenticated;
   }
-  getIsLocalAuthenticated() {
-    return this.isLocalAuthenticated;
-  }
-  getAuthType() {
-    return this.authType;
-  }
   getUserId() {
     return this.userId;
-  }
-  getFamilyUserId() {
-    return this.familyUserId;
-  }
-  getFamilyToken() {
-    return this.familyToken;
   }
   getAuthStatus() {
     return this.authStatus.asObservable();
   }
-  // getAuthLocalStatus() {
-  //   return this.authLocalStatus.asObservable();
-  // }
   getEmailValidator() {
     return this.emailValidator;
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
@@ -8,16 +8,17 @@ import { AuthService } from '../auth/auth.service';
   templateUrl: './home-screen.component.html',
   styleUrls: ['./home-screen.component.scss'],
 })
-export class HomeScreenComponent implements OnInit {
+export class HomeScreenComponent implements OnInit, AfterViewInit, OnDestroy {
   isAuthenticated = false;
   isLocalAuthenticated = false;
-  isLoading = false;
+  isLoading = true;
   private authStatus: Subscription;
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private ref: ChangeDetectorRef) {}
+
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.isAuthenticated = this.authService.getIsAuthenticated();
-    this.isLocalAuthenticated = this.authService.getIsLocalAuthenticated();
     this.authStatus = this.authService
       .getAuthStatus()
       .subscribe((isAuthenticated) => {
@@ -29,5 +30,13 @@ export class HomeScreenComponent implements OnInit {
     if (this.isAuthenticated) {
       this.router.navigate(['', 'app', 'menu']);
     }
+  }
+  ngAfterViewInit() {
+    this.isLoading = false;
+    this.ref.detectChanges();
+  }
+
+  ngOnDestroy(): void {
+    this.authStatus.unsubscribe();
   }
 }

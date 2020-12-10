@@ -19,7 +19,6 @@
       <div class="box--year">{{ user.dateOfBirth | date: "dd/MM/yyyy" }}</div>
     </div>
   </div>
-
   <div class="wrapper-flex-center mt-2rem">
     <div
       [routerLink]="['', 'app', 'configureAccount']"
@@ -31,9 +30,18 @@
     </div>
   </div>
 
-  <div class="animate" *ngIf="selectedUser">
-    <div class="wrapper-flex-center mt-2rem font-size-18rem">
-      {{ selectedUser.name }}
+  <div [ngClass]="{ animate: users.length <= 6 }" *ngIf="selectedUser">
+    <div class="flex flex-column mt-2rem">
+      <div class="wrapper-flex-center">
+        <img
+          src="{{ selectedUser.photo }}"
+          class="photo photo-100"
+          alt="user-photo"
+        />
+      </div>
+      <div class="wrapper-flex-center mt-1rem font-size-18rem">
+        {{ selectedUser.name }}
+      </div>
     </div>
     <form class="form mt-1rem" [formGroup]="loggingFormGroup">
       <div class="form__row">

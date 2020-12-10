@@ -1,5 +1,7 @@
+import { FamilyService } from './../family.service';
 import { DeviceDetectorService } from 'ngx-device-detector';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgScrollbar } from 'ngx-scrollbar';
 
 @Component({
   selector: 'app-app-container',
@@ -8,11 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppContainerComponent implements OnInit {
   isMobile: boolean;
+  
+  @ViewChild(NgScrollbar, { static: true }) scrollable: NgScrollbar;
 
-  constructor(private deviceService: DeviceDetectorService) { }
+  constructor(private deviceService: DeviceDetectorService, private familyService : FamilyService) { }
 
   ngOnInit(): void {
     this.isMobile = this.deviceService.isMobile();
+    this.familyService.scrollSub.subscribe(el => {
+      setTimeout( () => {
+        this.scrollable.scrollTo(el);
+      }, 300)
+    })
   }
 
 }

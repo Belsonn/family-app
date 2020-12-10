@@ -1,5 +1,4 @@
 @import "~src/scss/main.scss";
-
 .dot{
     background-color: $violet-1;
     &-position{
@@ -21,7 +20,7 @@
     width: 50%;
 }
 .animate{
-    animation: buttonIn2 1s ease-in;
+    animation: opacity 0.7s ease-in;
 }
 .ng-scroll-content{
     min-height: 600px;

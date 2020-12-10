@@ -27,6 +27,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { FileUploadModule } from 'ng2-file-upload';
 
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { SmoothScrollModule } from 'ngx-scrollbar/smooth-scroll';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuComponent } from './menu/menu.component';
 import { IconModule } from '@visurel/iconify-angular';
@@ -97,6 +99,7 @@ import { EditMeComponent } from './edit-me/edit-me.component';
     MatSnackBarModule,
     NgxMaterialTimepickerModule,
     AngularColorfulModule,
+    SmoothScrollModule,
     HammerModule,
     NgScrollbarModule.withConfig({
       appearance: 'standard',
