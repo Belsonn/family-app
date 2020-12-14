@@ -1,0 +1,53 @@
+@import "~src/scss/main.scss";
+
+.custom-input {
+  // border: 2px $background-gray transparent;
+  width: 100px;
+  height: 100px;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  font-size: 1.7rem;
+  justify-content: center;
+  text-align: center;
+  box-shadow: $box-shadow-secondary;
+  color: white;
+  background-color: $violet-1-light;
+  
+}
+
+// .btn{
+//   min-height: 20px;
+// }
+
+.transition{
+  transition: all 0.7s;
+}
+
+.title {
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 800;
+  margin-top: 1rem;
+}
+.input-invalid {
+  // border: 2px #f44336 solid;
+  // box-shadow: none;
+  background-color: $red-1;
+}
+
+
+.form {
+  margin-top: 1rem;
+}
+
+:host ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
+  background: $linear-gradient-90-1;
+}
+
+@media(max-width:500px){
+  .custom-padding{
+    padding: 0 1rem;
+  }
+}
