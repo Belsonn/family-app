@@ -1,3 +1,4 @@
+import { FamilyResponse } from './../utils/family.models';
 import { EventsResponse } from './../utils/CalendarEvent.model';
 import { HttpClient } from '@angular/common/http';
 import { FamilyService } from './../family.service';
@@ -13,10 +14,10 @@ export class CalendarService {
   dayClicked: Date;
 
   getEvents() {
-    return this.http.get<EventsResponse>(`${environment.apiURL}family/events`);
+    return this.http.get<FamilyResponse>(`${environment.apiURL}family/events`);
   }
 
   addEvent(event : CalendarEvent) {
-    return this.http.post<EventsResponse>(`${environment.apiURL}family/addEvent`, event)
+    return this.http.post<FamilyResponse>(`${environment.apiURL}family/addEvent`, event)
   }
 }

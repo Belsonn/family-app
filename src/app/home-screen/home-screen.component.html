@@ -1,30 +1,41 @@
-<div *ngIf="!isLoading" class="background">
+<div class="background">
   <div class="spacer">
-    <div class="wrapper-flex-center mt-2rem">
-      <img
-        class="image-wrapper--image"
-        src="./../assets/Family-Time-Logo-balloon.png"
-        alt=""
-      />
+    <div *ngIf="isLoading">
+      <div class="wrapper-flex-center mt-2rem mb-2rem">
+        <img
+          class="custom-loading"
+          src="./../assets/Family-Time-Logo-balloon.png"
+          alt="logo"
+        />
+      </div>
     </div>
-    <div class="wrapper-flex-center flex-column heading">
-      <h2 class="heading--primary">Family Time</h2>
-      <h4 class="heading--secondary">
-        Plan events, organize tasks with your children.
-      </h4>
-      <div class="custom-flex mt-4rem">
-        <button
-          [routerLink]="['app','login']"
-          class="bttn-primary bttn-white bttn-animated bttn-big bttn-clickable custom-padding custom-margin"
-        >
-          Create an account
-        </button>
-        <button
-          [routerLink]="['app','join']"
-          class="bttn-primary bttn-white bttn-animated bttn-big bttn-clickable custom-padding custom-margin"
-        >
-          Enter without an account
-        </button>
+    <div *ngIf="!isLoading">
+      <div class="wrapper-flex-center mt-2rem">
+        <img
+          class="image-wrapper--image"
+          src="./../assets/Family-Time-Logo-balloon.png"
+          alt=""
+        />
+      </div>
+      <div class="wrapper-flex-center flex-column heading">
+        <h2 class="heading--primary">Family Time</h2>
+        <h4 class="heading--secondary">
+          Plan events, organize tasks with your children.
+        </h4>
+        <div class="custom-flex mt-4rem">
+          <button
+            [routerLink]="['app', 'login']"
+            class="bttn-primary bttn-white bttn-animated bttn-big bttn-clickable custom-padding custom-margin"
+          >
+            Create an account
+          </button>
+          <button
+            [routerLink]="['app', 'join']"
+            class="bttn-primary bttn-white bttn-animated bttn-big bttn-clickable custom-padding custom-margin"
+          >
+            Enter without an account
+          </button>
+        </div>
       </div>
     </div>
   </div>

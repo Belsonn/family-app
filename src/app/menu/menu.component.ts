@@ -28,13 +28,13 @@ export class MenuComponent implements OnInit {
     console.log('elo');
   }
   ngOnInit(): void {
-    this.isLoading = true;
-    this.familyService.getMeAndFamily().subscribe((res) => {
-      this.familyService.family = res.data.family;
-      this.familyService.familyUser = res.data.familyUser;
-      this.user = this.familyService.familyUser;
-      this.isLoading = false;
-    });
+    // this.isLoading = true;
+    // this.familyService.getMeAndFamily().subscribe((res) => {
+    //   this.familyService.family = res.data.family;
+    //   this.familyService.familyUser = res.data.familyUser;
+    //   this.user = this.familyService.familyUser;
+    //   this.isLoading = false;
+    // });
 
   }
 

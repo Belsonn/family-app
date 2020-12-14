@@ -31,6 +31,9 @@ import userEdit from '@iconify-icons/fa-solid/user-edit';
 import birthdayCake from '@iconify-icons/cil/birthday-cake';
 import cameraChange from '@iconify/icons-uil/camera-change';
 import peopleIcon from '@iconify/icons-ion/people';
+import baselineAddShoppingCart from '@iconify/icons-ic/baseline-add-shopping-cart';
+import cardText from '@iconify/icons-bi/card-text';
+
 
 export const appIcons = {
   planner,
@@ -66,5 +69,7 @@ export const appIcons = {
   birthdayCake,
   cameraChange,
   peopleIcon,
+  baselineAddShoppingCart,
+  cardText
   
 };

@@ -138,7 +138,9 @@ export class CalendarEventComponent implements OnInit {
   onRepeatChange() {
     this.radioFormGroup.get('longEvent').valueChanges.subscribe((value) => {
       if (value) {
+        this.repeatFormGroup.get('repeatToggleControl').setValue(false);
         this.repeatFormGroup.get('repeatToggleControl').disable();
+        this.repeatToggle({checked:false})
       } else {
         this.repeatFormGroup.get('repeatToggleControl').enable();
       }
@@ -261,6 +263,7 @@ export class CalendarEventComponent implements OnInit {
     this.calendarService
       .addEvent(event)
       .subscribe((res) => {
+        this.familyService.family = res.data.family;
         this.router.navigate(['', 'app', 'calendar']);
       });
   }

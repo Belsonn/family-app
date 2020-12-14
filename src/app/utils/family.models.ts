@@ -1,56 +1,66 @@
 import { CalendarEvent } from './CalendarEvent.model';
 export interface FamilyUser {
-    _id: string,
-    name: string,
-    family: string,
-    gender: string,
-    dateOfBirth: Date,
-    photo: string,
-    role: string,
-    user: string,
+  _id: string;
+  name: string;
+  family: string;
+  gender: string;
+  dateOfBirth: Date;
+  photo: string;
+  role: string;
+  user: string;
 }
 
 export interface Family {
-    users: [FamilyUser],
-    _id: string,
-    name: string,
-    createdBy: string,
-    createdAt: Date,
-    inviteToken: string,
-    events: [CalendarEvent]
+  users: [FamilyUser];
+  _id: string;
+  name: string;
+  createdBy: string;
+  createdAt: Date;
+  groceries: [Grocery]
+  inviteToken: string;
+  events: [CalendarEvent];
 }
 
 export interface FamilyResponse {
-    status: string,
-    data: {
-        family: Family
-    }
+  status: string;
+  data: {
+    family: Family;
+  };
 }
 export interface MeAndFamilyResponse {
-    status: string,
-    data: {
-        familyUser: FamilyUser,
-        family: Family
-    }
+  status: string;
+  data: {
+    familyUser: FamilyUser;
+    family: Family;
+  };
 }
 export interface existsResponse {
-    status: string;
-    data: {
-      exists: boolean;
-      familyId: string;
-    };
-  }
-  export interface createFamilyResponse {
-    status: string;
-    data: {
-      family: Family
-      user: string
-    };
-  }
+  status: string;
+  data: {
+    exists: boolean;
+    familyId: string;
+  };
+}
+export interface createFamilyResponse {
+  status: string;
+  data: {
+    family: Family;
+    user: string;
+  };
+}
 
-  export interface FamilyUserResponse {
-      status: string,
-      data: {
-          familyUser: FamilyUser
-      }
-  }
+export interface FamilyUserResponse {
+  status: string;
+  data: {
+    familyUser: FamilyUser;
+  };
+}
+
+export interface Grocery {
+  item: {
+    name: string;
+    quantity: number;
+    details: string;
+  };
+  completedAt: Date;
+}

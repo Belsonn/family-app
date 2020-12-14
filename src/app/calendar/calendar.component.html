@@ -1,6 +1,6 @@
 <!-- <button mat-button (click)="onTest()">TESTUJ</button> -->
-<div *ngIf="isLoading" class="spinner-wrapper">
-  <mat-spinner class="spinner"></mat-spinner>
+<div *ngIf="isLoading">
+  <app-custom-loading></app-custom-loading>
 </div>
 <div *ngIf="!isLoading">
 <div class="calendar-header">

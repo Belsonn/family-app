@@ -15,7 +15,7 @@ export class AppComponent implements OnInit{
     iconService.registerAll(appIcons);
   }
   ngOnInit(): void {
-    this.authService.autoAuth();
+    // this.authService.autoAuth();
 
   }
 

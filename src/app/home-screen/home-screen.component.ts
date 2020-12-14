@@ -10,7 +10,6 @@ import { AuthService } from '../auth/auth.service';
 })
 export class HomeScreenComponent implements OnInit, AfterViewInit, OnDestroy {
   isAuthenticated = false;
-  isLocalAuthenticated = false;
   isLoading = true;
   private authStatus: Subscription;
   constructor(private authService: AuthService, private router: Router, private ref: ChangeDetectorRef) {}
@@ -18,22 +17,24 @@ export class HomeScreenComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.isAuthenticated = this.authService.getIsAuthenticated();
     this.authStatus = this.authService
-      .getAuthStatus()
-      .subscribe((isAuthenticated) => {
-        this.isAuthenticated = isAuthenticated;
-        if (this.isAuthenticated) {
-          this.router.navigate(['', 'app', 'menu']);
-        }
-      });
+    .getAuthStatus()
+    .subscribe((isAuthenticated) => {
+      this.isAuthenticated = isAuthenticated;
+      this.isLoading = false;
+      if (this.isAuthenticated) {
+        this.router.navigate(['', 'app', 'menu']);
+      }
+    });
+    this.authService.autoAuth();
+    this.isAuthenticated = this.authService.getIsAuthenticated();
     if (this.isAuthenticated) {
       this.router.navigate(['', 'app', 'menu']);
     }
   }
   ngAfterViewInit() {
-    this.isLoading = false;
-    this.ref.detectChanges();
+    // this.isLoading = false;
+    // this.ref.detectChanges();
   }
 
   ngOnDestroy(): void {

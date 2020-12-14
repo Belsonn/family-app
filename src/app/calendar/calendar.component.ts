@@ -47,9 +47,9 @@ export class CalendarComponent implements OnInit {
     } else {
       this.calendarService.getEvents().subscribe(res => {
 
-        let events = res.data.events;
+        let events = res.data.family.events;
   
-        for(let i = 0; i < res.results; i++){
+        for(let i = 0; i < res.data.family.events.length; i++){
           events[i].startDate = new Date(events[i].startDate);
           events[i].endDate = new Date(events[i].endDate);
         }

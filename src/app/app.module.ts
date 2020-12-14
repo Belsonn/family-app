@@ -24,7 +24,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { AngularColorfulModule } from 'angular-colorful';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { FileUploadModule } from 'ng2-file-upload';
 
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { SmoothScrollModule } from 'ngx-scrollbar/smooth-scroll';
@@ -50,6 +49,9 @@ import { NamecreatorComponent } from './namecreator/namecreator.component';
 import { PickUserComponent } from './pick-user/pick-user.component';
 import { FamilyComponent } from './family/family.component';
 import { EditMeComponent } from './edit-me/edit-me.component';
+import { ShoppingListComponent } from './shopping-list/shopping-list.component';
+import { ShoppingListAddComponent } from './shopping-list/shopping-list-add/shopping-list-add.component';
+import { CustomLoadingComponent } from './custom-loading/custom-loading.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +71,9 @@ import { EditMeComponent } from './edit-me/edit-me.component';
     PickUserComponent,
     FamilyComponent,
     EditMeComponent,
+    ShoppingListComponent,
+    ShoppingListAddComponent,
+    CustomLoadingComponent,
   ],
   imports: [
     HttpClientModule,
@@ -79,7 +84,6 @@ import { EditMeComponent } from './edit-me/edit-me.component';
     NgbModule,
     FormsModule,
     IconModule,
-    FileUploadModule,
     ColorPickerModule,
     MatButtonModule,
     MatRippleModule,
@@ -102,8 +106,7 @@ import { EditMeComponent } from './edit-me/edit-me.component';
     SmoothScrollModule,
     HammerModule,
     NgScrollbarModule.withConfig({
-      appearance: 'standard',
-      visibility: 'always',
+    
     }),
   ],
   providers: [
