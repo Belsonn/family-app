@@ -1,5 +1,5 @@
-<div *ngIf="isLoading" class="spinner-wrapper">
-  <mat-spinner class="spinner"></mat-spinner>
+<div *ngIf="isLoading">
+  <app-custom-loading></app-custom-loading>
 </div>
 <div *ngIf="!isLoading">
   <div class="flex flex-align-center mt-1rem">
@@ -13,7 +13,7 @@
   <div class="wrapper-flex-center font-size-2rem">
     {{ family.name }}
   </div>
-  <div class ="mb-2rem pr-1rem pl-1rem">
+  <div class =" wrapper-flex-center flex-column mb-2rem pr-1rem pl-1rem">
     <div
       (click)="onTest()"
       *ngFor="let familyuser of family.users; let i = index"

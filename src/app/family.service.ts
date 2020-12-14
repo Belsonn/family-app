@@ -10,7 +10,10 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { Subject } from 'rxjs';
-import { SmoothScrollOptions, SmoothScrollToOptions } from 'ngx-scrollbar/smooth-scroll';
+import {
+  SmoothScrollOptions,
+  SmoothScrollToOptions,
+} from 'ngx-scrollbar/smooth-scroll';
 
 @Injectable({ providedIn: 'root' })
 export class FamilyService {
@@ -20,7 +23,7 @@ export class FamilyService {
   familyUser: FamilyUser;
 
   scrollSub = new Subject<SmoothScrollToOptions>();
-
+  savedRoute;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -29,6 +32,9 @@ export class FamilyService {
       `${environment.apiURL}family/family/${familyId}`
     );
   }
+  // getMyFamily() {
+  //   return this.http.get<FamilyResponse>()
+  // }
   getMeAndFamily() {
     return this.http.get<MeAndFamilyResponse>(
       `${environment.apiURL}family/myFamily`
@@ -53,5 +59,12 @@ export class FamilyService {
     family.users.forEach((el) => {
       el.photo = `${el.photo}?${Date.now()}`;
     });
+  }
+
+  addGrocery(grocery) {
+    return this.http.post<FamilyResponse>(
+      `${environment.apiURL}family/addGrocery`,
+      grocery
+    );
   }
 }

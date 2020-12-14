@@ -1,3 +1,6 @@
+import { AuthGuard } from './auth/auth.guard';
+import { ShoppingListAddComponent } from './shopping-list/shopping-list-add/shopping-list-add.component';
+import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { EditMeComponent } from './edit-me/edit-me.component';
 import { FamilyComponent } from './family/family.component';
 import { PickUserComponent } from './pick-user/pick-user.component';
@@ -32,6 +35,17 @@ const routes: Routes = [
         component: NofamilyComponent,
       },
       {
+        path: 'shopping',
+        component: ShoppingListComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'shopping/add',
+        component: ShoppingListAddComponent,
+        canActivate: [AuthGuard]
+      },
+    
+      {
         path: 'configureAccount',
         component: NamecreatorComponent,
       },
@@ -42,26 +56,32 @@ const routes: Routes = [
       {
         path: 'updateAccount',
         component: EditMeComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'family',
         component: FamilyComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'calendar',
         component: CalendarComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'calendar/event',
         component: CalendarEventComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'tasks',
         component: TasksComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'menu',
         component: MenuComponent,
+        canActivate: [AuthGuard]
       },
     ],
   },
@@ -74,5 +94,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class AppRoutingModule {}

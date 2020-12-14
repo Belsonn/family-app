@@ -36,6 +36,20 @@
     opacity: 1;
   }
 }
+
+@keyframes balloonLoading {
+  33%{
+    transform: rotate(30deg);
+  }
+  66%{
+    transform: rotate(-30deg);
+  }
+  100%{
+    transform: rotate(0);
+  }
+}
+
+
 // $balloonX: 0.4rem;
 // $balloon-X: -0.4rem;
 

@@ -37,7 +37,16 @@ input.active:focus {
 .mat-progress-spinner circle, .mat-spinner circle {
     stroke: #00d4ff!important;
 }
+.mat-form-field-underline{
+  background-color:$pink-1  !important;
+}
+.mat-form-field-label{
+  color:$pink-1 !important;
+}
 
+.mat-form-field.mat-form-field-invalid .mat-form-field-label {
+  color: #f44336 !important;
+}
 
 .timepicker-overlay {
   z-index: 10000000 !important;
@@ -60,6 +69,15 @@ ic-icon{
   display:flex;
   align-items: center;
   justify-content: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
 @media(max-width:500px){

@@ -1,3 +1,4 @@
+import { FamilyService } from './../family.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Validators } from '@angular/forms';
@@ -20,7 +21,8 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private familyService: FamilyService
   ) {}
 
   getToken() {
@@ -55,15 +57,20 @@ export class AuthService {
   autoAuth() {
     const authInfo = this.getAuthData();
     if (!authInfo) {
-      return;
+      this.authStatus.next(false);
     }
     else {
       const now = new Date();
       const expires = authInfo.expirationDate.getTime() - now.getTime();
       if (expires > 0) {
         this.token = authInfo.token;
-        this.isAuthenticated = true;
-        this.authStatus.next(true);
+        this.familyService.getMeAndFamily().subscribe( res => {
+          this.familyService.family = res.data.family
+          this.familyService.familyUser = res.data.familyUser
+          // this.familyService.familyUserId = res.data.familyUser._id
+          this.isAuthenticated = true;
+          this.authStatus.next(true);
+        })
       }
     }
   }
@@ -96,8 +103,8 @@ export class AuthService {
     this.isAuthenticated = false;
     this.userId = null;
     this.clearAuthData();
-    this.authStatus.next(false);
     this.router.navigate(['/']);
+    this.authStatus.next(false);
   }
 
   getMe() {
