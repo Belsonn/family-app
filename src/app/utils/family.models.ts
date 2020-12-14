@@ -62,5 +62,7 @@ export interface Grocery {
     quantity: number;
     details: string;
   };
+  createdBy: FamilyUser;
+  createdAt: Date;
   completedAt: Date;
 }

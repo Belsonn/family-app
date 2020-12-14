@@ -1,0 +1,31 @@
+@import "~src/scss/main.scss";
+
+
+.box{
+    width: 100%;
+    box-shadow: $box-shadow-primary;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+
+    &__title{
+        text-align: left;
+        font-size:1.4rem;
+        font-weight: 500;
+    }
+    &__description{
+        font-size: 0.9rem;
+        color: $text-gray;
+    }
+}
+
+.custom-flex{
+    display: flex;
+    justify-content: space-between;
+}
+
+@media(max-width:450px){
+    .custom-flex{
+        flex-direction: column;
+        text-align: left;
+    }
+}

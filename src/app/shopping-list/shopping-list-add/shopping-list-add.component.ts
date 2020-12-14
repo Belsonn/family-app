@@ -10,6 +10,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShoppingListAddComponent implements OnInit {
 
+  isLoading = false;
+
   constructor(private familyService: FamilyService, private router: Router) { }
 
   buttonTouched = false;
@@ -18,10 +20,12 @@ export class ShoppingListAddComponent implements OnInit {
   addFormGroup: FormGroup;
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.addFormGroup = new FormGroup({})
     this.addFormGroup.addControl('name', new FormControl('', [Validators.required]))
     this.addFormGroup.addControl('details', new FormControl(''))
     this.addFormGroup.addControl('quantity', new FormControl(0, [Validators.required, Validators.min(1)]))
+    this.isLoading = false;
   }
 
   onHold(mark){
@@ -62,6 +66,7 @@ export class ShoppingListAddComponent implements OnInit {
       this.buttonTouched = true;
       return;
     }
+    this.isLoading = true;
     let grocery = {
       name: this.addFormGroup.controls.name.value,
       quantity: this.addFormGroup.controls.quantity.value,
@@ -69,6 +74,7 @@ export class ShoppingListAddComponent implements OnInit {
     }
     this.familyService.addGrocery(grocery).subscribe(res => {
       this.familyService.family = res.data.family;
+      this.isLoading = false;
       this.router.navigate(['', 'app', 'shopping'])
     })
     

@@ -1,16 +1,22 @@
-<div class="flex flex-align-center">
-  <ic-icon
-    [routerLink]="['', 'app', 'shopping']"
-    mat-ripple
-    class="font-size-16rem ml-1rem mt-1rem"
-    icon="arrowBackUp"
-  ></ic-icon>
-  <div
-    class="title wrapper-flex-center width-100 mt-1rem mr-15rem font-size-12rem"
-  >
-    Add item to list
-  </div>
-  <!-- <div class="wrapper-flex-center width-100 mt-1rem mr-1rem font-size-12rem">
+<div *ngIf="isLoading">
+  <app-custom-loading></app-custom-loading>
+</div>
+<div *ngIf="!isLoading">
+  <div class="flex flex-align-center">
+    <ic-icon
+      [routerLink]="['', 'app', 'shopping']"
+      mat-ripple
+      class="font-size-16rem ml-1rem mt-1rem"
+      icon="arrowBackUp"
+    ></ic-icon>
+    <div
+      class="title wrapper-flex-center width-100 mt-1rem mr-15rem font-size-12rem"
+    >
+      <!-- gradient-text gradient-text-2 -->
+      Add item to list
+      <!-- <span class="light-blue">Add</span> <span class="violet"> item to </span> <span class="pink-1">list</span> -->
+    </div>
+    <!-- <div class="wrapper-flex-center width-100 mt-1rem mr-1rem font-size-12rem">
     <ic-icon
       [ngClass]="{
         'form__row--icon--red':
@@ -21,10 +27,10 @@
       icon="baselineAddShoppingCart"
     ></ic-icon>
   </div> -->
-</div>
-<form class="form" [formGroup]="addFormGroup">
-  <div class="flex flex-column flex-align-center flex-center">
-    <!-- <ic-icon
+  </div>
+  <form class="form" [formGroup]="addFormGroup">
+    <div class="flex flex-column flex-align-center flex-center">
+      <!-- <ic-icon
       [ngClass]="{
         'form__row--icon--red':
           addFormGroup.controls.name.invalid &&
@@ -33,83 +39,84 @@
       class="font-size-4rem background-gradient mt-2rem"
       icon="baselineAddShoppingCart"
     ></ic-icon> -->
-    <mat-form-field class="width-70 mt-1rem">
-      <mat-label>What do you need to buy?</mat-label>
-      <input formControlName="name" matInput required />
-      <mat-error *ngIf="addFormGroup.controls.name.invalid"
-        >Please provide a valid name.</mat-error
+      <mat-form-field class="width-70 mt-1rem">
+        <mat-label>What do you need to buy?</mat-label>
+        <input formControlName="name" matInput required />
+        <mat-error *ngIf="addFormGroup.controls.name.invalid"
+          >Please provide a valid name.</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div class="flex flex-align-center flex-center mt-2rem custom-padding">
+      <button
+        [ngClass]="{
+          'input-invalid':
+            (addFormGroup.controls.quantity.invalid && buttonTouched) ||
+            (addFormGroup.controls.quantity.invalid &&
+              addFormGroup.controls.quantity.touched)
+        }"
+        type="button"
+        (click)="onMarkClick('minus')"
+        (mousedown)="onHold('minus')"
+        (mouseup)="onStopHold()"
+        mat-ripple
+        class="btn bttn-violet-light transition border-radius-10 wrapper-flex-center prl-2rem custom-margin box-shadow-2 mr-1rem mtb-2rem font-size-2rem"
       >
-    </mat-form-field>
-  </div>
-  <div class="flex flex-align-center flex-center mt-2rem custom-padding">
-    <button
-      [ngClass]="{
-        'input-invalid':
-          (addFormGroup.controls.quantity.invalid && buttonTouched) ||
-          (addFormGroup.controls.quantity.invalid &&
-            addFormGroup.controls.quantity.touched)
-      }"
-      type="button"
-      (click)="onMarkClick('minus')"
-      (mousedown)="onHold('minus')"
-      (mouseup)="onStopHold()"
-      mat-ripple
-      class="btn bttn-violet-light transition border-radius-10 wrapper-flex-center prl-2rem custom-margin box-shadow-2 mr-1rem mtb-2rem font-size-2rem"
-    >
-      -
-    </button>
-    <input
-      [ngClass]="{
-        'input-invalid':
-          (addFormGroup.controls.quantity.invalid && buttonTouched) ||
-          (addFormGroup.controls.quantity.invalid &&
-            addFormGroup.controls.quantity.touched)
-      }"
-      matInput
-      (change)="checkValid()"
-      type="number"
-      formControlName="quantity"
-      class="custom-input transition"
-    />
-    <button
-      [ngClass]="{
-        'input-invalid':
-          (addFormGroup.controls.quantity.invalid && buttonTouched) ||
-          (addFormGroup.controls.quantity.invalid &&
-            addFormGroup.controls.quantity.touched)
-      }"
-      type="button"
-      mat-ripple
-      (click)="onMarkClick('plus')"
-      (mousedown)="onHold('plus')"
-      (mouseup)="onStopHold()"
-      class="btn bttn-violet-light transition border-radius-10 custom-margin wrapper-flex-center ml-1rem  prl-2rem box-shadow-2 mtb-2rem font-size-2rem"
-    >
-      +
-    </button>
-  </div>
-
-  <div class="wrapper-flex-center flex-column mt-2rem">
-    <!-- <ic-icon class="font-size-3rem violet" icon="cardText"></ic-icon> -->
-    <mat-form-field class="width-70 mt-05rem">
-      <mat-label>Additional information</mat-label>
-      <textarea
+        -
+      </button>
+      <input
+        [ngClass]="{
+          'input-invalid':
+            (addFormGroup.controls.quantity.invalid && buttonTouched) ||
+            (addFormGroup.controls.quantity.invalid &&
+              addFormGroup.controls.quantity.touched)
+        }"
         matInput
-        cdkTextareaAutosize
-        formControlName="details"
-        #autosize="cdkTextareaAutosize"
-        cdkAutosizeMinRows="2"
-        cdkAutosizeMaxRows="7"
-      ></textarea>
-    </mat-form-field>
-  </div>
-  <div class="form__button mt-3rem mb-1rem">
-    <button
-      mat-ripple
-      (click)="onAdd()"
-      class="btn bttn-primary bttn-clickable bttn-gradient width-70 ptb-05rem"
-    >
-      Add to list
-    </button>
-  </div>
-</form>
+        (change)="checkValid()"
+        type="number"
+        formControlName="quantity"
+        class="custom-input transition"
+      />
+      <button
+        [ngClass]="{
+          'input-invalid':
+            (addFormGroup.controls.quantity.invalid && buttonTouched) ||
+            (addFormGroup.controls.quantity.invalid &&
+              addFormGroup.controls.quantity.touched)
+        }"
+        type="button"
+        mat-ripple
+        (click)="onMarkClick('plus')"
+        (mousedown)="onHold('plus')"
+        (mouseup)="onStopHold()"
+        class="btn bttn-violet-light transition border-radius-10 custom-margin wrapper-flex-center ml-1rem prl-2rem box-shadow-2 mtb-2rem font-size-2rem"
+      >
+        +
+      </button>
+    </div>
+
+    <div class="wrapper-flex-center flex-column mt-2rem">
+      <!-- <ic-icon class="font-size-3rem violet" icon="cardText"></ic-icon> -->
+      <mat-form-field class="width-70 mt-05rem">
+        <mat-label>Additional information</mat-label>
+        <textarea
+          matInput
+          cdkTextareaAutosize
+          formControlName="details"
+          #autosize="cdkTextareaAutosize"
+          cdkAutosizeMinRows="2"
+          cdkAutosizeMaxRows="7"
+        ></textarea>
+      </mat-form-field>
+    </div>
+    <div class="form__button mt-3rem mb-1rem">
+      <button
+        mat-ripple
+        (click)="onAdd()"
+        class="btn bttn-primary bttn-clickable bttn-gradient width-70 ptb-05rem"
+      >
+        Add to list
+      </button>
+    </div>
+  </form>
+</div>

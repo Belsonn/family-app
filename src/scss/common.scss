@@ -66,6 +66,7 @@
   border-radius: 10rem;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
+  letter-spacing: 2px;
   position: relative;
   font-size: 1.2rem;
   font-weight: 500;
@@ -261,6 +262,31 @@
 }
 .violet {
   color: $violet-1;
+}
+
+.light-blue{
+  color: $light-blue-1;
+}
+
+.pink-1 {
+  color: $pink-1
+}
+
+.gradient-text{
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent;
+}
+
+.gradient-text-1{
+  background-color: $violet-1-light;
+  background-image: $linear-gradient-90-1;
+}
+.gradient-text-2{
+  background-color: $violet-1-light;
+  background-image: $linear-gradient-45-1;
 }
 
 // .background-gradient {
