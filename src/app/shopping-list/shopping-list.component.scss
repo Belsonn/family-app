@@ -1,31 +1,93 @@
 @import "~src/scss/main.scss";
 
+.box {
+  width: 80%;
+  box-shadow: $box-shadow-secondary;
+  // border-bottom: 2px solid $text-gray;
+  padding: 0.5rem 0.5rem !important;
+  border-radius: 20px;
 
-.box{
-    width: 100%;
-    box-shadow: $box-shadow-primary;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
+  &__title {
+    text-align: left;
+    font-size: 1.4rem;
+    font-weight: 500;
+    transition: all 0.7s;
+  }
+  &__description {
+    font-size: 0.9rem;
+    // color: $text-gray;
+    // animation: textInLeft2 1s ease-in;
+  }
 
-    &__title{
-        text-align: left;
-        font-size:1.4rem;
-        font-weight: 500;
+  &__clicked-content {
+    // min-height: 0;
+    // animation: shoppingListItem 2s ease-in;
+    &--details {
+      text-align: left;
+      // animation: textInLeft2 1s ease-in;
     }
-    &__description{
-        font-size: 0.9rem;
-        color: $text-gray;
+    &--buttons {
+      // display: flex;
+      // align-items: center;
+      // justify-content: flex-end;
+      // text-align: right;
+      animation: textInRight 1s ease-in;
     }
+  }
+}
+.bttn-icon {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  color: #fff;
+  border: 0 !important;
+  outline: none !important;
+  width: 40px;
+  &--violet {
+    &::before {
+      position: absolute;
+      width: 40px;
+      background: $violet-1;
+      border-radius: 50%;
+      content: "";
+      padding-bottom: 40px;
+      z-index: -1;
+    }
+  }
+  &--red {
+    &::before {
+      position: absolute;
+      width: 40px;
+      background: $red-1;
+      border-radius: 50%;
+      content: "";
+      padding-bottom: 40px;
+      z-index: -1;
+    }
+  }
 }
 
-.custom-flex{
-    display: flex;
-    justify-content: space-between;
+.rotate {
+  animation: buttonRotate 1s ease-in;
 }
 
-@media(max-width:450px){
-    .custom-flex{
-        flex-direction: column;
-        text-align: left;
-    }
+.btn {
+  padding: 0.7rem;
+}
+
+.circle{
+  transition: all 1s;
+}
+
+.circle-red {
+  color: $red-1;
+}
+.circle-green {
+  color: $green;
+}
+
+.line-through{
+    text-decoration: line-through;
 }

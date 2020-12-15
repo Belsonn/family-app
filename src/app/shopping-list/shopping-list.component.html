@@ -1,20 +1,126 @@
-<button [routerLink]="['', 'app', 'shopping', 'add']" mat-button>Add</button>
-<div class="flex flex-align-center">
-  <ic-icon
-    [routerLink]="['', 'app', 'menu']"
-    mat-ripple
-    class="font-size-16rem ml-1rem mt-1rem"
-    icon="arrowBackUp"
-  ></ic-icon>
+<div *ngIf="isLoading">
+  <app-custom-loading></app-custom-loading>
 </div>
 
-<div
-  *ngIf="groceries.length > 0"
-  class=" mb-2rem prl-1rem"
->
-  <button mat-ripple (click)="onTest()" *ngFor="let grocery of groceries" class="box btn mt-1rem">
-    <div class="flex flex-column ">
-      <div class="box__title wrapper-flex-center">
+<div *ngIf="!isLoading">
+  <div class="flex flex-align-center">
+    <ic-icon
+      [routerLink]="['', 'app', 'menu']"
+      mat-ripple
+      class="font-size-16rem ml-1rem mt-1rem"
+      icon="arrowBackUp"
+    ></ic-icon>
+  </div>
+  <div class="wrapper-flex-center mb-1rem">
+    <div
+      [routerLink]="['', 'app', 'shopping', 'add']"
+      mat-ripple
+      class="btn border-radius-20 violet flex"
+    >
+      <ic-icon class="font-size-15rem mr-1rem" icon="plusLine"></ic-icon>
+      Create new
+    </div>
+  </div>
+  <div *ngIf="groceries.length > 0" class="mb-2rem">
+    <div [@moveOutIn] *ngFor="let grocery of groceries; let i = index">
+      <div class="wrapper-flex-center flex-column">
+        <div mat-ripple (click)="onClickItem(i)" class="box btn mtb-05rem">
+          <div class="flex flex-column">
+            <div class="flex">
+              <div class="width-100">
+                <div
+                  [ngClass]="{ 'line-through': grocery.completedAt }"
+                  class="box__title ml-1rem"
+                >
+                  {{ grocery.item.quantity }} x {{ grocery.item.name }}
+                </div>
+              </div>
+              <div
+                *ngIf="!grocery.completedAt"
+                mat-ripple
+                class="wrapper-flex-center p-05rem border-radius-10"
+                (click)="onCheck(i); $event.stopPropagation()"
+              >
+                <ic-icon
+                  class="circle circle-red font-size-16rem"
+                  icon="circleIcon"
+                ></ic-icon>
+              </div>
+              <div
+                *ngIf="grocery.completedAt"
+                mat-ripple
+                class="wrapper-flex-center p-05rem border-radius-10"
+                (click)="onCheck(i); $event.stopPropagation()"
+              >
+                <ic-icon
+                  class="circle circle-green font-size-16rem"
+                  icon="checkCircle"
+                ></ic-icon>
+              </div>
+            </div>
+            <div
+              *ngIf="clicked == i"
+              [@moveUpDown]
+              class="box__clicked-content mt-1rem"
+            >
+              <div class="flex flex-column">
+                <div class="box__clicked-content--details">
+                  <span *ngIf="grocery.item.details">
+                    {{ grocery.item.details }}
+                  </span>
+                  <span *ngIf="!grocery.item.details">
+                    No details provided.
+                  </span>
+                </div>
+                <div class="flex flex-space-between mt-15rem">
+                  <div class="flex flex-column box__description">
+                    <div class="box__description-createdAt">
+                      Created: {{ grocery.createdAt | date: "dd/MM/yy HH:mm" }}
+                    </div>
+                    <div class="box__description-createdBy">
+                      By: {{ grocery.createdBy.name }}
+                    </div>
+                  </div>
+                  <div class="box__clicked-content--buttons">
+                    <div class="wrapper-flex-center">
+                      <div
+                        (click)="onEdit(i); $event.stopPropagation()"
+                        mat-ripple
+                        [matRippleCentered]="true"
+                        [matRippleRadius]="20"
+                        class="btn bttn-icon bttn-icon--violet mr-1rem rotate"
+                      >
+                        <ic-icon class="icon" icon="editIcon"></ic-icon>
+                      </div>
+                      <div
+                        (click)="onTest(); $event.stopPropagation()"
+                        mat-ripple
+                        [matRippleCentered]="true"
+                        [matRippleRadius]="20"
+                        class="btn bttn-icon bttn-icon--red p-15rem mr-05rem rotate"
+                      >
+                        <ic-icon class="icon" icon="trashOutline"></ic-icon>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- button 
+<div class="flex flex-column">
+  <div class="flex">
+    <div class="wrapper-flex-center circle">
+      <ic-icon class="icon" icon="checkCircle"></ic-icon>
+    </div>
+    <div class="flex flex-column">
+      <div class="box__title">
         {{ grocery.item.quantity }} x {{ grocery.item.name }}
       </div>
       <div class="box__description mt-05rem">
@@ -28,5 +134,36 @@
         </div>
       </div>
     </div>
-  </button>
-</div>
+  </div>
+
+  <div *ngIf="clicked == i" class="box__clicked-content mt-1rem">
+    <div class="flex flex-column">
+      <div class="box__clicked-content--details">
+        {{ grocery.item.details }}
+      </div>
+      <div class="box__clicked-content--buttons">
+        <div class="flex flex-space-between">
+          <div class=""></div>
+          <div class="wrapper-flex-center">
+            <div
+              mat-ripple
+              [matRippleCentered]="true"
+              [matRippleRadius]="20"
+              class="btn bttn-icon bttn-icon--violet mr-1rem rotate"
+            >
+              <ic-icon class="icon" icon="editIcon"></ic-icon>
+            </div>
+            <div
+              mat-ripple
+              [matRippleCentered]="true"
+              [matRippleRadius]="20"
+              class="btn bttn-icon bttn-icon--red p-15rem mr-05rem rotate"
+            >
+              <ic-icon class="icon" icon="trashOutline"></ic-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->

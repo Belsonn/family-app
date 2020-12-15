@@ -61,10 +61,5 @@ export class FamilyService {
     });
   }
 
-  addGrocery(grocery) {
-    return this.http.post<FamilyResponse>(
-      `${environment.apiURL}family/addGrocery`,
-      grocery
-    );
-  }
+
 }

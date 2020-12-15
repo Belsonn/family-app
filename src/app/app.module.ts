@@ -27,6 +27,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { SmoothScrollModule } from 'ngx-scrollbar/smooth-scroll';
+import { NgxSmoothDnDModule } from 'ngx-smooth-dnd';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuComponent } from './menu/menu.component';
@@ -105,6 +106,7 @@ import { CustomLoadingComponent } from './custom-loading/custom-loading.componen
     AngularColorfulModule,
     SmoothScrollModule,
     HammerModule,
+    NgxSmoothDnDModule,
     NgScrollbarModule.withConfig({
     
     }),

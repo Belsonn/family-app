@@ -33,6 +33,10 @@ import cameraChange from '@iconify/icons-uil/camera-change';
 import peopleIcon from '@iconify/icons-ion/people';
 import baselineAddShoppingCart from '@iconify/icons-ic/baseline-add-shopping-cart';
 import cardText from '@iconify/icons-bi/card-text';
+import editIcon from '@iconify-icons/bytesize/edit';
+import trashOutline from '@iconify-icons/ion/trash-outline';
+import checkCircle from '@iconify-icons/bi/check-circle';
+import circleIcon from '@iconify-icons/bi/circle';
 
 
 export const appIcons = {
@@ -70,6 +74,9 @@ export const appIcons = {
   cameraChange,
   peopleIcon,
   baselineAddShoppingCart,
-  cardText
-  
+  cardText,
+  editIcon,
+  trashOutline,
+  checkCircle,
+  circleIcon,
 };

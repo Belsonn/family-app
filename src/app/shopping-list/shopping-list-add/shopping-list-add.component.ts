@@ -1,3 +1,4 @@
+import { ShoppingService } from './../shopping.service';
 import { Router } from '@angular/router';
 import { FamilyService } from './../../family.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -12,10 +13,11 @@ export class ShoppingListAddComponent implements OnInit {
 
   isLoading = false;
 
-  constructor(private familyService: FamilyService, private router: Router) { }
+  constructor(private familyService: FamilyService, private router: Router, private shoppingService : ShoppingService) { }
 
   buttonTouched = false;
   timeoutHandler;
+  mode: string;
 
   addFormGroup: FormGroup;
 
@@ -25,6 +27,7 @@ export class ShoppingListAddComponent implements OnInit {
     this.addFormGroup.addControl('name', new FormControl('', [Validators.required]))
     this.addFormGroup.addControl('details', new FormControl(''))
     this.addFormGroup.addControl('quantity', new FormControl(0, [Validators.required, Validators.min(1)]))
+    this.checkMode();
     this.isLoading = false;
   }
 
@@ -72,12 +75,20 @@ export class ShoppingListAddComponent implements OnInit {
       quantity: this.addFormGroup.controls.quantity.value,
       details: this.addFormGroup.controls.details.value
     }
-    this.familyService.addGrocery(grocery).subscribe(res => {
-      this.familyService.family = res.data.family;
-      this.isLoading = false;
-      this.router.navigate(['', 'app', 'shopping'])
-    })
-    
+    if(this.mode !=='edit'){
+      this.shoppingService.addGrocery(grocery).subscribe(res => {
+        this.familyService.family = res.data.family;
+        this.isLoading = false;
+        this.router.navigate(['', 'app', 'shopping'])
+      })
+    } else {
+      this.shoppingService.groceriesToEdit[this.shoppingService.itemToEditIndex].item = grocery;
+      this.shoppingService.editGrocery().subscribe(res => {
+        this.familyService.family.groceries = res.data.groceries;
+        this.router.navigate(['', 'app', 'shopping'])
+        this.isLoading = false;
+      })
+    }
   }
 
   checkValid(){
@@ -87,6 +98,16 @@ export class ShoppingListAddComponent implements OnInit {
     }
     value = Math.trunc(value);
     this.addFormGroup.get("quantity").patchValue(value);
+  }
+
+  checkMode() {
+    if(this.shoppingService.mode == "edit"){
+      this.mode = 'edit';
+      const item = this.shoppingService.groceriesToEdit[this.shoppingService.itemToEditIndex];
+      this.addFormGroup.get("name").setValue(item.item.name)
+      this.addFormGroup.get("quantity").setValue(item.item.quantity)
+      this.addFormGroup.get("details").setValue(item.item.details);
+    }
   }
 
 }
