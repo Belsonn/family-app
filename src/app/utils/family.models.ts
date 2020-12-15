@@ -16,9 +16,9 @@ export interface Family {
   name: string;
   createdBy: string;
   createdAt: Date;
-  groceries: [Grocery]
+  groceries: Grocery[]
   inviteToken: string;
-  events: [CalendarEvent];
+  events: CalendarEvent[];
 }
 
 export interface FamilyResponse {
@@ -65,4 +65,11 @@ export interface Grocery {
   createdBy: FamilyUser;
   createdAt: Date;
   completedAt: Date;
+}
+
+export interface GroceryResponse{
+  status: string,
+  data: {
+    groceries: Grocery[]
+  }
 }
