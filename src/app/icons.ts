@@ -37,7 +37,8 @@ import editIcon from '@iconify-icons/bytesize/edit';
 import trashOutline from '@iconify-icons/ion/trash-outline';
 import checkCircle from '@iconify-icons/bi/check-circle';
 import circleIcon from '@iconify-icons/bi/circle';
-
+import confirmIcon from '@iconify-icons/line-md/confirm';
+import enterIcon from '@iconify-icons/whh/enter';
 
 export const appIcons = {
   planner,
@@ -79,4 +80,6 @@ export const appIcons = {
   trashOutline,
   checkCircle,
   circleIcon,
+  confirmIcon,
+  enterIcon,
 };

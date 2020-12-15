@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { Subject } from 'rxjs';
 import {
-  SmoothScrollOptions,
   SmoothScrollToOptions,
 } from 'ngx-scrollbar/smooth-scroll';
 

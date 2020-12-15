@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import {
   FamilyResponse,
   Grocery,
-  GroceryResponse,
+  ShoppingList,
+  ShoppingListResponse,
 } from './../utils/family.models';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -13,7 +14,9 @@ export class ShoppingService {
 
   constructor(private http: HttpClient) {}
 
-  groceriesToEdit: Grocery[];
+  listClicked: ShoppingList;
+
+  listToEdit: ShoppingList;
   itemToEditIndex: number;
 
   addGrocery(grocery) {
@@ -24,11 +27,23 @@ export class ShoppingService {
   }
 
   editGrocery() {
-    return this.http.patch<GroceryResponse>(
-      `${environment.apiURL}family/editGroceries`,
-      {
-          groceries: this.groceriesToEdit
-      }
+    return this.http.patch<ShoppingListResponse>(
+      `${environment.apiURL}family/editList`,
+      this.listToEdit
+    );
+  }
+
+  createList() {
+    return this.http.post<ShoppingListResponse>(
+      `${environment.apiURL}family/createList`,
+      this.listToEdit
+    );
+  }
+
+  deleteList(id) {
+    return this.http.patch<ShoppingListResponse>(
+      `${environment.apiURL}family/deleteList`,
+      { id: id }
     );
   }
 }

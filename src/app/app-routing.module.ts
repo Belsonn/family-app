@@ -1,3 +1,4 @@
+import { ShoppingListViewComponent } from './shopping-list/shopping-list-view/shopping-list-view.component';
 import { AuthGuard } from './auth/auth.guard';
 import { ShoppingListAddComponent } from './shopping-list/shopping-list-add/shopping-list-add.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
@@ -36,6 +37,11 @@ const routes: Routes = [
       },
       {
         path: 'shopping',
+        component: ShoppingListViewComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'shopping/list',
         component: ShoppingListComponent,
         canActivate: [AuthGuard]
       },

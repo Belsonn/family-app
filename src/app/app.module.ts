@@ -53,6 +53,8 @@ import { EditMeComponent } from './edit-me/edit-me.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingListAddComponent } from './shopping-list/shopping-list-add/shopping-list-add.component';
 import { CustomLoadingComponent } from './custom-loading/custom-loading.component';
+import { ShoppingListViewComponent } from './shopping-list/shopping-list-view/shopping-list-view.component';
+import { ConfirmDeleteModalComponent } from './common/confirm-delete-modal/confirm-delete-modal.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +77,8 @@ import { CustomLoadingComponent } from './custom-loading/custom-loading.componen
     ShoppingListComponent,
     ShoppingListAddComponent,
     CustomLoadingComponent,
+    ShoppingListViewComponent,
+    ConfirmDeleteModalComponent,
   ],
   imports: [
     HttpClientModule,
