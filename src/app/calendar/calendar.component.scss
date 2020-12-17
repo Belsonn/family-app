@@ -206,6 +206,10 @@
 
 .no-events{
   &__title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     color: $violet-1;
     font-family: $font-family-2;
     font-size: 1.3rem;

@@ -6,6 +6,21 @@ $linear-gradient-90-1: linear-gradient(
   $violet-1 50%,
   $pink-1 100%
 );
+$linear-gradient2-90-1: linear-gradient(
+  90deg,
+  #00d4ff 0%,
+  #28B8FE 40%,
+  #6499F0  60%,
+  #8E76D1 100%
+  
+);
+
+$linear-gradient-90-05: linear-gradient(
+  90deg,
+  rgba(0, 212, 255, 1) 0%,
+  rgba(86, 86, 185, 1) 50%,
+  rgba(152, 81, 180, 1) 100%
+);
 
 $linear-gradient-90-1-reverse: linear-gradient(
   90deg,

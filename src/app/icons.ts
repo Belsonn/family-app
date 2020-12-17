@@ -39,47 +39,62 @@ import checkCircle from '@iconify-icons/bi/check-circle';
 import circleIcon from '@iconify-icons/bi/circle';
 import confirmIcon from '@iconify-icons/line-md/confirm';
 import enterIcon from '@iconify-icons/whh/enter';
+import doubleArrowRight from '@iconify/icons-radix-icons/double-arrow-right';
+
+import closeCircleOutlined from '@iconify-icons/ant-design/close-circle-outlined';
+import checkCircleOutlined from '@iconify-icons/ant-design/check-circle-outlined';
+import radioButtonOn from '@iconify-icons/ion/radio-button-on';
+import bxLeftArrow from '@iconify-icons/bx/bx-left-arrow';
+import bxListPlus from '@iconify-icons/bx/bx-list-plus';
+
 
 export const appIcons = {
-  planner,
-  shoppingCart,
-  chatBubbleLine,
-  familyManWomanGirlBoy,
-  todoList,
-  settingsIcon,
-  baselineEvent,
-  menuGridO,
-  arrowRightAlt2,
-  arrowLeftAlt2,
-  plusLine,
-  bxCalendarCheck,
-  bxCalendarX,
-  outlineAccessTime,
-  emailLine,
-  lockPasswordLine,
-  batteryFull,
-  signalIcon,
-  wifiIcon,
-  arrowBackUp,
-  keyIcon,
-  usergroupAddOutlined,
-  userOutlined,
-  genderMale,
-  genderFemale,
-  childIcon,
-  adultIcon,
-  calendarBlank,
-  calendarBlankMultiple,
-  userEdit,
-  birthdayCake,
-  cameraChange,
-  peopleIcon,
-  baselineAddShoppingCart,
-  cardText,
-  editIcon,
-  trashOutline,
-  checkCircle,
-  circleIcon,
-  confirmIcon,
-  enterIcon,
+  planner, // Menu
+  shoppingCart, // Menu
+  chatBubbleLine, // Menu(DEP)
+  familyManWomanGirlBoy, // Menu
+  todoList, // Menu
+  settingsIcon, // Menu
+  baselineEvent, // ? ? ? 
+  menuGridO, // Calendar Menu Icon
+  arrowRightAlt2, // Calendar
+  arrowLeftAlt2, // Calendar
+  plusLine, // Calendar
+  bxCalendarCheck, // Calendar
+  bxCalendarX, // Calendar
+  outlineAccessTime, // ? ? ? 
+  emailLine, // Login/Signup
+  lockPasswordLine, // Login/Signup
+  batteryFull, // PhoneBar
+  signalIcon, // PhoneBar
+  wifiIcon, // PhoneBar
+  arrowBackUp, // Router back
+  keyIcon, // LoginLocal
+  usergroupAddOutlined, // LoginLocal
+  userOutlined, // Configure
+  genderMale, // Configure
+  genderFemale, // Configure
+  childIcon, // Configure
+  adultIcon, // Configure
+  calendarBlank, //Calendar
+  calendarBlankMultiple, //Calendar
+  userEdit, // Edit user
+  birthdayCake, // Configure
+  cameraChange, // Configure
+  peopleIcon, // ? ? ? 
+  baselineAddShoppingCart, // DEP? 
+  cardText, // ? ?
+  editIcon, // Edit List
+  trashOutline,  // Edit List
+  checkCircle, // ? ? ?
+  circleIcon, // Dep ? 
+  confirmIcon, // Dep ? 
+  enterIcon,  // Dep ?
+  doubleArrowRight, // LIST-VIEW
+  closeCircleOutlined, // LIST-DETAILS
+  checkCircleOutlined, // LIST-DETAILS
+  radioButtonOn, // bottom bar
+  bxLeftArrow, // bottom bar
+  bxListPlus, // add new shopping list
 };
+

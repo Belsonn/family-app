@@ -318,6 +318,36 @@
 .width-10 {
   width: 10%;
 }
+.height-100 {
+  height: 100%;
+}
+.height-90 {
+  height: 90%;
+}
+.height-80 {
+  height: 80%;
+}
+.height-70 {
+  height: 70%;
+}
+.height-60 {
+  height: 60%;
+}
+.height-50 {
+  height: 50%;
+}
+.height-40 {
+  height: 40%;
+}
+.height-30 {
+  height: 30%;
+}
+.height-20 {
+  height: 20%;
+}
+.height-10 {
+  height: 10%;
+}
 
 
 
@@ -340,4 +370,19 @@
 }
 .font-weight-700{
   font-weight: 700;
+}
+
+@media(max-width: 500px){
+  .mt-m-05rem{
+    margin-top: 0.5rem;
+  }
+  .mt-m-1rem{
+    margin-top: 1rem;
+  }
+  .mt-m-2rem{
+    margin-top: 2rem;
+  }
+  .mt-m-3rem{
+    margin-top: 3rem;
+  }
 }

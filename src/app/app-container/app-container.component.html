@@ -1,12 +1,32 @@
 <div class="background">
-    <div class="spacer">
-        <div class="container">
-            <ng-scrollbar [disabled]="isMobile" class="scrollbar">
-                <div class="phonebar">
-                    <app-phone-bar></app-phone-bar>
-                </div>
-                <router-outlet></router-outlet>
-            </ng-scrollbar>
+  <div class="spacer">
+    <div class="container">
+      <ng-scrollbar [disabled]="isMobile" class="scrollbar">
+        <div *ngIf="!isMobile"  class="phonebar">
+          <app-phone-bar></app-phone-bar>
         </div>
+        <div *ngIf="isMobile" style="opacity: 0;" class="mt-05rem"></div>
+        <router-outlet></router-outlet>
+        <div *ngIf="!isMobile" style="opacity: 0" class="mt-4rem">Scrollbar Unlocker</div>
+      </ng-scrollbar>
+      <div *ngIf="!isMobile" class="footer">
+        <div class="wrapper-flex-center height-100">
+            <div class="flex flex-space-between width-40">
+                <div mat-ripple [routerLink]="['', 'app', 'menu']" routerLinkActive="router-link-active"  class="wrapper-flex-center border-radius-10">
+                    <ic-icon
+                    class="font-size-16rem p-05rem white"
+                    icon="radioButtonOn"
+                  ></ic-icon>
+                </div>
+                <div (click)="onRouteBack()" mat-ripple class="wrapper-flex-center border-radius-10">
+                    <ic-icon
+                    class="font-size-16rem p-05rem white"
+                    icon="bxLeftArrow"
+                  ></ic-icon>
+                </div>
+            </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
