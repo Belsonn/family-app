@@ -17,8 +17,7 @@
   </div>
   <div class="wrapper-flex-center mb-1rem">
     <div
-      [routerLink]="['', 'app', 'shopping', 'add']"
-      queryParamsHandling="preserve"
+      (click)="onCreateClick()"
       mat-ripple
       class="btn border-radius-20 mtb-1rem violet flex"
     >
@@ -28,6 +27,9 @@
       ></ic-icon>
       <div class="font-size-12rem">Create new</div>
     </div>
+  </div>
+  <div *ngIf="showInfo" class="error mtb-1rem">
+    This list is completed and you cannot make any changes.
   </div>
   <div *ngIf="list && list.list.length > 0" class="mb-2rem">
     <div [@moveOutIn] *ngFor="let item of list.list; let i = index">
@@ -42,7 +44,7 @@
             <div class="custom-flex-2">
               <div class="width-80-m mlr-1rem">
                 <div
-                  [ngClass]="{ 'line-through': item.completedAt }"
+                  [ngClass]="{ 'line-through1': item.completedAt }"
                   class="box__title width-90 wrapper-flex-center-med"
                 >
                   {{ item.quantity }} x {{ item.name }}
@@ -52,22 +54,26 @@
                 <div
                   *ngIf="!item.completedAt"
                   mat-ripple
-                  class="wrapper-flex-center width-100 btn bttn-icon bttn-icon--red"
+                  [matRippleCentered]="true"
+                  [matRippleRadius]="20"
+                  class="wrapper-flex-center width-100 bttn-icon bttn-icon--red"
                   (click)="onCheck(i); $event.stopPropagation()"
                 >
                   <ic-icon
-                    class="font-size-15rem p-1rem"
+                    class="font-size-15rem p-d-1rem p-m-05rem"
                     icon="closeCircleOutlined"
                   ></ic-icon>
                 </div>
                 <div
                   *ngIf="item.completedAt"
                   mat-ripple
+                  [matRippleCentered]="true"
+                  [matRippleRadius]="20"
                   class="wrapper-flex-center width-100 btn bttn-icon bttn-icon--green p-1rem"
                   (click)="onCheck(i); $event.stopPropagation()"
                 >
                   <ic-icon
-                    class="font-size-15rem p-1rem"
+                    class="font-size-15rem p-d-1rem p-m-05rem"
                     icon="checkCircleOutlined"
                   ></ic-icon>
                 </div>
@@ -79,7 +85,7 @@
               class="box__clicked-content mt-1rem"
             >
               <div class="flex flex-column">
-                <div class="box__clicked-content--details">
+                <div class="box__clicked-content--details ml-d-1rem">
                   <span *ngIf="item.details">
                     {{ item.details }}
                   </span>
@@ -103,7 +109,7 @@
                         mat-ripple
                         [matRippleCentered]="true"
                         [matRippleRadius]="20"
-                        class="btn bttn-icon bttn-icon--violet mr-1rem rotate"
+                        class="btn bttn-icon bttn-icon--light-blue mr-1rem rotate"
                       >
                         <ic-icon class="icon p-1rem" icon="editIcon"></ic-icon>
                       </div>

@@ -55,6 +55,7 @@ import { ShoppingListAddComponent } from './shopping-list/shopping-list-add/shop
 import { CustomLoadingComponent } from './custom-loading/custom-loading.component';
 import { ShoppingListViewComponent } from './shopping-list/shopping-list-view/shopping-list-view.component';
 import { ConfirmDeleteModalComponent } from './common/confirm-delete-modal/confirm-delete-modal.component';
+import { CompleteConfirmModalComponent } from './shopping-list/complete-confirm-modal/complete-confirm-modal.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { ConfirmDeleteModalComponent } from './common/confirm-delete-modal/confi
     CustomLoadingComponent,
     ShoppingListViewComponent,
     ConfirmDeleteModalComponent,
+    CompleteConfirmModalComponent,
   ],
   imports: [
     HttpClientModule,

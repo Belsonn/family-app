@@ -35,7 +35,6 @@
     // animation: shoppingListItem 2s ease-in;
     &--details {
       text-align: left;
-      margin-left: 1rem;
       // animation: textInLeft2 1s ease-in;
     }
     &--buttons {
@@ -84,6 +83,17 @@
       position: absolute;
       width: 40px;
       background: $green;
+      border-radius: 50%;
+      content: "";
+      padding-bottom: 40px;
+      z-index: -1;
+    }
+  }
+  &--light-blue{
+    &::before{
+      position: absolute;
+      width: 40px;
+      background: $light-blue-1;
       border-radius: 50%;
       content: "";
       padding-bottom: 40px;
@@ -173,5 +183,10 @@
   }
   .ml-1rem-m{
     margin-left: 1rem;
+  }
+  .box__clicked-content--details{
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

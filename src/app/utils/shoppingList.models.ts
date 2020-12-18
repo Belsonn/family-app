@@ -29,5 +29,6 @@ export interface Grocery {
     name: string;
     list: Grocery[];
     createdBy: FamilyUser;
+    completedAt: Date;
   }
   

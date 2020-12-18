@@ -46,6 +46,9 @@
 .mr-4rem {
   margin-right: 4rem;
 }
+.mb-05rem {
+  margin-bottom: 0.5rem;
+}
 .mb-1rem {
   margin-bottom: 1rem;
 }
@@ -232,6 +235,21 @@
 .p-4rem {
   padding: 4rem;
 }
+.p-d-05rem {
+  padding: 0.5rem;
+}
+.p-d-1rem {
+  padding: 1rem;
+}
+.p-d-2rem {
+  padding: 2rem;
+}
+.p-d-3rem {
+  padding: 3rem;
+}
+.p-d-4rem {
+  padding: 4rem;
+}
 
 .font-size-11rem {
   font-size: 1.1rem;
@@ -314,6 +332,9 @@
 }
 .width-20 {
   width: 20%;
+}
+.width-15 {
+  width: 15%;
 }
 .width-10 {
   width: 10%;
@@ -567,6 +588,38 @@
   }
   .mb-d-4rem{
     margin-bottom: 0
+  }
+
+  .p-d-05rem {
+    padding: 0;
+  }
+  .p-d-1rem {
+    padding: 0;
+  }
+  .p-d-2rem {
+    padding: 0;
+  }
+  .p-d-3rem {
+    padding: 0;
+  }
+  .p-d-4rem {
+    padding: 0;
+  }
+
+  .p-m-05rem {
+    padding: 0.5rem;
+  }
+  .p-m-1rem {
+    padding: 1rem;
+  }
+  .p-m-2rem {
+    padding: 2rem;
+  }
+  .p-m-3rem {
+    padding: 3rem;
+  }
+  .p-m-4rem {
+    padding: 4rem;
   }
 
 

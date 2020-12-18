@@ -11,12 +11,19 @@
       icon="arrowBackUp"
     ></ic-icon>
   </div>
-  <div class="title">Add product</div>
+  <div *ngIf="mode != 'edit'" class="title">Add product</div>
+  <div *ngIf="mode == 'edit'" class="title">Add product</div>
   <form class="form" [formGroup]="addFormGroup">
     <div class="wrapper-flex-center flex-column">
       <div class="custom-flex width-100">
         <div class="wrapper-flex-center width-30 mt-m-1rem">
-          <div class="box-quantity custom-flex">
+          <div
+            [ngClass]="{
+              'input-invalid':
+                buttonTouched && addFormGroup.controls.quantity.invalid
+            }"
+            class="box-quantity custom-flex transition"
+          >
             <div class="flex space-between">
               <div
                 (click)="onMarkClick('minus')"
@@ -28,9 +35,13 @@
                 -
               </div>
               <input
+                [ngClass]="{
+                  'input-invalid':
+                    buttonTouched && addFormGroup.controls.quantity.invalid
+                }"
                 type="number"
                 formControlName="quantity"
-                class="custom-input"
+                class="custom-input transition"
                 (change)="checkValid()"
               />
               <div
@@ -78,8 +89,8 @@
         type="submit"
         class="btn bttn-primary bttn-clickable bttn-gradient width-70 ptb-05rem"
       >
-        <span *ngIf="this.mode !== 'edit'">Add to list</span>
-        <span *ngIf="this.mode == 'edit'">Edit</span>
+        <span *ngIf="mode !== 'edit'">Add to list</span>
+        <span *ngIf="mode == 'edit'">Edit</span>
       </button>
     </div>
   </form>

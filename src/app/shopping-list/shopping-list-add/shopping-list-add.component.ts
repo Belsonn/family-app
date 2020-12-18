@@ -37,7 +37,7 @@ export class ShoppingListAddComponent implements OnInit {
     this.addFormGroup.addControl('details', new FormControl(''));
     this.addFormGroup.addControl(
       'quantity',
-      new FormControl(0, [Validators.required, Validators.min(1)])
+      new FormControl(1, [Validators.required, Validators.min(1)])
     );
     this.route.queryParams.subscribe((params) => {
       if (params.id) {
@@ -65,14 +65,14 @@ export class ShoppingListAddComponent implements OnInit {
           .get('quantity')
           .patchValue(this.addFormGroup.controls.quantity.value - 1);
         this.checkValid();
-      }, 100);
+      }, 200);
     }
     if (mark == 'plus') {
       this.timeoutHandler = setInterval(() => {
         this.addFormGroup
           .get('quantity')
           .patchValue(this.addFormGroup.controls.quantity.value + 1);
-      }, 100);
+      }, 200);
     }
   }
 
@@ -100,7 +100,7 @@ export class ShoppingListAddComponent implements OnInit {
 
   onAdd() {
     if (this.addFormGroup.invalid) {
-      //  this.buttonTouched = true;
+       this.buttonTouched = true;
       return;
     }
     this.isLoading = true;
@@ -133,6 +133,7 @@ export class ShoppingListAddComponent implements OnInit {
   }
 
   checkValid() {
+    this.buttonTouched = true;
     let value = this.addFormGroup.controls.quantity.value;
     if (value < 0) {
       value = 0;

@@ -14,6 +14,16 @@ $linear-gradient2-90-1: linear-gradient(
   #8E76D1 100%
   
 );
+$linear-gradient3-90-1: linear-gradient(
+  90deg,
+  $red-1 0%,
+  $red-1 15%,
+  $green 15%,
+  $green 85%,
+  $violet-1 85%,
+  $violet-1 100%
+
+);
 
 $linear-gradient-90-05: linear-gradient(
   90deg,

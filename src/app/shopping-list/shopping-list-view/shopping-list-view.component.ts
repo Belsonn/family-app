@@ -1,3 +1,4 @@
+import { CompleteConfirmModalComponent } from './../complete-confirm-modal/complete-confirm-modal.component';
 import { ConfirmDeleteModalComponent } from './../../common/confirm-delete-modal/confirm-delete-modal.component';
 import { Router } from '@angular/router';
 import { ShoppingService } from './../shopping.service';
@@ -134,6 +135,7 @@ export class ShoppingListViewComponent implements OnInit {
         name: '',
         list: [],
         createdBy: this.familyService.familyUser,
+        completedAt: null,
       };
       this.createNew = false;
       this.type = 'new';
@@ -163,12 +165,21 @@ export class ShoppingListViewComponent implements OnInit {
     return `${completed}/${this.shoppingLists[index].list.length}`;
   }
 
+  isAllComplete(index) {
+    let complete = true;
+    this.shoppingLists[index].list.forEach((el) => {
+      if (el.completedAt == null) {
+        complete = false;
+      }
+    });
+    return complete;
+  }
+
   onDeleteList(i) {
     this.isLoading = true;
     if (!this.shoppingLists[i]._id) {
       this.shoppingLists.shift();
-      this.editMode = null,
-      this.isLoading = false;
+      (this.editMode = null), (this.isLoading = false);
     } else {
       this.shoppingService.deleteList(this.shoppingLists[i]._id).subscribe(
         (res) => {
@@ -180,5 +191,26 @@ export class ShoppingListViewComponent implements OnInit {
         }
       );
     }
+  }
+
+  onCompleteClick(index) {
+    const dialogRef = this.dialog.open(CompleteConfirmModalComponent, {
+      autoFocus: false,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.onComplete(index);
+      }
+    });
+  }
+
+  onComplete(index) {
+    this.isLoading = true;
+    this.shoppingService
+      .editList(this.shoppingLists[index]._id, { completedAt: new Date() })
+      .subscribe((res) => {
+        this.shoppingLists[index] = res.data.list;
+        this.isLoading = false;
+      });
   }
 }

@@ -60,6 +60,8 @@ import { ConfirmDeleteModalComponent } from '../common/confirm-delete-modal/conf
 export class ShoppingListComponent implements OnInit {
   isLoading = false;
   clicked: number;
+  disabled: boolean = false;
+  showInfo: boolean = false;
 
   list: ShoppingList;
 
@@ -94,6 +96,10 @@ export class ShoppingListComponent implements OnInit {
         this.shoppingService.getList(params.id).subscribe(
           (res) => {
             this.list = res.data.list;
+            if(this.list.completedAt != null){
+              this.disabled = true;
+              this.showInfo = true;
+            }
             this.isLoading = false;
           },
           (err) => {
@@ -104,15 +110,20 @@ export class ShoppingListComponent implements OnInit {
         this.router.navigate(['', 'app', 'shopping']);
       }
     });
-    // if (this.shoppingService.listClicked) {
-    //   this.list = this.shoppingService.listClicked;
-    // } else {
-    //   this.router.navigate(['', 'app', 'shopping']);
-    // }
+  }
+
+  onCreateClick(){
+    if(this.disabled){
+      this.showInfo = true;
+      return;
+    }
+    this.router.navigate(['', 'app', 'shopping', 'list', 'add'], {queryParamsHandling: 'preserve'});
   }
 
   onCheck(index) {
-    // this.clicked = null
+    if(this.disabled){
+      return;
+    }
     if (this.list.list[index].completedAt) {
       this.list.list[index].completedAt = null;
     } else {
@@ -126,6 +137,9 @@ export class ShoppingListComponent implements OnInit {
   }
 
   onEdit(index) {
+    if(this.disabled){
+      return;
+    }
     this.shoppingService.mode = 'edit';
     this.shoppingService.listToEdit = this.list;
     this.shoppingService.itemToEditIndex = index;
@@ -143,6 +157,9 @@ export class ShoppingListComponent implements OnInit {
   }
 
   onDeleteClick(index) {
+    if(this.disabled){
+      return;
+    }
     const dialogRef = this.dialog.open(ConfirmDeleteModalComponent, {
       autoFocus: false,
     });
