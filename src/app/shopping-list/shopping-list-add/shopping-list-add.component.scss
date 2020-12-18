@@ -1,28 +1,36 @@
 @import "~src/scss/main.scss";
 
+.box-quantity {
+  box-shadow: $box-shadow-primary;
+  background-color: $background-gray;
+  border-radius: 20px;
+
+  &--button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    padding: 1rem;
+    border-radius: 20px;
+
+    // background-color: red;
+  }
+}
+
 .custom-input {
-  // border: 2px $background-gray transparent;
-  width: 100px;
-  height: 100px;
-  // padding: 1rem;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   border-radius: 10px;
-  font-size: 1.7rem;
+  font-size: 1.3rem;
   justify-content: center;
   text-align: center;
-  box-shadow: $box-shadow-primary;
-  color: white;
-  background-color: $violet-1-light;
-  
+  border: none;
+  background: $background-gray;
 }
-
-
-// .btn{
-//   min-height: 20px;
-// }
-
-.transition{
+.transition {
   transition: all 0.7s;
 }
 
@@ -37,6 +45,11 @@
   // box-shadow: none;
   background-color: $red-1;
 }
+.custom-flex{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
 span {
   white-space: pre;
@@ -45,12 +58,37 @@ span {
   margin-top: 1rem;
 }
 
+.x{
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.custom-width{
+  width: 80%
+}
+.form-field-width{
+  width: 60%;
+}
+
 :host ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
   background: $linear-gradient-90-1;
 }
 
-@media(max-width:500px){
-  .custom-padding{
+@media (max-width: 500px) {
+  .custom-padding {
     padding: 0 1rem;
+  }
+  .custom-flex{
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+  .mt-m-1rem{
+    margin-top: 1rem;
+  }
+  .custom-width{
+    width: 100%;
+  }
+  .form-field-width{
+    width: 100%;
   }
 }

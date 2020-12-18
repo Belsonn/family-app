@@ -1,10 +1,21 @@
 @import "~src/scss/main.scss";
 
+.title{
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
 .box {
   width: 80%;
   box-shadow: $box-shadow-secondary;
+  // background-color: $violet-1-light;
+  background:$blue-2;
+  // background: $linear-gradient2-90-1;
+  color: white;
   // border-bottom: 2px solid $text-gray;
   padding: 0.5rem 0.5rem !important;
+
   border-radius: 20px;
 
   &__title {
@@ -24,6 +35,7 @@
     // animation: shoppingListItem 2s ease-in;
     &--details {
       text-align: left;
+      margin-left: 1rem;
       // animation: textInLeft2 1s ease-in;
     }
     &--buttons {
@@ -67,17 +79,55 @@
       z-index: -1;
     }
   }
+  &--green{
+    &::before{
+      position: absolute;
+      width: 40px;
+      background: $green;
+      border-radius: 50%;
+      content: "";
+      padding-bottom: 40px;
+      z-index: -1;
+    }
+  }
+}
+
+.custom-flex{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.custom-flex-2{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.width-80-m{
+  width: 80%;
+}
+
+.width-20-m{
+  width: 20%;
+}
+
+
+.custom-btn{
+  background: $pink-1;
+  color: white;
+}
+
+.btn{
+  padding: 0.3rem 0.75rem;
 }
 
 .rotate {
   animation: buttonRotate 1s ease-in;
 }
 
-.btn {
-  padding: 0.7rem;
-}
 
-.circle{
+// DEP
+.circle {
   transition: all 1s;
 }
 
@@ -87,7 +137,41 @@
 .circle-green {
   color: $green;
 }
+// .custom-background {
+//   background-color: $violet-1-light;
+//   color: white;
+// }
 
-.line-through{
-    text-decoration: line-through;
+.line-through {
+  text-decoration: line-through;
+}
+
+:host ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
+  background: $linear-gradient-90-1;
+}
+
+@media(max-width: 420px){
+  .custom-flex{
+    justify-content: center;
+    flex-direction: column-reverse;
+  }
+  .custom-flex-2{
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .width-80-m{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .width-20-m{
+    width: 100%;
+    margin-top: 0.7rem;
+  }
+  .ml-1rem-m{
+    margin-left: 1rem;
+  }
 }

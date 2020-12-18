@@ -22,7 +22,6 @@ export class FamilyService {
   familyUser: FamilyUser;
 
   scrollSub = new Subject<SmoothScrollToOptions>();
-  savedRoute;
 
   constructor(private http: HttpClient, private router: Router) {}
 

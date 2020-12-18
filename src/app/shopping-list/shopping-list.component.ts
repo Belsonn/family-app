@@ -1,9 +1,14 @@
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ShoppingService } from './shopping.service';
 import { FamilyService } from './../family.service';
-import { Component, OnInit } from '@angular/core';
-import { Grocery } from '../utils/family.models';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ShoppingList } from '../utils/shoppingList.models';
+import { NgScrollbar } from 'ngx-scrollbar';
+import { SmoothScroll } from 'ngx-scrollbar/smooth-scroll';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDeleteModalComponent } from '../common/confirm-delete-modal/confirm-delete-modal.component';
 
 @Component({
   selector: 'app-shopping-list',
@@ -56,32 +61,62 @@ export class ShoppingListComponent implements OnInit {
   isLoading = false;
   clicked: number;
 
-  groceries: Grocery[] = [];
+  list: ShoppingList;
 
-  constructor(private familyService: FamilyService, private shoppingService: ShoppingService, private router : Router) {}
+  addFormGroup: FormGroup;
+
+  constructor(
+    private familyService: FamilyService,
+    private shoppingService: ShoppingService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private det: ChangeDetectorRef,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
+    this.addFormGroup = new FormGroup({});
+    this.addFormGroup.addControl(
+      'name',
+      new FormControl('', [Validators.required])
+    );
+    this.addFormGroup.addControl('details', new FormControl(''));
+    this.addFormGroup.addControl(
+      'quantity',
+      new FormControl(0, [Validators.required, Validators.min(1)])
+    );
+
     this.shoppingService.mode = null;
     this.shoppingService.itemToEditIndex = null;
-    this.groceries = this.familyService.family.groceries;
-  }
-
-  onTest() {
-    this.groceries.forEach((el) => {
-      el.completedAt = new Date();
+    this.route.queryParams.subscribe((params) => {
+      if (params.id) {
+        this.shoppingService.getList(params.id).subscribe(
+          (res) => {
+            this.list = res.data.list;
+            this.isLoading = false;
+          },
+          (err) => {
+            this.router.navigate(['', 'app', 'shopping']);
+          }
+        );
+      } else {
+        this.router.navigate(['', 'app', 'shopping']);
+      }
     });
+    // if (this.shoppingService.listClicked) {
+    //   this.list = this.shoppingService.listClicked;
+    // } else {
+    //   this.router.navigate(['', 'app', 'shopping']);
+    // }
   }
 
   onCheck(index) {
-    // this.groceries[index].completedAt
-    //   ? (this.groceries[index].completedAt = null)
-    //   : (this.groceries[index].completedAt = new Date());
-    // this.sortList();
-    this.clicked = null
-    if(this.groceries[index].completedAt){
-      this.groceries[index].completedAt = null
+    // this.clicked = null
+    if (this.list.list[index].completedAt) {
+      this.list.list[index].completedAt = null;
     } else {
-      this.groceries[index].completedAt = new Date();
+      this.list.list[index].completedAt = new Date();
     }
     this.onSynchro();
   }
@@ -90,45 +125,58 @@ export class ShoppingListComponent implements OnInit {
     this.clicked == index ? (this.clicked = null) : (this.clicked = index);
   }
 
-  onDrop(dropResult) {
-    // update item list according to the @dropResult
-    console.log(dropResult);
-  }
-
-  onEdit(index){
-    this.shoppingService.mode = "edit";
-    this.shoppingService.groceriesToEdit = this.groceries;
+  onEdit(index) {
+    this.shoppingService.mode = 'edit';
+    this.shoppingService.listToEdit = this.list;
     this.shoppingService.itemToEditIndex = index;
-    this.router.navigate(['', 'app', 'shopping', 'add']);
+    this.router.navigate(['', 'app', 'shopping', 'add'], {
+      queryParamsHandling: 'preserve',
+    });
   }
 
-  onSynchro(){
+  onSynchro() {
     this.isLoading = true;
-    this.shoppingService.groceriesToEdit = this.groceries;
-    this.shoppingService.editGrocery().subscribe(res => {
-      this.familyService.family.groceries = res.data.groceries;
+    this.shoppingService.editList(this.list._id, this.list).subscribe((res) => {
+      this.list = res.data.list;
       this.isLoading = false;
-    }) 
+    });
   }
 
-  // sortList() {
-  //   let incomplete = [];
-  //   let complete = [];
-  //   this.groceries.forEach((el) => {
-  //     el.completedAt ? complete.push(el) : incomplete.push(el);
-  //   });
+  onDeleteClick(index) {
+    const dialogRef = this.dialog.open(ConfirmDeleteModalComponent, {
+      autoFocus: false,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.onDeleteItem(index);
+      }
+    });
+  }
 
-  //   this.groceries = [...incomplete, ...complete];
-  // }
-
-  // moveItemToEnd(index){
-  //   let item = this.groceries[index];
-  //   this.groceries.splice(index,1);
-  //   this.groceries.push(item);
-  // } 
-  // moveItemToStart(index){
-  //   let item = this.groceries[index];
-  //   this.groceries.splice(index, 1);
-  //   this.groceries.unshift(item);
-  // }
+  onDeleteItem(index) {
+    this.isLoading = true;
+    this.list.list.splice(index, 1);
+    this.onSynchro();
+  }
 }
+
+// sortList() {
+//   let incomplete = [];
+//   let complete = [];
+//   this.groceries.forEach((el) => {
+//     el.completedAt ? complete.push(el) : incomplete.push(el);
+//   });
+
+//   this.groceries = [...incomplete, ...complete];
+// }
+
+// moveItemToEnd(index){
+//   let item = this.groceries[index];
+//   this.groceries.splice(index,1);
+//   this.groceries.push(item);
+// }
+// moveItemToStart(index){
+//   let item = this.groceries[index];
+//   this.groceries.splice(index, 1);
+//   this.groceries.unshift(item);
+// }

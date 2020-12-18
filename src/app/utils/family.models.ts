@@ -1,4 +1,5 @@
 import { CalendarEvent } from './CalendarEvent.model';
+import { ShoppingList } from './shoppingList.models';
 export interface FamilyUser {
   _id: string;
   name: string;
@@ -16,7 +17,7 @@ export interface Family {
   name: string;
   createdBy: string;
   createdAt: Date;
-  groceries: Grocery[]
+  groceries: ShoppingList[];
   inviteToken: string;
   events: CalendarEvent[];
 }
@@ -56,20 +57,3 @@ export interface FamilyUserResponse {
   };
 }
 
-export interface Grocery {
-  item: {
-    name: string;
-    quantity: number;
-    details: string;
-  };
-  createdBy: FamilyUser;
-  createdAt: Date;
-  completedAt: Date;
-}
-
-export interface GroceryResponse{
-  status: string,
-  data: {
-    groceries: Grocery[]
-  }
-}

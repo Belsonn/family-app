@@ -1,12 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import {
-  FamilyResponse,
-  Grocery,
-  ShoppingList,
-  ShoppingListResponse,
-} from './../utils/family.models';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { ShoppingList, ShoppingListsResponse, ShoppingListResponse } from '../utils/shoppingList.models';
 
 @Injectable({ providedIn: 'root' })
 export class ShoppingService {
@@ -14,36 +9,44 @@ export class ShoppingService {
 
   constructor(private http: HttpClient) {}
 
-  listClicked: ShoppingList;
-
   listToEdit: ShoppingList;
   itemToEditIndex: number;
 
-  addGrocery(grocery) {
-    return this.http.post<FamilyResponse>(
-      `${environment.apiURL}family/addGrocery`,
-      grocery
+  getAllLists(){
+    return this.http.get<ShoppingListsResponse>(
+      `${environment.apiURL}shoppingLists/`)
+  }
+
+
+  getList(id){
+    return this.http.get<ShoppingListResponse>(
+      `${environment.apiURL}shoppingLists/list/${id}`)
+  }
+
+
+  addItemToList(id, item) {
+    return this.http.post<ShoppingListResponse>(
+      `${environment.apiURL}shoppingLists/add/${id}`, item
     );
   }
 
-  editGrocery() {
+  editList(id, body) {
     return this.http.patch<ShoppingListResponse>(
-      `${environment.apiURL}family/editList`,
-      this.listToEdit
+      `${environment.apiURL}shoppingLists/edit/${id}`,
+      body
     );
   }
 
   createList() {
-    return this.http.post<ShoppingListResponse>(
-      `${environment.apiURL}family/createList`,
+    return this.http.post<ShoppingListsResponse>(
+      `${environment.apiURL}shoppingLists/create`,
       this.listToEdit
     );
   }
 
   deleteList(id) {
-    return this.http.patch<ShoppingListResponse>(
-      `${environment.apiURL}family/deleteList`,
-      { id: id }
+    return this.http.delete<ShoppingListsResponse>(
+      `${environment.apiURL}shoppingLists/delete/${id}`
     );
   }
 }

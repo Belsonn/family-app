@@ -82,7 +82,7 @@ export const appIcons = {
   birthdayCake, // Configure
   cameraChange, // Configure
   peopleIcon, // ? ? ? 
-  baselineAddShoppingCart, // DEP? 
+  baselineAddShoppingCart, // Add item
   cardText, // ? ?
   editIcon, // Edit List
   trashOutline,  // Edit List
