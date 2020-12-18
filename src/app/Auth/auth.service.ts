@@ -19,6 +19,9 @@ export class AuthService {
 
   private authStatus = new Subject<boolean>();
 
+  savedRoute;
+  savedParams;
+
   constructor(
     private http: HttpClient,
     private router: Router,

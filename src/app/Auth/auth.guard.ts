@@ -16,13 +16,14 @@ export class AuthGuard implements CanActivate {
     const isAuth = this.authService.getIsAuthenticated();
     if (!isAuth) {
       this.router.navigate(['/']);
-      if(!this.familyService.savedRoute){
-        this.familyService.savedRoute = route.routeConfig.path.split("/");
+      if(!this.authService.savedRoute){
+        this.authService.savedRoute = route.routeConfig.path.split("/");
+        this.authService.savedParams = route.queryParams;
       }
     } else {
-      if(this.familyService.savedRoute){
-        this.router.navigate(['', 'app', ...this.familyService.savedRoute])
-        this.familyService.savedRoute = null;
+      if(this.authService.savedRoute){
+        this.router.navigate(['', 'app', ...this.authService.savedRoute], {queryParams: this.authService.savedParams})
+        this.authService.savedRoute = null;
       }
     }
     return isAuth;
