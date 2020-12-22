@@ -1,16 +1,46 @@
+import { Grocery } from './../../utils/shoppingList.models';
 import { ShoppingService } from './../shopping.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FamilyService } from './../../family.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { trigger, transition, style, animate, query, stagger, animateChild } from '@angular/animations';
 
 @Component({
   selector: 'app-shopping-list-add',
   templateUrl: './shopping-list-add.component.html',
   styleUrls: ['./shopping-list-add.component.scss'],
+  animations: [
+    trigger('items', [
+      transition(':enter', [
+        style({ transform: 'scale(0.5)', opacity: 0 }), // initial
+        animate(
+          '1s cubic-bezier(.8, -0.6, 0.2, 1.5)',
+          style({ transform: 'scale(1)', opacity: 1 })
+        ), // final
+      ]),
+      transition(':leave', [
+        style({ transform: 'scale(1)', opacity: 1, height: '*' }),
+        animate(
+          '1s cubic-bezier(.8, -0.6, 0.2, 1.5)',
+          style({
+            transform: 'scale(0.5)',
+            opacity: 0,
+            height: '0px',
+            margin: '0px',
+          })
+        ),
+      ]),
+    ]),
+    trigger('list', [
+      transition(':enter', [query('@items', stagger(150, animateChild()))]),
+    ]),
+  ],
 })
 export class ShoppingListAddComponent implements OnInit {
   isLoading = false;
+  products: Grocery[] = [];
+  productsToShow: Grocery[] = [];
 
   constructor(
     private familyService: FamilyService,
@@ -18,7 +48,8 @@ export class ShoppingListAddComponent implements OnInit {
     private shoppingService: ShoppingService,
     private route: ActivatedRoute
   ) {}
-
+  
+  showRecently: boolean = false;
   buttonTouched = false;
   timeoutHandler;
   mode: string;
@@ -45,7 +76,6 @@ export class ShoppingListAddComponent implements OnInit {
           (res) => {
             this.id = params.id;
             this.checkMode();
-            this.isLoading = false;
           },
           (err) => {
             this.router.navigate(['', 'app', 'shopping']);
@@ -55,6 +85,36 @@ export class ShoppingListAddComponent implements OnInit {
         this.router.navigate(['', 'app', 'shopping']);
       }
     });
+    this.shoppingService.getAllLists().subscribe((res) => {
+      res.data.lists.forEach((el) => {
+        this.products.push(...el.list);
+      });
+      this.products.sort((a, b) => {
+        return (
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
+      });
+      this.productsToShow = this.products;
+      this.productsToShow.push(...this.products)
+      this.productsToShow.push(...this.products)
+      this.productsToShow.push(...this.products)
+      const howMuch = this.products.length - 10;
+      if(howMuch > 0) {
+        this.productsToShow.splice(9, howMuch)
+      }
+      this.isLoading = false;
+    });
+  }
+
+  showRecentlyClick(){
+    this.showRecently = !this.showRecently;
+  }
+
+  onProductClick(index){ 
+    const product = this.productsToShow[index];
+    this.addFormGroup.get('name').setValue(product.name);
+    this.addFormGroup.get('details').setValue(product.details);
+    this.familyService.scrollSub.next({bottom: 0});
   }
 
   onHold(mark) {
@@ -65,14 +125,14 @@ export class ShoppingListAddComponent implements OnInit {
           .get('quantity')
           .patchValue(this.addFormGroup.controls.quantity.value - 1);
         this.checkValid();
-      }, 200);
+      }, 150);
     }
     if (mark == 'plus') {
       this.timeoutHandler = setInterval(() => {
         this.addFormGroup
           .get('quantity')
           .patchValue(this.addFormGroup.controls.quantity.value + 1);
-      }, 200);
+      }, 150);
     }
   }
 
@@ -100,7 +160,7 @@ export class ShoppingListAddComponent implements OnInit {
 
   onAdd() {
     if (this.addFormGroup.invalid) {
-       this.buttonTouched = true;
+      this.buttonTouched = true;
       return;
     }
     this.isLoading = true;
@@ -117,18 +177,20 @@ export class ShoppingListAddComponent implements OnInit {
         });
       });
     } else {
-        this.item.name = this.addFormGroup.controls.name.value,
-        this.item.quantity = this.addFormGroup.controls.quantity.value,
-        this.item.details = this.addFormGroup.controls.details.value,
-      
-      this.shoppingService.listToEdit.list[
-        this.shoppingService.itemToEditIndex
-      ] = this.item;
-      this.shoppingService.editList(this.id, this.shoppingService.listToEdit).subscribe((res) => {
-        
-        this.router.navigate(['', 'app', 'shopping', 'list'], {queryParamsHandling: 'preserve'});
-        this.isLoading = false;
-      });
+      (this.item.name = this.addFormGroup.controls.name.value),
+        (this.item.quantity = this.addFormGroup.controls.quantity.value),
+        (this.item.details = this.addFormGroup.controls.details.value),
+        (this.shoppingService.listToEdit.list[
+          this.shoppingService.itemToEditIndex
+        ] = this.item);
+      this.shoppingService
+        .editList(this.id, this.shoppingService.listToEdit)
+        .subscribe((res) => {
+          this.router.navigate(['', 'app', 'shopping', 'list'], {
+            queryParamsHandling: 'preserve',
+          });
+          this.isLoading = false;
+        });
     }
   }
 

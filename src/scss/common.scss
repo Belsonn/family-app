@@ -173,9 +173,13 @@
 .flex-space-evenly {
   justify-content: space-evenly;
 }
+.flex-space-around{
+  justify-content: space-around;
+}
 .flex-wrap {
   flex-wrap: wrap;
 }
+
 
 .img-resize80 {
   height: 80px;
@@ -387,13 +391,15 @@
   animation: balloonLoading 2s infinite;
 }
 
+.white{
+  color: white;
+}
 
 .violet-background{ 
   background-color: $violet-1;
 }
 .green-background{ 
   background-color: $green;
-  // background: $linear-gradient3-90-1;
 }
 .light-blue-background{
   background-color: $light-blue-1;
@@ -401,7 +407,9 @@
 
 .red-background{ 
   background-color: $red-1
-  // background: $linear-gradient3-180-1;
+}
+.white-background{
+  background-color: #fff;
 }
 
 @media (max-width: 500px) {

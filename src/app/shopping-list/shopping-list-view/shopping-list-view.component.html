@@ -22,10 +22,11 @@
       Create new
     </div>
   </div>
-  <div class="mb-2rem" *ngIf="shoppingLists.length > 0">
-    <div
-      *ngFor="let list of shoppingLists; let i = index"
+  <div @list class="mb-2rem" *ngIf="shoppingListsActive.length > 0">
+    <div @items
+      *ngFor="let list of shoppingListsActive; let i = index"
       class="wrapper-flex-center"
+      
     >
       <!-- (click)="onListClick(i)" -->
       <div mat-ripple class="box mt-1rem">
@@ -33,7 +34,7 @@
           <div class="flex">
             <div class="width-15 red-background">
               <div
-                (click)="deleteClick(i); $event.stopPropagation()"
+                (click)="deleteClick(list); $event.stopPropagation()"
                 class="width-100 height-100 wrapper-flex-center"
               >
                 <div mat-ripple class="bttn-icon">
@@ -65,6 +66,7 @@
                         #inputName
                         minlength="1"
                         [(ngModel)]="list.name"
+                        (keyup.enter)="exitEditMode()"
                         (click)="$event.stopPropagation()"
                         class="box__title wrapper-flex-center custom-input violet-background"
                       />
@@ -83,7 +85,10 @@
                       Created By: {{ list.createdBy.name }}
                     </div>
                     <div class="text-left width-100 ml-1rem">
-                      Completed: {{ calcCompletedItems(i) }}
+                      At: {{ list.createdAt | date: "dd/MM/yyyy" }}
+                    </div>
+                    <div class="text-left width-100 ml-1rem">
+                      Completed: {{ calcCompletedItems(list) }}
                     </div>
                     <!-- <div class="mr-1rem mt-m-05rem mb-m-05rem mr-m-1rem">
                       <button mat-button class="green-back">Complete</button>
@@ -92,9 +97,9 @@
                 </div>
               </div>
               <div
-                *ngIf="isAllComplete(i) && list.list.length > 0"
+                *ngIf="isAllComplete(list) && list.list.length > 0"
                 class="wrapper-flex-center green-background "
-                (click) = "onCompleteClick(i)"
+                (click) = "onCompleteClick(list)"
               >
               <!-- border-radius-10 mlr-1rem mb-05rem -->
                 <div class="wrapper-flex-center mr-05rem">
@@ -106,15 +111,110 @@
                   >
                     <ic-icon class="icon" icon="confirmIcon"></ic-icon>
                   </div>
-                  <div class="font-size-12rem">
+                  <div *ngIf="list.completedAt == null" class="font-size-12rem white">
                     Complete?
                   </div>
                 </div>
               </div>
             </div>
             <div
-              (click)="onListClick(i); $event.stopPropagation()"
-              class="width-15 violet-background"
+              (click)="onListClick(list); $event.stopPropagation()"
+              class="width-15 light-blue-background"
+            >
+              <div class="wrapper-flex-center width-100 height-100">
+                <div
+                  mat-ripple
+                  [matRippleCentered]="true"
+                  [matRippleRadius]="12"
+                  class="btn bttn-icon"
+                >
+                  <ic-icon class="icon" icon="doubleArrowRight"></ic-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div (click)="showCompleteClick()" mat-ripple class="wrapper-flex-center box-shadow-2 border-radius-20 mlr-2rem ptb-1rem">
+    <div class="font-size-14rem">
+      Show complete
+    </div>
+    <ic-icon class="font-size-14rem ml-1rem mt-05rem" icon="arrowDownAlt2"></ic-icon>
+  </div>
+
+  <!-- COMPLETE  -->
+  <div @list class="mb-2rem" *ngIf="shoppingListsCompleted.length > 0 && showComplete">
+    <div
+      *ngFor="let list of shoppingListsCompleted; let i = index"
+      class="wrapper-flex-center"
+      @items
+    >
+      <!-- (click)="onListClick(i)" -->
+      <div mat-ripple class="box mt-1rem">
+        <div class="flex flex-column">
+          <div class="flex">
+            <div class="width-15 red-background">
+              <div
+                (click)="deleteClick(list); $event.stopPropagation()"
+                class="width-100 height-100 wrapper-flex-center"
+              >
+                <div mat-ripple class="bttn-icon">
+                  <ic-icon class="icon" icon="trashOutline"></ic-icon>
+                </div>
+              </div>
+            </div>
+            <div class="width-70">
+              <div class="flex flex-column p-05rem">
+                  <div
+                    class="box__title mt-05rem wrapper-flex-center width-100"
+                  >
+                    <div
+                      class="wrapper-flex-center text-center"
+                    >
+                      {{ list.name }}
+                    </div>
+                  </div>
+                <div class="flex-space-between-m">
+                  <div
+                    class="flex flex-align-center flex-column box__description mt-15rem"
+                  >
+                    <div class="text-left width-100 ml-1rem">
+                      Created By: {{ list.createdBy.name }}
+                    </div>
+                    <div class="text-left width-100 ml-1rem">
+                      At: {{ list.createdAt | date: "dd/MM/yyyy"  }}
+                    </div>
+                    <div class="text-left width-100 ml-1rem">
+                      Completed: {{ calcCompletedItems(list) }}
+                    </div>
+                    <!-- <div class="mr-1rem mt-m-05rem mb-m-05rem mr-m-1rem">
+                      <button mat-button class="green-back">Complete</button>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+              <div
+                class="wrapper-flex-center green-background "
+                (click) = "onCompleteClick(list)"
+              >
+                <div class="wrapper-flex-center mr-05rem">
+                  <div
+                    class="bttn-icon mtb-05rem"
+                  >
+                    <ic-icon class="icon" icon="confirmIcon"></ic-icon>
+                  </div>
+                  <div *ngIf="list.completedAt != null" class="font-size-12rem white">
+                    List completed.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              (click)="onListClick(list); $event.stopPropagation()"
+              class="width-15 light-blue-background"
             >
               <div class="wrapper-flex-center width-100 height-100">
                 <div

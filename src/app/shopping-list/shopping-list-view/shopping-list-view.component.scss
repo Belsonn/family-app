@@ -1,94 +1,96 @@
 @import "~src/scss/main.scss";
 
 .box {
-    width: 80%;
-    box-shadow: $box-shadow-primary;
-    // border-bottom: 2px solid $text-gray;
+  width: 80%;
+  box-shadow: $box-shadow-secondary;
+  // border-bottom: 2px solid $text-gray;
 
-    border-radius: 20px;
-    background-color: $blue-2;
-    color: white;
-    cursor: pointer;
-  
-    &__title {
-      text-align: left;
-      font-size: 1.4rem;
-      font-weight: 500;
-      transition: all 0.7s;
-    }
-    &__description {
-      font-size: 0.9rem;
-      // color: $text-gray;
-      // animation: textInLeft2 1s ease-in;
-    }
+  border-radius: 20px;
+  color: $violet-1-dark;
+  background-color: white;
+  // background-color: #dee3e0;
+  // background-color: $blue-2;
+  // color: white;
+  cursor: pointer;
+
+  &__title {
+    text-align: left;
+    font-size: 1.8rem;
+    font-weight: 700;
+    transition: all 0.7s;
+    font-family: $font-family-4;
+  }
+  &__description {
+    font-size: 0.9rem;
+    // color: $text-gray;
+    // animation: textInLeft2 1s ease-in;
+  }
 }
 
 .bttn-icon {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.4rem;
-    color: #fff;
-    border: 0 !important;
-    outline: none !important;
-    width: 40px;
-    &--violet {
-      &::before {
-        position: absolute;
-        width: 40px;
-        background: $violet-1;
-        border-radius: 50%;
-        content: "";
-        padding-bottom: 40px;
-        z-index: -1;
-      }
-    }
-    &--red {
-      &::before {
-        position: absolute;
-        width: 40px;
-        background: $red-1;
-        border-radius: 50%;
-        content: "";
-        padding-bottom: 40px;
-        z-index: -1;
-      }
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+  color: #fff;
+  border: 0 !important;
+  outline: none !important;
+  width: 40px;
+  &--violet {
+    &::before {
+      position: absolute;
+      width: 40px;
+      background: $violet-1;
+      border-radius: 50%;
+      content: "";
+      padding-bottom: 40px;
+      z-index: -1;
     }
   }
-
-.custom-flex{
-    justify-content: space-between;
+  &--red {
+    &::before {
+      position: absolute;
+      width: 40px;
+      background: $red-1;
+      border-radius: 50%;
+      content: "";
+      padding-bottom: 40px;
+      z-index: -1;
+    }
+  }
 }
 
-.custom-flex-2{
+.custom-flex {
   justify-content: space-between;
 }
-.custom-input{
-    border: none;
-    text-align: center;
-    color: white;
-    width:100%;
-    margin-left: 0.5rem;
-    border-radius: 10px;
-    transition: all 0.8s;
+
+.custom-flex-2 {
+  justify-content: space-between;
+}
+.custom-input {
+  border: none;
+  text-align: center;
+  font-family: $font-family-3;
+  color: white;
+  width: 100%;
+  margin-left: 0.5rem;
+  border-radius: 10px;
+  transition: all 0.8s;
 }
 
+@media (max-width: 500px) {
+  .flex-space-between-m {
+    display: flex;
+    justify-content: space-between;
+  }
 
-
-@media(max-width:500px){
-    .flex-space-between-m{
-      display: flex;
-      justify-content: space-between;
-    }
-  
-    .custom-flex{
-        flex-direction: column;
-        justify-content: flex-start;
-        margin-right: auto;
-    }
-    .box{
-        width: 90%;
-    }
-
+  .custom-flex {
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-right: auto;
+  }
+  .box {
+    width: 90%;
+  }
 }

@@ -46,7 +46,9 @@ import checkCircleOutlined from '@iconify-icons/ant-design/check-circle-outlined
 import radioButtonOn from '@iconify-icons/ion/radio-button-on';
 import bxLeftArrow from '@iconify-icons/bx/bx-left-arrow';
 import bxListPlus from '@iconify-icons/bx/bx-list-plus';
-
+import arrowDownAlt2 from '@iconify-icons/dashicons/arrow-down-alt2';
+import arrowUpAlt2 from '@iconify-icons/dashicons/arrow-up-alt2';
+import xIcon from '@iconify-icons/bi/x';
 
 export const appIcons = {
   planner, // Menu
@@ -91,10 +93,14 @@ export const appIcons = {
   confirmIcon, // Dep ? 
   enterIcon,  // Dep ?
   doubleArrowRight, // LIST-VIEW
-  closeCircleOutlined, // LIST-DETAILS
-  checkCircleOutlined, // LIST-DETAILS
+  closeCircleOutlined, // LIST-DETAILS ? ? ? DEP
+  checkCircleOutlined, // LIST-DETAILS ? ? ? DEP
   radioButtonOn, // bottom bar
   bxLeftArrow, // bottom bar
   bxListPlus, // add new shopping list
+  arrowDownAlt2, // Shopping
+  arrowUpAlt2, //Shopping 
+  xIcon, // Shoppinh
 };
+
 

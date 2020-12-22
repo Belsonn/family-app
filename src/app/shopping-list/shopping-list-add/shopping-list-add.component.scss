@@ -1,5 +1,10 @@
 @import "~src/scss/main.scss";
 
+.box{
+  cursor: pointer;
+  background-color: white;
+}
+
 .box-quantity {
   box-shadow: $box-shadow-primary;
   background-color: $background-gray;
@@ -31,7 +36,10 @@
   background: $background-gray;
 }
 .transition {
-  transition: all 0.7s;
+  transition: all 0.5s;
+}
+.whitespace{
+  white-space: pre;
 }
 
 .title {

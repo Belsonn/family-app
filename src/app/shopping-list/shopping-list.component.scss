@@ -4,15 +4,19 @@
   font-size: 2rem;
   font-weight: 500;
   letter-spacing: 1px;
+  text-align: center;
 }
 
 .box {
   width: 80%;
   box-shadow: $box-shadow-secondary;
   // background-color: $violet-1-light;
-  background:$blue-2;
+  // background:$blue-2;
   // background: $linear-gradient2-90-1;
-  color: white;
+  // color: white;
+  // background-color: $gray-1;
+  background-color: white;
+  color: $violet-1-dark;
   // border-bottom: 2px solid $text-gray;
   padding: 0.5rem 0.5rem !important;
 

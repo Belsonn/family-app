@@ -2,7 +2,15 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ShoppingService } from './shopping.service';
 import { FamilyService } from './../family.service';
 import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { animate, style, transition, trigger } from '@angular/animations';
+import {
+  animate,
+  animateChild,
+  query,
+  stagger,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ShoppingList } from '../utils/shoppingList.models';
 import { NgScrollbar } from 'ngx-scrollbar';
@@ -15,27 +23,6 @@ import { ConfirmDeleteModalComponent } from '../common/confirm-delete-modal/conf
   templateUrl: './shopping-list.component.html',
   styleUrls: ['./shopping-list.component.scss'],
   animations: [
-    trigger('enterAnimation', [
-      transition(':enter', [
-        style({ transform: 'translateX(100%)', opacity: 0 }),
-        animate('500ms', style({ transform: 'translateX(0)', opacity: 1 })),
-      ]),
-      transition(':leave', [
-        style({ transform: 'translateX(0)', opacity: 1 }),
-        animate('500ms', style({ transform: 'translateX(100%)', opacity: 0 })),
-      ]),
-    ]),
-    trigger('fadeInOut', [
-      transition(':enter', [
-        // :enter is alias to 'void => *'
-        style({ opacity: 0 }),
-        animate(1000, style({ opacity: 1 })),
-      ]),
-      transition(':leave', [
-        // :leave is alias to '* => void'
-        animate(500, style({ opacity: 0 })),
-      ]),
-    ]),
     trigger('moveOutIn', [
       transition(':enter', [
         style({ transform: 'translateX(-100%)', opacity: 0 }),
@@ -54,6 +41,30 @@ import { ConfirmDeleteModalComponent } from '../common/confirm-delete-modal/conf
       transition(':leave', [
         style({ transform: 'translateX(-100%)', opacity: 1 }),
       ]),
+    ]),
+    trigger('items', [
+      transition(':enter', [
+        style({ transform: 'scale(0.5)', opacity: 0 }), // initial
+        animate(
+          '1s cubic-bezier(.8, -0.6, 0.2, 1.5)',
+          style({ transform: 'scale(1)', opacity: 1 })
+        ), // final
+      ]),
+      transition(':leave', [
+        style({ transform: 'scale(1)', opacity: 1, height: '*' }),
+        animate(
+          '1s cubic-bezier(.8, -0.6, 0.2, 1.5)',
+          style({
+            transform: 'scale(0.5)',
+            opacity: 0,
+            height: '0px',
+            margin: '0px',
+          })
+        ),
+      ]),
+    ]),
+    trigger('list', [
+      transition(':enter', [query('@items', stagger(300, animateChild()))]),
     ]),
   ],
 })
@@ -96,7 +107,7 @@ export class ShoppingListComponent implements OnInit {
         this.shoppingService.getList(params.id).subscribe(
           (res) => {
             this.list = res.data.list;
-            if(this.list.completedAt != null){
+            if (this.list.completedAt != null) {
               this.disabled = true;
               this.showInfo = true;
             }
@@ -112,16 +123,18 @@ export class ShoppingListComponent implements OnInit {
     });
   }
 
-  onCreateClick(){
-    if(this.disabled){
+  onCreateClick() {
+    if (this.disabled) {
       this.showInfo = true;
       return;
     }
-    this.router.navigate(['', 'app', 'shopping', 'list', 'add'], {queryParamsHandling: 'preserve'});
+    this.router.navigate(['', 'app', 'shopping', 'add'], {
+      queryParamsHandling: 'preserve',
+    });
   }
 
   onCheck(index) {
-    if(this.disabled){
+    if (this.disabled) {
       return;
     }
     if (this.list.list[index].completedAt) {
@@ -137,7 +150,7 @@ export class ShoppingListComponent implements OnInit {
   }
 
   onEdit(index) {
-    if(this.disabled){
+    if (this.disabled) {
       return;
     }
     this.shoppingService.mode = 'edit';
@@ -157,7 +170,7 @@ export class ShoppingListComponent implements OnInit {
   }
 
   onDeleteClick(index) {
-    if(this.disabled){
+    if (this.disabled) {
       return;
     }
     const dialogRef = this.dialog.open(ConfirmDeleteModalComponent, {
