@@ -12,8 +12,12 @@
     ></ic-icon>
   </div>
   <div class="wrapper-flex-center font-size-17rem">Shopping Lists</div>
+  <!-- <div *ngIf="!isLoading" class="mtb-1rem">
+    <app-small-loading></app-small-loading>
+  </div> -->
   <div class="wrapper-flex-center mtb-1rem">
     <div
+      *ngIf="shoppingListsActive.length > 0"
       (click)="onAddNewList()"
       mat-ripple
       class="btn border-radius-20 violet flex flex-align-center"
@@ -23,13 +27,12 @@
     </div>
   </div>
   <div @list class="mb-2rem" *ngIf="shoppingListsActive.length > 0">
-    <div @items
+    <div
+      @items
       *ngFor="let list of shoppingListsActive; let i = index"
       class="wrapper-flex-center"
-      
     >
-      <!-- (click)="onListClick(i)" -->
-      <div mat-ripple class="box mt-1rem">
+      <div #list mat-ripple class="box mt-1rem">
         <div class="flex flex-column">
           <div class="flex">
             <div class="width-15 red-background">
@@ -44,39 +47,37 @@
             </div>
             <div class="width-70">
               <div class="flex flex-column p-05rem">
+                <div class="box__title mt-05rem wrapper-flex-center width-100">
                   <div
-                    class="box__title mt-05rem wrapper-flex-center width-100"
+                    class="wrapper-flex-center text-center"
+                    *ngIf="!(editMode == i)"
                   >
-                    <div
-                      class="wrapper-flex-center text-center"
-                      *ngIf="!(editMode == i)"
-                    >
-                      {{ list.name }}
-                      <ic-icon
-                        (click)="runEditMode(i); $event.stopPropagation()"
-                        class="ml-05rem"
-                        icon="editIcon"
-                      ></ic-icon>
-                    </div>
-                    <div *ngIf="editMode == i" class="wrapper-flex-center">
-                      <input
-                        [ngClass]="{
-                          'red-background': list.name == ''
-                        }"
-                        #inputName
-                        minlength="1"
-                        [(ngModel)]="list.name"
-                        (keyup.enter)="exitEditMode()"
-                        (click)="$event.stopPropagation()"
-                        class="box__title wrapper-flex-center custom-input violet-background"
-                      />
-                      <ic-icon
-                        (click)="exitEditMode(); $event.stopPropagation()"
-                        class="ml-1rem"
-                        icon="confirmIcon"
-                      ></ic-icon>
-                    </div>
+                    {{ list.name }}
+                    <ic-icon
+                      (click)="runEditMode(i); $event.stopPropagation()"
+                      class="ml-05rem"
+                      icon="editIcon"
+                    ></ic-icon>
                   </div>
+                  <div *ngIf="editMode == i" class="wrapper-flex-center">
+                    <input
+                      [ngClass]="{
+                        'red-background': list.name == ''
+                      }"
+                      #inputName
+                      minlength="1"
+                      [(ngModel)]="list.name"
+                      (keyup.enter)="exitEditMode()"
+                      (click)="$event.stopPropagation()"
+                      class="box__title wrapper-flex-center custom-input violet-background"
+                    />
+                    <ic-icon
+                      (click)="exitEditMode(); $event.stopPropagation()"
+                      class="ml-1rem"
+                      icon="confirmIcon"
+                    ></ic-icon>
+                  </div>
+                </div>
                 <div class="flex-space-between-m">
                   <div
                     class="flex flex-align-center flex-column box__description mt-15rem"
@@ -98,10 +99,10 @@
               </div>
               <div
                 *ngIf="isAllComplete(list) && list.list.length > 0"
-                class="wrapper-flex-center green-background "
-                (click) = "onCompleteClick(list)"
+                class="wrapper-flex-center green-background"
+                (click)="onCompleteClick(list)"
               >
-              <!-- border-radius-10 mlr-1rem mb-05rem -->
+                <!-- border-radius-10 mlr-1rem mb-05rem -->
                 <div class="wrapper-flex-center mr-05rem">
                   <div
                     mat-ripple
@@ -111,7 +112,10 @@
                   >
                     <ic-icon class="icon" icon="confirmIcon"></ic-icon>
                   </div>
-                  <div *ngIf="list.completedAt == null" class="font-size-12rem white">
+                  <div
+                    *ngIf="list.completedAt == null"
+                    class="font-size-12rem white"
+                  >
                     Complete?
                   </div>
                 </div>
@@ -138,15 +142,47 @@
     </div>
   </div>
 
-  <div (click)="showCompleteClick()" mat-ripple class="wrapper-flex-center box-shadow-2 border-radius-20 mlr-2rem ptb-1rem">
-    <div class="font-size-14rem">
-      Show complete
+  <div *ngIf="shoppingListsActive.length == 0">
+    <div class="wrapper-flex-center mt-2rem">
+      <ic-icon
+        class="no-title--icon"
+        icon="baselineRemoveShoppingCart"
+      ></ic-icon>
     </div>
-    <ic-icon class="font-size-14rem ml-1rem mt-05rem" icon="arrowDownAlt2"></ic-icon>
+    <div class="no-title mtb-1rem">
+      Currently you do not have any products to buy.
+    </div>
+    <div class="wrapper-flex-center mtb-2rem">
+      <div
+        (click)="onAddNewList()"
+        class="bttn-primary text-center bttn-violet bttn-clickable bttn-big"
+      >
+        Create new list
+      </div>
+    </div>
+  </div>
+
+  <div
+    *ngIf="shoppingListsCompleted.length > 0"
+    (click)="showCompleteClick()"
+    mat-ripple
+    class="wrapper-flex-center box-shadow-2 border-radius-20 mlr-2rem ptb-1rem plr-05rem mb-m-3rem"
+  >
+    <div class="font-size-14rem">
+      Show complete({{ shoppingListsCompleted.length }})
+    </div>
+    <ic-icon
+      class="font-size-14rem ml-05rem mt-05rem"
+      icon="arrowDownAlt2"
+    ></ic-icon>
   </div>
 
   <!-- COMPLETE  -->
-  <div @list class="mb-2rem" *ngIf="shoppingListsCompleted.length > 0 && showComplete">
+  <div
+    @list
+    class="mb-2rem"
+    *ngIf="shoppingListsCompleted.length > 0 && showComplete"
+  >
     <div
       *ngFor="let list of shoppingListsCompleted; let i = index"
       class="wrapper-flex-center"
@@ -168,15 +204,11 @@
             </div>
             <div class="width-70">
               <div class="flex flex-column p-05rem">
-                  <div
-                    class="box__title mt-05rem wrapper-flex-center width-100"
-                  >
-                    <div
-                      class="wrapper-flex-center text-center"
-                    >
-                      {{ list.name }}
-                    </div>
+                <div class="box__title mt-05rem wrapper-flex-center width-100">
+                  <div class="wrapper-flex-center text-center">
+                    {{ list.name }}
                   </div>
+                </div>
                 <div class="flex-space-between-m">
                   <div
                     class="flex flex-align-center flex-column box__description mt-15rem"
@@ -185,7 +217,7 @@
                       Created By: {{ list.createdBy.name }}
                     </div>
                     <div class="text-left width-100 ml-1rem">
-                      At: {{ list.createdAt | date: "dd/MM/yyyy"  }}
+                      At: {{ list.createdAt | date: "dd/MM/yyyy" }}
                     </div>
                     <div class="text-left width-100 ml-1rem">
                       Completed: {{ calcCompletedItems(list) }}
@@ -197,16 +229,17 @@
                 </div>
               </div>
               <div
-                class="wrapper-flex-center green-background "
-                (click) = "onCompleteClick(list)"
+                class="wrapper-flex-center green-background"
+                (click)="onCompleteClick(list)"
               >
                 <div class="wrapper-flex-center mr-05rem">
-                  <div
-                    class="bttn-icon mtb-05rem"
-                  >
+                  <div class="bttn-icon mtb-05rem">
                     <ic-icon class="icon" icon="confirmIcon"></ic-icon>
                   </div>
-                  <div *ngIf="list.completedAt != null" class="font-size-12rem white">
+                  <div
+                    *ngIf="list.completedAt != null"
+                    class="font-size-12rem white"
+                  >
                     List completed.
                   </div>
                 </div>

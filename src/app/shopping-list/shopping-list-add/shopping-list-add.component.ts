@@ -1,10 +1,19 @@
+import { Observable } from 'rxjs';
 import { Grocery } from './../../utils/shoppingList.models';
 import { ShoppingService } from './../shopping.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FamilyService } from './../../family.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { trigger, transition, style, animate, query, stagger, animateChild } from '@angular/animations';
+import {
+  trigger,
+  transition,
+  style,
+  animate,
+  query,
+  stagger,
+  animateChild,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-shopping-list-add',
@@ -39,8 +48,10 @@ import { trigger, transition, style, animate, query, stagger, animateChild } fro
 })
 export class ShoppingListAddComponent implements OnInit {
   isLoading = false;
+  isLoadingInit = false;
   products: Grocery[] = [];
   productsToShow: Grocery[] = [];
+  filteredProducts: Grocery[];
 
   constructor(
     private familyService: FamilyService,
@@ -48,7 +59,7 @@ export class ShoppingListAddComponent implements OnInit {
     private shoppingService: ShoppingService,
     private route: ActivatedRoute
   ) {}
-  
+
   showRecently: boolean = false;
   buttonTouched = false;
   timeoutHandler;
@@ -60,6 +71,27 @@ export class ShoppingListAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true;
+    this.generateFormGroup();
+    this.checkQueryParams();
+    this.shoppingService.getAllLists().subscribe((res) => {
+      res.data.lists.forEach((el) => {
+        this.products.push(...el.list);
+      });
+      this.products.sort((a, b) => {
+        return (
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
+      });
+      this.productsToShow = this.products;
+      const howMuch = this.products.length - 10;
+      if (howMuch > 0) {
+        this.productsToShow.splice(9, howMuch);
+      }
+      this.isLoading = false;
+    });
+  }
+
+  generateFormGroup() {
     this.addFormGroup = new FormGroup({});
     this.addFormGroup.addControl(
       'name',
@@ -70,6 +102,9 @@ export class ShoppingListAddComponent implements OnInit {
       'quantity',
       new FormControl(1, [Validators.required, Validators.min(1)])
     );
+  }
+
+  checkQueryParams() {
     this.route.queryParams.subscribe((params) => {
       if (params.id) {
         this.shoppingService.getList(params.id).subscribe(
@@ -85,39 +120,21 @@ export class ShoppingListAddComponent implements OnInit {
         this.router.navigate(['', 'app', 'shopping']);
       }
     });
-    this.shoppingService.getAllLists().subscribe((res) => {
-      res.data.lists.forEach((el) => {
-        this.products.push(...el.list);
-      });
-      this.products.sort((a, b) => {
-        return (
-          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-        );
-      });
-      this.productsToShow = this.products;
-      this.productsToShow.push(...this.products)
-      this.productsToShow.push(...this.products)
-      this.productsToShow.push(...this.products)
-      const howMuch = this.products.length - 10;
-      if(howMuch > 0) {
-        this.productsToShow.splice(9, howMuch)
-      }
-      this.isLoading = false;
-    });
   }
 
-  showRecentlyClick(){
+  showRecentlyClick() {
     this.showRecently = !this.showRecently;
+    console.log(this.filteredProducts);
   }
 
-  onProductClick(index){ 
+  onProductClick(index: number) {
     const product = this.productsToShow[index];
     this.addFormGroup.get('name').setValue(product.name);
     this.addFormGroup.get('details').setValue(product.details);
-    this.familyService.scrollSub.next({bottom: 0});
+    this.familyService.scrollSub.next({ bottom: 0 });
   }
 
-  onHold(mark) {
+  onHold(mark: string) {
     this.buttonTouched = true;
     if (mark == 'minus') {
       this.timeoutHandler = setInterval(() => {

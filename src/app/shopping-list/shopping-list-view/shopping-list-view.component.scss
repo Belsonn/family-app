@@ -61,6 +61,19 @@
   }
 }
 
+.no-title{
+  font-size: 2rem;
+  color: $violet-1;
+  letter-spacing: 1px;
+  text-align: center;
+
+
+  &--icon{
+    color: $violet-1;
+    font-size: 6rem;
+  }
+}
+
 .custom-flex {
   justify-content: space-between;
 }

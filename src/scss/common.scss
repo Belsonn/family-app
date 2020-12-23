@@ -387,9 +387,7 @@
   text-align: right;
 }
 
-.custom-loading {
-  animation: balloonLoading 2s infinite;
-}
+
 
 .white{
   color: white;
@@ -410,6 +408,10 @@
 }
 .white-background{
   background-color: #fff;
+}
+
+.pointer{
+  cursor: pointer;
 }
 
 @media (max-width: 500px) {

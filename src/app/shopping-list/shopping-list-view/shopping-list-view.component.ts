@@ -56,7 +56,7 @@ import {
 })
 export class ShoppingListViewComponent implements OnInit {
   isLoading = false;
-
+  isLoadingInit = false;
   shoppingLists: ShoppingList[];
   shoppingListsActive: ShoppingList[] = [];
   shoppingListsCompleted: ShoppingList[] = [];
@@ -71,6 +71,7 @@ export class ShoppingListViewComponent implements OnInit {
   private createNew: boolean;
 
   @ViewChildren('inputName') inputNames: QueryList<ElementRef>;
+  @ViewChildren('list') DOMlists: QueryList<ElementRef>;
 
   constructor(
     private familyService: FamilyService,
@@ -99,8 +100,8 @@ export class ShoppingListViewComponent implements OnInit {
       this.shoppingListsCompleted = this.shoppingListsCompleted
         .slice()
         .reverse();
-      // this.shoppingLists = data.slice().reverse();
       this.isLoading = false;
+      // this.shoppingLists = data.slice().reverse();
     });
   }
 
@@ -118,7 +119,14 @@ export class ShoppingListViewComponent implements OnInit {
   showCompleteClick() {
     if (!this.showComplete) {
       this.showComplete = !this.showComplete;
-      const scroll = 43 + 16 + 16 + 113 + this.shoppingListsActive.length * 139;
+      this.changeDetector.detectChanges();
+      let scroll = 240;
+      this.DOMlists.forEach((el) => {
+        scroll += el.nativeElement.offsetHeight;
+      });
+      if(this.DOMlists.length == 0){
+        scroll+=200
+      }
       this.familyService.scrollSub.next({ top: scroll, duration: 1000 });
     } else {
       this.showComplete = !this.showComplete;
@@ -145,9 +153,6 @@ export class ShoppingListViewComponent implements OnInit {
       if (this.shoppingListsActive[this.editMode].name.trim() == '') {
         this.shoppingListsActive[this.editMode].name = this.nameRef;
         this.editMode = null;
-        if (this.createNew) {
-          return this.onAddNewList();
-        }
         this.isLoading = false;
         return;
       }
@@ -159,9 +164,6 @@ export class ShoppingListViewComponent implements OnInit {
         .subscribe((res) => {
           this.shoppingListsActive[this.editMode] = res.data.list;
           this.editMode = null;
-          if (this.createNew) {
-            this.onAddNewList();
-          }
           this.isLoading = false;
         });
     } else if (this.type == 'new') {
@@ -169,26 +171,19 @@ export class ShoppingListViewComponent implements OnInit {
       if (this.shoppingListsActive[this.editMode].name.trim() == '') {
         this.shoppingListsActive.splice(this.editMode, 1);
         this.editMode = null;
-        if (this.createNew) {
-          return this.onAddNewList();
-        }
         this.isLoading = false;
         return;
+      } else {
+        // Save
+        this.shoppingService.createList().subscribe((res) => {
+          this.editMode = null;
+          this.getLists();
+        });
       }
-      // Save
-      this.shoppingService.createList().subscribe((res) => {
-        this.getLists();
-        this.editMode = null;
-        if (this.createNew) {
-          this.onAddNewList();
-        }
-        this.isLoading = false;
-      });
     }
   }
   onAddNewList() {
     if (this.editMode != null) {
-      this.createNew = true;
       this.exitEditMode();
     } else {
       let newList: ShoppingList = {
