@@ -33,6 +33,7 @@
     "ngx-scrollbar": "^7.4.1",
     "ngx-smooth-dnd": "^0.4.1",
     "rxjs": "~6.6.0",
+    "socket.io-client": "^3.0.4",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },

@@ -24,6 +24,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { AngularColorfulModule } from 'angular-colorful';
 import { MatExpansionModule } from '@angular/material/expansion';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { SmoothScrollModule } from 'ngx-scrollbar/smooth-scroll';
@@ -56,6 +57,8 @@ import { CustomLoadingComponent } from './custom-loading/custom-loading.componen
 import { ShoppingListViewComponent } from './shopping-list/shopping-list-view/shopping-list-view.component';
 import { ConfirmDeleteModalComponent } from './common/confirm-delete-modal/confirm-delete-modal.component';
 import { CompleteConfirmModalComponent } from './shopping-list/complete-confirm-modal/complete-confirm-modal.component';
+import { SmallLoadingComponent } from './common/small-loading/small-loading.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +84,8 @@ import { CompleteConfirmModalComponent } from './shopping-list/complete-confirm-
     ShoppingListViewComponent,
     ConfirmDeleteModalComponent,
     CompleteConfirmModalComponent,
+    SmallLoadingComponent,
+    ChatComponent,
   ],
   imports: [
     HttpClientModule,
@@ -108,6 +113,7 @@ import { CompleteConfirmModalComponent } from './shopping-list/complete-confirm-
     MatExpansionModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
+    MatAutocompleteModule,
     NgxMaterialTimepickerModule,
     AngularColorfulModule,
     SmoothScrollModule,

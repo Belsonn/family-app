@@ -1,3 +1,4 @@
+import { ChatComponent } from './chat/chat.component';
 import { ShoppingListViewComponent } from './shopping-list/shopping-list-view/shopping-list-view.component';
 import { AuthGuard } from './auth/auth.guard';
 import { ShoppingListAddComponent } from './shopping-list/shopping-list-add/shopping-list-add.component';
@@ -82,6 +83,11 @@ const routes: Routes = [
       {
         path: 'tasks',
         component: TasksComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'chat',
+        component: ChatComponent,
         canActivate: [AuthGuard]
       },
       {
