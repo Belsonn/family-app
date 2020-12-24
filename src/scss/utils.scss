@@ -223,6 +223,9 @@
 .p-05rem {
   padding: 0.5rem;
 }
+.p-07rem {
+  padding: 0.7rem;
+}
 .p-1rem {
   padding: 1rem;
 }
@@ -456,78 +459,6 @@
 
 
 @media(max-width: 500px){
-  .mt-m-05rem{
-    margin-top: 0.5rem;
-  }
-  .mt-m-1rem{
-    margin-top: 1rem;
-  }
-  .mt-m-2rem{
-    margin-top: 2rem;
-  }
-  .mt-m-3rem{
-    margin-top: 3rem;
-  }
-  .mt-m-4rem{
-    margin-top: 4rem;
-  }
-  .mt-m-5rem{
-    margin-top: 5rem;
-  }
-  .mr-m-05rem{
-    margin-right: 0.5rem;
-  }
-  .mr-m-1rem{
-    margin-right: 1rem;
-  }
-  .mr-m-2rem{
-    margin-right: 2rem;
-  }
-  .mr-m-3rem{
-    margin-right: 3rem;
-  }
-  .mr-m-4rem{
-    margin-right: 4rem;
-  }
-  .mr-m-5rem{
-    margin-right: 5rem;
-  }
-  .ml-m-05rem{
-    margin-left: 0.5rem;
-  }
-  .ml-m-1rem{
-    margin-left: 1rem;
-  }
-  .ml-m-2rem{
-    margin-left: 2rem;
-  }
-  .ml-m-3rem{
-    margin-left: 3rem;
-  }
-  .ml-m-4rem{
-    margin-left: 4rem;
-  }
-  .ml-m-5rem{
-    margin-left: 5rem;
-  }
-  .mb-m-05rem{
-    margin-bottom: 0.5rem;
-  }
-  .mb-m-1rem{
-    margin-bottom: 1rem;
-  }
-  .mb-m-2rem{
-    margin-bottom: 2rem;
-  }
-  .mb-m-3rem{
-    margin-bottom: 3rem;
-  }
-  .mb-m-4rem{
-    margin-bottom: 4rem;
-  }
-  .mb-m-5rem{
-    margin-bottom: 5rem;
-  }
 
   .mt-d-05rem{
     margin-top: 0
@@ -605,6 +536,82 @@
   .p-d-4rem {
     padding: 0;
   }
+
+
+
+  .mt-m-05rem{
+    margin-top: 0.5rem;
+  }
+  .mt-m-1rem{
+    margin-top: 1rem;
+  }
+  .mt-m-2rem{
+    margin-top: 2rem;
+  }
+  .mt-m-3rem{
+    margin-top: 3rem;
+  }
+  .mt-m-4rem{
+    margin-top: 4rem;
+  }
+  .mt-m-5rem{
+    margin-top: 5rem;
+  }
+  .mr-m-05rem{
+    margin-right: 0.5rem;
+  }
+  .mr-m-1rem{
+    margin-right: 1rem;
+  }
+  .mr-m-2rem{
+    margin-right: 2rem;
+  }
+  .mr-m-3rem{
+    margin-right: 3rem;
+  }
+  .mr-m-4rem{
+    margin-right: 4rem;
+  }
+  .mr-m-5rem{
+    margin-right: 5rem;
+  }
+  .ml-m-05rem{
+    margin-left: 0.5rem;
+  }
+  .ml-m-1rem{
+    margin-left: 1rem;
+  }
+  .ml-m-2rem{
+    margin-left: 2rem;
+  }
+  .ml-m-3rem{
+    margin-left: 3rem;
+  }
+  .ml-m-4rem{
+    margin-left: 4rem;
+  }
+  .ml-m-5rem{
+    margin-left: 5rem;
+  }
+  .mb-m-05rem{
+    margin-bottom: 0.5rem;
+  }
+  .mb-m-1rem{
+    margin-bottom: 1rem;
+  }
+  .mb-m-2rem{
+    margin-bottom: 2rem;
+  }
+  .mb-m-3rem{
+    margin-bottom: 3rem;
+  }
+  .mb-m-4rem{
+    margin-bottom: 4rem;
+  }
+  .mb-m-5rem{
+    margin-bottom: 5rem;
+  }
+
 
   .p-m-05rem {
     padding: 0.5rem;

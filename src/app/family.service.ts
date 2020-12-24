@@ -22,6 +22,9 @@ export class FamilyService {
   familyUser: FamilyUser;
 
   scrollSub = new Subject<SmoothScrollToOptions>();
+  scrollbarSub = new Subject<boolean>();
+  
+  containerHeight: number;
 
   constructor(private http: HttpClient, private router: Router) {}
 

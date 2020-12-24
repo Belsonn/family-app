@@ -47,13 +47,16 @@ export class AuthService {
   onAuth(response: AuthResponse) {
     if (response.token) {
       this.token = response.token;
-      this.isAuthenticated = true;
-      this.authStatus.next(true);
-      this.saveAuthData(response.token, response.expiresIn);
+      this.familyService.getMeAndFamily().subscribe((res) => {
+        this.familyService.family = res.data.family;
+        this.familyService.familyUser = res.data.familyUser;
+        this.saveAuthData(response.token, response.expiresIn);
+        this.isAuthenticated = true;
+        this.authStatus.next(true);
+      });
       // this.userId = response.data.user._id;
 
-      this.router.navigate(['', 'app', 'menu'])
-
+      this.router.navigate(['', 'app', 'menu']);
     }
   }
 
@@ -61,19 +64,19 @@ export class AuthService {
     const authInfo = this.getAuthData();
     if (!authInfo) {
       this.authStatus.next(false);
-    }
-    else {
+    } else {
       const now = new Date();
       const expires = authInfo.expirationDate.getTime() - now.getTime();
       if (expires > 0) {
         this.token = authInfo.token;
-        this.familyService.getMeAndFamily().subscribe( res => {
-          this.familyService.family = res.data.family
-          this.familyService.familyUser = res.data.familyUser
+        this.familyService.getMeAndFamily().subscribe((res) => {
+          this.familyService.family = res.data.family;
+          this.familyService.familyUser = res.data.familyUser;
+          console.log(this.familyService.familyUser);
           // this.familyService.familyUserId = res.data.familyUser._id
           this.isAuthenticated = true;
           this.authStatus.next(true);
-        })
+        });
       }
     }
   }
@@ -123,7 +126,6 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('expirationDate');
   }
-
 
   private getAuthData() {
     const token = localStorage.getItem('token');

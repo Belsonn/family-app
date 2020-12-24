@@ -120,7 +120,6 @@ import { ChatComponent } from './chat/chat.component';
     HammerModule,
     NgxSmoothDnDModule,
     NgScrollbarModule.withConfig({
-    
     }),
   ],
   providers: [

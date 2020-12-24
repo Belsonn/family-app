@@ -9,6 +9,10 @@
   border-radius: 3rem;
   padding-top: 0;
   overflow: hidden;
+
+  & > .sticky-input {
+    padding: 0;
+  }
 }
 .footer {
     background: $blue-2;
@@ -22,17 +26,20 @@
 .white{
   color: white;
 }
+.scrollbar {
+  min-height: 100%;
+}
 
 @media (max-width: 500px) {
   .container {
     border-radius: 0;
   }
-  // .phonebar{
-  //     display: none;
-  // }
-  // .footer{
-  //   display: none;
-  // }
+  .phonebar{
+      display: none;
+  }
+  .footer{
+    display: none;
+  }
 }
 @media(max-height:900px){
   .spacer {

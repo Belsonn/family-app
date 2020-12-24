@@ -1,0 +1,46 @@
+@import "~src/scss/main.scss";
+
+.sticky-input {
+  position: sticky;
+  bottom: 50px;
+  height: 50px;
+  background-color: $background-gray;
+}
+
+.messages {
+  position: relative;
+  min-height: 80vh;
+  font-weight: 500;
+}
+
+.flex-reverse{
+  flex-direction: row-reverse;
+}
+
+.name{
+  color: $text-gray;
+}
+.mt-4rem {
+  margin: 0 !important;
+}
+
+.message{
+  text-align: justify;
+  border-radius: 20px;
+
+  &--violet{
+    background-color: $violet-1;
+    color: #fff;
+  }
+  &--gray{
+    background-color: #969595;
+    color: #fff;
+    
+  }
+}
+
+@media(max-width: 500px){
+  .sticky-input{
+    bottom: 0px;
+  }
+}

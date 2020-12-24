@@ -1,1 +1,64 @@
-<p>chat works!</p>
+<div *ngIf="isLoading">
+  <app-custom-loading></app-custom-loading>
+</div>
+
+<div *ngIf="!isLoading">
+  <div class="messages">
+    <div *ngFor="let message of messages">
+      <div *ngIf="message.createdBy._id !== myId">
+        <div class="flex mt-1rem">
+          <div class="flex-flex-column">
+            <div class="wrapper-flex-center">
+              <img
+                src="{{ message.createdBy.photo }}"
+                class="ml-1rem photo photo-30"
+                alt=""
+              />
+            </div>
+            <div class="wrapper-flex-center ml-1rem mt-05 name">
+              {{message.createdBy.name}}
+            </div>
+          </div>
+          <div class="flex flex-align-center message message--gray  mr-d-2rem mr-m-1rem ml-1rem p-07rem">
+            {{ message.message }}
+          </div>
+        </div>
+      </div>
+      <div *ngIf="message.createdBy._id == myId">
+        <div class="flex flex-reverse flex-align-center mt-1rem">
+          <div class="flex-flex-column">
+            <div class="wrapper-flex-center">
+              <img
+                src="{{ message.createdBy.photo }}"
+                class="mr-1rem photo photo-30"
+                alt=""
+              />
+            </div>
+            <div class="wrapper-flex-center mr-1rem mt-05 name">
+              {{message.createdBy.name}}
+            </div>
+          </div>
+          <div class="flex flex-align-center message message--violet ml-d-2rem ml-m-1rem mr-1rem p-07rem">
+            {{ message.message }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="opacity: 0" class="mt-3rem">Unlocker</div>
+
+  <div class="sticky-input">
+    <div class="flex">
+      <mat-form-field class="width-80">
+        <mat-label>ELO</mat-label>
+        <input [(ngModel)]="message" type="text" matInput />
+      </mat-form-field>
+      <div class="width-20">
+        <div class="wrapper-flex-center">
+          <button (click)="onSend()" mat-button>Wyślij</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

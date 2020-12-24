@@ -65,6 +65,21 @@ input.active:focus {
   
 }
 
+::ng-deep {
+  .scrollbar {
+    min-height: 100%;
+  }
+  .scroll-content{
+    min-height: 100%;
+  }
+  .ng-scroll-content{
+    min-height: 100%;
+  }
+}
+.ng-scroll-content{
+  min-height: 100%;
+}
+
 ic-icon{
   display:flex;
   align-items: center;
