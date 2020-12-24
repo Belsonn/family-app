@@ -36,23 +36,46 @@ export class ChatComponent implements OnInit, OnDestroy {
       .getNewMessages()
       .subscribe((message: Message) => {
         this.messages.push(message);
-        this.familyService.scrollSub.next({bottom: 0})
+        this.familyService.scrollSub.next({ bottom: 0 });
       });
-    this.myId = this.familyService.familyUser._id
+    this.myId = this.familyService.familyUser._id;
     this.chatService.getAllMessages().subscribe((res) => {
       this.messages = res.data.messages;
-      this.familyService.scrollSub.next({bottom: 0, duration: 0})
+      this.familyService.scrollSub.next({ bottom: 0, duration: 0 });
       this.isLoading = false;
     });
   }
 
   onSend() {
-    this.chatService.addNewMessage(this.message).subscribe(res => {
-      this.message = '';
-      this.familyService.scrollSub.next({bottom: 0, duration: 0})
-    }, err => {
-      // ?
-    })
+    this.chatService.addNewMessage(this.message).subscribe(
+      (res) => {
+        this.message = '';
+        this.familyService.scrollSub.next({ bottom: 0, duration: 0 });
+      },
+      (err) => {
+        // ?
+      }
+    );
+  }
+
+  myNextMessage(index) {
+    if (index == this.messages.length - 1) {
+      return false;
+    }
+    return this.messages[index].createdBy._id ===
+      this.messages[index + 1].createdBy._id
+      ? true
+      : false;
+  }
+
+  myLastMessage(index) {
+    if (index == 0) {
+      return false;
+    }
+    return this.messages[index].createdBy._id ===
+      this.messages[index - 1].createdBy._id
+      ? true
+      : false;
   }
 
   ngOnDestroy(): void {
