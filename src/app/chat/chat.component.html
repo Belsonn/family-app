@@ -6,52 +6,75 @@
   <div class="messages">
     <div *ngFor="let message of messages; let i = index">
       <div *ngIf="message.createdBy._id !== myId">
-        <div class="flex flex-align-center mt-1rem">
-          <div *ngIf="!myNextMessage(i)"  class="wrapper-flex-center">
-            <img
-              src="{{ message.createdBy.photo }}"
-              class="ml-1rem mt-05rem photo photo-30"
-              alt=""
-            />
-          </div>
-          <div *ngIf="myNextMessage(i)"  class="flex">
-            <div class="image-padding"></div>
-          </div>
-          <div class="flex-flex-column">
-            <div *ngIf="!myLastMessage(i)" class="name ml-12rem">
+        <div class="flex">
+          <div
+            [ngClass]="{
+              'mt-1rem': !myLastMessage(i),
+              'mt-02rem': myLastMessage(i)
+            }"
+            class="flex flex-column flex-align-center"
+          >
+            <div *ngIf="!myLastMessage(i)" class="name">
               {{ message.createdBy.name }}
             </div>
-            <div
-              class="flex flex-align-center message message--gray mr-d-2rem mr-m-1rem ml-1rem  p-07rem"
-            >
-              {{ message.message }}
+            <div class="flex flex-align-center">
+              <div *ngIf="!myNextMessage(i)" class="wrapper-flex-center">
+                <img
+                  src="{{ message.createdBy.photo }}"
+                  class="ml-05rem mt-05rem photo photo-30"
+                  alt=""
+                />
+              </div>
+              <div *ngIf="myNextMessage(i)" class="flex">
+                <div class="image-padding"></div>
+              </div>
+
+              <div
+                class="flex flex-align-center message message--gray mr-d-2rem mr-m-1rem ml-1rem p-07rem"
+              >
+                {{ message.message }}
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div *ngIf="message.createdBy._id == myId">
-        <div class="flex flex-reverse flex-align-center mt-1rem">
-            <div
-              class="flex flex-align-center message message--violet ml-message mr-1rem p-07rem"
-            >
-              {{ message.message }}
+        <div
+          [ngClass]="{
+            'mt-1rem': !myLastMessage(i),
+            'mt-02rem': myLastMessage(i)
+          }"
+          class="flex flex-reverse flex-align-center mt-1rem"
+        >
+          <div
+            class="flex flex-align-center message message--violet ml-message mr-1rem p-07rem"
+          >
+            {{ message.message }}
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div style="opacity: 0" class="mt-3rem">Unlocker</div>
+  <div style="opacity: 0" class="mt-d-3rem">Unlocker</div>
 
   <div class="sticky-input">
     <div class="flex">
-      <mat-form-field class="width-80">
-        <mat-label>ELO</mat-label>
-        <input [(ngModel)]="message" type="text" matInput />
+      <mat-form-field floatLabel="never" class="width-80">
+        <mat-label>Aa</mat-label>
+        <textarea
+          matInput
+          (keyup.enter)="onSend()"
+          [(ngModel)]="message"
+          cdkTextareaAutosize
+          #autosize="cdkTextareaAutosize"
+          cdkAutosizeMinRows="1"
+          cdkAutosizeMaxRows="7"
+        ></textarea>
       </mat-form-field>
-      <div class="width-20">
-        <div class="wrapper-flex-center">
-          <button (click)="onSend()" mat-button>Wyślij</button>
+      <div class="width-20 wrapper-flex-center">
+        <div mat-ripple (click)="onSend()"  class="sendButton">
+          <ic-icon class="font-size-13rem" icon="arrowRight"></ic-icon>
         </div>
       </div>
     </div>

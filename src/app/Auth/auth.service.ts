@@ -72,7 +72,6 @@ export class AuthService {
         this.familyService.getMeAndFamily().subscribe((res) => {
           this.familyService.family = res.data.family;
           this.familyService.familyUser = res.data.familyUser;
-          console.log(this.familyService.familyUser);
           // this.familyService.familyUserId = res.data.familyUser._id
           this.isAuthenticated = true;
           this.authStatus.next(true);

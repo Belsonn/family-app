@@ -3,7 +3,6 @@
 .sticky-input {
   position: sticky;
   bottom: 50px;
-  height: 50px;
   background-color: $background-gray;
 }
 
@@ -14,7 +13,7 @@
 }
 
 .image-padding{
-  padding-right:46px;
+  padding-right:38px;
 }
 
 .opacity-0{
@@ -26,11 +25,12 @@
 }
 
 .ml-message{
-  margin-left: 62px;
+  margin-left: 54px;
 }
 .mr-message{
-  margin-right: 62px;
+  margin-right: 54px;
 }
+
 
 .mr-12rem{
   margin-right: 1.2rem;
@@ -41,9 +41,13 @@
 
 .name{
   color: $text-gray;
+  padding-left: 64px;
+  text-align: left;
+  width: 100%;
 }
-.mt-4rem {
-  margin: 0 !important;
+
+.mt-02rem{
+  margin-top: 0.2rem;
 }
 
 .message{
@@ -60,6 +64,20 @@
     
   }
 }
+
+.sendButton{
+  background-color: $violet-1-dark;
+  color: #fff;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  margin-bottom: 0.2rem;
+
+}
+
+:host ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
+  background: $linear-gradient-90-1;
+}
+
 
 @media(max-width: 500px){
   .sticky-input{

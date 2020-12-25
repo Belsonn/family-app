@@ -20,7 +20,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   myId: string;
 
   messages: Message[] = [];
-  message: string;
+  message: string = '';
   messageHeight: number;
 
   private messageSub: Subscription;
@@ -47,9 +47,13 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   onSend() {
-    this.chatService.addNewMessage(this.message).subscribe(
+    if(this.message.trim() == ''){
+      return;
+    }
+    const messageToSend = this.message;
+    this.message = '';
+    this.chatService.addNewMessage(messageToSend).subscribe(
       (res) => {
-        this.message = '';
         this.familyService.scrollSub.next({ bottom: 0, duration: 0 });
       },
       (err) => {
