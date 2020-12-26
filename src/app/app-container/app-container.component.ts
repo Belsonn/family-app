@@ -1,3 +1,4 @@
+import { ChatService } from './../chat/chat.service';
 import { FamilyService } from './../family.service';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { Component, ElementRef, OnInit, Query, ViewChild, AfterViewInit } from '@angular/core';
@@ -20,7 +21,8 @@ export class AppContainerComponent implements OnInit, AfterViewInit {
   constructor(
     private deviceService: DeviceDetectorService,
     private familyService: FamilyService,
-    private _location: Location
+    private _location: Location,
+    private chatService: ChatService
   ) {}
 
 
@@ -37,7 +39,11 @@ export class AppContainerComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // this.familyService.containerHeight = this.container.nativeElement.offsetHeight;
+    this.scrollable.scrolled.subscribe(e=> {
+      if(e.target.scrollTop == 0){
+        this.chatService.loadMoreMessageSub.next(true);
+      }
+    });
   }
 
   onRouteBack() {

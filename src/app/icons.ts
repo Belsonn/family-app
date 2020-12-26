@@ -51,7 +51,8 @@ import arrowUpAlt2 from '@iconify-icons/dashicons/arrow-up-alt2';
 import xIcon from '@iconify-icons/bi/x';
 import baselineRemoveShoppingCart from '@iconify-icons/ic/baseline-remove-shopping-cart';
 import arrowRight from '@iconify-icons/fe/arrow-right';
-
+import settingsIcon2 from '@iconify-icons/feather/settings';
+import baselineInsertPhoto from '@iconify-icons/ic/baseline-insert-photo';
 
 
 
@@ -108,6 +109,6 @@ export const appIcons = {
   xIcon, // Shoppinh
   baselineRemoveShoppingCart, // shopping
   arrowRight, // CHAT
+  settingsIcon2, //CHAT
+  baselineInsertPhoto, //CHAT
 };
-
-

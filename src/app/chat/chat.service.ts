@@ -13,17 +13,21 @@ import { io } from 'socket.io-client';
 })
 export class ChatService {
   private socket;
+  loadMoreMessageSub =  new Subject<boolean>();
 
   constructor(private http: HttpClient) {
     this.socket = io(environment.apiURLBasic);
   }
 
-  // sendMessage(message) {
-  //   this.socket.emit('new-message', message);
-  // }
 
-  getAllMessages() {
+
+  getInitMessages() {
     return this.http.get<MessagesResponse>(`${environment.apiURL}chat`);
+  }
+
+
+  loadMoreMessages(messagesLoaded : number){
+    return this.http.get<MessagesResponse>(`${environment.apiURL}chat/moreMessages/${messagesLoaded}`)
   }
   
   addNewMessage(message) {

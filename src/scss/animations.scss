@@ -241,3 +241,19 @@
     transform: translateX(-30rem)
   }
 }
+
+@keyframes chatMenuHide {
+
+  50%{
+    transform: translateX(-5rem);
+  }
+
+  90%{
+    transform: translateX(-9rem);
+  }
+
+  100%{
+    transform: translateX(-10rem);
+    display: none;
+  }
+}

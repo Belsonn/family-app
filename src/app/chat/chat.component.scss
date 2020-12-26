@@ -6,6 +6,17 @@
   background-color: $background-gray;
 }
 
+.sticky-header{
+  position: sticky;
+  top: 0px;
+  // height: 70px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $background-gray;
+}
+
 .messages {
   position: relative;
   min-height: 80vh;
@@ -14,6 +25,9 @@
 
 .image-padding{
   padding-right:38px;
+}
+.date-padding{
+  padding-left:58px;
 }
 
 .opacity-0{
@@ -51,7 +65,7 @@
 }
 
 .message{
-  text-align: justify;
+  // text-align: justify;
   border-radius: 20px;
 
   &--violet{
@@ -59,10 +73,75 @@
     color: #fff;
   }
   &--gray{
-    background-color: #969595;
-    color: #fff;
+    background-color: #e6e6e6;
+    color: #000;
     
   }
+}
+
+.date-header{
+  overflow: hidden;
+  color: $text-gray;
+  text-align: center;
+  font-weight: 600;
+  margin: 1.5rem 0;
+  &::before, &::after {
+    content: "";
+    display: inline-block;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 50%;
+  }
+  &::before{
+    // background-color: $linear-gradient-90-1-1half;
+    background: $text-gray;
+    right: 1rem;
+    margin-left: -50%;
+  }
+  &::after{
+    background: $text-gray;
+    left: 1rem;
+    margin-right: -50%;
+  }
+}
+
+.date-header-2{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  color: $text-gray;
+  font-weight: 500;
+  margin: 1.5rem 0; 
+}
+
+
+.inputMenu{
+  transition: all 1s;
+
+  &--moved{
+    // transform: translateX(-7rem);
+    animation: chatMenuHide 1s forwards;
+  }
+}
+
+
+
+
+.messageInput{
+  width: 100%;
+  border: 2px solid #969595;
+  border-radius: 20px;
+  font-weight: 500;
+  padding: 0.5rem;
+  resize: none;
+  margin-top: 0.3rem;
+  transition: all 1s;
+
+  // &:focus{
+  
+  // }
 }
 
 .sendButton{

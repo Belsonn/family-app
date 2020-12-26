@@ -3,8 +3,32 @@
 </div>
 
 <div *ngIf="!isLoading">
+
+  <div class="sticky-header">
+    <ic-icon
+      [routerLink]="['', 'app', 'menu']"
+      mat-ripple
+      class="font-size-16rem ml-1rem mt-1rem border-radius-10"
+      icon="arrowBackUp"
+    ></ic-icon>
+    <div class="mtb-05rem" *ngIf="messageLoading">
+      <app-small-loading></app-small-loading>
+    </div>
+    <ic-icon
+    style="opacity: 0;"
+    class="font-size-16rem ml-1rem mt-1rem border-radius-10"
+    icon="arrowBackUp"
+  ></ic-icon>
+  </div>
+
   <div class="messages">
     <div *ngFor="let message of messages; let i = index">
+      <p *ngIf="i == 0" class="date-header">
+        {{message.date | date: "dd MMMM"}}
+      </p>
+      <p *ngIf="showHeader(i)" class="date-header">
+        {{message.date | date: "dd MMMM"}}
+      </p>
       <div *ngIf="message.createdBy._id !== myId">
         <div class="flex">
           <div
@@ -30,10 +54,15 @@
               </div>
 
               <div
-                class="flex flex-align-center message message--gray mr-d-2rem mr-m-1rem ml-1rem p-07rem"
+                mat-ripple
+                (click)="showDateFn(i)"
+                class="flex flex-align-center message message--gray mr-d-2rem mr-m-1rem ml-1rem p-07rem pointer"
               >
                 {{ message.message }}
               </div>
+            </div>
+            <div [@upAndDown] *ngIf="i == showDate" class="flex flex-align-center gray width-100 date-padding">
+              {{message.date | date: "HH:mm"}} 
             </div>
           </div>
         </div>
@@ -47,12 +76,19 @@
           class="flex flex-reverse flex-align-center mt-1rem"
         >
           <div
-            class="flex flex-align-center message message--violet ml-message mr-1rem p-07rem"
+            mat-ripple
+            (click)="showDateFn(i)"
+            class="flex flex-align-center message message--violet ml-message mr-1rem p-07rem pointer"
           >
             {{ message.message }}
           </div>
         </div>
+        <div [@upAndDown] *ngIf="i == showDate" class="flex flex-reverse flex-align-center gray mr-15rem">
+          {{message.date | date: "HH:mm"}} 
+        </div>
       </div>
+      <!-- SHOW DATE -->
+
     </div>
   </div>
 
@@ -60,20 +96,31 @@
 
   <div class="sticky-input">
     <div class="flex">
-      <mat-form-field floatLabel="never" class="width-80">
-        <mat-label>Aa</mat-label>
+      <div [@inOutAnimation] *ngIf="!focusedInput" class="flex mr-1rem inputMenu">
+        <div mat-ripple class="wrapper-flex-center border-radius-10 mtb-05rem plr-05rem">
+          <ic-icon class="font-size-15rem violet" icon="settingsIcon2"></ic-icon>
+        </div>
+        <div mat-ripple class="wrapper-flex-center border-radius-10 mtb-05rem plr-05rem">
+          <ic-icon class="font-size-17rem violet" icon="baselineInsertPhoto"></ic-icon>
+        </div>
+      </div>
+      <div class="width-100">
         <textarea
-          matInput
+          #messageRef
+          (focus)="focusedInput = true"
+          (blur)="focusedInput = false"
           (keyup.enter)="onSend()"
           [(ngModel)]="message"
           cdkTextareaAutosize
+          placeholder="Aa"
           #autosize="cdkTextareaAutosize"
-          cdkAutosizeMinRows="1"
+          cdkAutosizeMinRows="2"
           cdkAutosizeMaxRows="7"
+          class="messageInput"
         ></textarea>
-      </mat-form-field>
-      <div class="width-20 wrapper-flex-center">
-        <div mat-ripple (click)="onSend()"  class="sendButton">
+      </div>
+      <div class="wrapper-flex-center ml-05rem">
+        <div mat-ripple (click)="onSend()" class="sendButton">
           <ic-icon class="font-size-13rem" icon="arrowRight"></ic-icon>
         </div>
       </div>
