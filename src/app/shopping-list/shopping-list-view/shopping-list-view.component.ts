@@ -87,8 +87,12 @@ export class ShoppingListViewComponent implements OnInit {
 
   getLists() {
     this.isLoading = true;
+
+    // Init List
     this.shoppingListsActive = [];
     this.shoppingListsCompleted = [];
+
+    // Get list from back
     this.shoppingService.getAllLists().subscribe((res) => {
       let data = res.data.lists;
       data.forEach((list) => {
@@ -96,10 +100,13 @@ export class ShoppingListViewComponent implements OnInit {
           ? this.shoppingListsActive.push(list)
           : this.shoppingListsCompleted.push(list);
       });
+
+      //reverse list
       this.shoppingListsActive = this.shoppingListsActive.slice().reverse();
       this.shoppingListsCompleted = this.shoppingListsCompleted
         .slice()
         .reverse();
+
       this.isLoading = false;
       // this.shoppingLists = data.slice().reverse();
     });
@@ -120,12 +127,12 @@ export class ShoppingListViewComponent implements OnInit {
     if (!this.showComplete) {
       this.showComplete = !this.showComplete;
       this.changeDetector.detectChanges();
-      let scroll = 240;
+      let scroll = 340;
       this.DOMlists.forEach((el) => {
         scroll += el.nativeElement.offsetHeight;
       });
-      if(this.DOMlists.length == 0){
-        scroll+=200
+      if (this.DOMlists.length == 0) {
+        scroll += 200;
       }
       this.familyService.scrollSub.next({ top: scroll, duration: 1000 });
     } else {
@@ -142,7 +149,10 @@ export class ShoppingListViewComponent implements OnInit {
     this.inputNames.toArray()[0].nativeElement.focus();
   }
   exitEditMode() {
-    if (this.shoppingListsActive[this.editMode].name == this.nameRef) {
+    if (
+      this.shoppingListsActive[this.editMode].name.trim() == this.nameRef.trim()
+    ) {
+      this.shoppingListsActive[this.editMode].name.trim();
       this.editMode = null;
       return;
     }
@@ -195,6 +205,7 @@ export class ShoppingListViewComponent implements OnInit {
       };
       this.createNew = false;
       this.type = 'new';
+      this.nameRef = 'NOT THIS LIST';
       this.shoppingListsActive.unshift(newList);
       this.editMode = 0;
       this.changeDetector.detectChanges();
@@ -242,7 +253,7 @@ export class ShoppingListViewComponent implements OnInit {
           this.getLists();
         },
         (err) => {
-          console.log(err);
+          // console.log(err);
         }
       );
     }

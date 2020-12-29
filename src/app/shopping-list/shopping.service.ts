@@ -1,7 +1,12 @@
+import { ProductsResponse } from './../utils/shoppingList.models';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { ShoppingList, ShoppingListsResponse, ShoppingListResponse } from '../utils/shoppingList.models';
+import {
+  ShoppingList,
+  ShoppingListsResponse,
+  ShoppingListResponse,
+} from '../utils/shoppingList.models';
 
 @Injectable({ providedIn: 'root' })
 export class ShoppingService {
@@ -12,21 +17,28 @@ export class ShoppingService {
   listToEdit: ShoppingList;
   itemToEditIndex: number;
 
-  getAllLists(){
+  getAllLists() {
     return this.http.get<ShoppingListsResponse>(
-      `${environment.apiURL}shoppingLists/`)
+      `${environment.apiURL}shoppingLists/`
+    );
   }
 
-
-  getList(id){
+  getList(id) {
     return this.http.get<ShoppingListResponse>(
-      `${environment.apiURL}shoppingLists/list/${id}`)
+      `${environment.apiURL}shoppingLists/list/${id}`
+    );
   }
 
+  get10LastProducts() {
+    return this.http.get<ProductsResponse>(
+      `${environment.apiURL}shoppingLists/lastTen`
+    );
+  }
 
   addItemToList(id, item) {
     return this.http.post<ShoppingListResponse>(
-      `${environment.apiURL}shoppingLists/add/${id}`, item
+      `${environment.apiURL}shoppingLists/add/${id}`,
+      item
     );
   }
 

@@ -457,8 +457,21 @@
   margin-bottom: 4rem
 }
 
+.display-m{
+  display: none;
+}
+
+
+
 
 @media(max-width: 500px){
+
+  .display-m{
+    display: block;
+  }
+  .display-d{
+    display: none;
+  }
 
   .mt-d-05rem{
     margin-top: 0

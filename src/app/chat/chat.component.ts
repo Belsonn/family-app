@@ -92,7 +92,6 @@ export class ChatComponent implements OnInit, OnDestroy {
               ? this.messages.unshift(...res.data.messages)
               : (this.noLongerLoadMessage = true);
             this.messageLoading = false;
-            console.log(this.messages)
           });
       }
     );

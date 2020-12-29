@@ -49,9 +49,7 @@ import {
 export class ShoppingListAddComponent implements OnInit {
   isLoading = false;
   isLoadingInit = false;
-  products: Grocery[] = [];
   productsToShow: Grocery[] = [];
-  filteredProducts: Grocery[];
 
   constructor(
     private familyService: FamilyService,
@@ -71,24 +69,12 @@ export class ShoppingListAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true;
+
     this.generateFormGroup();
+
     this.checkQueryParams();
-    this.shoppingService.getAllLists().subscribe((res) => {
-      res.data.lists.forEach((el) => {
-        this.products.push(...el.list);
-      });
-      this.products.sort((a, b) => {
-        return (
-          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-        );
-      });
-      this.productsToShow = this.products;
-      const howMuch = this.products.length - 10;
-      if (howMuch > 0) {
-        this.productsToShow.splice(9, howMuch);
-      }
-      this.isLoading = false;
-    });
+
+    this.getRecentlyProducts();
   }
 
   generateFormGroup() {
@@ -124,7 +110,14 @@ export class ShoppingListAddComponent implements OnInit {
 
   showRecentlyClick() {
     this.showRecently = !this.showRecently;
-    console.log(this.filteredProducts);
+  }
+
+  getRecentlyProducts() {
+    this.shoppingService.get10LastProducts().subscribe((res) => {
+      this.productsToShow = res.data.products;
+
+      this.isLoading = false;
+    });
   }
 
   onProductClick(index: number) {

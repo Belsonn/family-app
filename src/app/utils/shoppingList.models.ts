@@ -23,6 +23,12 @@ export interface Grocery {
       list: ShoppingList;
     };
   }
+  export interface ProductsResponse {
+    status: string;
+    data: {
+      products: Grocery[];
+    };
+  }
   
   export interface ShoppingList {
     _id?: string;
