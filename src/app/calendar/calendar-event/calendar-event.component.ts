@@ -8,6 +8,12 @@ import { CalendarEvent } from 'src/app/utils/CalendarEvent.model';
 import { CalendarService } from '../calendar.service';
 import { Router } from '@angular/router';
 import { FamilyUser } from 'src/app/utils/family.models';
+
+interface CalendarUser {
+  user: FamilyUser;
+  isSelected: Boolean;
+}
+
 @Component({
   selector: 'app-calendar-event',
   templateUrl: './calendar-event.component.html',
@@ -29,12 +35,14 @@ export class CalendarEventComponent implements OnInit {
 
   //FormControls
   titleFormGroup: FormGroup;
+  taskFormGroup: FormGroup;
   radioFormGroup: FormGroup;
   shortEventFormGroup: FormGroup;
   longEventFormGroup: FormGroup;
   repeatFormGroup: FormGroup;
 
-  familyUsers: { user: FamilyUser; isSelected: Boolean }[] = [];
+  familyParents: CalendarUser[] = [];
+  familyChildren: CalendarUser[] = [];
 
   monthNames = MonthNames;
   repeatTypes = [$localize`Daily`, $localize`Weekly`, $localize`Monthly`];
@@ -71,10 +79,17 @@ export class CalendarEventComponent implements OnInit {
       }
 
       this.familyService.family.users.map((user) => {
-        this.familyUsers.push({
-          user: user,
-          isSelected: false,
-        });
+        if (user.role == 'child') {
+          this.familyChildren.push({
+            user: user,
+            isSelected: false,
+          });
+        } else {
+          this.familyParents.push({
+            user: user,
+            isSelected: false,
+          });
+        }
       });
       this.color = '#9851b4';
       this.isLoading = false;
@@ -106,6 +121,9 @@ export class CalendarEventComponent implements OnInit {
     this.radioFormGroup = this._formBuilder.group({
       longEvent: ['', Validators.required],
     });
+    this.taskFormGroup = this._formBuilder.group({
+      isTask: ['', Validators.required],
+    });
   }
 
   onSelectUser(familyUser) {
@@ -113,20 +131,20 @@ export class CalendarEventComponent implements OnInit {
   }
   onSelectAll() {
     let allSelected = true;
-    this.familyUsers.forEach((el) => {
+    this.familyChildren.forEach((el) => {
       if (!el.isSelected) {
         allSelected = false;
       }
     });
     if (allSelected) {
-      this.familyUsers = this.familyUsers.map((el) => {
+      this.familyChildren = this.familyChildren.map((el) => {
         return {
           user: el.user,
           isSelected: !el.isSelected,
         };
       });
     } else {
-      this.familyUsers = this.familyUsers.map((el) => {
+      this.familyChildren = this.familyChildren.map((el) => {
         return {
           user: el.user,
           isSelected: true,
@@ -140,7 +158,7 @@ export class CalendarEventComponent implements OnInit {
       if (value) {
         this.repeatFormGroup.get('repeatToggleControl').setValue(false);
         this.repeatFormGroup.get('repeatToggleControl').disable();
-        this.repeatToggle({checked:false})
+        this.repeatToggle({ checked: false });
       } else {
         this.repeatFormGroup.get('repeatToggleControl').enable();
       }
@@ -260,11 +278,9 @@ export class CalendarEventComponent implements OnInit {
       };
     }
 
-    this.calendarService
-      .addEvent(event)
-      .subscribe((res) => {
-        this.familyService.family = res.data.family;
-        this.router.navigate(['', 'app', 'calendar']);
-      });
+    this.calendarService.addEvent(event).subscribe((res) => {
+      this.familyService.family = res.data.family;
+      this.router.navigate(['', 'app', 'calendar']);
+    });
   }
 }

@@ -53,6 +53,8 @@ import baselineRemoveShoppingCart from '@iconify-icons/ic/baseline-remove-shoppi
 import arrowRight from '@iconify-icons/fe/arrow-right';
 import settingsIcon2 from '@iconify-icons/feather/settings';
 import baselineInsertPhoto from '@iconify-icons/ic/baseline-insert-photo';
+import medalLine from '@iconify-icons/ri/medal-line';
+import bxCalendarStar from '@iconify-icons/bx/bx-calendar-star';
 
 
 
@@ -111,4 +113,6 @@ export const appIcons = {
   arrowRight, // CHAT
   settingsIcon2, //CHAT
   baselineInsertPhoto, //CHAT
+  medalLine, // Task picker
+  bxCalendarStar, // Event Picker
 };

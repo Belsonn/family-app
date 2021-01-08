@@ -71,7 +71,47 @@
       <ng-template i18n="event_stepper_type" matStepLabel
         >Event type</ng-template
       >
-      <form [formGroup]="radioFormGroup" class="radio-group mt-1rem">
+      <form [formGroup]="taskFormGroup" class="radio-group mt-1rem">
+        <label
+          [ngClass]="{
+            'radio-checked': !taskFormGroup.controls.isTask.value
+          }"
+          mat-ripple
+          class="radio-label text-center"
+        >
+          <div class="flex flex-column flex-align-center p-1rem pointer">
+            <input
+              name="isTask"
+              formControlName="isTask"
+              type="radio"
+              [value]="false"
+            />
+            <ic-icon class="font-size-2rem" icon="bxCalendarStar"></ic-icon>
+            <span class="text-center mt-05rem">Event</span>
+          </div>
+        </label>
+        <label
+          [ngClass]="{
+            'radio-checked': taskFormGroup.controls.isTask.value
+          }"
+          mat-ripple
+          class="radio-label text-center"
+        >
+          <div
+            class="flex flex-column flex-align-center custom-width p-1rem pointer"
+          >
+            <input
+              name="isTask"
+              formControlName="isTask"
+              type="radio"
+              [value]="true"
+            />
+            <ic-icon class="font-size-2rem" icon="medalLine"></ic-icon>
+            <span class="text-center mt-05rem">Task</span>
+          </div>
+        </label>
+      </form>
+      <form [formGroup]="radioFormGroup" class="radio-group mt-3rem">
         <label
           [ngClass]="{
             'radio-checked': !radioFormGroup.controls.longEvent.value
@@ -79,14 +119,16 @@
           mat-ripple
           class="radio-label text-center"
         >
-          <div class="flex flex-column flex-align-center custom-width p-1rem">
+          <div
+            class="flex flex-column flex-align-center custom-width p-1rem pointer"
+          >
             <input
               name="longEvent"
               formControlName="longEvent"
               type="radio"
               [value]="false"
             />
-            <ic-icon class="font-size-15rem" icon="calendarBlank"></ic-icon>
+            <ic-icon class="font-size-2rem" icon="calendarBlank"></ic-icon>
             <span class="text-center mt-05rem">One day</span>
           </div>
         </label>
@@ -97,7 +139,7 @@
           mat-ripple
           class="radio-label text-center"
         >
-          <div class="flex flex-column flex-align-center p-1rem">
+          <div class="flex flex-column flex-align-center p-1rem pointer">
             <input
               name="longEvent"
               formControlName="longEvent"
@@ -105,7 +147,7 @@
               [value]="true"
             />
             <ic-icon
-              class="font-size-15rem"
+              class="font-size-2rem"
               icon="calendarBlankMultiple"
             ></ic-icon>
             <span class="text-center mt-05rem">More days</span>
@@ -130,10 +172,38 @@
 
  -->
 
-    <!-- <mat-step>
+    <mat-step>
       <ng-template i18n="event_stepper_assign" matStepLabel
         >Assign members</ng-template
       >
+      <div *ngIf="!taskFormGroup.controls.isTask.value">
+        <div class="wrapper-flex-center mt-1rem">
+          <div class="font-size-12rem">Parents</div>
+        </div>
+        <div class="flex flex-align-center flex-wrap flex-space-evenly">
+          <button
+            mat-ripple
+            (click)="onSelectUser(familyUser)"
+            [ngClass]="{ 'box-selected': familyUser.isSelected }"
+            *ngFor="let familyUser of familyParents; let i = index"
+            class="box flex flex-column mt-2rem btn"
+          >
+            <div class="wrapper-flex-center">
+              <img
+                src="{{ familyUser.user.photo }}"
+                class="photo photo-70 photo-mobile white-border"
+                alt="user-photo"
+              />
+            </div>
+            <div class="wrapper-flex-center mt-1rem width-100">
+              {{ familyUser.user.name }}
+            </div>
+          </button>
+        </div>
+      </div>
+      <div class="wrapper-flex-center mt-1rem">
+        <div class="font-size-12rem">Children</div>
+      </div>
       <div class="wrapper-flex-center mt-1rem mb-05rem">
         <button
           (click)="onSelectAll()"
@@ -142,17 +212,17 @@
         >
           <ic-icon class="font-size-15rem mr-05rem" icon="peopleIcon"></ic-icon>
           <div>Przydziel wszystkich</div>
-      </button>
+        </button>
       </div>
       <div class="flex flex-align-center flex-wrap flex-space-evenly">
         <button
           mat-ripple
           (click)="onSelectUser(familyUser)"
           [ngClass]="{ 'box-selected': familyUser.isSelected }"
-          *ngFor="let familyUser of familyUsers; let i = index"
+          *ngFor="let familyUser of familyChildren; let i = index"
           class="box flex flex-column mt-2rem btn"
         >
-          <div class="wrapper-flex-center">
+          <div class="wrapper-flex-center width-100">
             <img
               src="{{ familyUser.user.photo }}"
               class="photo photo-70 photo-mobile white-border"
@@ -170,29 +240,56 @@
         </button>
         <button i18n="event_button_next" mat-button matStepperNext>Next</button>
       </div>
-    </mat-step> -->
+    </mat-step>
 
-
-    <mat-step>
+    <!-- <mat-step>
       <ng-template i18n="event_stepper_assign" matStepLabel
         >Assign members</ng-template
       >
+      <div *ngIf="!taskFormGroup.controls.isTask.value">
+        <div class="wrapper-flex-center mt-1rem">
+          <div class="font-size-12rem">Parents</div>
+        </div>
+        <div class="flex flex-align-center flex-wrap flex-space-evenly">
+          <button
+            mat-ripple
+            (click)="onSelectUser(familyUser)"
+            [ngClass]="{ 'box-selected': familyUser.isSelected }"
+            *ngFor="let familyUser of familyParents; let i = index"
+            class="box flex flex-align-center mt-15rem btn width-100"
+          >
+            <div class="wrapper-flex-center">
+              <img
+                src="{{ familyUser.user.photo }}"
+                class="photo photo-50 white-border"
+                alt="user-photo"
+              />
+            </div>
+            <div class="wrapper-flex-center ml-1rem">
+              {{ familyUser.user.name }}
+            </div>
+          </button>
+        </div>
+      </div>
+      <div class="wrapper-flex-center mt-1rem">
+        <div class="font-size-12rem">Children</div>
+      </div>
       <div class="wrapper-flex-center mt-1rem mb-05rem">
         <button
           (click)="onSelectAll()"
           mat-ripple
-          class="bttn-pink flex border-radius-20 ptb-05rem prl-2rem btn"
+          class="bttn-violet flex border-radius-20 ptb-05rem prl-2rem btn"
         >
           <ic-icon class="font-size-15rem mr-05rem" icon="peopleIcon"></ic-icon>
           <div>Przydziel wszystkich</div>
-      </button>
+        </button>
       </div>
       <div class="flex flex-align-center flex-wrap flex-space-evenly">
         <button
           mat-ripple
           (click)="onSelectUser(familyUser)"
           [ngClass]="{ 'box-selected': familyUser.isSelected }"
-          *ngFor="let familyUser of familyUsers; let i = index"
+          *ngFor="let familyUser of familyChildren; let i = index"
           class="box flex flex-align-center mt-15rem btn width-100"
         >
           <div class="wrapper-flex-center">
@@ -213,7 +310,7 @@
         </button>
         <button i18n="event_button_next" mat-button matStepperNext>Next</button>
       </div>
-    </mat-step>
+    </mat-step> -->
 
     <!-- 
 

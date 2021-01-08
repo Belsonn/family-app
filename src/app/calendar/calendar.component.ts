@@ -127,6 +127,7 @@ export class CalendarComponent implements OnInit {
         }
 
         // REPEAT BLOCK
+        // ITS COMPLETELY BAD BUT IT WORKS XD
         if (element.repeat) {
           let time;
 

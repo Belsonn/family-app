@@ -77,7 +77,7 @@
   {{ monthNames[calendarDayInstance.date.getMonth()] }}
 </p>
 
-<div *ngIf="calendarDayInstance.events" class="events mb-2rem">
+<div *ngIf="calendarDayInstance.events.length > 0" class="events mb-2rem">
   <div class="wrapper-flex-center flex-column">
     <button
       mat-button
@@ -120,6 +120,10 @@
   </button>
 </div>
 </div>
+<div class="mt-3rem opacity-0">
+  Unlocker
+</div>
+
 
 <!-- <div class="dot-wrapper mr-1rem ml-1rem">
   <div
