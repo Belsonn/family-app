@@ -30,7 +30,7 @@
     <div
       @items
       *ngFor="let list of shoppingListsActive; let i = index"
-      class="wrapper-flex-center paper"
+      class="wrapper-flex-center pointer paper"
       (click)="onListClick(list)"
     >
       <div #list class="paper-content">

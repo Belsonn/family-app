@@ -29,7 +29,9 @@
       Create new
     </div>
   </div>
-
+  <div *ngIf="error" class="error mt-1rem">
+    Wrong password. Please try again.
+  </div>
   <div [ngClass]="{ animate: users.length <= 6 }" *ngIf="selectedUser">
     <div class="flex flex-column mt-2rem">
       <div class="wrapper-flex-center">
@@ -80,3 +82,7 @@
     </form>
   </div>
 </div>
+<div class="mt-3rem opacity-0">
+  Unlocker
+</div>
+

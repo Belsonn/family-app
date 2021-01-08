@@ -70,6 +70,7 @@ export class PickUserComponent implements OnInit {
         },
         (err) => {
           this.error = true;
+          this.familyService.scrollSub.next({bottom: 0})
         }
       );
   }
