@@ -14,10 +14,13 @@ export class CalendarService {
   dayClicked: Date;
 
   getEvents() {
-    return this.http.get<FamilyResponse>(`${environment.apiURL}family/events`);
+    return this.http.get<EventsResponse>(`${environment.apiURL}events/`);
   }
 
-  addEvent(event : CalendarEvent) {
-    return this.http.post<FamilyResponse>(`${environment.apiURL}family/addEvent`, event)
+  addEvent(event: CalendarEvent) {
+    return this.http.post<EventsResponse>(
+      `${environment.apiURL}events/addEvent`,
+      event
+    );
   }
 }

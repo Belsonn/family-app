@@ -192,9 +192,13 @@
       font-size: 0.9rem;
       // text-align: center;
       font-family: $font-family-1;
+      overflow: hidden;
+      text-overflow: ellipsis;
       padding: 0.5rem;
     }
     &--hours{
+      overflow: hidden;
+      text-overflow: ellipsis;
       margin-left: auto;
       padding: 0.5rem;
       color: #a3a3a3;

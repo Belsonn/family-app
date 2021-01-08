@@ -3,127 +3,138 @@
   <app-custom-loading></app-custom-loading>
 </div>
 <div *ngIf="!isLoading">
-<div class="calendar-header">
-  <div [routerLink]="['', 'app', 'menu']" class="calendar-header--menu-icon">
-    <ic-icon icon="menuGridO"></ic-icon>
+  <div class="calendar-header">
+    <div [routerLink]="['', 'app', 'menu']" class="calendar-header--menu-icon">
+      <ic-icon icon="menuGridO"></ic-icon>
+    </div>
+    <div (click)="swipeRight()" class="calendar-header--left-icon">
+      <ic-icon icon="arrowLeftAlt2"></ic-icon>
+    </div>
+    <div (click)="setCurrentMonth()" class="calendar-header--date">
+      {{ displayDate }}
+    </div>
+    <div (click)="swipeLeft()" class="calendar-header--right-icon">
+      <ic-icon icon="arrowRightAlt2"></ic-icon>
+    </div>
+    <div (click)="addEvent()" class="calendar-header--add-icon">
+      <ic-icon icon="plusLine"></ic-icon>
+    </div>
   </div>
-  <div (click)="swipeRight()" class="calendar-header--left-icon">
-    <ic-icon icon="arrowLeftAlt2"></ic-icon>
-  </div>
-  <div (click)="setCurrentMonth()" class="calendar-header--date">
-    {{ displayDate }}
-  </div>
-  <div (click)="swipeLeft()" class="calendar-header--right-icon">
-    <ic-icon icon="arrowRightAlt2"></ic-icon>
-  </div>
-  <div (click)="addEvent()" class="calendar-header--add-icon">
-    <ic-icon icon="plusLine"></ic-icon>
-  </div>
-</div>
-<table
-  (swipeleft)="swipeLeft()"
-  (swipeRight)="swipeRight()"
-  class="calendar-table"
-  [ngClass]="{
-    'calendar-table--swipingRight': swipingRight,
-    'calendar-table--swipingLeft': swipingLeft
-  }"
-  *ngIf="calendar"
->
-  <thead>
-    <tr>
-      <th i18n="1Day">Mo</th>
-      <th i18n="2Day">Tu</th>
-      <th i18n="3Day">We</th>
-      <th i18n="4Day">Th</th>
-      <th i18n="5Day">Fr</th>
-      <th i18n="6Day">Sa</th>
-      <th i18n="7Day">Su</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let row of calendar | chunk: 7; let i = index">
-      <td
-        matRipple
-        [matRippleCentered]="true"
-        [matRippleRadius]="15"
-        (click)="onDateClick(c)"
-        class="calendar-day"
-        [ngClass]="{ 'past-date': c.isPastDate, today: c.isToday }"
-        *ngFor="let c of row; let j = index"
-      >
-        <div
-          class="calendar-day-header"
-          [ngClass]="{
-            'blue-date': c.isToday,
-            'not-this-month': c.date.getMonth() !== monthSelected,
-            'active-date': c.isClicked
-          }"
+  <table
+    (swipeleft)="swipeLeft()"
+    (swipeRight)="swipeRight()"
+    class="calendar-table"
+    [ngClass]="{
+      'calendar-table--swipingRight': swipingRight,
+      'calendar-table--swipingLeft': swipingLeft
+    }"
+    *ngIf="calendar"
+  >
+    <thead>
+      <tr>
+        <th i18n="1Day">Mo</th>
+        <th i18n="2Day">Tu</th>
+        <th i18n="3Day">We</th>
+        <th i18n="4Day">Th</th>
+        <th i18n="5Day">Fr</th>
+        <th i18n="6Day">Sa</th>
+        <th i18n="7Day">Su</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of calendar | chunk: 7; let i = index">
+        <td
+          matRipple
+          [matRippleCentered]="true"
+          [matRippleRadius]="15"
+          (click)="onDateClick(c)"
+          class="calendar-day"
+          [ngClass]="{ 'past-date': c.isPastDate, today: c.isToday }"
+          *ngFor="let c of row; let j = index"
         >
-          <p
-            [ngClass]="{ 'has-event': c.hasEvent }"
-            class="calendar-day-number"
-          >
-            {{ c.date.getDate() }}
-          </p>
-        </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<p class="day-header">
-  {{ calendarDayInstance.date.getDate() }}
-  {{ monthNames[calendarDayInstance.date.getMonth()] }}
-</p>
-
-<div *ngIf="calendarDayInstance.events.length > 0" class="events mb-2rem">
-  <div class="wrapper-flex-center flex-column">
-    <button
-      mat-button
-      *ngFor="let event of calendarDayInstance.events; let i = index"
-      style="--animation-order:{{ i }};"
-      class="width-100"
-    >
-      <div class="flex flex-align-center">
-        <div class="dot-wrapper">
           <div
-            [ngStyle]="{ 'background-color': event.color }"
-            class="dot dot-medium ml-1rem mr-1rem"
-          ></div>
-        </div>
-        <div class="events__row--title">{{ event.name }}</div>
-        <div *ngIf="!eventLongerThan1Day(event)" class="events__row--hours">
-          <span *ngIf="!event.allDay"
-            >{{ event.startDate | date: "HH:mm" }} -
-            {{ event.endDate | date: "HH:mm" }}</span
-          ><span i18n="allDay" *ngIf="event.allDay">Whole day</span>
-        </div>
-        <div *ngIf="eventLongerThan1Day(event)" class="events__row--hours">
-          {{ event.startDate | date: "dd/MM/yy" }} -
-          {{ event.endDate | date: "dd/MM/yy" }}
+            class="calendar-day-header"
+            [ngClass]="{
+              'blue-date': c.isToday,
+              'not-this-month': c.date.getMonth() !== monthSelected,
+              'active-date': c.isClicked
+            }"
+          >
+            <p
+              [ngClass]="{ 'has-event': c.hasEvent }"
+              class="calendar-day-number"
+            >
+              {{ c.date.getDate() }}
+            </p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="day-header">
+    {{ calendarDayInstance.date.getDate() }}
+    {{ monthNames[calendarDayInstance.date.getMonth()] }}
+  </p>
+
+  <div *ngIf="calendarDayInstance.events.length > 0" class="events mb-2rem">
+    <div class="wrapper-flex-center flex-column">
+      <div
+        mat-ripple
+        *ngFor="let event of calendarDayInstance.events; let i = index"
+        style="--animation-order:{{ i }};"
+        class="width-100 pointer mt-05rem"
+      >
+        <div class="flex flex-align-center">
+          <div class="wrapper-flex-center">
+            <ic-icon
+              [ngStyle]="{ color: event.color }"
+              class="font-size-18rem"
+              *ngIf="event.eventType == 'task'"
+              icon="medalLine"
+            ></ic-icon>
+            <ic-icon
+              [ngStyle]="{ color: event.color }"
+              class="font-size-18rem"
+              *ngIf="event.eventType == 'event'"
+              icon="bxCalendarStar"
+            ></ic-icon>
+          </div>
+          <!-- <div class="dot-wrapper">
+            <div
+              [ngStyle]="{ 'background-color': event.color }"
+              class="dot dot-medium ml-1rem mr-1rem"
+            ></div>
+          </div> -->
+          <div class="events__row--title ml-1rem">{{ event.name }}</div>
+          <div *ngIf="!eventLongerThan1Day(event)" class="events__row--hours">
+            <span *ngIf="!event.allDay"
+              >{{ event.startDate | date: "HH:mm" }} -
+              {{ event.endDate | date: "HH:mm" }}</span
+            ><span i18n="allDay" *ngIf="event.allDay">Whole day</span>
+          </div>
+          <div *ngIf="eventLongerThan1Day(event)" class="events__row--hours">
+            {{ event.startDate | date: "dd/MM/yy" }} -
+            {{ event.endDate | date: "dd/MM/yy" }}
+          </div>
         </div>
       </div>
+    </div>
+  </div>
+  <div
+    *ngIf="calendarDayInstance.events.length < 1"
+    class="wrapper-flex-center flex-column pb-3"
+  >
+    <div class="no-events__title">No events scheduled for this day</div>
+    <button
+      (click)="addEvent()"
+      class="bttn-primary bttn-violet bttn-clickable bttn-medium mt-2rem"
+    >
+      Add Event
     </button>
   </div>
 </div>
-<div
-  *ngIf="calendarDayInstance.events.length < 1"
-  class="wrapper-flex-center flex-column pb-3"
->
-  <div class="no-events__title">No events scheduled for this day</div>
-  <button
-    (click)="addEvent()"
-    class="bttn-primary bttn-violet bttn-clickable bttn-medium mt-2rem"
-  >
-    Add Event
-  </button>
-</div>
-</div>
-<div class="mt-3rem opacity-0">
-  Unlocker
-</div>
-
+<div class="mt-3rem opacity-0">Unlocker</div>
 
 <!-- <div class="dot-wrapper mr-1rem ml-1rem">
   <div

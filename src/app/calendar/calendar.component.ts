@@ -42,14 +42,11 @@ export class CalendarComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading = true;
 
-    if(!this.familyService.family){
-      this.router.navigate(['']);
-    } else {
       this.calendarService.getEvents().subscribe(res => {
 
-        let events = res.data.family.events;
+        let events = res.data.events;
   
-        for(let i = 0; i < res.data.family.events.length; i++){
+        for(let i = 0; i < res.data.events.length; i++){
           events[i].startDate = new Date(events[i].startDate);
           events[i].endDate = new Date(events[i].endDate);
         }
@@ -62,12 +59,10 @@ export class CalendarComponent implements OnInit {
         this.isLoading = false;
       })
 
-    }
-  
   }
 
-  onTest(){
-    
+  onTest(c){
+    console.log(c);
   }
 
   private generateCalendarDays(monthIndex: number): void {
@@ -128,22 +123,22 @@ export class CalendarComponent implements OnInit {
 
         // REPEAT BLOCK
         // ITS COMPLETELY BAD BUT IT WORKS XD
-        if (element.repeat) {
+        if (element.repeatType) {
           let time;
 
           // Set time differnce between dates
-          if(element.repeat.repeatType == 'Daily') {
-            time = 86400000 * element.repeat.repeatEvery
+          if(element.repeatType == 'Daily') {
+            time = 86400000 * element.repeatEvery
           }
-          else if(element.repeat.repeatType == 'Weekly') {
-            time = 86400000 * 7 * element.repeat.repeatEvery
+          else if(element.repeatType == 'Weekly') {
+            time = 86400000 * 7 * element.repeatEvery
           } 
 
           //TODO
-          else if(element.repeat.repeatType == "Monthly"){
+          else if(element.repeatType == "Monthly"){
             let startMonths = startDate.getFullYear() * 12 + startDate.getMonth();
             let dayMonths = day.date.getFullYear() * 12 + day.date.getMonth();
-            if(day.date > startDate && day.date.getDate() == startDate.getDate() && (dayMonths - startMonths)%element.repeat.repeatEvery == 0){
+            if(day.date > startDate && day.date.getDate() == startDate.getDate() && (dayMonths - startMonths)%element.repeatEvery == 0){
               day.hasEvent = true;
               day.events.push(this.calendarEvents[i]);
             }
@@ -164,7 +159,6 @@ export class CalendarComponent implements OnInit {
       this.calendar.push(day);
       dateToAdd = new Date(dateToAdd.setDate(dateToAdd.getDate() + 1));
     }
-
     // Reset Month selected
     if (this.monthSelected > 11 || this.monthSelected < 0) {
       this.monthSelected = 0;

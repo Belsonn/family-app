@@ -1,23 +1,23 @@
-export interface Repeat{
-  repeatType: String;
-  repeatEvery
-}
+import { FamilyUser } from './family.models';
 
 
 export interface CalendarEvent {
-    _id?: String,
-    name: String;
-    startDate: Date;
-    endDate: Date;
-    allDay: Boolean;
-    repeat: Repeat
-    color: String;
-  }
+  _id?: string;
+  name: string;
+  eventType: string;
+  users: any
+  startDate: Date;
+  endDate: Date;
+  allDay: Boolean;
+  repeatType: string;
+  repeatEvery;
+  color: string;
+}
 
-  export interface EventsResponse {
-    status: String,
-    results: Number,
-    data: {
-      events: [CalendarEvent]
-    }
-  }
+export interface EventsResponse {
+  status: string;
+  results: Number;
+  data: {
+    events: [CalendarEvent];
+  };
+}

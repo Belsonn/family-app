@@ -25,7 +25,7 @@ export class CalendarEventComponent implements OnInit {
   isLoading = false;
 
   longEvent: boolean = false;
-  color: String;
+  color: string;
 
   //SHORT
   allDay: boolean = false;
@@ -227,14 +227,31 @@ export class CalendarEventComponent implements OnInit {
       name: '',
       startDate: new Date(),
       endDate: new Date(),
+      users: [],
+      eventType: '',
       allDay: false,
-      repeat: null,
+      repeatEvery: null,
+      repeatType: null,
       color: this.color,
     };
 
     event.name = this.titleFormGroup.controls.titleControl.value;
 
-    if (!this.longEvent) {
+    this.taskFormGroup.controls.isTask.value == true
+      ? (event.eventType = 'task')
+      : (event.eventType = 'event');
+
+    this.familyChildren.forEach((child) => {
+      child.isSelected ? event.users.push(child.user._id) : null;
+    });
+
+    if (event.eventType === 'event') {
+      this.familyParents.forEach((parent) => {
+        parent.isSelected ? event.users.push(parent.user._id) : null;
+      });
+    }
+
+    if (!this.radioFormGroup.controls.longEvent.value) {
       // Set same date for start and end
       let startDate = new Date(
         this.shortEventFormGroup.controls.shortDateControl.value
@@ -272,14 +289,11 @@ export class CalendarEventComponent implements OnInit {
     }
 
     if (this.repeatFormGroup.controls.repeatToggleControl.value) {
-      event.repeat = {
-        repeatType: this.repeatFormGroup.controls.repeatTypeControl.value,
-        repeatEvery: this.repeatFormGroup.controls.repeatEveryControl.value,
-      };
+      event.repeatType =  this.repeatFormGroup.controls.repeatTypeControl.value;
+      event.repeatEvery =  this.repeatFormGroup.controls.repeatEveryControl.value;
     }
 
     this.calendarService.addEvent(event).subscribe((res) => {
-      this.familyService.family = res.data.family;
       this.router.navigate(['', 'app', 'calendar']);
     });
   }
