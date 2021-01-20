@@ -1,0 +1,186 @@
+<div *ngIf="!isLoading">
+  <div class="flex flex-align-center">
+    <ic-icon
+      [routerLink]="['', 'app', 'tasks']"
+      mat-ripple
+      class="font-size-16rem ml-1rem mt-1rem border-radius-10 p-05rem"
+      icon="arrowBackUp"
+    ></ic-icon>
+  </div>
+
+  <mat-vertical-stepper class="stepper" [linear]="!true" #stepper>
+    <!--
+         STEP 1 TITLE
+         STEP 1 TITLE
+         STEP 1 TITLE
+         STEP 1 TITLE
+         STEP 1 TITLE
+     -->
+
+    <mat-step [stepControl]="titleFormGroup">
+      <form [formGroup]="titleFormGroup">
+        <ng-template i18n="event_stepper_title" matStepLabel
+          >Task title</ng-template
+        >
+        <div class="flex flex-align-center picker-handler mt-1rem">
+          <span
+            class="dot dot-big mr-1rem"
+            [style.background]="color"
+            [cpOKButton]="true"
+            [cpOKButtonText]="apply"
+            [cpOKButtonClass]="'bttn-picker'"
+            [cpAlphaChannel]="'disabled'"
+            [cpDisableInput]="'true'"
+            [(colorPicker)]="color"
+          ></span>
+          <mat-form-field class="formField">
+            <mat-label i18n="event_title">Title</mat-label>
+            <input name="title" formControlName="title" matInput required />
+            <mat-error i18n="event_title_error" *ngIf="titleFormGroup.invalid">
+              Please provide a title.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="stepper__buttons mt-1rem">
+          <button i18n="event_button_next" mat-button matStepperNext>
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!--
+         STEP 2 ASSIGN
+         STEP 2 ASSIGN
+         STEP 2 ASSIGN
+         STEP 2 ASSIGN
+         STEP 2 ASSIGN
+     -->
+
+    <mat-step [stepControl]="assignFormGroup">
+      <form [formGroup]="assignFormGroup">
+        <ng-template i18n="event_stepper_assign" matStepLabel
+          >Assign members</ng-template
+        >
+        <div
+          i18n="event_assign_error"
+          class="error mt-1rem"
+          *ngIf="assignFormGroup.invalid && assignTouched"
+        >
+          Someone has to be assigned.
+        </div>
+        <div class="wrapper-flex-center mt-1rem mb-05rem">
+          <button
+            (click)="onSelectAll()"
+            mat-ripple
+            class="bttn-violet flex border-radius-20 ptb-05rem prl-2rem btn"
+          >
+            <ic-icon
+              class="font-size-15rem mr-05rem"
+              icon="peopleIcon"
+            ></ic-icon>
+            <div>Przydziel wszystkich</div>
+          </button>
+        </div>
+        <div class="flex flex-align-center flex-wrap flex-space-evenly">
+          <button
+            mat-ripple
+            (click)="onSelectUser(familyUser)"
+            [ngClass]="{ 'box-selected': familyUser.isSelected }"
+            *ngFor="let familyUser of familyChildren; let i = index"
+            class="box flex flex-column mt-2rem btn"
+          >
+            <div class="wrapper-flex-center width-100">
+              <img
+                src="{{ familyUser.user.photo }}"
+                class="photo photo-70 photo-mobile white-border"
+                alt="user-photo"
+              />
+            </div>
+            <div class="wrapper-flex-center mt-1rem width-100">
+              {{ familyUser.user.name }}
+            </div>
+          </button>
+        </div>
+
+        <div class="stepper__buttons mt-1rem">
+          <button i18n="event_button_previous" mat-button matStepperPrevious>
+            Back
+          </button>
+          <button
+            i18n="event_button_next"
+            (click)="assignTouched = true"
+            mat-button
+            matStepperNext
+          >
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="rewardFormGroup">
+      <form [formGroup]="rewardFormGroup">
+        <ng-template i18n="event_stepper_reward" matStepLabel
+          >Rewards</ng-template
+        >
+        <div class="flex flex-column mt-1rem">
+          <div class="text-center width-100 font-size-12rem">Points</div>
+          <div class="wrapper-flex-center">
+            <div class="wrapper-flex-center box-quantity mt-2rem">
+              <div
+                (click)="onMarkClick('minus')"
+                (mousedown)="onHold('minus')"
+                (mousemove)="onStopHold()"
+                (mouseup)="onStopHold()"
+                mat-ripple
+                class="box-quantity--button"
+              >
+                -
+              </div>
+              <input
+                [ngClass]="{
+                  'input-invalid':
+                    buttonTouched && taskFormGroup.controls.points.invalid
+                }"
+                type="number"
+                formControlName="points"
+                class="custom-input transition"
+                (change)="checkValid()"
+              />
+              <div
+                (click)="onMarkClick('plus')"
+                (mousedown)="onHold('plus')"
+                (mouseup)="onStopHold()"
+                mat-ripple
+                class="box-quantity--button"
+              >
+                +
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="wrapper-flex-center mt-2rem">
+          <div class="rewards-info">
+            Each assigned child will receive points(on complete) that can be
+            used in the rewards tab.
+          </div>
+        </div>
+        <div class="stepper__buttons mt-1rem">
+          <button i18n="event_button_previous" mat-button matStepperPrevious>
+            Back
+          </button>
+          <button
+            i18n="event_button_next"
+            (click)="assignTouched = true"
+            mat-button
+            matStepperNext
+          >
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-vertical-stepper>
+</div>
+<button mat-button (click)="onTest()">XDXDXD</button>
+<div class="mt-3rem"></div>

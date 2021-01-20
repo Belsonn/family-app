@@ -1,0 +1,81 @@
+@import "~src/scss/main.scss";
+
+.stepper {
+  margin: 0 auto;
+
+  &__buttons {
+    margin-top: 2rem;
+  }
+}
+
+.formField {
+  margin-top: 0.3rem;
+  width: 90%;
+}
+
+.box {
+  background: $background-gray;
+  padding: 1rem 2rem;
+  box-shadow: $box-shadow-secondary;
+  border-radius: 20px;
+  // color: $pink-1;
+  // font-weight: 500;
+  transition: all 0.5s;
+
+  font-size: 1.1rem;
+  // border: 2px transparent solid;
+}
+
+.box-selected {
+  // border: 2px $violet-1-light solid;
+  background: $violet-1-light;
+  color: #fff;
+}
+
+.box-quantity {
+  box-shadow: $box-shadow-primary;
+  background-color: $violet-1-light;
+  color: #fff;
+  border-radius: 20px;
+
+  &--button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    padding: 1rem;
+    border-radius: 20px;
+
+    // background-color: red;
+  }
+}
+
+.custom-input {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  font-size: 1.3rem;
+  justify-content: center;
+  text-align: center;
+  border: none;
+  background-color: $violet-1-light;
+  color: #fff;
+}
+
+.rewards-info{
+    color: $text-gray;
+    font-weight: 500;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+:host ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
+  background: $linear-gradient-90-1;
+}
+:host ::ng-deep .mat-stepper-horizontal,
+.mat-stepper-vertical {
+  background-color: $background-gray;
+}

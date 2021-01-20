@@ -431,6 +431,9 @@
   .spacer {
     padding: 0;
   }
+  .flex-column-m {
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 420px) {

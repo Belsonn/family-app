@@ -21,3 +21,8 @@ export interface EventsResponse {
     events: [CalendarEvent];
   };
 }
+
+export interface CalendarUser {
+  user: FamilyUser;
+  isSelected: Boolean;
+}

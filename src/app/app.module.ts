@@ -59,6 +59,7 @@ import { ConfirmDeleteModalComponent } from './common/confirm-delete-modal/confi
 import { CompleteConfirmModalComponent } from './shopping-list/complete-confirm-modal/complete-confirm-modal.component';
 import { SmallLoadingComponent } from './common/small-loading/small-loading.component';
 import { ChatComponent } from './chat/chat.component';
+import { TaskCreateComponent } from './tasks/task-create/task-create.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { ChatComponent } from './chat/chat.component';
     CompleteConfirmModalComponent,
     SmallLoadingComponent,
     ChatComponent,
+    TaskCreateComponent,
   ],
   imports: [
     HttpClientModule,
