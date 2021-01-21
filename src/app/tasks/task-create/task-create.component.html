@@ -1,3 +1,7 @@
+<div *ngIf="isLoading">
+  <app-custom-loading></app-custom-loading>
+</div>
+
 <div *ngIf="!isLoading">
   <div class="flex flex-align-center">
     <ic-icon
@@ -40,6 +44,16 @@
               Please provide a title.
             </mat-error>
           </mat-form-field>
+        </div>
+        <div class="mt-15rem">
+          <mat-checkbox
+            i18n="event_commonTask"
+            name="commonTask"
+            formControlName="commonTaskControl"
+            class="commonTask"
+          >
+            Mark this task as common.
+          </mat-checkbox>
         </div>
         <div class="stepper__buttons mt-1rem">
           <button i18n="event_button_next" mat-button matStepperNext>
@@ -123,46 +137,56 @@
         <ng-template i18n="event_stepper_reward" matStepLabel
           >Rewards</ng-template
         >
-        <div class="flex flex-column mt-1rem">
-          <div class="text-center width-100 font-size-12rem">Points</div>
-          <div class="wrapper-flex-center">
-            <div class="wrapper-flex-center box-quantity mt-2rem">
-              <div
-                (click)="onMarkClick('minus')"
-                (mousedown)="onHold('minus')"
-                (mousemove)="onStopHold()"
-                (mouseup)="onStopHold()"
-                mat-ripple
-                class="box-quantity--button"
-              >
-                -
-              </div>
-              <input
-                [ngClass]="{
-                  'input-invalid':
-                    buttonTouched && taskFormGroup.controls.points.invalid
-                }"
-                type="number"
-                formControlName="points"
-                class="custom-input transition"
-                (change)="checkValid()"
-              />
-              <div
-                (click)="onMarkClick('plus')"
-                (mousedown)="onHold('plus')"
-                (mouseup)="onStopHold()"
-                mat-ripple
-                class="box-quantity--button"
-              >
-                +
-              </div>
+        <div class="text-center width-100 font-size-12rem">Points</div>
+        <div
+          class="flex flex-align-center flex-space-evenly flex-wrap mt-15rem"
+        >
+          <div
+            (click)="fillPoints(box)"
+            mat-ripple
+            *ngFor="let box of rewardBoxes"
+            class="reward-box"
+          >
+            {{ box }}
+          </div>
+        </div>
+        <div class="wrapper-flex-center">
+          <div class="wrapper-flex-center box-quantity mt-15rem">
+            <div
+              (click)="onMarkClick('minus')"
+              (mousedown)="onHold('minus')"
+              (mousemove)="onStopHold()"
+              (mouseup)="onStopHold()"
+              mat-ripple
+              class="box-quantity--button"
+            >
+              -
+            </div>
+            <input
+              [ngClass]="{
+                'input-invalid':
+                  buttonTouched && taskFormGroup.controls.points.invalid
+              }"
+              type="number"
+              formControlName="points"
+              class="custom-input transition"
+              (change)="checkValid()"
+            />
+            <div
+              (click)="onMarkClick('plus')"
+              (mousedown)="onHold('plus')"
+              (mouseup)="onStopHold()"
+              mat-ripple
+              class="box-quantity--button"
+            >
+              +
             </div>
           </div>
         </div>
         <div class="wrapper-flex-center mt-2rem">
           <div class="rewards-info">
-            Each assigned child will receive points(on complete) that can be
-            used in the rewards tab.
+            Each assigned child will receive points(on task complete) that can
+            be used in the rewards tab.
           </div>
         </div>
         <div class="stepper__buttons mt-1rem">
@@ -180,7 +204,100 @@
         </div>
       </form>
     </mat-step>
+    <mat-step [stepControl]="datesFormGroup">
+      <form [formGroup]="datesFormGroup">
+        <ng-template i18n="event_stepper_when" matStepLabel>When?</ng-template>
+        <div class="mt-1rem">
+          <mat-form-field class="formField" appearance="fill">
+            <mat-label i18n="event_startDate">Start Date</mat-label>
+            <input
+              matInput
+              name="startDate"
+              [min]="minDate"
+              formControlName="startDateControl"
+              [matDatepicker]="startDatePicker"
+              required
+              readonly
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="startDatePicker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #startDatePicker disabled="false"></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="formField" appearance="fill">
+            <mat-label i18n="event_endDate">End Date</mat-label>
+            <input
+              matInput
+              name="endDate"
+              [min]="datesFormGroup.controls.startDateControl.value"
+              formControlName="endDateControl"
+              [matDatepicker]="endDatePicker"
+              required
+              readonly
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="endDatePicker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #endDatePicker disabled="false"></mat-datepicker>
+          </mat-form-field>
+          <div>
+            <mat-checkbox
+              i18n="event_alldays"
+              name="allDay"
+              formControlName="allDayControl"
+              (change)="allDayChange($event)"
+            >
+              Whole day(s)
+            </mat-checkbox>
+          </div>
+          <mat-form-field class="formField" appearance="outline">
+            <mat-label i18n="event_startTime">Start Time</mat-label>
+            <input
+              matInput
+              name="startTimePicker"
+              formControlName="startTimeControl"
+              [max]="datesFormGroup.controls.endTimeControl.value"
+              [ngxTimepicker]="startTimePicker"
+              [format]="24"
+              readonly
+              required
+            />
+            <ngx-material-timepicker
+              [theme]="pickerTheme"
+              #startTimePicker
+            ></ngx-material-timepicker>
+          </mat-form-field>
+          <mat-form-field class="formField" appearance="outline">
+            <mat-label i18n="event_endTime">End Time</mat-label>
+            <input
+              matInput
+              name="endTimePicker"
+              formControlName="endTimeControl"
+              [min]="datesFormGroup.controls.startTimeControl.value"
+              [ngxTimepicker]="endTimePicker"
+              [format]="24"
+              readonly
+              required
+            />
+            <ngx-material-timepicker
+              [theme]="pickerTheme"
+              #endTimePicker
+            ></ngx-material-timepicker>
+          </mat-form-field>
+        </div>
+        <div class="stepper__buttons mt-1rem">
+          <button i18n="event_button_previous" mat-button matStepperPrevious>
+            Back
+          </button>
+          <button i18n="event_button_Add" mat-button (click)="addTask()">
+            Add
+          </button>
+        </div>
+      </form>
+    </mat-step>
   </mat-vertical-stepper>
 </div>
-<button mat-button (click)="onTest()">XDXDXD</button>
+<button mat-button>XDXDXD</button>
 <div class="mt-3rem"></div>

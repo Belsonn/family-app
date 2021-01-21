@@ -65,11 +65,24 @@
   color: #fff;
 }
 
-.rewards-info{
-    color: $text-gray;
-    font-weight: 500;
-    font-size: 1.2rem;
-    text-align: center;
+.rewards-info {
+  color: $text-gray;
+  font-weight: 500;
+  font-size: 1.2rem;
+  text-align: center;
+}
+.commonTask{
+  font-family: $font-family-1;
+}
+
+.reward-box {
+  box-shadow: $box-shadow-primary;
+  margin: 0.5rem 0.5rem;
+  width: 33%;
+  text-align: center;
+  border-radius: 20px;
+  padding: 0.5rem;
+  cursor: pointer;
 }
 
 :host ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
@@ -78,4 +91,10 @@
 :host ::ng-deep .mat-stepper-horizontal,
 .mat-stepper-vertical {
   background-color: $background-gray;
+}
+
+@media (max-width: 400px) {
+  .reward-box {
+    width: 33%;
+  }
 }

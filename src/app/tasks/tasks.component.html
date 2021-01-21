@@ -1,12 +1,42 @@
-<div class="wrapper-flex-center mt-2rem">
-  <div class="font-size-14rem violet text-center">Tasks</div>
+<div *ngIf="isLoading">
+  <app-custom-loading></app-custom-loading>
 </div>
-<div class="wrapper-flex-center mt-05rem">
-  <div
-    [routerLink]="['', 'app', 'tasks', 'add']"
-    mat-ripple
-    class="font-size-11rem p-05rem border-radius-20 violet pointer"
-  >
-    Create new
+
+<div *ngIf="!isLoading">
+  <div class="wrapper-flex-center mt-2rem">
+    <div class="font-size-14rem violet text-center">Tasks</div>
+  </div>
+  <div class="wrapper-flex-center mt-05rem">
+    <div class="flex flex-align-center width-80 flex-space-between width-80">
+      <div
+        [routerLink]="['', 'app', 'tasks', 'daily']"
+        mat-ripple
+        class="font-size-11rem p-05rem border-radius-20 violet pointer"
+      >
+        Daily Tasks
+      </div>
+      <div
+        [routerLink]="['', 'app', 'tasks', 'add']"
+        mat-ripple
+        class="font-size-11rem p-05rem border-radius-20 violet pointer"
+      >
+        Create new
+      </div>
+    </div>
+  </div>
+  <div class="wrapper-flex-center flex-column mt-2rem">
+    <div mat-ripple class="taskbox" *ngFor="let task of tasks">
+      <div class="flex flex-space-between">
+        <div class="flex flex-column ml-1rem">
+          <div class="taskbox--title">
+            {{ task.name }}
+          </div>
+          <div class="taskbox--date">
+            {{ task.startDate | date: "dd/MM HH:mm" }} -
+            {{ task.endDate | date: "dd/MM HH:mm" }}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
