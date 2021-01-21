@@ -1,0 +1,26 @@
+<div *ngIf="isLoading">
+  <app-custom-loading></app-custom-loading>
+</div>
+
+<div *ngIf="!isLoading">
+  <div class="flex flex-align-center">
+    <ic-icon
+      [routerLink]="['', 'app', 'tasks']"
+      mat-ripple
+      class="font-size-16rem ml-1rem mt-1rem border-radius-10 p-05rem"
+      icon="arrowBackUp"
+    ></ic-icon>
+  </div>
+
+  <div class="wrapper-flex-center">
+      <div class="font-size-14rem violet text-center">
+          Daily Tasks
+      </div>
+  </div>
+
+  <div *ngFor="let dailyTask of dailyTasks" class="dailyTask">
+
+  </div>
+
+
+</div>

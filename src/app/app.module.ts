@@ -60,6 +60,8 @@ import { CompleteConfirmModalComponent } from './shopping-list/complete-confirm-
 import { SmallLoadingComponent } from './common/small-loading/small-loading.component';
 import { ChatComponent } from './chat/chat.component';
 import { TaskCreateComponent } from './tasks/task-create/task-create.component';
+import { DailyTaskComponent } from './tasks/daily-task/daily-task.component';
+import { DailyTaskCreateComponent } from './tasks/daily-task/daily-task-create/daily-task-create.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +90,8 @@ import { TaskCreateComponent } from './tasks/task-create/task-create.component';
     SmallLoadingComponent,
     ChatComponent,
     TaskCreateComponent,
+    DailyTaskComponent,
+    DailyTaskCreateComponent,
   ],
   imports: [
     HttpClientModule,
