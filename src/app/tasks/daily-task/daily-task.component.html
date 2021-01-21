@@ -13,14 +13,56 @@
   </div>
 
   <div class="wrapper-flex-center">
-      <div class="font-size-14rem violet text-center">
-          Daily Tasks
+    <div class="font-size-14rem violet text-center">Daily Tasks</div>
+  </div>
+
+  <div class="wrapper-flex-center mt-1rem">
+    <div class="date">
+      {{ date | date: "dd. MMMM" }}
+    </div>
+  </div>
+
+  <div class="wrapper-flex-center">
+    <div *ngFor="let dailyTask of dailyTasks" class="dailyTask">
+      <div class="flex flex-space-between flex-align-center">
+        <div class="flex flex-column">
+          <div class="wrapper-flex-center dailyTask--name">
+            {{ dailyTask.name }}
+          </div>
+          <div class="dailyTask--points">{{ dailyTask.points }} Points</div>
+        </div>
+        <div class="wrapper-flex-center">
+          {{ dailyTask.startTime }} - {{ dailyTask.endTime }}
+        </div>
       </div>
+      <div class="wrapper-flex-center flex-wrap mt-1rem">
+        <div mat-ripple *ngFor="let child of children" class="childBox">
+          <div class="flex flex-column">
+            <div class="wrapper-flex-center width-100">
+              <img
+                src="{{ child.photo }}"
+                class="photo photo-50 photo-mobile white-border"
+                alt="user-photo"
+              />
+            </div>
+            <div class="wrapper-flex-center width-100">
+              <div class="childBox--name">
+                {{ child.name }}
+              </div>
+            </div>
+            <div class="childBox--checkMark">
+                <ic-icon icon="checkOutlined"></ic-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div *ngFor="let dailyTask of dailyTasks" class="dailyTask">
-
+  <div class="wrapper-flex-center mt-2rem">
+      <button class="bttn-primary bttn-big bttn-clickable bttn-violet">
+        Confirm changes
+      </button>
   </div>
-
 
 </div>
+<div class="mt-3rem"></div>

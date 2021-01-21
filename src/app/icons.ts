@@ -55,6 +55,7 @@ import settingsIcon2 from '@iconify-icons/feather/settings';
 import baselineInsertPhoto from '@iconify-icons/ic/baseline-insert-photo';
 import medalLine from '@iconify-icons/ri/medal-line';
 import bxCalendarStar from '@iconify-icons/bx/bx-calendar-star';
+import checkOutlined from '@iconify-icons/ant-design/check-outlined';
 
 
 
@@ -115,4 +116,5 @@ export const appIcons = {
   baselineInsertPhoto, //CHAT
   medalLine, // Task picker
   bxCalendarStar, // Event Picker
+  checkOutlined, // DailyTask
 };

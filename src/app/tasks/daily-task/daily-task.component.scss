@@ -1,1 +1,32 @@
 @import "~src/scss/main.scss";
+
+.dailyTask {
+  box-shadow: $box-shadow-primary;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 20px;
+  width: 80%;
+
+  &--name{
+      font-size: 1.4rem;
+      color: $violet-1;
+      font-weight: 500;
+  }
+  &--points {
+    //   font-size: 1rem;
+      color: $text-gray
+  }
+}
+
+.childBox{
+    box-shadow: $box-shadow-primary;
+    margin: 0.5rem 0.7rem;
+    padding: 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+
+    &--checkMark{
+        font-size: 2rem;
+        color: $green;  
+    }
+}
