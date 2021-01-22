@@ -6,11 +6,11 @@ export interface Task {
         completed?: boolean;
         completedAt?: Date,
         _id?: string,
-        user: FamilyUser | string
+        user: any //  FamilyUser | string
     }[]
     startDate: Date,
     endDate: Date,
-    common: boolean
+    dailyTask: string
 }
 
 export interface TaskResponse {

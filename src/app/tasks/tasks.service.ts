@@ -4,22 +4,29 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TasksService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  addTask(task: Task){
-    return this.http.post<TaskResponse>(`${environment.apiURL}tasks/addTask`, task)
+  addTask(task: Task) {
+    return this.http.post<TaskResponse>(
+      `${environment.apiURL}tasks/addTask`,
+      task
+    );
   }
 
-  getTasks(){
-    return this.http.get<TaskResponse>(`${environment.apiURL}tasks`)
+  getTasks() {
+    return this.http.get<TaskResponse>(`${environment.apiURL}tasks`);
   }
 
   getDailyTasks() {
-    return this.http.get<DailyTaskResponse>(`${environment.apiURL}tasks/daily`)
+    return this.http.get<DailyTaskResponse>(`${environment.apiURL}tasks/daily`);
   }
 
+  getDailyTasksOnDate(date: Date) {
+    return this.http.get<TaskResponse>(
+      `${environment.apiURL}tasks/dailyWithTask?date=${date.toISOString()}`
+    );
+  }
 }

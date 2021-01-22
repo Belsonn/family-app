@@ -202,7 +202,7 @@ export class TaskCreateComponent implements OnInit {
   addTask() {
     let task: Task = {
       name: this.titleFormGroup.controls.title.value,
-      common: this.titleFormGroup.controls.commonTaskControl.value,
+      dailyTask: null,
       startDate: new Date(this.datesFormGroup.controls.startDateControl.value),
       endDate: new Date(this.datesFormGroup.controls.endDateControl.value),
       users: [],
@@ -229,10 +229,13 @@ export class TaskCreateComponent implements OnInit {
       task.endDate.setHours(endTime[0], endTime[1]);
     }
 
-    this.taskService.addTask(task).subscribe((res) => {
-      this.router.navigate(['', 'app', 'tasks']);
-    }, err => {
-      this.error = true;
-    });
+    this.taskService.addTask(task).subscribe(
+      (res) => {
+        this.router.navigate(['', 'app', 'tasks']);
+      },
+      (err) => {
+        this.error = true;
+      }
+    );
   }
 }

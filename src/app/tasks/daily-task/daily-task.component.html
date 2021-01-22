@@ -23,7 +23,7 @@
   </div>
 
   <div class="wrapper-flex-center">
-    <div *ngFor="let dailyTask of dailyTasks" class="dailyTask">
+    <div *ngFor="let dailyTask of tasksToCreate" class="dailyTask">
       <div class="flex flex-space-between flex-align-center">
         <div class="flex flex-column">
           <div class="wrapper-flex-center dailyTask--name">
@@ -32,7 +32,7 @@
           <div class="dailyTask--points">{{ dailyTask.points }} Points</div>
         </div>
         <div class="wrapper-flex-center">
-          {{ dailyTask.startTime }} - {{ dailyTask.endTime }}
+          {{ dailyTask.startDate | date: "HH:mm" }} - {{ dailyTask.endDate | date: "HH:mm" }}
         </div>
       </div>
       <div class="wrapper-flex-center flex-wrap mt-1rem">
@@ -50,8 +50,11 @@
                 {{ child.name }}
               </div>
             </div>
-            <div class="childBox--checkMark">
+            <div *ngIf="dailyTask.users.includes(child._id)" class="childBox--checkMark">
                 <ic-icon icon="checkOutlined"></ic-icon>
+            </div>
+            <div *ngIf="!dailyTask.users.includes(child._id)" class="childBox--XMark">
+                <ic-icon icon="xIcon"></ic-icon>
             </div>
           </div>
         </div>

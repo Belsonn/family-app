@@ -1,5 +1,6 @@
 import { CalendarEvent } from './CalendarEvent.model';
 import { ShoppingList } from './shoppingList.models';
+
 export interface FamilyUser {
   _id: string;
   name: string;

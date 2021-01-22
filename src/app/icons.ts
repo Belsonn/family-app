@@ -58,7 +58,6 @@ import bxCalendarStar from '@iconify-icons/bx/bx-calendar-star';
 import checkOutlined from '@iconify-icons/ant-design/check-outlined';
 
 
-
 export const appIcons = {
   planner, // Menu
   shoppingCart, // Menu
@@ -109,7 +108,7 @@ export const appIcons = {
   bxListPlus, // add new shopping list
   arrowDownAlt2, // Shopping
   arrowUpAlt2, //Shopping 
-  xIcon, // Shoppinh
+  xIcon, // Shoppinh DailyTask
   baselineRemoveShoppingCart, // shopping
   arrowRight, // CHAT
   settingsIcon2, //CHAT
