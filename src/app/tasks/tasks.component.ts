@@ -17,7 +17,6 @@ export class TasksComponent implements OnInit {
     this.isLoading = true;
     this.taskService.getTasks().subscribe((res) => {
       this.tasks = res.data.tasks;
-      console.log(this.tasks);
       this.isLoading = false;
     });
   }

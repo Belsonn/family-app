@@ -60,6 +60,7 @@ export class DailyTaskComponent implements OnInit {
         name: dailyTask.name,
         startDate: new Date(this.date),
         endDate: new Date(this.date),
+        points: dailyTask.points,
         dailyTask: dailyTask._id,
         users: [],
       };
@@ -84,14 +85,49 @@ export class DailyTaskComponent implements OnInit {
   fillUsers(task: Task, dailyTask: DailyTask) {
     console.log(this.taskOnDate);
     for (let i = 0; i < this.taskOnDate.length; i++) {
-      if (task.name == dailyTask.name) {
-
+      if (task.dailyTask == dailyTask._id) {
         this.taskOnDate[i].users.forEach((el) => {
-          task.users.push(el.user._id);
+          task.users.push({
+            user: el.user._id,
+            completed: false,
+            completedAt: null,
+          });
         });
 
         return task;
       }
+    }
+  }
+
+  userOnList(dailyTask: Task, child: FamilyUser) {
+    let exists = false;
+
+    dailyTask.users.forEach((el) => {
+      if (el.user == child._id) {
+        exists = true;
+      }
+    });
+
+    return exists;
+  }
+
+  changeUser(dailyTask: Task, child: FamilyUser) {
+    let index = -1;
+
+    for (let i = 0; i < dailyTask.users.length; i++) {
+      if (dailyTask.users[i].user == child._id) {
+        index = i;
+      }
+    }
+
+    if (index !== -1) {
+      dailyTask.users.splice(index, 1);
+    } else {
+      dailyTask.users.push({
+        completed: false,
+        completedAt: null,
+        user: child._id,
+      });
     }
   }
 }

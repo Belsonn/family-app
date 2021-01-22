@@ -2,6 +2,7 @@ import { FamilyUser } from 'src/app/utils/family.models';
 export interface Task {
     _id?: string,
     name: string,
+    points: number,
     users: {
         completed?: boolean;
         completedAt?: Date,

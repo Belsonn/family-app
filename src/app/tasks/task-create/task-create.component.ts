@@ -203,6 +203,7 @@ export class TaskCreateComponent implements OnInit {
     let task: Task = {
       name: this.titleFormGroup.controls.title.value,
       dailyTask: null,
+      points: this.rewardFormGroup.controls.points.value,
       startDate: new Date(this.datesFormGroup.controls.startDateControl.value),
       endDate: new Date(this.datesFormGroup.controls.endDateControl.value),
       users: [],

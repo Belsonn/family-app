@@ -36,7 +36,7 @@
         </div>
       </div>
       <div class="wrapper-flex-center flex-wrap mt-1rem">
-        <div mat-ripple *ngFor="let child of children" class="childBox">
+        <div mat-ripple (click)="changeUser(dailyTask, child)" *ngFor="let child of children" class="childBox">
           <div class="flex flex-column">
             <div class="wrapper-flex-center width-100">
               <img
@@ -50,10 +50,10 @@
                 {{ child.name }}
               </div>
             </div>
-            <div *ngIf="dailyTask.users.includes(child._id)" class="childBox--checkMark">
+            <div *ngIf="userOnList(dailyTask, child)" class="childBox--checkMark">
                 <ic-icon icon="checkOutlined"></ic-icon>
             </div>
-            <div *ngIf="!dailyTask.users.includes(child._id)" class="childBox--XMark">
+            <div *ngIf="!userOnList(dailyTask, child)" class="childBox--XMark">
                 <ic-icon icon="xIcon"></ic-icon>
             </div>
           </div>
