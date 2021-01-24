@@ -56,6 +56,7 @@ import baselineInsertPhoto from '@iconify-icons/ic/baseline-insert-photo';
 import medalLine from '@iconify-icons/ri/medal-line';
 import bxCalendarStar from '@iconify-icons/bx/bx-calendar-star';
 import checkOutlined from '@iconify-icons/ant-design/check-outlined';
+import dotsThreeHorizontal from '@iconify-icons/entypo/dots-three-horizontal';
 
 
 export const appIcons = {
@@ -116,4 +117,5 @@ export const appIcons = {
   medalLine, // Task picker
   bxCalendarStar, // Event Picker
   checkOutlined, // DailyTask
+  dotsThreeHorizontal // Tasks
 };

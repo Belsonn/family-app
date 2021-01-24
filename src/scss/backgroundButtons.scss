@@ -1,0 +1,51 @@
+.bttn-icon {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+  color: #fff;
+  border: 0 !important;
+  outline: none !important;
+  width: 40px;
+
+  &::before{
+    position: absolute;
+    width: 40px;
+    border-radius: 50%;
+    content: "";
+    padding-bottom: 40px;
+    z-index: -1;
+  }
+
+  &--violet {
+    &::before {
+      background: $violet-1;
+    }
+  }
+  &--red {
+    &::before {
+      background: $red-1;
+    }
+  }
+  &--green {
+    &::before {
+      background: $green;
+    }
+  }
+  &--gray {
+    &::before {
+      background: $text-gray;
+    }
+  }
+  &--light-blue {
+    &::before {
+      background: $light-blue-1;
+    }
+  }
+  &--violet-dark {
+    &::before {
+      background: $violet-1-dark;
+    }
+  }
+}

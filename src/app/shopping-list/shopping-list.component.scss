@@ -51,61 +51,6 @@
     }
   }
 }
-.bttn-icon {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.5rem;
-  color: #fff;
-  border: 0 !important;
-  outline: none !important;
-  width: 40px;
-  &--violet {
-    &::before {
-      position: absolute;
-      width: 40px;
-      background: $violet-1;
-      border-radius: 50%;
-      content: "";
-      padding-bottom: 40px;
-      z-index: -1;
-    }
-  }
-  &--red {
-    &::before {
-      position: absolute;
-      width: 40px;
-      background: $red-1;
-      border-radius: 50%;
-      content: "";
-      padding-bottom: 40px;
-      z-index: -1;
-    }
-  }
-  &--green{
-    &::before{
-      position: absolute;
-      width: 40px;
-      background: $green;
-      border-radius: 50%;
-      content: "";
-      padding-bottom: 40px;
-      z-index: -1;
-    }
-  }
-  &--light-blue{
-    &::before{
-      position: absolute;
-      width: 40px;
-      background: $light-blue-1;
-      border-radius: 50%;
-      content: "";
-      padding-bottom: 40px;
-      z-index: -1;
-    }
-  }
-}
 
 .custom-flex{
   display: flex;
