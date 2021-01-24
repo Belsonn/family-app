@@ -13,9 +13,15 @@ export class TasksComponent implements OnInit {
   isLoading: boolean = false;
   tasks: Task[] = [];
 
-  children: FamilyUser[] = [];
+  selected: any;
 
-  selectOptions = [$localize`Show all`];
+  showAll = $localize`Show all`;
+
+  me: FamilyUser;
+
+  tasksToShow: Task[] = [];
+
+  children: FamilyUser[] = [];
 
   constructor(
     private taskService: TasksService,
@@ -25,14 +31,24 @@ export class TasksComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading = true;
     this.findChildren();
-    this.generateSelectOptions();
     this.findAllTasks();
+  }
 
+  checkMyRole() {
+    if (this.familyService.familyUser.role == 'child') {
+      this.me = this.familyService.familyUser;
+
+      this.selected = this.me.name;
+
+    }
   }
 
   findAllTasks() {
     this.taskService.getTasks().subscribe((res) => {
       this.tasks = res.data.tasks;
+      this.tasksToShow = this.tasks;
+      this.checkMyRole();
+      console.log(this.tasks);
       this.isLoading = false;
     });
   }
@@ -43,9 +59,38 @@ export class TasksComponent implements OnInit {
     });
   }
 
-  generateSelectOptions() {
-    for (let i = 0; i < this.children.length; i++) {
-      this.selectOptions.push(this.children[i].name);
+  selectChanged(selection) {
+    let tasks: Task[] = [];
+
+    for (let i = 0; i < this.tasks.length; i++) {
+      for (let k = 0; k < this.tasks[i].users.length; k++) {
+        if (this.tasks[i].users[k].user.name == selection.value) {
+          tasks.push(this.tasks[i]);
+        }
+      }
+    }
+
+    if (tasks.length == 0) {
+      tasks = this.tasks;
+    }
+    this.tasksToShow = tasks;
+  }
+
+  showDate(index) {
+    if (index == 0) {
+      return true;
+    }
+    let lastEventStartDate = new Date(
+      this.tasksToShow[index - 1].startDate
+    ).setHours(0, 0, 0, 0);
+    let thisEventStartDate = new Date(
+      this.tasksToShow[index].startDate
+    ).setHours(0, 0, 0, 0);
+
+    if (lastEventStartDate !== thisEventStartDate) {
+      return true;
+    } else {
+      return false;
     }
   }
 }

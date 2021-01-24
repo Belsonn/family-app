@@ -21,9 +21,60 @@
     font-size: 1.4rem;
     font-weight: 500;
     color: $violet-1;
+    text-align: center;
   }
   &--date {
     font-size: 0.9rem;
+    color: $text-gray;
+  }
+  &--points{
+    color: $text-gray;
+    font-size: 0.9rem;
+  }
+
+}
+
+.date{
+  overflow: hidden;
+  color: $violet-1;
+  text-align: center;
+  font-weight: 600;
+  width: 90%;
+  margin: 1.5rem 0;
+  &::before, &::after {
+    content: "";
+    display: inline-block;
+    height: 2px;
+    position: relative;
+    vertical-align: middle;
+    width: 50%;
+  }
+  &::before{
+    // background-color: $linear-gradient-90-1-1half;
+    background: $linear-gradient-90-1-1half;
+    right: 1rem;
+    margin-left: -50%;
+  }
+  &::after{
+    background: $linear-gradient-90-1-2half;
+    left: 1rem;
+    margin-right: -50%;
+  }
+
+}
+
+.childBox{
+  padding: 0.5rem;
+  &--checkMark {
+    font-size: 2rem;
+    color: $green;
+  }
+  &--XMark {
+    font-size: 2rem;
+    color: $red-1;
+  }
+  &--dots {
+    font-size: 2rem;
     color: $text-gray;
   }
 }

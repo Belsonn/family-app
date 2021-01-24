@@ -6,6 +6,7 @@ export interface Task {
     users: {
         completed?: boolean;
         completedAt?: Date,
+        abandoned?: boolean,
         _id?: string,
         user: any //  FamilyUser | string
     }[]
