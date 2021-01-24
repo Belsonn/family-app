@@ -62,6 +62,7 @@ import { ChatComponent } from './chat/chat.component';
 import { TaskCreateComponent } from './tasks/task-create/task-create.component';
 import { DailyTaskComponent } from './tasks/daily-task/daily-task.component';
 import { DailyTaskCreateComponent } from './tasks/daily-task/daily-task-create/daily-task-create.component';
+import { DailyTaskConfirmChangesComponent } from './tasks/daily-task/daily-task-confirm-changes/daily-task-confirm-changes.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +93,7 @@ import { DailyTaskCreateComponent } from './tasks/daily-task/daily-task-create/d
     TaskCreateComponent,
     DailyTaskComponent,
     DailyTaskCreateComponent,
+    DailyTaskConfirmChangesComponent,
   ],
   imports: [
     HttpClientModule,

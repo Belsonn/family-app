@@ -29,4 +29,13 @@ export class TasksService {
       `${environment.apiURL}tasks/dailyWithTask?date=${date.toISOString()}`
     );
   }
+
+  updateDailyTasks(date: Date, tasks: Task[]) {
+    return this.http.post<TaskResponse>(
+      `${environment.apiURL}tasks/updateDailyTasks?date=${date.toISOString()}`,
+      {
+        tasks: tasks,
+      }
+    );
+  }
 }

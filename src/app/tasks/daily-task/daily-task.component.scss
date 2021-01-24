@@ -7,30 +7,66 @@
   border-radius: 20px;
   width: 80%;
 
-  &--name{
-      font-size: 1.4rem;
-      color: $violet-1;
-      font-weight: 500;
+  &--name {
+    font-size: 1.4rem;
+    color: $violet-1;
+    font-weight: 500;
   }
   &--points {
     //   font-size: 1rem;
-      color: $text-gray
+    color: $text-gray;
   }
 }
 
-.childBox{
-    box-shadow: $box-shadow-primary;
-    margin: 0.5rem 0.7rem;
-    padding: 1rem;
-    border-radius: 20px;
-    cursor: pointer;
+.childBox {
+  box-shadow: $box-shadow-primary;
+  margin: 0.5rem 0.7rem;
+  padding: 1rem;
+  border-radius: 20px;
+  cursor: pointer;
 
-    &--checkMark{
-        font-size: 2rem;
-        color: $green;  
-    }
-    &--XMark{
-        font-size: 2rem;
-        color: $red-1;  
-    }
+  &--checkMark {
+    font-size: 2rem;
+    color: $green;
+  }
+  &--XMark {
+    font-size: 2rem;
+    color: $red-1;
+  }
+}
+
+.date {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: $violet-1;
+
+  &--left {
+    cursor: pointer;
+    font-size: 1.6rem;
+    margin-right: 1rem;
+  }
+  &--right {
+    cursor: pointer;
+    font-size: 1.6rem;
+    margin-left: 1rem;
+  }
+
+  &--left:active,
+  &--right:active {
+    animation-name: upToDownButton;
+    animation-duration: 0.2s;
+  }
+}
+
+.custom-flex {
+  justify-content: space-between;
+  //   align-items: center;
+}
+
+@media (max-width: 390px) {
+  .custom-flex {
+    justify-content: left;
+    align-items: left;
+    flex-direction: column;
+  }
 }

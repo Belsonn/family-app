@@ -28,11 +28,18 @@ export class DailyTaskComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDailyTaskOnDate();
+    
+    this.findChildren();
+    
+  }
 
+  findChildren(){
     this.familyService.family.users.forEach((el) => {
       el.role == 'child' ? this.children.push(el) : null;
     });
   }
+
+
 
   getDailyTaskOnDate() {
     this.tasksService.getDailyTasksOnDate(this.date).subscribe((res) => {
@@ -48,27 +55,30 @@ export class DailyTaskComponent implements OnInit {
       this.dailyTasks = res.data.dailyTasks;
 
       this.createTaskToCreate();
-
-      console.log(this.tasksToCreate);
+      // console.log('TASK TO CREATE', this.tasksToCreate);
+      // console.log('Taski dnia', this.taskOnDate);
       this.isLoading = false;
     });
   }
 
   createTaskToCreate() {
-    this.dailyTasks.forEach((dailyTask) => {
-      let task: Task = {
-        name: dailyTask.name,
+    this.tasksToCreate = [];
+
+    for (let i = 0; i < this.dailyTasks.length; i++) {
+      let task: Task = null;
+      task = {
+        name: this.dailyTasks[i].name,
         startDate: new Date(this.date),
         endDate: new Date(this.date),
-        points: dailyTask.points,
-        dailyTask: dailyTask._id,
+        points: this.dailyTasks[i].points,
+        dailyTask: this.dailyTasks[i]._id,
         users: [],
       };
 
-      this.fillUsers(task, dailyTask);
+      task = this.fillUsers(task);
 
-      const startTime = dailyTask.startTime.split(':');
-      const endTime = dailyTask.endTime.split(':');
+      const startTime = this.dailyTasks[i].startTime.split(':');
+      const endTime = this.dailyTasks[i].endTime.split(':');
 
       task.startDate.setHours(
         parseInt(startTime[0]),
@@ -79,24 +89,22 @@ export class DailyTaskComponent implements OnInit {
       task.endDate.setHours(parseInt(endTime[0]), parseInt(endTime[1]), 0, 0);
 
       this.tasksToCreate.push(task);
-    });
+    }
   }
 
-  fillUsers(task: Task, dailyTask: DailyTask) {
-    console.log(this.taskOnDate);
+  fillUsers(task: Task) {
     for (let i = 0; i < this.taskOnDate.length; i++) {
-      if (task.dailyTask == dailyTask._id) {
+      if (this.taskOnDate[i].dailyTask == task.dailyTask) {
         this.taskOnDate[i].users.forEach((el) => {
           task.users.push({
             user: el.user._id,
-            completed: false,
-            completedAt: null,
+            completed: el.completed,
+            completedAt: el.completedAt,
           });
         });
-
-        return task;
       }
     }
+    return task;
   }
 
   userOnList(dailyTask: Task, child: FamilyUser) {
@@ -112,22 +120,61 @@ export class DailyTaskComponent implements OnInit {
   }
 
   changeUser(dailyTask: Task, child: FamilyUser) {
-    let index = -1;
+    if (this.checkDateInPast()) {
+      return;
+    } else {
+      let index = -1;
 
-    for (let i = 0; i < dailyTask.users.length; i++) {
-      if (dailyTask.users[i].user == child._id) {
-        index = i;
+      for (let i = 0; i < dailyTask.users.length; i++) {
+        if (dailyTask.users[i].user == child._id) {
+          index = i;
+        }
+      }
+
+      if (index !== -1) {
+        dailyTask.users.splice(index, 1);
+      } else {
+        dailyTask.users.push({
+          completed: false,
+          completedAt: null,
+          user: child._id,
+        });
       }
     }
+  }
 
-    if (index !== -1) {
-      dailyTask.users.splice(index, 1);
+  checkDateInPast() {
+    let now = new Date().setHours(0, 0, 0, 0);
+    let provided = new Date(this.date).setHours(0, 0, 0, 0);
+
+    return now > provided ? true : false;
+  }
+
+  dateYesterday() {
+    this.isLoading = true;
+
+    this.date.setDate(this.date.getDate() - 1);
+
+    this.getDailyTaskOnDate();
+  }
+  dateTommorow() {
+    this.isLoading = true;
+
+    this.date.setDate(this.date.getDate() + 1);
+
+    this.getDailyTaskOnDate();
+  }
+
+  updateDailyTasks() {
+    if (this.checkDateInPast()) {
+      return;
     } else {
-      dailyTask.users.push({
-        completed: false,
-        completedAt: null,
-        user: child._id,
-      });
+      this.isLoading = true;
+      this.tasksService
+        .updateDailyTasks(this.date, this.tasksToCreate)
+        .subscribe((res) => {
+          this.isLoading = false;
+        });
     }
   }
 }

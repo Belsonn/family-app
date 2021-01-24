@@ -16,27 +16,52 @@
     <div class="font-size-14rem violet text-center">Daily Tasks</div>
   </div>
 
-  <div class="wrapper-flex-center mt-1rem">
-    <div class="date">
-      {{ date | date: "dd. MMMM" }}
+  <div class="wrapper-flex-center mt-05rem">
+    <div
+      mat-ripple
+      class="border-radius-20 p-05rem violet font-size-12rem pointer"
+    >
+      Create new
     </div>
   </div>
 
-  <div class="wrapper-flex-center">
+  <div class="wrapper-flex-center mt-1rem">
+    <div (click)="dateYesterday()" class="date date--left">
+      <ic-icon icon="arrowLeftAlt2"></ic-icon>
+    </div>
+    <div class="date">
+      {{ date | date: "dd. MMMM" }}
+    </div>
+    <div (click)="dateTommorow()" class="date date--right">
+      <ic-icon icon="arrowRightAlt2"></ic-icon>
+    </div>
+  </div>
+  <div *ngIf="checkDateInPast()" class="wrapper-flex-center mtb-2rem">
+    <div class="infoBox">You cannot set tasks in the past.</div>
+  </div>
+
+
+  <div class="wrapper-flex-center flex-column">
     <div *ngFor="let dailyTask of tasksToCreate" class="dailyTask">
-      <div class="flex flex-space-between flex-align-center">
+      <div class="flex custom-flex">
         <div class="flex flex-column">
-          <div class="wrapper-flex-center dailyTask--name">
+          <div class="dailyTask--name">
             {{ dailyTask.name }}
           </div>
           <div class="dailyTask--points">{{ dailyTask.points }} Points</div>
         </div>
-        <div class="wrapper-flex-center">
-          {{ dailyTask.startDate | date: "HH:mm" }} - {{ dailyTask.endDate | date: "HH:mm" }}
+        <div class="flex flex-align-center">
+          {{ dailyTask.startDate | date: "HH:mm" }} -
+          {{ dailyTask.endDate | date: "HH:mm" }}
         </div>
       </div>
       <div class="wrapper-flex-center flex-wrap mt-1rem">
-        <div mat-ripple (click)="changeUser(dailyTask, child)" *ngFor="let child of children" class="childBox">
+        <div
+          mat-ripple
+          (click)="changeUser(dailyTask, child)"
+          *ngFor="let child of children"
+          class="childBox"
+        >
           <div class="flex flex-column">
             <div class="wrapper-flex-center width-100">
               <img
@@ -50,11 +75,14 @@
                 {{ child.name }}
               </div>
             </div>
-            <div *ngIf="userOnList(dailyTask, child)" class="childBox--checkMark">
-                <ic-icon icon="checkOutlined"></ic-icon>
+            <div
+              *ngIf="userOnList(dailyTask, child)"
+              class="childBox--checkMark"
+            >
+              <ic-icon icon="checkOutlined"></ic-icon>
             </div>
             <div *ngIf="!userOnList(dailyTask, child)" class="childBox--XMark">
-                <ic-icon icon="xIcon"></ic-icon>
+              <ic-icon icon="xIcon"></ic-icon>
             </div>
           </div>
         </div>
@@ -62,10 +90,12 @@
     </div>
   </div>
   <div class="wrapper-flex-center mt-2rem">
-      <button class="bttn-primary bttn-big bttn-clickable bttn-violet">
-        Confirm changes
-      </button>
+    <button
+      (click)="updateDailyTasks()"
+      class="bttn-primary bttn-big bttn-clickable bttn-violet"
+    >
+      Confirm changes
+    </button>
   </div>
-
 </div>
-<div class="mt-3rem"></div>
+<div class="mt-4rem"></div>
