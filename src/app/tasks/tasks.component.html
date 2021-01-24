@@ -33,7 +33,27 @@
       </div>
     </div>
   </div>
-  <div class="wrapper-flex-center flex-column mt-2rem">
+
+  <div class="wrapper-flex-center mt-1rem ">
+    <mat-form-field class="select-text" appearance="fill">
+      <mat-label class="select-text">Show tasks</mat-label>
+      <mat-select class="select-text">
+        <mat-option class="select-text" [value]="'Show all'"> Show all </mat-option>
+        <mat-option
+          class="select-text"
+          *ngFor="let child of children"
+          [value]="child.name"
+        >
+          {{ child.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <!--         <mat-option *ngFor="let child of selectOptions" [value]="child">
+          {{ child }}
+        </mat-option> -->
+
+  <div class="wrapper-flex-center flex-column mt-1rem">
     <div mat-ripple class="taskbox" *ngFor="let task of tasks">
       <div class="flex flex-space-between">
         <div class="flex flex-column ml-1rem">
@@ -49,3 +69,4 @@
     </div>
   </div>
 </div>
+<div class="mt-4rem"></div>

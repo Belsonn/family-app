@@ -1,5 +1,15 @@
 @import "~src/scss/main.scss";
 
+:host ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
+  background: $linear-gradient-90-1;
+}
+
+.select-text{
+  font-weight: 500;
+  color: $violet-1;
+  font-family: $font-family-1;
+}
+
 .taskbox {
   margin: 0.5rem;
   width: 80%;
@@ -7,13 +17,13 @@
   border-radius: 20px;
   cursor: pointer;
   padding: 1rem;
-  &--title{
-      font-size: 1.4rem;
-      font-weight: 500;
-      color: $violet-1
+  &--title {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: $violet-1;
   }
-  &--date{
-      font-size: 0.9rem;
-      color: $text-gray;
+  &--date {
+    font-size: 0.9rem;
+    color: $text-gray;
   }
 }
