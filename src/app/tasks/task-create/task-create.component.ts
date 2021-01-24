@@ -56,7 +56,6 @@ export class TaskCreateComponent implements OnInit {
   initFormGroup() {
     this.titleFormGroup = this._formBuilder.group({
       title: ['', Validators.required],
-      commonTaskControl: [false],
     });
     this.assignFormGroup = this._formBuilder.group({
       isSomeoneSelected: [false, Validators.requiredTrue],
