@@ -1,0 +1,46 @@
+<mat-dialog-content>
+  <p class="task task--header">Do you want to abandon this task?</p>
+  <div class="wrapper-flex-center flex-column">
+    <div class="task task--name">
+      {{ data.name }}
+    </div>
+    <div *ngIf="isSingleDayTask()" class="singleDayTask">
+      <div class="task task--date mt-05rem">
+        {{ data.startDate | date: "dd. MMMM" }}
+      </div>
+      <div class="task task--hours mt-05rem">
+        {{ data.startDate | date: "HH:mm" }} -
+        {{ data.endDate | date: "HH:mm" }}2
+      </div>
+    </div>
+    <div *ngIf="!isSingleDayTask()" class="moreDaysTask">
+      <div class="task task--date mt-05rem">
+        {{ data.startDate | date: "dd. MMMM HH:mm" }} -
+      </div>
+      <div class="task task--date">
+        {{ data.endDate | date: "dd. MMMM HH:mm" }}
+      </div>
+    </div>
+    <div class="task task--info mt-1rem">
+      You will no longer have the option to earn
+      <span class="task--info--points">{{ data.points }} points</span> for this
+      task.
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions class="mt-2rem">
+  <div class="buttons">
+    <button
+      class="bttn-primary bttn-clickable bttn-pink bttn-small buttons--left"
+      [mat-dialog-close]="true"
+    >
+      Abandon
+    </button>
+    <button
+      class="bttn-primary bttn-clickable bttn-blue bttn-small buttons--right"
+      [mat-dialog-close]="false"
+    >
+      Cancel
+    </button>
+  </div>
+</mat-dialog-actions>

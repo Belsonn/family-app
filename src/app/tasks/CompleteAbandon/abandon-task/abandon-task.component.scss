@@ -1,0 +1,55 @@
+@import "~src/scss/main.scss";
+
+.task {
+  text-align: center;
+  color: $violet-1;
+  font-weight: 500;
+  &--header {
+    font-size: 1.4rem;
+  }
+  &--name {
+    font-size: 1.6rem;
+  }
+  &--date {
+    text-align: left;
+    font-size: 1.3rem;
+  }
+  &--hours {
+    font-size: 1.1rem;
+  }
+  &--info {
+    color: $red-1;
+    font-size: 1.2rem;
+    &--points {
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  &--left {
+    margin-right: 1rem;
+  }
+  &--right {
+    margin-left: 1rem;
+  }
+}
+
+@media (max-width: 370px) {
+  .buttons {
+    flex-direction: column;
+    &--left {
+      margin-right: 0;
+    }
+    &--right {
+      margin-top: 1rem;
+      margin-left: 0;
+    }
+  }
+}
