@@ -48,4 +48,9 @@
       background: $violet-1-dark;
     }
   }
+  &--pink{
+    &::before {
+      background: $pink-1;
+    }
+  }
 }
