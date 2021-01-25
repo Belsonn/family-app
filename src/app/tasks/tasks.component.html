@@ -37,7 +37,11 @@
   <div class="wrapper-flex-center mt-1rem select-text">
     <mat-form-field class="select-text" appearance="fill">
       <mat-label class="select-text">Tasks</mat-label>
-      <mat-select [(value)]="selected" (selectionChange)="selectChanged($event)" class="select-text">
+      <mat-select
+        [(value)]="selected"
+        (selectionChange)="selectChanged($event)"
+        class="select-text"
+      >
         <mat-option class="select-text" [value]="showAll">
           Show all
         </mat-option>
@@ -55,14 +59,14 @@
     </mat-form-field>
   </div>
 
-  <div class="wrapper-flex-center flex-column mt-1rem">
+  <div *ngIf="tasksToShow.length > 0" class="wrapper-flex-center flex-column mt-1rem">
     <div
       class="wrapper-flex-center width-100"
       *ngFor="let task of tasksToShow; let i = index"
     >
       <div class="flex flex-column width-100">
         <div class="wrapper-flex-center">
-          <div *ngIf="showDate(i)" class="date">
+          <div *ngIf="showDate(i, 'active')" class="date">
             {{ task.startDate | date: "dd. MMMM" }}
           </div>
         </div>
@@ -93,7 +97,10 @@
                       <div *ngIf="child.completed" class="childBox--checkMark">
                         <ic-icon icon="checkOutlined"></ic-icon>
                       </div>
-                      <div *ngIf="!child.completed" class="childBox--dots">
+                      <div
+                        *ngIf="!child.completed && !child.abandoned"
+                        class="childBox--dots"
+                      >
                         <ic-icon icon="dotsThreeHorizontal"></ic-icon>
                       </div>
                       <div *ngIf="child.abandoned" class="childBox--XMark">
@@ -103,9 +110,10 @@
                   </div>
                 </div>
               </div>
-              <div class="wrapper-flex-center">
+              <div *ngIf="showCompleteMenu(task)" class="wrapper-flex-center">
                 <div
                   mat-ripple
+                  (click)="confirmTask(task)"
                   [matRippleCentered]="true"
                   [matRippleRadius]="20"
                   class="bttn-icon bttn-icon--light-blue mr-05rem"
@@ -116,16 +124,76 @@
                   ></ic-icon>
                 </div>
                 <div
-                  (click)="$event.stopPropagation()"
+                  (click)="abandonTask(task); $event.stopPropagation()"
                   mat-ripple
                   [matRippleCentered]="true"
                   [matRippleRadius]="20"
-                  class="bttn-icon bttn-icon--red ml-05rem"
+                  class="bttn-icon bttn-icon--pink ml-05rem"
                 >
                   <ic-icon
                     class="font-size-15rem p-d-1rem p-m-05rem"
                     icon="xIcon"
                   ></ic-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  COMPLETED 
+
+  <div *ngIf="tasksCompleted.length > 0" class="wrapper-flex-center flex-column mt-1rem">
+    <div
+      class="wrapper-flex-center width-100"
+      *ngFor="let task of tasksCompleted; let i = index"
+    >
+      <div class="flex flex-column width-100">
+        <div class="wrapper-flex-center">
+          <div *ngIf="showDate(i, 'complete')" class="date">
+            {{ task.startDate | date: "dd. MMMM" }}
+          </div>
+        </div>
+        <div class="wrapper-flex-center">
+          <div mat-ripple class="taskbox">
+            <div class="flex flex-column width-100">
+              <div class="taskbox--title">
+                {{ task.name }}
+              </div>
+              <div class="flex flex-space-between mt-05rem">
+                <div class="taskbox--points">{{ task.points }} Points</div>
+                <div class="taskbox--date">
+                  {{ task.startDate | date: "HH:mm" }} -
+                  {{ task.endDate | date: "HH:mm" }}
+                </div>
+              </div>
+              <div class="flex mt-05rem flex-wrap">
+                <div class="childBox" *ngFor="let child of task.users">
+                  <div class="flex flex-column">
+                    <div class="wrapper-flex-center">
+                      <img
+                        src="{{ child.user.photo }}"
+                        class="photo photo-50 photo-mobile white-border"
+                        alt="user-photo"
+                      />
+                    </div>
+                    <div class="wrapper-flex-center text-center">
+                      <div *ngIf="child.completed" class="childBox--checkMark">
+                        <ic-icon icon="checkOutlined"></ic-icon>
+                      </div>
+                      <div
+                        *ngIf="!child.completed && !child.abandoned"
+                        class="childBox--dots"
+                      >
+                        <ic-icon icon="dotsThreeHorizontal"></ic-icon>
+                      </div>
+                      <div *ngIf="child.abandoned" class="childBox--XMark">
+                        <ic-icon icon="xIcon"></ic-icon>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

@@ -1,11 +1,13 @@
 import { CalendarEvent } from './CalendarEvent.model';
 import { ShoppingList } from './shoppingList.models';
+import { Task } from './tasks.models';
 
 export interface FamilyUser {
   _id: string;
   name: string;
   family: string;
   gender: string;
+  points: number,
   dateOfBirth: Date;
   photo: string;
   role: string;
@@ -18,9 +20,10 @@ export interface Family {
   name: string;
   createdBy: string;
   createdAt: Date;
-  groceries: ShoppingList[];
   inviteToken: string;
-  events: CalendarEvent[];
+  shoppingLists?: ShoppingList[];
+  events?: CalendarEvent[];
+  tasks?: Task[];
 }
 
 export interface FamilyResponse {

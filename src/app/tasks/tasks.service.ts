@@ -1,3 +1,4 @@
+import { FamilyUser } from './../utils/family.models';
 import { Task, TaskResponse, DailyTaskResponse } from './../utils/tasks.models';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -35,6 +36,15 @@ export class TasksService {
       `${environment.apiURL}tasks/updateDailyTasks?date=${date.toISOString()}`,
       {
         tasks: tasks,
+      }
+    );
+  }
+  setTaskStatus(task: Task, points: Number) {
+    return this.http.patch<TaskResponse>(
+      `${environment.apiURL}tasks/setTaskStatus`,
+      {
+        task: task,
+        points: points
       }
     );
   }

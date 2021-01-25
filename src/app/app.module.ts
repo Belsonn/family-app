@@ -63,6 +63,8 @@ import { TaskCreateComponent } from './tasks/task-create/task-create.component';
 import { DailyTaskComponent } from './tasks/daily-task/daily-task.component';
 import { DailyTaskCreateComponent } from './tasks/daily-task/daily-task-create/daily-task-create.component';
 import { DailyTaskConfirmChangesComponent } from './tasks/daily-task/daily-task-confirm-changes/daily-task-confirm-changes.component';
+import { CompleteTaskComponent } from './tasks/CompleteAbandon/complete-task/complete-task.component';
+import { AbandonTaskComponent } from './tasks/CompleteAbandon/abandon-task/abandon-task.component';
 
 @NgModule({
   declarations: [
@@ -94,6 +96,8 @@ import { DailyTaskConfirmChangesComponent } from './tasks/daily-task/daily-task-
     DailyTaskComponent,
     DailyTaskCreateComponent,
     DailyTaskConfirmChangesComponent,
+    CompleteTaskComponent,
+    AbandonTaskComponent,
   ],
   imports: [
     HttpClientModule,
