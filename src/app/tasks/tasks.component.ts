@@ -1,37 +1,76 @@
+import { animate, animateChild, query, stagger, style, transition, trigger } from '@angular/animations';
 import { AbandonTaskComponent } from './CompleteAbandon/abandon-task/abandon-task.component';
 import { CompleteTaskComponent } from './CompleteAbandon/complete-task/complete-task.component';
 import { MatDialog } from '@angular/material/dialog';
 import { FamilyService } from './../family.service';
 import { Task } from './../utils/tasks.models';
 import { TasksService } from './tasks.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { FamilyUser } from '../utils/family.models';
 
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.scss'],
+  animations: [
+    trigger('items', [
+      transition(':enter', [
+        style({ transform: 'scale(0.5)', opacity: 0 }), // initial
+        animate(
+          '1s cubic-bezier(.8, -0.6, 0.2, 1.5)',
+          style({ transform: 'scale(1)', opacity: 1 })
+        ), // final
+      ]),
+      transition(':leave', [
+        style({ transform: 'scale(1)', opacity: 1, height: '*' }),
+        animate(
+          '1s cubic-bezier(.8, -0.6, 0.2, 1.5)',
+          style({
+            transform: 'scale(0.5)',
+            opacity: 0,
+            height: '0px',
+            margin: '0px',
+          })
+        ),
+      ]),
+    ]),
+    trigger('list', [
+      transition(':enter', [query('@items', stagger(200, animateChild()))]),
+    ]),
+  ],
 })
-export class TasksComponent implements OnInit {
+export class TasksComponent implements OnInit, AfterViewInit {
   isLoading: boolean = false;
   tasks: Task[] = [];
 
   selected: any;
 
-  showAll = $localize`Show all`;
+  // showAll = "showAll";
 
   me: FamilyUser;
 
   tasksToShow: Task[] = [];
   tasksCompleted: Task[] = [];
 
+  completedClickedOnce: boolean = false;
+  showCompleted: boolean = false;
+
   children: FamilyUser[] = [];
+
+  @ViewChildren('scroll') scrollHeight: QueryList<ElementRef>;
+  toScroll;
 
   constructor(
     private taskService: TasksService,
     private familyService: FamilyService,
     public dialog: MatDialog
   ) {}
+  ngAfterViewInit(): void {
+    
+    this.scrollHeight.changes.subscribe(scrollHeight => {
+      this.toScroll = scrollHeight.first.nativeElement.offsetHeight;
+    })
+  }
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -65,33 +104,58 @@ export class TasksComponent implements OnInit {
   }
 
   selectChanged(selection) {
+    this.showCompleted = false;
+    this.completedClickedOnce = false;
+
     let tasksActive: Task[] = [];
     let tasksCompleted: Task[] = [];
 
+    let allUsersCompleted: Boolean = true;
+
     for (let i = 0; i < this.tasks.length; i++) {
+      allUsersCompleted = true;
       for (let k = 0; k < this.tasks[i].users.length; k++) {
-        if (
-          this.tasks[i].users[k].user.name == selection.value &&
-          (this.tasks[i].users[k].completed || this.tasks[i].users[k].abandoned)
-        ) {
+        // Selection is child
+        if (selection.value !== 'showAll') {
+          // Name is matching and task is complete or abandoned
+          if (
+            this.tasks[i].users[k].user.name == selection.value &&
+            (this.tasks[i].users[k].completed ||
+              this.tasks[i].users[k].abandoned)
+          ) {
+            tasksCompleted.push(this.tasks[i]);
+          }
 
-          tasksCompleted.push(this.tasks[i]);
-
-        } else if (this.tasks[i].users[k].user.name == selection.value) {
-          
-          tasksActive.push(this.tasks[i]);
+          // Name matching and task is not complete and abanoned
+          else if (this.tasks[i].users[k].user.name == selection.value) {
+            tasksActive.push(this.tasks[i]);
+          }
+          // Show all tasks and check if all users has completed
+        } else {
+          if (
+            !this.tasks[i].users[k].completed &&
+            !this.tasks[i].users[k].abandoned
+          ) {
+            allUsersCompleted = false;
+          }
+          // Add tasks after checked last user in task
+          if (k == this.tasks[i].users.length - 1 && allUsersCompleted) {
+            tasksCompleted.push(this.tasks[i]);
+          } else if (
+            k == this.tasks[i].users.length - 1 &&
+            !allUsersCompleted
+          ) {
+            tasksActive.push(this.tasks[i]);
+          }
         }
       }
     }
 
-    // if (tasks.length == 0) {
-    //   tasks = this.tasks;
-    // }
     this.tasksToShow = tasksActive;
     this.tasksCompleted = tasksCompleted.slice().reverse();
 
-    console.log("Completed", this.tasksCompleted)
-    console.log("Active", this.tasksToShow)
+    // console.log('Completed', this.tasksCompleted);
+    // console.log('Active', this.tasksToShow);
   }
 
   showDate(index, array: string) {
@@ -100,18 +164,18 @@ export class TasksComponent implements OnInit {
     }
     let lastEventStartDate;
     let thisEventStartDate;
-    if(array == 'active'){
-
+    if (array == 'active') {
       lastEventStartDate = new Date(
         this.tasksToShow[index - 1].startDate
       ).setHours(0, 0, 0, 0);
 
-      thisEventStartDate = new Date(
-        this.tasksToShow[index].startDate
-      ).setHours(0, 0, 0, 0);
-
-    } else if(array == 'complete') {
-
+      thisEventStartDate = new Date(this.tasksToShow[index].startDate).setHours(
+        0,
+        0,
+        0,
+        0
+      );
+    } else if (array == 'complete') {
       lastEventStartDate = new Date(
         this.tasksCompleted[index - 1].startDate
       ).setHours(0, 0, 0, 0);
@@ -119,7 +183,6 @@ export class TasksComponent implements OnInit {
       thisEventStartDate = new Date(
         this.tasksCompleted[index].startDate
       ).setHours(0, 0, 0, 0);
-
     }
 
     if (lastEventStartDate !== thisEventStartDate) {
@@ -197,5 +260,17 @@ export class TasksComponent implements OnInit {
       this.checkMyRole();
       this.isLoading = false;
     });
+  }
+
+  showCompleteClick(){
+    this.completedClickedOnce = true;
+
+    if(this.showCompleted){
+      this.showCompleted = !this.showCompleted;
+      this.familyService.scrollSub.next({top: 0, duration: 800})
+    } else {
+      this.showCompleted = !this.showCompleted;
+      this.familyService.scrollSub.next({top: this.toScroll, duration: Math.max(this.toScroll, 800)})
+    }
   }
 }

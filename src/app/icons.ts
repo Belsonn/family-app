@@ -57,6 +57,9 @@ import medalLine from '@iconify-icons/ri/medal-line';
 import bxCalendarStar from '@iconify-icons/bx/bx-calendar-star';
 import checkOutlined from '@iconify-icons/ant-design/check-outlined';
 import dotsThreeHorizontal from '@iconify-icons/entypo/dots-three-horizontal';
+import sportsMedal from '@iconify-icons/noto-v1/sports-medal';
+import manGesturingNoLightSkinTone from '@iconify-icons/noto/man-gesturing-no-light-skin-tone';
+import womanGesturingNoLightSkinTone from '@iconify-icons/noto/woman-gesturing-no-light-skin-tone';
 
 
 export const appIcons = {
@@ -117,5 +120,8 @@ export const appIcons = {
   medalLine, // Task picker
   bxCalendarStar, // Event Picker
   checkOutlined, // DailyTask
-  dotsThreeHorizontal // Tasks
+  dotsThreeHorizontal, // Tasks
+  sportsMedal, // Tasks???
+  manGesturingNoLightSkinTone, // TASKS
+  womanGesturingNoLightSkinTone, // TASKS
 };

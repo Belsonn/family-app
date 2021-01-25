@@ -4,7 +4,8 @@
   background: $linear-gradient-90-1;
 }
 
-.select-text{
+.select-text {
+
   font-weight: 500;
   color: $violet-1;
   font-family: $font-family-1;
@@ -27,21 +28,21 @@
     font-size: 0.9rem;
     color: $text-gray;
   }
-  &--points{
+  &--points {
     color: $text-gray;
     font-size: 0.9rem;
   }
-
 }
 
-.date{
+.date {
   overflow: hidden;
   color: $violet-1;
   text-align: center;
   font-weight: 600;
   width: 90%;
   margin: 1.5rem 0;
-  &::before, &::after {
+  &::before,
+  &::after {
     content: "";
     display: inline-block;
     height: 2px;
@@ -49,21 +50,20 @@
     vertical-align: middle;
     width: 50%;
   }
-  &::before{
+  &::before {
     // background-color: $linear-gradient-90-1-1half;
     background: $linear-gradient-90-1-1half;
     right: 1rem;
     margin-left: -50%;
   }
-  &::after{
+  &::after {
     background: $linear-gradient-90-1-2half;
     left: 1rem;
     margin-right: -50%;
   }
-
 }
 
-.childBox{
+.childBox {
   padding: 0.5rem;
   &--checkMark {
     font-size: 2rem;
@@ -77,4 +77,30 @@
     font-size: 2rem;
     color: $text-gray;
   }
+}
+
+.complete-box {
+  box-shadow: $box-shadow-primary;
+  border-radius: 40px;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  font-size: 1.4rem;
+}
+
+.arrow {
+  transition: all 0.4s;
+}
+
+.arrow-to-top {
+  animation: rotate180 0.4s ease-in forwards;
+}
+.arrow-to-bot {
+  animation: rotateBack180 0.4s ease-in forwards;
+}
+
+.notask--info {
+  font-weight: 500;
+  font-size: 1.4rem;
+  color: $violet-1;
+
 }

@@ -3,137 +3,171 @@
 </div>
 
 <div *ngIf="!isLoading">
-  <div class="flex flex-align-center">
-    <ic-icon
-      [routerLink]="['', 'app', 'menu']"
-      mat-ripple
-      class="font-size-16rem ml-1rem mt-1rem border-radius-10 p-05rem"
-      icon="arrowBackUp"
-    ></ic-icon>
-  </div>
+  <div #scroll>
+    <div class="flex flex-align-center">
+      <ic-icon
+        [routerLink]="['', 'app', 'menu']"
+        mat-ripple
+        class="font-size-16rem ml-1rem mt-1rem border-radius-10 p-05rem"
+        icon="arrowBackUp"
+      ></ic-icon>
+    </div>
 
-  <div class="wrapper-flex-center">
-    <div class="font-size-14rem violet text-center">Tasks</div>
-  </div>
-  <div class="wrapper-flex-center mt-05rem">
-    <div class="flex flex-align-center width-80 flex-space-between width-80">
-      <div
-        [routerLink]="['', 'app', 'tasks', 'daily']"
-        mat-ripple
-        class="font-size-11rem p-05rem border-radius-20 violet pointer"
-      >
-        Daily Tasks
-      </div>
-      <div
-        [routerLink]="['', 'app', 'tasks', 'add']"
-        mat-ripple
-        class="font-size-11rem p-05rem border-radius-20 violet pointer"
-      >
-        Create new
+    <div class="wrapper-flex-center">
+      <div class="flex flex-column">
+        <div class="wrapper-flex-center">
+          <ic-icon class="font-size-4rem" icon="sportsMedal"></ic-icon>
+        </div>
+        <!-- <div class="font-size-14rem violet text-center mt-1rem">Tasks</div> -->
       </div>
     </div>
-  </div>
-
-  <div class="wrapper-flex-center mt-1rem select-text">
-    <mat-form-field class="select-text" appearance="fill">
-      <mat-label class="select-text">Tasks</mat-label>
-      <mat-select
-        [(value)]="selected"
-        (selectionChange)="selectChanged($event)"
-        class="select-text"
-      >
-        <mat-option class="select-text" [value]="showAll">
-          Show all
-        </mat-option>
-        <mat-option
-          class="select-text"
-          *ngFor="let child of children"
-          [value]="child.name"
+    <div class="wrapper-flex-center mt-05rem">
+      <div class="flex flex-align-center width-80 flex-space-between width-80">
+        <div
+          [routerLink]="['', 'app', 'tasks', 'daily']"
+          mat-ripple
+          class="font-size-11rem p-05rem border-radius-20 violet pointer"
         >
-          <span *ngIf="child._id !== me._id">
-            {{ child.name }}
-          </span>
-          <span *ngIf="child._id === me._id"> Mine </span>
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-
-  <div *ngIf="tasksToShow.length > 0" class="wrapper-flex-center flex-column mt-1rem">
-    <div
-      class="wrapper-flex-center width-100"
-      *ngFor="let task of tasksToShow; let i = index"
-    >
-      <div class="flex flex-column width-100">
-        <div class="wrapper-flex-center">
-          <div *ngIf="showDate(i, 'active')" class="date">
-            {{ task.startDate | date: "dd. MMMM" }}
-          </div>
+          Daily Tasks
         </div>
-        <div class="wrapper-flex-center">
-          <div mat-ripple class="taskbox">
-            <div class="flex flex-column width-100">
-              <div class="taskbox--title">
-                {{ task.name }}
-              </div>
-              <div class="flex flex-space-between mt-05rem">
-                <div class="taskbox--points">{{ task.points }} Points</div>
-                <div class="taskbox--date">
-                  {{ task.startDate | date: "HH:mm" }} -
-                  {{ task.endDate | date: "HH:mm" }}
+        <div
+          [routerLink]="['', 'app', 'tasks', 'add']"
+          mat-ripple
+          class="font-size-11rem p-05rem border-radius-20 violet pointer"
+        >
+          Create new
+        </div>
+      </div>
+    </div>
+
+    <div class="wrapper-flex-center mt-1rem select-text">
+      <mat-form-field class="select-text" appearance="outline">
+        <mat-label class="select-text">Tasks</mat-label>
+        <mat-select
+          [(value)]="selected"
+          (selectionChange)="selectChanged($event)"
+          class="select-text"
+        >
+          <mat-option class="select-text" [value]="'showAll'">
+            Show all
+          </mat-option>
+          <mat-option
+            class="select-text"
+            *ngFor="let child of children"
+            [value]="child.name"
+          >
+            <span *ngIf="child._id !== me._id">
+              {{ child.name }}
+            </span>
+            <span *ngIf="child._id === me._id"> Mine </span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div
+      *ngIf="tasksToShow.length == 0"
+      class="wrapper-flex-center flex-column mt-1rem"
+    >
+      <div class="wrapper-flex-center">
+        <ic-icon
+          class="font-size-4rem mr-1rem"
+          icon="manGesturingNoLightSkinTone"
+        ></ic-icon>
+        <ic-icon
+          class="font-size-4rem ml-1rem"
+          icon="womanGesturingNoLightSkinTone"
+        ></ic-icon>
+      </div>
+      <div class="wrapper-flex-center mt-1rem notask--info">
+        There are no active tasks.
+      </div>
+    </div>
+
+    <div
+      @list
+      *ngIf="tasksToShow.length > 0"
+      class="wrapper-flex-center flex-column mt-1rem"
+    >
+      <div
+        @items
+        class="wrapper-flex-center width-100"
+        *ngFor="let task of tasksToShow; let i = index"
+      >
+        <div class="flex flex-column width-100">
+          <div class="wrapper-flex-center">
+            <div *ngIf="showDate(i, 'active')" class="date">
+              {{ task.startDate | date: "dd. MMMM" }}
+            </div>
+          </div>
+          <div class="wrapper-flex-center">
+            <div mat-ripple class="taskbox">
+              <div class="flex flex-column width-100">
+                <div class="taskbox--title">
+                  {{ task.name }}
                 </div>
-              </div>
-              <div class="flex mt-05rem flex-wrap">
-                <div class="childBox" *ngFor="let child of task.users">
-                  <div class="flex flex-column">
-                    <div class="wrapper-flex-center">
-                      <img
-                        src="{{ child.user.photo }}"
-                        class="photo photo-50 photo-mobile white-border"
-                        alt="user-photo"
-                      />
-                    </div>
-                    <div class="wrapper-flex-center text-center">
-                      <div *ngIf="child.completed" class="childBox--checkMark">
-                        <ic-icon icon="checkOutlined"></ic-icon>
+                <div class="flex flex-space-between mt-05rem">
+                  <div class="taskbox--points">{{ task.points }} Points</div>
+                  <div class="taskbox--date">
+                    {{ task.startDate | date: "HH:mm" }} -
+                    {{ task.endDate | date: "HH:mm" }}
+                  </div>
+                </div>
+                <div class="flex mt-05rem flex-wrap">
+                  <div class="childBox" *ngFor="let child of task.users">
+                    <div class="flex flex-column">
+                      <div class="wrapper-flex-center">
+                        <img
+                          src="{{ child.user.photo }}"
+                          class="photo photo-50 photo-mobile white-border"
+                          alt="user-photo"
+                        />
                       </div>
-                      <div
-                        *ngIf="!child.completed && !child.abandoned"
-                        class="childBox--dots"
-                      >
-                        <ic-icon icon="dotsThreeHorizontal"></ic-icon>
-                      </div>
-                      <div *ngIf="child.abandoned" class="childBox--XMark">
-                        <ic-icon icon="xIcon"></ic-icon>
+                      <div class="wrapper-flex-center text-center">
+                        <div
+                          *ngIf="child.completed"
+                          class="childBox--checkMark"
+                        >
+                          <ic-icon icon="checkOutlined"></ic-icon>
+                        </div>
+                        <div
+                          *ngIf="!child.completed && !child.abandoned"
+                          class="childBox--dots"
+                        >
+                          <ic-icon icon="dotsThreeHorizontal"></ic-icon>
+                        </div>
+                        <div *ngIf="child.abandoned" class="childBox--XMark">
+                          <ic-icon icon="xIcon"></ic-icon>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div *ngIf="showCompleteMenu(task)" class="wrapper-flex-center">
-                <div
-                  mat-ripple
-                  (click)="confirmTask(task)"
-                  [matRippleCentered]="true"
-                  [matRippleRadius]="20"
-                  class="bttn-icon bttn-icon--light-blue mr-05rem"
-                >
-                  <ic-icon
-                    class="font-size-15rem p-d-1rem p-m-05rem"
-                    icon="checkOutlined"
-                  ></ic-icon>
-                </div>
-                <div
-                  (click)="abandonTask(task); $event.stopPropagation()"
-                  mat-ripple
-                  [matRippleCentered]="true"
-                  [matRippleRadius]="20"
-                  class="bttn-icon bttn-icon--pink ml-05rem"
-                >
-                  <ic-icon
-                    class="font-size-15rem p-d-1rem p-m-05rem"
-                    icon="xIcon"
-                  ></ic-icon>
+                <div *ngIf="showCompleteMenu(task)" class="wrapper-flex-center">
+                  <div
+                    mat-ripple
+                    (click)="confirmTask(task)"
+                    [matRippleCentered]="true"
+                    [matRippleRadius]="20"
+                    class="bttn-icon bttn-icon--light-blue mr-05rem"
+                  >
+                    <ic-icon
+                      class="font-size-15rem p-d-1rem p-m-05rem"
+                      icon="checkOutlined"
+                    ></ic-icon>
+                  </div>
+                  <div
+                    (click)="abandonTask(task); $event.stopPropagation()"
+                    mat-ripple
+                    [matRippleCentered]="true"
+                    [matRippleRadius]="20"
+                    class="bttn-icon bttn-icon--pink ml-05rem"
+                  >
+                    <ic-icon
+                      class="font-size-15rem p-d-1rem p-m-05rem"
+                      icon="xIcon"
+                    ></ic-icon>
+                  </div>
                 </div>
               </div>
             </div>
@@ -143,10 +177,53 @@
     </div>
   </div>
 
-  COMPLETED 
-
-  <div *ngIf="tasksCompleted.length > 0" class="wrapper-flex-center flex-column mt-1rem">
+  <div  class="wrapper-flex-center mt-1rem">
     <div
+      mat-ripple
+      (click)="showCompleteClick()"
+      class="flex complete-box mb-2rem"
+    >
+      <div class="complete-box--name">
+        <span *ngIf="!showCompleted">Show</span
+        ><span *ngIf="showCompleted">Hide</span> completed
+      </div>
+      <ic-icon
+        [ngClass]="{
+          'arrow-to-top': showCompleted,
+          'arrow-to-bot': !showCompleted && completedClickedOnce
+        }"
+        class="ml-1rem"
+        icon="arrowDownAlt2"
+      ></ic-icon>
+    </div>
+  </div>
+
+  <div
+    *ngIf="tasksCompleted.length == 0 && showCompleted"
+    class="wrapper-flex-center flex-column mt-1rem"
+  >
+    <div class="wrapper-flex-center">
+      <ic-icon
+        class="font-size-4rem mr-1rem"
+        icon="womanGesturingNoLightSkinTone"
+      ></ic-icon>
+      <ic-icon
+        class="font-size-4rem ml-1rem"
+        icon="manGesturingNoLightSkinTone"
+      ></ic-icon>
+    </div>
+    <div class="wrapper-flex-center mt-1rem notask--info">
+      There are no completed tasks.
+    </div>
+  </div>
+
+  <div
+    @list
+    *ngIf="showCompleted && tasksCompleted.length > 0"
+    class="wrapper-flex-center flex-column"
+  >
+    <div
+      @items
       class="wrapper-flex-center width-100"
       *ngFor="let task of tasksCompleted; let i = index"
     >
