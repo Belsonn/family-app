@@ -1,5 +1,5 @@
 import { FamilyUser } from './../utils/family.models';
-import { Task, TaskResponse, DailyTaskResponse } from './../utils/tasks.models';
+import { Task, TaskResponse, DailyTaskResponse, DailyTask } from './../utils/tasks.models';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -46,6 +46,13 @@ export class TasksService {
         task: task,
         points: points
       }
+    );
+  }
+
+  addDailyTask(task: DailyTask) {
+    return this.http.post<DailyTaskResponse>(
+      `${environment.apiURL}tasks/addDailyTask`,
+      task
     );
   }
 }

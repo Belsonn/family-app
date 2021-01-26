@@ -60,6 +60,10 @@ import dotsThreeHorizontal from '@iconify-icons/entypo/dots-three-horizontal';
 import sportsMedal from '@iconify-icons/noto-v1/sports-medal';
 import manGesturingNoLightSkinTone from '@iconify-icons/noto/man-gesturing-no-light-skin-tone';
 import womanGesturingNoLightSkinTone from '@iconify-icons/noto/woman-gesturing-no-light-skin-tone';
+import memoIcon from '@iconify-icons/noto-v1/memo';
+import textChangeCase24Regular from '@iconify-icons/fluent/text-change-case-24-regular';
+import lightBulb from '@iconify-icons/emojione/light-bulb';
+
 
 
 export const appIcons = {
@@ -124,4 +128,7 @@ export const appIcons = {
   sportsMedal, // Tasks???
   manGesturingNoLightSkinTone, // TASKS
   womanGesturingNoLightSkinTone, // TASKS
+  memoIcon, // dailyTask Create
+  textChangeCase24Regular, // dailyTask Create
+  lightBulb, // dailyTask Create
 };

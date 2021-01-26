@@ -1,3 +1,4 @@
+import { DailyTaskCreateComponent } from './tasks/daily-task/daily-task-create/daily-task-create.component';
 import { DailyTaskComponent } from './tasks/daily-task/daily-task.component';
 import { TaskCreateComponent } from './tasks/task-create/task-create.component';
 import { ChatComponent } from './chat/chat.component';
@@ -95,6 +96,11 @@ const routes: Routes = [
       {
         path: 'tasks/daily',
         component: DailyTaskComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'tasks/daily/add',
+        component: DailyTaskCreateComponent,
         canActivate: [AuthGuard]
       },
       {

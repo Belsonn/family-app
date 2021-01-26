@@ -1,1 +1,160 @@
-<p>daily-task-create works!</p>
+<div *ngIf="isLoading">
+  <app-custom-loading></app-custom-loading>
+</div>
+
+<div *ngIf="!isLoading">
+  <div class="flex flex-align-center">
+    <ic-icon
+      [routerLink]="['', 'app', 'tasks', 'daily']"
+      mat-ripple
+      class="font-size-16rem ml-1rem mt-1rem border-radius-10 p-05rem"
+      icon="arrowBackUp"
+    ></ic-icon>
+  </div>
+
+  <div class="wrapper-flex-center flex-column">
+    <ic-icon class="font-size-4rem" icon="memoIcon"></ic-icon>
+    <div class="wrapper-flex-center header mt-1rem">New daily task</div>
+  </div>
+
+  <form
+    class="flex-column wrapper-flex-center mt-2rem"
+    [formGroup]="dailyTaskFormGroup"
+    (ngSubmit)="addDailyTask()"
+  >
+    <div class="form__row mt-1rem">
+      <ic-icon
+        [ngClass]="{
+          'form__row--icon--red':
+            dailyTaskFormGroup.controls.name.invalid &&
+            dailyTaskFormGroup.controls.name.touched
+        }"
+        class="form__row--icon"
+        icon="textChangeCase24Regular"
+      ></ic-icon>
+      <mat-form-field class="form__row--form-field form-text">
+        <mat-label>Task</mat-label>
+        <input
+          matInput
+          name="name"
+          minlength="3"
+          formControlName="name"
+          required
+        />
+        <mat-error *ngIf="dailyTaskFormGroup.controls.name.invalid"
+          >Task should have at least 3 characters.</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div class="wrapper-flex-center flex-column mt-1rem">
+      <div class="header">Points</div>
+      <div class="wrapper-flex-center flex-column mt-2rem">
+        <div class="wrapper-flex-center">
+          <ic-icon class="font-size-2rem" icon="lightBulb"></ic-icon>
+        </div>
+        <div class="mytooltip mt-1rem">
+          Each assigned child will receive points(on task complete) that can be
+          used in the rewards tab.
+        </div>
+      </div>
+      <div
+        class="flex flex-align-center flex-space-evenly flex-wrap width-100 mt-1rem"
+      >
+        <div
+          (click)="fillPoints(box)"
+          mat-ripple
+          *ngFor="let box of rewardBoxes"
+          class="reward-box"
+        >
+          {{ box }}
+        </div>
+      </div>
+      <div class="wrapper-flex-center">
+        <div class="wrapper-flex-center box-quantity mt-15rem">
+          <div
+            (click)="onMarkClick('minus')"
+            (mousedown)="onHold('minus')"
+            (mousemove)="onStopHold()"
+            (mouseup)="onStopHold()"
+            mat-ripple
+            class="box-quantity--button"
+          >
+            -
+          </div>
+          <input
+            type="number"
+            formControlName="points"
+            class="custom-input transition"
+            (change)="checkValid()"
+          />
+          <div
+            (click)="onMarkClick('plus')"
+            (mousedown)="onHold('plus')"
+            (mouseup)="onStopHold()"
+            mat-ripple
+            class="box-quantity--button"
+          >
+            +
+          </div>
+        </div>
+      </div>
+
+      <div class="header mt-2rem">Start / End time</div>
+      <div class="wrapper-flex-center flex-column mt-2rem">
+        <div class="wrapper-flex-center">
+          <ic-icon class="font-size-2rem" icon="lightBulb"></ic-icon>
+        </div>
+        <div class="mytooltip mt-1rem">
+          Setting a start and end time can help your child understand the task correctly.
+        </div>
+      </div>
+      <div class="width-70 mt-1rem">
+        <mat-slide-toggle
+          i18n="event_allday"
+          name="allDay"
+          class="font-1"
+          formControlName="allDay"
+          (change)="allDayChange($event)"
+        >
+          Whole day
+        </mat-slide-toggle>
+      </div>
+      <mat-form-field class="formField mt-1rem form-text" appearance="outline">
+        <mat-label i18n="event_startTime">Start Time</mat-label>
+        <input
+          matInput
+          name="startTimePicker"
+          formControlName="startTime"
+          [max]="dailyTaskFormGroup.controls.endTime.value"
+          [ngxTimepicker]="startTimePicker"
+          [format]="24"
+          readonly
+          required
+        />
+        <ngx-material-timepicker
+          [theme]="pickerTheme"
+          #startTimePicker
+        ></ngx-material-timepicker>
+      </mat-form-field>
+      <mat-form-field class="formField font-1 form-text" appearance="outline">
+        <mat-label i18n="event_endTime">End Time</mat-label>
+        <input
+          matInput
+          name="endTimePicker"
+          formControlName="endTime"
+          [min]="dailyTaskFormGroup.controls.startTime.value"
+          [ngxTimepicker]="endTimePicker"
+          [format]="24"
+          readonly
+          required
+        />
+        <ngx-material-timepicker
+          [theme]="pickerTheme"
+          #endTimePicker
+        ></ngx-material-timepicker>
+      </mat-form-field>
+    </div>
+    <button type="submit" class="bttn-primary bttn-clickable bttn-gradient bttn-big">Add task</button>
+  </form>
+</div>
+<div class="mt-7rem"></div>
