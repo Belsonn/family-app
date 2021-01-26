@@ -26,7 +26,6 @@ export interface TaskResponse {
 export interface DailyTask {
     _id?: string,
     name: string,
-    color: string, 
     points: number,
     startTime: string,
     endTime: string

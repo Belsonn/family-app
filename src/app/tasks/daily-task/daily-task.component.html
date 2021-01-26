@@ -13,11 +13,12 @@
   </div>
 
   <div class="wrapper-flex-center">
-    <div class="font-size-14rem violet text-center">Daily Tasks</div>
+    <ic-icon class="font-size-4rem" icon="memoIcon"></ic-icon>
   </div>
 
   <div class="wrapper-flex-center mt-05rem">
     <div
+      [routerLink]="['', 'app', 'tasks', 'daily', 'add']"
       mat-ripple
       class="border-radius-20 p-05rem violet font-size-12rem pointer"
     >
@@ -40,13 +41,19 @@
     <div class="infoBox">You cannot set tasks in the past.</div>
   </div>
 
-
   <div class="wrapper-flex-center flex-column">
     <div *ngFor="let dailyTask of tasksToCreate" class="dailyTask">
       <div class="flex custom-flex">
         <div class="flex flex-column">
-          <div class="dailyTask--name">
-            {{ dailyTask.name }}
+          <div class="flex">
+            <div class="dailyTask--name">
+              {{ dailyTask.name }}
+            </div>
+            <ic-icon
+              (click)="editDailyTask(dailyTask); $event.stopPropagation()"
+              class="dailyTask--edit ml-1rem"
+              icon="editIcon"
+            ></ic-icon>
           </div>
           <div class="dailyTask--points">{{ dailyTask.points }} Points</div>
         </div>
@@ -98,4 +105,4 @@
     </button>
   </div>
 </div>
-<div class="mt-4rem"></div>
+<div class="mt-7rem"></div>

@@ -92,7 +92,6 @@ export class TasksComponent implements OnInit, AfterViewInit {
       this.tasks = res.data.tasks;
       this.tasksToShow = this.tasks;
       this.checkMyRole();
-      console.log(this.tasks);
       this.isLoading = false;
     });
   }

@@ -3,6 +3,7 @@ import { DailyTask, Task } from './../../utils/tasks.models';
 import { TasksService } from './../tasks.service';
 import { Component, OnInit } from '@angular/core';
 import { FamilyUser } from 'src/app/utils/family.models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-daily-task',
@@ -23,23 +24,21 @@ export class DailyTaskComponent implements OnInit {
 
   constructor(
     private tasksService: TasksService,
-    private familyService: FamilyService
+    private familyService: FamilyService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.getDailyTaskOnDate();
-    
+
     this.findChildren();
-    
   }
 
-  findChildren(){
+  findChildren() {
     this.familyService.family.users.forEach((el) => {
       el.role == 'child' ? this.children.push(el) : null;
     });
   }
-
-
 
   getDailyTaskOnDate() {
     this.tasksService.getDailyTasksOnDate(this.date).subscribe((res) => {
@@ -176,5 +175,11 @@ export class DailyTaskComponent implements OnInit {
           this.isLoading = false;
         });
     }
+  }
+  editDailyTask(dailyTask: Task) {
+    console.log(dailyTask);
+    this.router.navigate(['', 'app', 'tasks', 'daily', 'add'], {
+      queryParams: { id: dailyTask.dailyTask },
+    });
   }
 }
