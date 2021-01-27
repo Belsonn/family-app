@@ -68,7 +68,11 @@ export class TasksComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     
     this.scrollHeight.changes.subscribe(scrollHeight => {
-      this.toScroll = scrollHeight.first.nativeElement.offsetHeight;
+      if(scrollHeight && scrollHeight.first){
+        this.toScroll = scrollHeight.first.nativeElement.offsetHeight;
+      } else {
+        this.toScroll = 0
+      }
     })
   }
 

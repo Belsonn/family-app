@@ -1,5 +1,11 @@
 import { FamilyUser } from './../utils/family.models';
-import { Task, TaskResponse, DailyTaskResponse, DailyTask } from './../utils/tasks.models';
+import {
+  Task,
+  TaskResponse,
+  DailyTaskResponse,
+  DailyTask,
+  DailyTasksResponse,
+} from './../utils/tasks.models';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -22,7 +28,9 @@ export class TasksService {
   }
 
   getDailyTasks() {
-    return this.http.get<DailyTaskResponse>(`${environment.apiURL}tasks/daily`);
+    return this.http.get<DailyTasksResponse>(
+      `${environment.apiURL}tasks/daily`
+    );
   }
 
   getDailyTasksOnDate(date: Date) {
@@ -44,15 +52,27 @@ export class TasksService {
       `${environment.apiURL}tasks/setTaskStatus`,
       {
         task: task,
-        points: points
+        points: points,
       }
     );
   }
 
   addDailyTask(task: DailyTask) {
-    return this.http.post<DailyTaskResponse>(
+    return this.http.post<DailyTasksResponse>(
       `${environment.apiURL}tasks/addDailyTask`,
       task
+    );
+  }
+
+  getDailyTask(id: string) {
+    return this.http.get<DailyTaskResponse>(
+      `${environment.apiURL}tasks/daily/${id}`
+    );
+  }
+  editDailyTaskData(id: string, dailyTask: DailyTask) {
+    return this.http.patch<DailyTaskResponse>(
+      `${environment.apiURL}tasks/daily/${id}`,
+      dailyTask
     );
   }
 }

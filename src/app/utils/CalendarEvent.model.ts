@@ -22,7 +22,3 @@ export interface EventsResponse {
   };
 }
 
-export interface CalendarUser {
-  user: FamilyUser;
-  isSelected: Boolean;
-}

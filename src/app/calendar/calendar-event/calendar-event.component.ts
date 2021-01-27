@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
 import { MonthNames } from '../../utils/CalendarMonthNames';
 import { pickerTheme } from '../../utils/TimePickerTheme';
-import { CalendarEvent, CalendarUser } from 'src/app/utils/CalendarEvent.model';
+import { CalendarEvent } from 'src/app/utils/CalendarEvent.model';
 import { CalendarService } from '../calendar.service';
 import { Router } from '@angular/router';
 
