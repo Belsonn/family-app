@@ -56,23 +56,22 @@
   justify-content: space-between;
 }
 
-.bttn-primary {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-transform: uppercase;
+.bttn{
   text-decoration: none;
   display: inline-block;
   border-radius: 10rem;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
-  letter-spacing: 2px;
   position: relative;
-  font-size: 1.2rem;
   font-weight: 500;
   border: none;
   cursor: pointer;
+  -webkit-transition: all 0.3s;
   transition: all 0.3s;
+}
+
+.bttn-primary {
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
 }
 .bttn-white {
   background-color: white;

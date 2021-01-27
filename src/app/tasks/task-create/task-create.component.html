@@ -59,12 +59,15 @@
           Choose which of your children should perform this task.
         </div>
       </div>
+      <div *ngIf="assignError" class="error mtb-1rem">
+        Someone has to be assigned.
+      </div>
       <div class="wrapper-flex-center mt-1rem">
         <button
           type="button"
           (click)="onSelectAll()"
           mat-ripple
-          class="bttn-primary bttn-clickable bttn-violet flex bttn-small"
+          class="bttn bttn-primary bttn-clickable bttn-violet flex bttn-small"
         >
           <ic-icon class="font-size-15rem mr-05rem" icon="peopleIcon"></ic-icon>
           <div>Przydziel wszystkich</div>
@@ -229,7 +232,7 @@
     </div>
     <button
       type="submit"
-      class="bttn-primary bttn-clickable bttn-gradient bttn-big"
+      class="bttn bttn-primary bttn-clickable bttn-gradient bttn-big"
     >
       <span *ngIf="!editMode">Add new</span
       ><span *ngIf="editMode">Edit</span> task
