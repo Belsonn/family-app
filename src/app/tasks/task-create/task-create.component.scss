@@ -1,36 +1,60 @@
 @import "~src/scss/main.scss";
 
-.stepper {
-  margin: 0 auto;
-
-  &__buttons {
-    margin-top: 2rem;
-  }
+.form__row {
+  width: 80%;
 }
 
 .formField {
-  margin-top: 0.3rem;
-  width: 90%;
+  width: 70%;
 }
 
-.box {
-  background: $background-gray;
-  padding: 1rem 2rem;
-  box-shadow: $box-shadow-secondary;
+.form-text {
+  font-family: $font-family-2;
+  font-weight: 500;
+  color: $violet-1;
+}
+
+.header {
+  font-size: 1.4rem;
+  color: $violet-1;
+  font-weight: 500;
+}
+
+.childBox {
+  box-shadow: $box-shadow-primary;
+  margin: 0.5rem 0.7rem;
+  padding: 1rem;
   border-radius: 20px;
-  // color: $pink-1;
-  // font-weight: 500;
-  transition: all 0.5s;
+  cursor: pointer;
 
-  font-size: 1.1rem;
-  // border: 2px transparent solid;
+  &--name {
+    color: $violet-1;
+    font-weight: 500;
+  }
+
+  &--checkMark {
+    font-size: 2rem;
+    color: $green;
+  }
+  &--XMark {
+    font-size: 2rem;
+    color: $red-1;
+  }
 }
 
-.box-selected {
-  // border: 2px $violet-1-light solid;
-  background: $violet-1-light;
-  color: #fff;
-}
+// .box {
+//   background: $background-gray;
+//   padding: 1rem 2rem;
+//   box-shadow: $box-shadow-secondary;
+//   border-radius: 20px;
+//   transition: all 0.5s;
+//   font-size: 1.1rem;
+// }
+
+// .box-selected {
+//   background: $violet-1-light;
+//   color: #fff;
+// }
 
 .box-quantity {
   box-shadow: $box-shadow-primary;
@@ -71,26 +95,25 @@
   font-size: 1.2rem;
   text-align: center;
 }
-.commonTask{
+.commonTask {
   font-family: $font-family-1;
 }
 
 .reward-box {
   box-shadow: $box-shadow-primary;
   margin: 0.5rem 0.5rem;
-  width: 33%;
+  width: 25%;
   text-align: center;
   border-radius: 20px;
   padding: 0.5rem;
   cursor: pointer;
 }
+.whitespace {
+  white-space: pre;
+}
 
 :host ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
   background: $linear-gradient-90-1;
-}
-:host ::ng-deep .mat-stepper-horizontal,
-.mat-stepper-vertical {
-  background-color: $background-gray;
 }
 
 @media (max-width: 400px) {

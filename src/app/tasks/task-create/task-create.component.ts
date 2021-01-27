@@ -1,11 +1,10 @@
 import { Router } from '@angular/router';
 import { TasksService } from './../tasks.service';
-import { Task } from './../../utils/tasks.models';
+import { Task, TaskUser } from './../../utils/tasks.models';
 import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
 import { FamilyService } from './../../family.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { CalendarUser } from 'src/app/utils/CalendarEvent.model';
 import { pickerTheme } from 'src/app/utils/TimePickerTheme';
 
 @Component({
@@ -14,24 +13,20 @@ import { pickerTheme } from 'src/app/utils/TimePickerTheme';
   styleUrls: ['./task-create.component.scss'],
 })
 export class TaskCreateComponent implements OnInit {
-  true = true;
-  apply = $localize`Apply`;
   isLoading = false;
   error: boolean = false;
 
   color: string;
 
-  familyParents: CalendarUser[] = [];
-  familyChildren: CalendarUser[] = [];
+  familyChildren: TaskUser[] = [];
 
-  titleFormGroup: FormGroup;
-  assignFormGroup: FormGroup;
-  rewardFormGroup: FormGroup;
-  datesFormGroup: FormGroup;
+  taskFormGroup: FormGroup;
 
   rewardBoxes = [5, 10, 20, 25, 50, 100];
 
-  assignTouched = false;
+  editMode = false;
+
+  assignError = false;
   pointsTouched = false;
   minDate = new Date();
   pickerTheme: NgxMaterialTimepickerTheme = pickerTheme;
@@ -49,26 +44,18 @@ export class TaskCreateComponent implements OnInit {
     this.initFormGroup();
     this.fillFamilyMembers();
 
-    this.color = '#9851b4';
     this.isLoading = false;
   }
 
   initFormGroup() {
-    this.titleFormGroup = this._formBuilder.group({
-      title: ['', Validators.required],
-    });
-    this.assignFormGroup = this._formBuilder.group({
-      isSomeoneSelected: [false, Validators.requiredTrue],
-    });
-    this.rewardFormGroup = this._formBuilder.group({
+    this.taskFormGroup = this._formBuilder.group({
+      name: ['', Validators.required],
       points: [0, Validators.min(0)],
-    });
-    this.datesFormGroup = this._formBuilder.group({
-      allDayControl: [false],
-      startDateControl: ['', Validators.required],
-      endDateControl: ['', Validators.required],
-      startTimeControl: [null, Validators.required],
-      endTimeControl: [null, Validators.required],
+      allDay: [''],
+      isSomeoneSelected: [false, Validators.requiredTrue],
+      startDate: [null, Validators.required],
+      startTime: [null, Validators.required],
+      endTime: [null, Validators.required],
     });
   }
 
@@ -76,11 +63,6 @@ export class TaskCreateComponent implements OnInit {
     this.familyService.family.users.map((user) => {
       if (user.role == 'child') {
         this.familyChildren.push({
-          user: user,
-          isSelected: false,
-        });
-      } else {
-        this.familyParents.push({
           user: user,
           isSelected: false,
         });
@@ -96,17 +78,17 @@ export class TaskCreateComponent implements OnInit {
       }
     });
     selected
-      ? this.assignFormGroup.get('isSomeoneSelected').setValue(true)
-      : this.assignFormGroup.get('isSomeoneSelected').setValue(false);
+      ? this.taskFormGroup.get('isSomeoneSelected').setValue(true)
+      : this.taskFormGroup.get('isSomeoneSelected').setValue(false);
   }
 
   onSelectUser(familyUser) {
-    this.assignTouched = false;
+    this.assignError = false;
     familyUser.isSelected = !familyUser.isSelected;
     this.checkSomeoneSelected();
   }
   onSelectAll() {
-    this.assignTouched = false;
+    this.assignError = false;
     let allSelected = true;
     this.familyChildren.forEach((el) => {
       if (!el.isSelected) {
@@ -135,17 +117,17 @@ export class TaskCreateComponent implements OnInit {
     this.pointsTouched = true;
     if (mark == 'minus') {
       this.timeoutHandler = setInterval(() => {
-        this.rewardFormGroup
+        this.taskFormGroup
           .get('points')
-          .patchValue(this.rewardFormGroup.controls.points.value - 1);
+          .patchValue(this.taskFormGroup.controls.points.value - 1);
         this.checkValid();
       }, 150);
     }
     if (mark == 'plus') {
       this.timeoutHandler = setInterval(() => {
-        this.rewardFormGroup
+        this.taskFormGroup
           .get('points')
-          .patchValue(this.rewardFormGroup.controls.points.value + 1);
+          .patchValue(this.taskFormGroup.controls.points.value + 1);
       }, 150);
     }
   }
@@ -159,52 +141,71 @@ export class TaskCreateComponent implements OnInit {
     this.onStopHold();
     this.pointsTouched = true;
     if (mark == 'minus') {
-      this.rewardFormGroup
+      this.taskFormGroup
         .get('points')
-        .patchValue(this.rewardFormGroup.controls.points.value - 1);
+        .patchValue(this.taskFormGroup.controls.points.value - 1);
       this.checkValid();
     }
     if (mark == 'plus') {
-      this.rewardFormGroup
+      this.taskFormGroup
         .get('points')
-        .patchValue(this.rewardFormGroup.controls.points.value + 1);
+        .patchValue(this.taskFormGroup.controls.points.value + 1);
     }
   }
 
   checkValid() {
     this.pointsTouched = true;
-    let value = this.rewardFormGroup.controls.points.value;
+    let value = this.taskFormGroup.controls.points.value;
     if (value < 0) {
       value = 0;
     }
     value = Math.trunc(value);
-    this.rewardFormGroup.get('points').patchValue(value);
-  }
-  onTest() {
-    console.log(window);
+    this.taskFormGroup.get('points').patchValue(value);
   }
 
   fillPoints(points: Number) {
-    this.rewardFormGroup.get('points').setValue(points);
+    this.taskFormGroup.get('points').setValue(points);
   }
 
   allDayChange(event) {
     if (event.checked) {
-      this.datesFormGroup.get('startTimeControl').disable();
-      this.datesFormGroup.get('endTimeControl').disable();
+      this.taskFormGroup.get('startTime').disable();
+      this.taskFormGroup.get('endTime').disable();
     } else {
-      this.datesFormGroup.get('startTimeControl').enable();
-      this.datesFormGroup.get('endTimeControl').enable();
+      this.taskFormGroup.get('startTime').enable();
+      this.taskFormGroup.get('endTime').enable();
+    }
+  }
+
+  checkModeAndSubmit() {
+    console.log(this.taskFormGroup);
+    if (this.taskFormGroup.controls.isSomeoneSelected.invalid) {
+      this.assignError = true;
+    }
+    if (this.taskFormGroup.controls.name.invalid) {
+      this.familyService.scrollSub.next({ top: 0, duration: 1000 });
+      return;
+    } else if (this.taskFormGroup.controls.isSomeoneSelected.invalid) {
+      this.familyService.scrollSub.next({ top: 100, duration: 1000 });
+      return;
+    } else if (this.taskFormGroup.invalid) {
+      return;
+    } else if (this.editMode) {
+      // this.editDailyTask();
+    } else {
+      this.addTask();
     }
   }
 
   addTask() {
+    this.isLoading = true;
+
     let task: Task = {
-      name: this.titleFormGroup.controls.title.value,
+      name: this.taskFormGroup.controls.name.value,
       dailyTask: null,
-      points: this.rewardFormGroup.controls.points.value,
-      startDate: new Date(this.datesFormGroup.controls.startDateControl.value),
-      endDate: new Date(this.datesFormGroup.controls.endDateControl.value),
+      points: this.taskFormGroup.controls.points.value,
+      startDate: new Date(this.taskFormGroup.controls.startDate.value),
+      endDate: new Date(this.taskFormGroup.controls.startDate.value),
       users: [],
     };
 
@@ -216,15 +217,11 @@ export class TaskCreateComponent implements OnInit {
         : null;
     });
 
-    if (this.datesFormGroup.controls.allDayControl.value) {
+    if (this.taskFormGroup.controls.allDay.value) {
       task.endDate.setHours(23, 59, 59, 999);
     } else {
-      let startTime = this.datesFormGroup.controls.startTimeControl.value.split(
-        ':'
-      );
-      let endTime = this.datesFormGroup.controls.endTimeControl.value.split(
-        ':'
-      );
+      let startTime = this.taskFormGroup.controls.startTime.value.split(':');
+      let endTime = this.taskFormGroup.controls.endTime.value.split(':');
       task.startDate.setHours(startTime[0], startTime[1]);
       task.endDate.setHours(endTime[0], endTime[1]);
     }
