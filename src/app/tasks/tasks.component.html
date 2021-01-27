@@ -101,10 +101,17 @@
             </div>
           </div>
           <div class="wrapper-flex-center">
-            <div mat-ripple class="taskbox">
+            <div class="taskbox">
               <div class="flex flex-column width-100">
-                <div class="taskbox--title">
-                  {{ task.name }}
+                <div class="wrapper-flex-center">
+                  <div class="taskbox--title">
+                    {{ task.name }}
+                  </div>
+                  <ic-icon *ngIf="!task.dailyTask"
+                    (click)="editTask(task); $event.stopPropagation()"
+                    class="taskbox--edit mlr-05rem"
+                    icon="editIcon"
+                  ></ic-icon>
                 </div>
                 <div class="flex flex-space-between mt-05rem">
                   <div class="taskbox--points">{{ task.points }} Points</div>
@@ -149,7 +156,7 @@
                     (click)="confirmTask(task)"
                     [matRippleCentered]="true"
                     [matRippleRadius]="20"
-                    class="bttn-icon bttn-icon--light-blue mr-05rem"
+                    class="bttn-icon bttn-icon--light-blue mr-05rem pointer"
                   >
                     <ic-icon
                       class="font-size-15rem p-d-1rem p-m-05rem"
@@ -161,7 +168,7 @@
                     mat-ripple
                     [matRippleCentered]="true"
                     [matRippleRadius]="20"
-                    class="bttn-icon bttn-icon--pink ml-05rem"
+                    class="bttn-icon bttn-icon--pink ml-05rem pointer"
                   >
                     <ic-icon
                       class="font-size-15rem p-d-1rem p-m-05rem"
@@ -177,7 +184,7 @@
     </div>
   </div>
 
-  <div  class="wrapper-flex-center mt-1rem">
+  <div class="wrapper-flex-center mt-1rem">
     <div
       mat-ripple
       (click)="showCompleteClick()"

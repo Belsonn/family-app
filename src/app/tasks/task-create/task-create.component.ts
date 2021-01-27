@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { TasksService } from './../tasks.service';
 import { Task, TaskUser } from './../../utils/tasks.models';
 import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
@@ -16,11 +16,11 @@ export class TaskCreateComponent implements OnInit {
   isLoading = false;
   error: boolean = false;
 
-  color: string;
-
   familyChildren: TaskUser[] = [];
 
   taskFormGroup: FormGroup;
+
+  taskToUpdate: string;
 
   rewardBoxes = [5, 10, 20, 25, 50, 100];
 
@@ -36,15 +36,15 @@ export class TaskCreateComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private familyService: FamilyService,
     private taskService: TasksService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.isLoading = true;
     this.initFormGroup();
     this.fillFamilyMembers();
-
-    this.isLoading = false;
+    this.checkQueryParams();
   }
 
   initFormGroup() {
@@ -57,6 +57,83 @@ export class TaskCreateComponent implements OnInit {
       startTime: [null, Validators.required],
       endTime: [null, Validators.required],
     });
+  }
+
+  checkQueryParams() {
+    this.route.queryParams.subscribe((param) => {
+      if (param.id) {
+        this.isLoading = true;
+        this.taskService.getSingleTask(param.id).subscribe(
+          (res) => {
+            this.editMode = true;
+            this.taskToUpdate = param.id;
+            this.fillTaskData(res.data.task);
+            this.isLoading = false;
+          },
+          (err) => {
+            this.router.navigate(['', 'app', 'tasks']);
+          }
+        );
+      } else {
+        this.isLoading = false;
+      }
+    });
+  }
+
+  fillTaskData(task: Task) {
+    this.taskFormGroup.get('name').setValue(task.name);
+    this.taskFormGroup.get('points').setValue(task.points);
+
+    for (let i = 0; i < task.users.length; i++) {
+      for (let k = 0; k < this.familyChildren.length; k++) {
+        if (task.users[i].user._id == this.familyChildren[k].user._id) {
+          if (task.users[i].abandoned || task.users[i].completed) {
+            this.familyChildren.splice(k, 1);
+          } else {
+            this.familyChildren[k].isSelected = true;
+            this.taskFormGroup.get('isSomeoneSelected').setValue(true);
+          }
+        }
+      }
+    }
+
+    let date = new Date(task.startDate).setHours(0, 0, 0, 0);
+
+    this.taskFormGroup.get('startDate').setValue(new Date(date));
+
+    let startHours = this.parseNumberToString(
+      new Date(task.startDate).getHours()
+    );
+    let startMinutes = this.parseNumberToString(
+      new Date(task.startDate).getMinutes()
+    );
+    let endHours = this.parseNumberToString(new Date(task.endDate).getHours());
+    let endMinutes = this.parseNumberToString(
+      new Date(task.endDate).getMinutes()
+    );
+    if (
+      startHours == '00' &&
+      startMinutes == '00' &&
+      endHours == '23' &&
+      endMinutes == '59'
+    ) {
+      this.taskFormGroup.get('allDay').setValue(true);
+      this.allDayChange({ checked: true });
+    } else {
+      this.taskFormGroup
+        .get('startTime')
+        .setValue(`${startHours}:${startMinutes}`);
+
+      this.taskFormGroup.get('endTime').setValue(`${endHours}:${endMinutes}`);
+    }
+  }
+
+  parseNumberToString(number: Number) {
+    if (number < 10) {
+      return `0${number}`;
+    } else {
+      return number;
+    }
   }
 
   fillFamilyMembers() {
@@ -178,7 +255,6 @@ export class TaskCreateComponent implements OnInit {
   }
 
   checkModeAndSubmit() {
-    console.log(this.taskFormGroup);
     if (this.taskFormGroup.controls.isSomeoneSelected.invalid) {
       this.assignError = true;
     }
@@ -186,20 +262,18 @@ export class TaskCreateComponent implements OnInit {
       this.familyService.scrollSub.next({ top: 0, duration: 1000 });
       return;
     } else if (this.taskFormGroup.controls.isSomeoneSelected.invalid) {
-      this.familyService.scrollSub.next({ top: 100, duration: 1000 });
+      this.familyService.scrollSub.next({ top: 200, duration: 1000 });
       return;
     } else if (this.taskFormGroup.invalid) {
       return;
     } else if (this.editMode) {
-      // this.editDailyTask();
+      this.editTask();
     } else {
       this.addTask();
     }
   }
 
-  addTask() {
-    this.isLoading = true;
-
+  getTaskFromForm(): Task {
     let task: Task = {
       name: this.taskFormGroup.controls.name.value,
       dailyTask: null,
@@ -225,8 +299,30 @@ export class TaskCreateComponent implements OnInit {
       task.startDate.setHours(startTime[0], startTime[1]);
       task.endDate.setHours(endTime[0], endTime[1]);
     }
+    return task;
+  }
+
+  addTask() {
+    this.isLoading = true;
+
+    let task = this.getTaskFromForm();
 
     this.taskService.addTask(task).subscribe(
+      (res) => {
+        this.router.navigate(['', 'app', 'tasks']);
+      },
+      (err) => {
+        this.error = true;
+      }
+    );
+  }
+
+  editTask() {
+    this.isLoading = true;
+
+    let task = this.getTaskFromForm();
+
+    this.taskService.editSingleTask(this.taskToUpdate, task).subscribe(
       (res) => {
         this.router.navigate(['', 'app', 'tasks']);
       },

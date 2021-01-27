@@ -5,6 +5,7 @@ import {
   DailyTaskResponse,
   DailyTask,
   DailyTasksResponse,
+  TasksResponse,
 } from './../utils/tasks.models';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -16,31 +17,36 @@ import { Injectable } from '@angular/core';
 export class TasksService {
   constructor(private http: HttpClient) {}
 
+  getTasks() {
+    return this.http.get<TasksResponse>(`${environment.apiURL}tasks`);
+  }
+
+  getSingleTask(id: string) {
+    return this.http.get<TaskResponse>(`${environment.apiURL}tasks/task/${id}`);
+  }
+
   addTask(task: Task) {
-    return this.http.post<TaskResponse>(
+    return this.http.post<TasksResponse>(
       `${environment.apiURL}tasks/addTask`,
       task
     );
   }
 
-  getTasks() {
-    return this.http.get<TaskResponse>(`${environment.apiURL}tasks`);
-  }
-
-  getDailyTasks() {
-    return this.http.get<DailyTasksResponse>(
-      `${environment.apiURL}tasks/daily`
+  editSingleTask(id: string, task: Task) {
+    return this.http.patch<TaskResponse>(
+      `${environment.apiURL}tasks/task/${id}`,
+      task
     );
   }
 
   getDailyTasksOnDate(date: Date) {
-    return this.http.get<TaskResponse>(
+    return this.http.get<TasksResponse>(
       `${environment.apiURL}tasks/dailyWithTask?date=${date.toISOString()}`
     );
   }
 
   updateDailyTasks(date: Date, tasks: Task[]) {
-    return this.http.post<TaskResponse>(
+    return this.http.post<TasksResponse>(
       `${environment.apiURL}tasks/updateDailyTasks?date=${date.toISOString()}`,
       {
         tasks: tasks,
@@ -48,7 +54,7 @@ export class TasksService {
     );
   }
   setTaskStatus(task: Task, points: Number) {
-    return this.http.patch<TaskResponse>(
+    return this.http.patch<TasksResponse>(
       `${environment.apiURL}tasks/setTaskStatus`,
       {
         task: task,
@@ -57,6 +63,11 @@ export class TasksService {
     );
   }
 
+  getDailyTasks() {
+    return this.http.get<DailyTasksResponse>(
+      `${environment.apiURL}tasks/daily`
+    );
+  }
   addDailyTask(task: DailyTask) {
     return this.http.post<DailyTasksResponse>(
       `${environment.apiURL}tasks/addDailyTask`,

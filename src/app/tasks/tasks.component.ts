@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { animate, animateChild, query, stagger, style, transition, trigger } from '@angular/animations';
 import { AbandonTaskComponent } from './CompleteAbandon/abandon-task/abandon-task.component';
 import { CompleteTaskComponent } from './CompleteAbandon/complete-task/complete-task.component';
@@ -63,7 +64,8 @@ export class TasksComponent implements OnInit, AfterViewInit {
   constructor(
     private taskService: TasksService,
     private familyService: FamilyService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) {}
   ngAfterViewInit(): void {
     
@@ -275,5 +277,9 @@ export class TasksComponent implements OnInit, AfterViewInit {
       this.showCompleted = !this.showCompleted;
       this.familyService.scrollSub.next({top: this.toScroll, duration: Math.max(this.toScroll, 800)})
     }
+  }
+
+  editTask(task : Task){
+    this.router.navigate(['', 'app', 'tasks', 'add'], {queryParams: {id: task._id}});
   }
 }

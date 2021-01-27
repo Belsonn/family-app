@@ -17,6 +17,12 @@ export interface Task {
 
 export interface TaskResponse {
   status: string;
+  data: {
+    task: Task;
+  };
+}
+export interface TasksResponse {
+  status: string;
   results: number;
   data: {
     tasks: Task[];
