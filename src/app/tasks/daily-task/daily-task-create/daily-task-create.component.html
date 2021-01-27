@@ -14,13 +14,16 @@
 
   <div class="wrapper-flex-center flex-column">
     <ic-icon class="font-size-4rem" icon="memoIcon"></ic-icon>
-    <div class="wrapper-flex-center header mt-1rem">New daily task</div>
+    <div class="wrapper-flex-center header mt-1rem">
+      <span class="whitespace" *ngIf="!editMode">New </span><span class="whitespace" *ngIf="editMode">Edit </span> daily
+      task
+    </div>
   </div>
 
   <form
     class="flex-column wrapper-flex-center mt-2rem"
     [formGroup]="dailyTaskFormGroup"
-    (ngSubmit)="addDailyTask()"
+    (ngSubmit)="checkModeAndSubmit()"
   >
     <div class="form__row mt-1rem">
       <ic-icon
@@ -105,7 +108,8 @@
           <ic-icon class="font-size-2rem" icon="lightBulb"></ic-icon>
         </div>
         <div class="mytooltip mt-1rem">
-          Setting a start and end time can help your child understand the task correctly.
+          Setting a start and end time can help your child understand the task
+          correctly.
         </div>
       </div>
       <div class="width-70 mt-1rem">
@@ -154,7 +158,13 @@
         ></ngx-material-timepicker>
       </mat-form-field>
     </div>
-    <button type="submit" class="bttn-primary bttn-clickable bttn-gradient bttn-big">Add task</button>
+    <button
+      type="submit"
+      class="bttn-primary bttn-clickable bttn-gradient bttn-big"
+    >
+      <span *ngIf="!editMode">Add new</span
+      ><span *ngIf="editMode">Edit</span> task
+    </button>
   </form>
 </div>
 <div class="mt-7rem"></div>

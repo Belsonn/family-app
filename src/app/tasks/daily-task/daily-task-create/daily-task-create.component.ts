@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { TasksService } from './../../tasks.service';
 import { FamilyService } from './../../../family.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -17,6 +17,9 @@ export class DailyTaskCreateComponent implements OnInit {
 
   dailyTaskFormGroup: FormGroup;
 
+  editMode: boolean = false;
+  dailyToUpdate: string;
+
   timeoutHandler;
   pointsTouched: Boolean = false;
   rewardBoxes = [5, 10, 20, 25, 50, 100];
@@ -26,11 +29,13 @@ export class DailyTaskCreateComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private taskService: TasksService,
     private familyService: FamilyService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.initFormGroup();
+    this.checkQueryParams();
   }
 
   initFormGroup() {
@@ -41,6 +46,32 @@ export class DailyTaskCreateComponent implements OnInit {
       startTime: [null, Validators.required],
       endTime: [null, Validators.required],
     });
+  }
+
+  checkQueryParams() {
+    this.route.queryParams.subscribe((param) => {
+      if (param.id) {
+        this.isLoading = true;
+        this.taskService.getDailyTask(param.id).subscribe(
+          (res) => {
+            this.editMode = true;
+            this.dailyToUpdate = param.id;
+            this.fillTaskData(res.data.dailyTask);
+            this.isLoading = false;
+          },
+          (err) => {
+            this.router.navigate(['', 'app', 'tasks', 'daily']);
+          }
+        );
+      }
+    });
+  }
+
+  fillTaskData(dailyTask: DailyTask) {
+    this.dailyTaskFormGroup.get('name').setValue(dailyTask.name);
+    this.dailyTaskFormGroup.get('points').setValue(dailyTask.points);
+    this.dailyTaskFormGroup.get('startTime').setValue(dailyTask.startTime);
+    this.dailyTaskFormGroup.get('endTime').setValue(dailyTask.endTime);
   }
 
   onHold(mark: string) {
@@ -107,30 +138,51 @@ export class DailyTaskCreateComponent implements OnInit {
     this.dailyTaskFormGroup.get('points').setValue(points);
   }
 
-  addDailyTask() {
+  checkModeAndSubmit() {
     if (this.dailyTaskFormGroup.controls.name.invalid) {
       this.familyService.scrollSub.next({ top: 0, duration: 500 });
       return;
     } else if (this.dailyTaskFormGroup.invalid) {
       return;
+    } else if (this.editMode) {
+      this.editDailyTask();
     } else {
-      let dailyTask: DailyTask = {
-        name: this.dailyTaskFormGroup.controls.name.value,
-        points: this.dailyTaskFormGroup.controls.points.value,
-        startTime: null,
-        endTime: null,
-      };
+      this.addDailyTask();
+    }
+  }
 
-      if (!this.dailyTaskFormGroup.controls.allDay.value) {
-        (dailyTask.startTime = this.dailyTaskFormGroup.controls.startTime.value),
-          (dailyTask.endTime = this.dailyTaskFormGroup.controls.endTime.value);
-      } else {
-        (dailyTask.startTime = '00:00'), (dailyTask.endTime = '23:59');
-      }
+  getDailyTaskFromForm(): DailyTask {
+    let dailyTask: DailyTask = {
+      name: this.dailyTaskFormGroup.controls.name.value,
+      points: this.dailyTaskFormGroup.controls.points.value,
+      startTime: null,
+      endTime: null,
+    };
 
-      this.taskService.addDailyTask(dailyTask).subscribe((res) => {
+    if (!this.dailyTaskFormGroup.controls.allDay.value) {
+      (dailyTask.startTime = this.dailyTaskFormGroup.controls.startTime.value),
+        (dailyTask.endTime = this.dailyTaskFormGroup.controls.endTime.value);
+    } else {
+      (dailyTask.startTime = '00:00'), (dailyTask.endTime = '23:59');
+    }
+    return dailyTask;
+  }
+
+  editDailyTask() {
+    let dailyTask = this.getDailyTaskFromForm();
+
+    this.taskService
+      .editDailyTaskData(this.dailyToUpdate, dailyTask)
+      .subscribe((res) => {
         this.router.navigate(['', 'app', 'tasks', 'daily']);
       });
-    }
+  }
+
+  addDailyTask() {
+    let dailyTask = this.getDailyTaskFromForm();
+
+    this.taskService.addDailyTask(dailyTask).subscribe((res) => {
+      this.router.navigate(['', 'app', 'tasks', 'daily']);
+    });
   }
 }
