@@ -41,6 +41,7 @@ export class DailyTaskComponent implements OnInit {
   }
 
   getDailyTaskOnDate() {
+    this.isLoading = true;
     this.tasksService.getDailyTasksOnDate(this.date).subscribe((res) => {
       this.taskOnDate = res.data.tasks;
 
@@ -58,6 +59,11 @@ export class DailyTaskComponent implements OnInit {
       // console.log('Taski dnia', this.taskOnDate);
       this.isLoading = false;
     });
+  }
+
+  onDateChange(event) {
+    this.date = new Date(event.value);
+    this.getDailyTaskOnDate()
   }
 
   createTaskToCreate() {
@@ -177,7 +183,6 @@ export class DailyTaskComponent implements OnInit {
     }
   }
   editDailyTask(dailyTask: Task) {
-    console.log(dailyTask);
     this.router.navigate(['', 'app', 'tasks', 'daily', 'add'], {
       queryParams: { id: dailyTask.dailyTask },
     });

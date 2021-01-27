@@ -16,9 +16,9 @@
     //   font-size: 1rem;
     color: $text-gray;
   }
-  &--edit{
+  &--edit {
     font-size: 1.5rem;
-    margin-top: .2rem;
+    margin-top: 0.2rem;
     color: $violet-1;
     cursor: pointer;
   }
@@ -31,6 +31,11 @@
   border-radius: 20px;
   cursor: pointer;
 
+  &--name {
+    color: $violet-1;
+    font-weight: 500;
+  }
+
   &--checkMark {
     font-size: 2rem;
     color: $green;
@@ -39,6 +44,12 @@
     font-size: 2rem;
     color: $red-1;
   }
+}
+
+.hide-calendar {
+  height: 1px;
+  width: 1px;
+  visibility: hidden;
 }
 
 .date {

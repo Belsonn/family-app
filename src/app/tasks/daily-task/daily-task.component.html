@@ -30,9 +30,22 @@
     <div (click)="dateYesterday()" class="date date--left">
       <ic-icon icon="arrowLeftAlt2"></ic-icon>
     </div>
-    <div class="date">
-      {{ date | date: "dd. MMMM" }}
+    <div class="flex flex-column">
+      <div (click)="picker.open()" class="date pointer">
+        {{ date | date: "dd. MMMM" }}
+      </div>
+      <mat-form-field class="hide-calendar">
+        <input [(ngModel)]="date" (dateChange)="onDateChange($event)" matInput [matDatepicker]="picker" />
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
     </div>
+    <!-- <mat-form-field appearance="none">
+      <input style="display: none;" matInput [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field> -->
+
+    <!-- <button mat-button (click)="picker.open()" ></button> -->
     <div (click)="dateTommorow()" class="date date--right">
       <ic-icon icon="arrowRightAlt2"></ic-icon>
     </div>
@@ -44,20 +57,20 @@
   <div class="wrapper-flex-center flex-column">
     <div *ngFor="let dailyTask of tasksToCreate" class="dailyTask">
       <div class="flex custom-flex">
-        <div class="flex flex-column">
+        <div class="flex flex-column width-70">
           <div class="flex">
             <div class="dailyTask--name">
               {{ dailyTask.name }}
             </div>
             <ic-icon
               (click)="editDailyTask(dailyTask); $event.stopPropagation()"
-              class="dailyTask--edit ml-1rem"
+              class="dailyTask--edit mlr-05rem"
               icon="editIcon"
             ></ic-icon>
           </div>
           <div class="dailyTask--points">{{ dailyTask.points }} Points</div>
         </div>
-        <div class="flex flex-align-center">
+        <div class="wrapper-flex-center text-center">
           {{ dailyTask.startDate | date: "HH:mm" }} -
           {{ dailyTask.endDate | date: "HH:mm" }}
         </div>
