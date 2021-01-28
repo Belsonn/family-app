@@ -20,42 +20,6 @@
   font-weight: 500;
 }
 
-.box-quantity {
-  box-shadow: $box-shadow-primary;
-  background-color: $violet-1-light;
-  color: #fff;
-  border-radius: 20px;
-
-  &--button {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 40px;
-    padding: 1rem;
-    border-radius: 20px;
-
-    // background-color: red;
-  }
-}
-
-.custom-input {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  border-radius: 10px;
-  font-size: 1.3rem;
-  justify-content: center;
-  text-align: center;
-  border: none;
-  background-color: $violet-1-light;
-  color: #fff;
-}
-
-.whitespace{
-  white-space: pre;
-}
 .reward-box {
   box-shadow: $box-shadow-primary;
   margin: 0.5rem 0.5rem;

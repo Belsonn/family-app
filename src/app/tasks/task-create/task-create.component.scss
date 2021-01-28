@@ -42,61 +42,12 @@
   }
 }
 
-// .box {
-//   background: $background-gray;
-//   padding: 1rem 2rem;
-//   box-shadow: $box-shadow-secondary;
-//   border-radius: 20px;
-//   transition: all 0.5s;
-//   font-size: 1.1rem;
-// }
-
-// .box-selected {
-//   background: $violet-1-light;
-//   color: #fff;
-// }
-
-.box-quantity {
-  box-shadow: $box-shadow-primary;
-  background-color: $violet-1-light;
-  color: #fff;
-  border-radius: 20px;
-
-  &--button {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 40px;
-    padding: 1rem;
-    border-radius: 20px;
-
-    // background-color: red;
-  }
-}
-
-.custom-input {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  border-radius: 10px;
-  font-size: 1.3rem;
-  justify-content: center;
-  text-align: center;
-  border: none;
-  background-color: $violet-1-light;
-  color: #fff;
-}
 
 .rewards-info {
   color: $text-gray;
   font-weight: 500;
   font-size: 1.2rem;
   text-align: center;
-}
-.commonTask {
-  font-family: $font-family-1;
 }
 
 .reward-box {
@@ -108,9 +59,7 @@
   padding: 0.5rem;
   cursor: pointer;
 }
-.whitespace {
-  white-space: pre;
-}
+
 
 :host ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
   background: $linear-gradient-90-1;
