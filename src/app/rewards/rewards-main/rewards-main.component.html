@@ -21,18 +21,18 @@
     </div>
   </div>
   <div class="wrapper-flex-center mt-1rem">
-    <div class="flex flex-align-center width-80 flex-space-between">
+    <div class="flex flex-align-center width-80 top-buttons">
       <div
         [routerLink]="['', 'app', 'rewards', 'unlocked']"
         mat-ripple
-        class="bttn bttn-clickable bttn-violet uppercase bttn-small"
+        class="bttn bttn-clickable bttn-violet uppercase bttn-small top-buttons--button"
       >
         Unlocked
       </div>
       <div
         [routerLink]="['', 'app', 'rewards', 'add']"
         mat-ripple
-        class="bttn bttn-clickable uppercase bttn-violet bttn-small"
+        class="bttn bttn-clickable uppercase bttn-violet bttn-small top-buttons--button"
       >
         Create new
       </div>
@@ -43,7 +43,7 @@
     <div *ngFor="let reward of basicRewards" class="wrapper-flex-center">
       <div class="reward mt-1rem">
         <div class="flex-column">
-          <div class="flex flex-custom">
+          <div class="reward--name--points">
             <div class="reward--name">
               {{ reward.name }}
             </div>
@@ -52,11 +52,9 @@
             </div>
           </div>
           <div class="wrapper-flex-center mt-2rem">
-            <div
-              class="bttn bttn-medium bttn-blue bttn-clickable wrapper-flex-center"
-            >
+            <div class="bttn bttn-small bttn-blue bttn-clickable unlockButton">
               <ic-icon
-                class="font-size-15rem mr-05rem"
+                class="font-size-15rem unlockButton--icon"
                 icon="bxLockOpenAlt"
               ></ic-icon>
               <div>Unlock reward</div>

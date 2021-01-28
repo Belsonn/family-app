@@ -17,8 +17,49 @@
     font-weight: 500;
     color: $text-gray;
   }
+  &--name--points{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
 }
-.flex-custom {
+.top-buttons {
   justify-content: space-between;
   align-items: center;
+}
+
+.unlockButton {
+  display: flex;
+  &--icon{
+      margin-right: 0.5rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .top-buttons {
+    justify-content: center;
+    flex-direction: column;
+    &--button {
+      margin-top: 1rem;
+    }
+  }
+  .unlockButton {
+    flex-direction: column-reverse;
+    &--icon{
+        margin-right: 0;
+    }
+  }
+  .reward{
+      &--name{
+          width: 100%;
+          text-align: center;
+      }
+      &--points{
+          width: 100%;
+          text-align: center;
+      }
+      &--name--points{
+          flex-direction: column;
+      }
+  }
 }

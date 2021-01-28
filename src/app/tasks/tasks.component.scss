@@ -5,7 +5,6 @@
 }
 
 .select-text {
-
   font-weight: 500;
   color: $violet-1;
   font-family: $font-family-1;
@@ -107,5 +106,18 @@
   font-weight: 500;
   font-size: 1.4rem;
   color: $violet-1;
+}
+.top-buttons {
+  justify-content: space-between;
+  align-items: center;
+}
 
+@media (max-width: 400px) {
+  .top-buttons {
+    justify-content: center;
+    flex-direction: column;
+    &--button {
+      margin-top: 1rem;
+    }
+  }
 }

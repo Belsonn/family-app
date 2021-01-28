@@ -86,6 +86,7 @@
 @media(max-width: 425px){
   .boxes{
     &__row{
+      padding: 0;
       &__box{
         width: 45%;
       }
