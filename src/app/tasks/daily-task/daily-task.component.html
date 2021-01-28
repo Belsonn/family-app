@@ -57,9 +57,7 @@
     </div>
   </div>
   <div class="wrapper-flex-center mt-1rem">
-    <div class="mytooltip">
-      Clicking on date above will open the calendar!
-    </div>
+    <div class="mytooltip">Clicking on date above will open the calendar!</div>
   </div>
   <div *ngIf="checkDateInPast()" class="wrapper-flex-center mtb-2rem">
     <div class="infoBox">You cannot set tasks in the past.</div>
@@ -79,7 +77,13 @@
               icon="editIcon"
             ></ic-icon>
           </div>
-          <div class="dailyTask--points">{{ dailyTask.points }} Points</div>
+          <div class="flex mt-05rem">
+            <div class="dailyTask--points">{{ dailyTask.points }}</div>
+            <ic-icon
+              class="font-size-15rem ml-05rem"
+              icon="glowingStar"
+            ></ic-icon>
+          </div>
         </div>
         <div class="wrapper-flex-center text-center">
           {{ dailyTask.startDate | date: "HH:mm" }} -

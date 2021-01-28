@@ -107,14 +107,23 @@
                   <div class="taskbox--title">
                     {{ task.name }}
                   </div>
-                  <ic-icon *ngIf="!task.dailyTask"
+                  <ic-icon
+                    *ngIf="!task.dailyTask"
                     (click)="editTask(task); $event.stopPropagation()"
                     class="taskbox--edit mlr-05rem"
                     icon="editIcon"
                   ></ic-icon>
                 </div>
                 <div class="flex flex-space-between mt-05rem">
-                  <div class="taskbox--points">{{ task.points }} Points</div>
+                  <div class="wrapper-flex-center">
+                    <div class="taskbox--points">
+                      {{ task.points }}
+                    </div>
+                    <ic-icon
+                      class="font-size-15rem ml-05rem"
+                      icon="glowingStar"
+                    ></ic-icon>
+                  </div>
                   <div class="taskbox--date">
                     {{ task.startDate | date: "HH:mm" }} -
                     {{ task.endDate | date: "HH:mm" }}
@@ -241,13 +250,19 @@
           </div>
         </div>
         <div class="wrapper-flex-center">
-          <div mat-ripple class="taskbox">
+          <div class="taskbox">
             <div class="flex flex-column width-100">
               <div class="taskbox--title">
                 {{ task.name }}
               </div>
               <div class="flex flex-space-between mt-05rem">
-                <div class="taskbox--points">{{ task.points }} Points</div>
+                <div class="wrapper-flex-center">
+                  <div class="taskbox--points">{{ task.points }}</div>
+                  <ic-icon
+                    class="font-size-15rem ml-05rem"
+                    icon="glowingStar"
+                  ></ic-icon>
+                </div>
                 <div class="taskbox--date">
                   {{ task.startDate | date: "HH:mm" }} -
                   {{ task.endDate | date: "HH:mm" }}

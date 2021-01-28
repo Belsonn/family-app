@@ -15,13 +15,16 @@
   <div class="wrapper-flex-center flex-column">
     <ic-icon class="font-size-4rem" icon="memoIcon"></ic-icon>
     <div class="wrapper-flex-center header mt-1rem">
-      <span class="whitespace" *ngIf="!editMode">New </span><span class="whitespace" *ngIf="editMode">Edit </span> daily
-      task
+      <span class="whitespace" *ngIf="!editMode">New </span
+      ><span class="whitespace" *ngIf="editMode">Edit </span> daily task
     </div>
   </div>
 
   <div *ngIf="editMode" class="wrapper-flex-center mtb-1rem">
-    <div (click)="deleteTaskConfirm()" class="bttn bttn-clickable bttn-red bttn-small uppercase wrapper-flex-center">
+    <div
+      (click)="deleteTaskConfirm()"
+      class="bttn bttn-clickable bttn-red bttn-small uppercase wrapper-flex-center"
+    >
       <ic-icon class="font-size-14rem mr-05rem" icon="trashOutline"></ic-icon>
       <div>Remove daily task</div>
     </div>
@@ -57,7 +60,10 @@
       </mat-form-field>
     </div>
     <div class="wrapper-flex-center flex-column mt-1rem">
-      <div class="header">Points</div>
+      <div class="wrapper-flex-center">
+        <div class="header">Points</div>
+        <ic-icon class="font-size-2rem ml-05rem" icon="glowingStar"></ic-icon>
+      </div>
       <div class="wrapper-flex-center flex-column mt-2rem">
         <div class="wrapper-flex-center">
           <ic-icon class="font-size-2rem" icon="lightBulb"></ic-icon>

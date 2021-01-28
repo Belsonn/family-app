@@ -66,6 +66,7 @@ import lightBulb from '@iconify-icons/emojione/light-bulb';
 import leftSpeechBubble from '@iconify-icons/emojione/left-speech-bubble';
 import trophyIcon from '@iconify-icons/noto-v1/trophy';
 import bxLockOpenAlt from '@iconify-icons/bx/bx-lock-open-alt';
+import glowingStar from '@iconify-icons/emojione/glowing-star';
 
 
 export const appIcons = {
@@ -135,4 +136,5 @@ export const appIcons = {
   textChangeCase24Regular, // dailyTask Create
   lightBulb, // dailyTask Create
   bxLockOpenAlt, // rewards
+  glowingStar, //POINTS
 };

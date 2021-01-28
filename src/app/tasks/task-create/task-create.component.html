@@ -21,7 +21,10 @@
   </div>
 
   <div *ngIf="editMode" class="wrapper-flex-center mtb-1rem">
-    <div (click)="deleteTaskConfirm()" class="bttn bttn-clickable bttn-red bttn-small uppercase wrapper-flex-center">
+    <div
+      (click)="deleteTaskConfirm()"
+      class="bttn bttn-clickable bttn-red bttn-small uppercase wrapper-flex-center"
+    >
       <ic-icon class="font-size-14rem mr-05rem" icon="trashOutline"></ic-icon>
       <div>Remove task</div>
     </div>
@@ -112,7 +115,10 @@
     </div>
 
     <div class="wrapper-flex-center flex-column mt-1rem">
-      <div class="header">Points</div>
+      <div class="wrapper-flex-center">
+        <div class="header">Points</div>
+        <ic-icon class="font-size-18rem ml-05rem" icon="glowingStar"></ic-icon>
+      </div>
       <div class="wrapper-flex-center flex-column mt-2rem">
         <div class="wrapper-flex-center">
           <ic-icon class="font-size-2rem" icon="lightBulb"></ic-icon>
