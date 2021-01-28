@@ -1,0 +1,17 @@
+@import "~src/scss/main.scss";
+
+
+.title{
+    // font-size: 1.1rem;
+    color: $violet-1;
+    font-weight: 500;
+    &--irr{
+        color: $red-1;
+        font-weight: 500;
+    }
+    &--all{
+        font-size: 1.3rem;
+        font-weight: 500;
+        color: $red-1;
+    }
+}

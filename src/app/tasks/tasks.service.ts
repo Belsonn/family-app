@@ -86,4 +86,10 @@ export class TasksService {
       dailyTask
     );
   }
+
+  deleteDailyTask(id: string){
+    return this.http.delete<null>(
+      `${environment.apiURL}tasks/daily/${id}`
+    );
+  }
 }

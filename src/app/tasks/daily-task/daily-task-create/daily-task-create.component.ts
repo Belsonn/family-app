@@ -1,3 +1,4 @@
+import { ConfirmDeleteDailyTaskComponent } from './../confirm-delete-daily-task/confirm-delete-daily-task.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TasksService } from './../../tasks.service';
 import { FamilyService } from './../../../family.service';
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { pickerTheme } from 'src/app/utils/TimePickerTheme';
 import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
 import { DailyTask } from 'src/app/utils/tasks.models';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-daily-task-create',
@@ -30,7 +32,8 @@ export class DailyTaskCreateComponent implements OnInit {
     private taskService: TasksService,
     private familyService: FamilyService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -183,6 +186,22 @@ export class DailyTaskCreateComponent implements OnInit {
 
     this.taskService.addDailyTask(dailyTask).subscribe((res) => {
       this.router.navigate(['', 'app', 'tasks', 'daily']);
+    });
+  }
+
+  deleteTaskConfirm() {
+    const dialogRef = this.dialog.open(ConfirmDeleteDailyTaskComponent, {
+      autoFocus: false,
+      restoreFocus: false,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.taskService
+          .deleteDailyTask(this.dailyToUpdate)
+          .subscribe((res) => {
+            this.router.navigate(['', 'app', 'tasks', 'daily']);
+          });
+      }
     });
   }
 }

@@ -24,7 +24,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { AngularColorfulModule } from 'angular-colorful';
 import { MatExpansionModule } from '@angular/material/expansion';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { SmoothScrollModule } from 'ngx-scrollbar/smooth-scroll';
@@ -65,6 +65,7 @@ import { DailyTaskCreateComponent } from './tasks/daily-task/daily-task-create/d
 import { DailyTaskConfirmChangesComponent } from './tasks/daily-task/daily-task-confirm-changes/daily-task-confirm-changes.component';
 import { CompleteTaskComponent } from './tasks/CompleteAbandon/complete-task/complete-task.component';
 import { AbandonTaskComponent } from './tasks/CompleteAbandon/abandon-task/abandon-task.component';
+import { ConfirmDeleteDailyTaskComponent } from './tasks/daily-task/confirm-delete-daily-task/confirm-delete-daily-task.component';
 
 @NgModule({
   declarations: [
@@ -98,6 +99,7 @@ import { AbandonTaskComponent } from './tasks/CompleteAbandon/abandon-task/aband
     DailyTaskConfirmChangesComponent,
     CompleteTaskComponent,
     AbandonTaskComponent,
+    ConfirmDeleteDailyTaskComponent,
   ],
   imports: [
     HttpClientModule,
@@ -131,8 +133,7 @@ import { AbandonTaskComponent } from './tasks/CompleteAbandon/abandon-task/aband
     SmoothScrollModule,
     HammerModule,
     NgxSmoothDnDModule,
-    NgScrollbarModule.withConfig({
-    }),
+    NgScrollbarModule.withConfig({}),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
