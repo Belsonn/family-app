@@ -11,7 +11,9 @@
       icon="arrowBackUp"
     ></ic-icon>
   </div>
-  <div class="wrapper-flex-center font-size-17rem">Shopping Lists</div>
+  <div class="wrapper-flex-center">
+    <ic-icon class="font-size-4rem" icon="shoppingCart"></ic-icon>
+  </div>
   <!-- <div *ngIf="!isLoading" class="mtb-1rem">
     <app-small-loading></app-small-loading>
   </div> -->
@@ -20,10 +22,12 @@
       *ngIf="shoppingListsActive.length > 0"
       (click)="onAddNewList()"
       mat-ripple
-      class="btn border-radius-20 violet flex flex-align-center"
+      class="bttn bttn-violet bttn-small bttn-clickable wrapper-flex-center"
     >
       <ic-icon class="font-size-18rem mr-05rem" icon="bxListPlus"></ic-icon>
-      Create new
+      <div class="create">
+        Create new
+      </div>
     </div>
   </div>
   <div @list class="mb-2rem" *ngIf="shoppingListsActive.length > 0">

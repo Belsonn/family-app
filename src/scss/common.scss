@@ -73,6 +73,11 @@
   font-size: 1.2rem;
   letter-spacing: 2px;
 }
+
+.uppercase {
+  text-transform: uppercase;
+}
+
 .bttn-white {
   background-color: white;
   color: #000;
@@ -91,6 +96,10 @@
 }
 .bttn-pink {
   background-color: $pink-1;
+  color: #fff;
+}
+.bttn-red {
+  background-color: $red-1;
   color: #fff;
 }
 

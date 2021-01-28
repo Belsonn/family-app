@@ -25,14 +25,17 @@
       icon="arrowBackUp"
     ></ic-icon>
   </div>
-  <div *ngIf="list" class="wrapper-flex-center title violet">
+  <div class="wrapper-flex-center">
+    <ic-icon class="font-size-4rem" icon="shoppingCart"></ic-icon>
+  </div>
+  <div *ngIf="list" class="wrapper-flex-center title violet mt-1rem">
     {{ list.name }}
   </div>
   <div class="wrapper-flex-center mb-1rem">
     <div
       (click)="onCreateClick()"
       mat-ripple
-      class="btn border-radius-20 mtb-1rem violet flex"
+      class="bttn bttn-violet bttn-small bttn-clickable wrapper-flex-center mt-1rem"
     >
       <ic-icon
         class="font-size-18rem mr-05rem"

@@ -16,16 +16,23 @@
     <ic-icon class="font-size-4rem" icon="memoIcon"></ic-icon>
   </div>
 
-  <div class="wrapper-flex-center mt-05rem">
+  <div class="wrapper-flex-center mt-1rem">
     <div
       [routerLink]="['', 'app', 'tasks', 'daily', 'add']"
       mat-ripple
-      class="border-radius-20 p-05rem violet font-size-12rem pointer"
+      class="bttn uppercase bttn-violet bttn-small"
     >
       Create new
     </div>
   </div>
-
+  <div class="wrapper-flex-center flex-column mt-2rem">
+    <div class="wrapper-flex-center">
+      <ic-icon class="font-size-2rem" icon="lightBulb"></ic-icon>
+    </div>
+    <div class="mytooltip mt-1rem">
+      You can assign tasks to your children separately for each day and task.
+    </div>
+  </div>
   <div class="wrapper-flex-center mt-1rem">
     <div (click)="dateYesterday()" class="date date--left">
       <ic-icon icon="arrowLeftAlt2"></ic-icon>
@@ -35,19 +42,23 @@
         {{ date | date: "dd. MMMM" }}
       </div>
       <mat-form-field class="hide-calendar">
-        <input [(ngModel)]="date" (dateChange)="onDateChange($event)" matInput [matDatepicker]="picker" />
+        <input
+          [(ngModel)]="date"
+          (dateChange)="onDateChange($event)"
+          matInput
+          [matDatepicker]="picker"
+        />
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
     </div>
-    <!-- <mat-form-field appearance="none">
-      <input style="display: none;" matInput [matDatepicker]="picker">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field> -->
-
     <!-- <button mat-button (click)="picker.open()" ></button> -->
     <div (click)="dateTommorow()" class="date date--right">
       <ic-icon icon="arrowRightAlt2"></ic-icon>
+    </div>
+  </div>
+  <div class="wrapper-flex-center mt-1rem">
+    <div class="mytooltip">
+      Clicking on date above will open the calendar!
     </div>
   </div>
   <div *ngIf="checkDateInPast()" class="wrapper-flex-center mtb-2rem">
