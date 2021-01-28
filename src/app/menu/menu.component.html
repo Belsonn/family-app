@@ -57,7 +57,7 @@
         [routerLink]="['', 'app', 'chat']"
       >
         <div class="boxes__row__box--icon">
-          <ic-icon icon="familyManWomanGirlBoy"></ic-icon>
+          <ic-icon icon="leftSpeechBubble"></ic-icon>
         </div>
         <div
           i18n="menu_family"
@@ -65,7 +65,7 @@
         >
           Chat
         </div>
-        <div class="boxes__row__box--description">xD</div>
+        <div class="boxes__row__box--description">Message with your family</div>
       </div>
       <div
         mat-ripple
@@ -90,18 +90,18 @@
       <div
         mat-ripple
         class="boxes__row__box"
-        [routerLink]="['', 'app', 'login']"
+        [routerLink]="['', 'app', 'rewards']"
       >
         <div class="boxes__row__box--icon">
-          <ic-icon icon="familyManWomanGirlBoy"></ic-icon>
+          <ic-icon icon="trophyIcon"></ic-icon>
         </div>
         <div
-          i18n="menu_family"
+          i18n="menu_rewards"
           class="boxes__row__box--name wrapper-flex-center"
         >
-          LOGIN
+          Rewards
         </div>
-        <div class="boxes__row__box--description">4 członków</div>
+        <div class="boxes__row__box--description">Use your points to pick rewards!</div>
       </div>
       <div
         [routerLink]="['', 'app', 'join']"
@@ -163,15 +163,20 @@
         <div class="boxes__row__box--description">4 członków</div>
       </div>
       <div
-        [routerLink]="['', 'app', 'family']"
         mat-ripple
         class="boxes__row__box"
+        [routerLink]="['', 'app', 'login']"
       >
         <div class="boxes__row__box--icon">
-          <ic-icon icon="settingsIcon"></ic-icon>
+          <ic-icon icon="familyManWomanGirlBoy"></ic-icon>
         </div>
-        <div i18n="menu_settings" class="boxes__row__box--name">Family</div>
-        <div class="boxes__row__box--description">Zmień ustawienia</div>
+        <div
+          i18n="menu_family"
+          class="boxes__row__box--name wrapper-flex-center"
+        >
+          LOGIN
+        </div>
+        <div class="boxes__row__box--description">4 członków</div>
       </div>
     </div>
   </div>
