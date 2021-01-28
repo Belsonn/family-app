@@ -63,16 +63,19 @@ import womanGesturingNoLightSkinTone from '@iconify-icons/noto/woman-gesturing-n
 import memoIcon from '@iconify-icons/noto-v1/memo';
 import textChangeCase24Regular from '@iconify-icons/fluent/text-change-case-24-regular';
 import lightBulb from '@iconify-icons/emojione/light-bulb';
-
+import leftSpeechBubble from '@iconify-icons/emojione/left-speech-bubble';
+import trophyIcon from '@iconify-icons/noto-v1/trophy';
+import bxLockOpenAlt from '@iconify-icons/bx/bx-lock-open-alt';
 
 
 export const appIcons = {
   planner, // Menu
   shoppingCart, // Menu
-  chatBubbleLine, // Menu(DEP)
+  leftSpeechBubble, // MENU
   familyManWomanGirlBoy, // Menu
   todoList, // Menu
   settingsIcon, // Menu
+  trophyIcon, // Menu
   baselineEvent, // ? ? ? 
   menuGridO, // Calendar Menu Icon
   arrowRightAlt2, // Calendar
@@ -131,4 +134,5 @@ export const appIcons = {
   memoIcon, // dailyTask Create
   textChangeCase24Regular, // dailyTask Create
   lightBulb, // dailyTask Create
+  bxLockOpenAlt, // rewards
 };

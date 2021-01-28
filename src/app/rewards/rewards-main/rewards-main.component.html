@@ -20,4 +20,51 @@
       <!-- <div class="font-size-14rem violet text-center mt-1rem">Rewards</div> -->
     </div>
   </div>
+  <div class="wrapper-flex-center mt-1rem">
+    <div class="flex flex-align-center width-80 flex-space-between">
+      <div
+        [routerLink]="['', 'app', 'rewards', 'unlocked']"
+        mat-ripple
+        class="bttn bttn-clickable bttn-violet uppercase bttn-small"
+      >
+        Unlocked
+      </div>
+      <div
+        [routerLink]="['', 'app', 'rewards', 'add']"
+        mat-ripple
+        class="bttn bttn-clickable uppercase bttn-violet bttn-small"
+      >
+        Create new
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-column mt-1rem">
+    <div *ngFor="let reward of basicRewards" class="wrapper-flex-center">
+      <div class="reward mt-1rem">
+        <div class="flex-column">
+          <div class="flex flex-custom">
+            <div class="reward--name">
+              {{ reward.name }}
+            </div>
+            <div class="reward--points--wrapper">
+              <div class="reward--points">{{ reward.points }} Points</div>
+            </div>
+          </div>
+          <div class="wrapper-flex-center mt-2rem">
+            <div
+              class="bttn bttn-medium bttn-blue bttn-clickable wrapper-flex-center"
+            >
+              <ic-icon
+                class="font-size-15rem mr-05rem"
+                icon="bxLockOpenAlt"
+              ></ic-icon>
+              <div>Unlock reward</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+<div class="mt-7rem"></div>

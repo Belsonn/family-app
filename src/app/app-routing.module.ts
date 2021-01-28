@@ -1,3 +1,4 @@
+import { RewardsUnlockedComponent } from './rewards/rewards-unlocked/rewards-unlocked.component';
 import { RewardsCreateComponent } from './rewards/rewards-create/rewards-create.component';
 import { RewardsMainComponent } from './rewards/rewards-main/rewards-main.component';
 import { DailyTaskCreateComponent } from './tasks/daily-task/daily-task-create/daily-task-create.component';
@@ -121,14 +122,27 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       },
       {
+        path: 'rewards/unlocked',
+        component: RewardsUnlockedComponent,
+        canActivate: [AuthGuard]
+      },
+      {
         path: 'menu',
         component: MenuComponent,
         canActivate: [AuthGuard]
+      },
+      {
+        path: '**',
+        component: HomeScreenComponent,
       },
     ],
   },
   {
     path: '',
+    component: HomeScreenComponent,
+  },
+  {
+    path: '**',
     component: HomeScreenComponent,
   },
 ];

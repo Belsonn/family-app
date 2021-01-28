@@ -1,1 +1,24 @@
 @import "~src/scss/main.scss";
+
+.reward {
+  box-shadow: $box-shadow-primary;
+  padding: 0.5rem;
+  width: 80%;
+  padding: 1rem 2rem;
+  border-radius: 40px;
+  &--name {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: $violet-1;
+    width: 70%;
+  }
+  &--points {
+    text-align: center;
+    font-weight: 500;
+    color: $text-gray;
+  }
+}
+.flex-custom {
+  justify-content: space-between;
+  align-items: center;
+}
