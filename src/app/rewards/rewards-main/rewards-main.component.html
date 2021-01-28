@@ -1,0 +1,23 @@
+<div *ngIf="isLoading">
+  <app-custom-loading></app-custom-loading>
+</div>
+
+<div *ngIf="!isLoading">
+  <div class="flex flex-align-center">
+    <ic-icon
+      [routerLink]="['', 'app', 'menu']"
+      mat-ripple
+      class="font-size-16rem ml-1rem mt-1rem border-radius-10 p-05rem"
+      icon="arrowBackUp"
+    ></ic-icon>
+  </div>
+
+  <div class="wrapper-flex-center">
+    <div class="flex flex-column">
+      <div class="wrapper-flex-center">
+        <ic-icon class="font-size-4rem" icon="trophyIcon"></ic-icon>
+      </div>
+      <!-- <div class="font-size-14rem violet text-center mt-1rem">Rewards</div> -->
+    </div>
+  </div>
+</div>

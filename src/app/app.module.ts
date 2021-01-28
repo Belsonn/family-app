@@ -67,6 +67,8 @@ import { CompleteTaskComponent } from './tasks/CompleteAbandon/complete-task/com
 import { AbandonTaskComponent } from './tasks/CompleteAbandon/abandon-task/abandon-task.component';
 import { ConfirmDeleteDailyTaskComponent } from './tasks/daily-task/confirm-delete-daily-task/confirm-delete-daily-task.component';
 import { ConfirmDeleteTaskComponent } from './tasks/confirm-delete-task/confirm-delete-task.component';
+import { RewardsMainComponent } from './rewards/rewards-main/rewards-main.component';
+import { RewardsCreateComponent } from './rewards/rewards-create/rewards-create.component';
 
 @NgModule({
   declarations: [
@@ -102,6 +104,8 @@ import { ConfirmDeleteTaskComponent } from './tasks/confirm-delete-task/confirm-
     AbandonTaskComponent,
     ConfirmDeleteDailyTaskComponent,
     ConfirmDeleteTaskComponent,
+    RewardsMainComponent,
+    RewardsCreateComponent,
   ],
   imports: [
     HttpClientModule,

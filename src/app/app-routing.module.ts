@@ -1,3 +1,5 @@
+import { RewardsCreateComponent } from './rewards/rewards-create/rewards-create.component';
+import { RewardsMainComponent } from './rewards/rewards-main/rewards-main.component';
 import { DailyTaskCreateComponent } from './tasks/daily-task/daily-task-create/daily-task-create.component';
 import { DailyTaskComponent } from './tasks/daily-task/daily-task.component';
 import { TaskCreateComponent } from './tasks/task-create/task-create.component';
@@ -106,6 +108,16 @@ const routes: Routes = [
       {
         path: 'chat',
         component: ChatComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'rewards',
+        component: RewardsMainComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'rewards/add',
+        component: RewardsCreateComponent,
         canActivate: [AuthGuard]
       },
       {
