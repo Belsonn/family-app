@@ -1,1 +1,118 @@
-<p>rewards-create works!</p>
+<div *ngIf="isLoading">
+  <app-custom-loading></app-custom-loading>
+</div>
+
+<div *ngIf="!isLoading">
+  <div class="flex flex-align-center">
+    <ic-icon
+      [routerLink]="['', 'app', 'rewards']"
+      mat-ripple
+      class="font-size-16rem ml-1rem mt-1rem border-radius-10 p-05rem"
+      icon="arrowBackUp"
+    ></ic-icon>
+  </div>
+
+  <div class="wrapper-flex-center">
+    <div class="flex flex-column">
+      <div class="wrapper-flex-center">
+        <ic-icon class="font-size-4rem" icon="trophyIcon"></ic-icon>
+      </div>
+      <div class="wrapper-flex-center header mt-1rem">
+        <span class="whitespace" *ngIf="!editMode">New </span
+        ><span class="whitespace" *ngIf="editMode">Edit </span>
+        reward
+      </div>
+    </div>
+  </div>
+  <form
+    class="flex-column wrapper-flex-center mt-2rem"
+    [formGroup]="rewardFormGroup"
+    (ngSubmit)="checkModeAndSubmit()"
+  >
+    <div class="form__row mt-1rem">
+      <ic-icon
+        [ngClass]="{
+          'form__row--icon--red':
+            rewardFormGroup.controls.name.invalid &&
+            rewardFormGroup.controls.name.touched
+        }"
+        class="form__row--icon"
+        icon="textChangeCase24Regular"
+      ></ic-icon>
+      <mat-form-field class="form__row--form-field form-text">
+        <mat-label>Reward</mat-label>
+        <input
+          matInput
+          name="name"
+          minlength="3"
+          formControlName="name"
+          required
+        />
+        <mat-error *ngIf="rewardFormGroup.controls.name.invalid"
+          >Reward should have at least 3 characters.</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div class="wrapper-flex-center flex-column mt-1rem">
+      <div class="header">Points</div>
+      <div class="wrapper-flex-center flex-column mt-2rem">
+        <div class="wrapper-flex-center">
+          <ic-icon class="font-size-2rem" icon="lightBulb"></ic-icon>
+        </div>
+        <div class="mytooltip mt-1rem">
+          Your children can unlock this reward with points earned by completing
+          tasks. You can decide how many points will be needed.
+        </div>
+      </div>
+      <div
+        class="flex flex-align-center flex-space-evenly flex-wrap width-100 mt-1rem"
+      >
+        <div
+          (click)="fillPoints(box)"
+          mat-ripple
+          *ngFor="let box of rewardBoxes"
+          class="reward-box"
+        >
+          {{ box }}
+        </div>
+      </div>
+      <div class="wrapper-flex-center">
+        <div class="wrapper-flex-center box-quantity mt-15rem">
+          <div
+            (click)="onMarkClick('minus')"
+            (mousedown)="onHold('minus')"
+            (mousemove)="onStopHold()"
+            (mouseup)="onStopHold()"
+            mat-ripple
+            class="box-quantity--button"
+          >
+            -
+          </div>
+          <input
+            type="number"
+            formControlName="points"
+            class="custom-input-quantity transition"
+            (change)="checkValid()"
+          />
+          <div
+            (click)="onMarkClick('plus')"
+            (mousedown)="onHold('plus')"
+            (mouseup)="onStopHold()"
+            mat-ripple
+            class="box-quantity--button"
+          >
+            +
+          </div>
+        </div>
+      </div>
+    </div>
+    <button
+      type="submit"
+      class="bttn bttn-primary bttn-clickable bttn-gradient bttn-big mt-2rem"
+    >
+      <span *ngIf="!editMode">Add</span
+      ><span *ngIf="editMode">Edit</span> reward
+    </button>
+  </form>
+</div>
+<div class="mt-7rem"></div>

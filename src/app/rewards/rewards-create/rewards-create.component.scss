@@ -1,0 +1,21 @@
+@import "~src/scss/main.scss";
+
+.header {
+  font-size: 1.4rem;
+  color: $violet-1;
+  font-weight: 500;
+}
+
+.form__row {
+  width: 80%;
+}
+
+.reward-box {
+  box-shadow: $box-shadow-primary;
+  margin: 0.5rem 0.5rem;
+  width: 25%;
+  text-align: center;
+  border-radius: 20px;
+  padding: 0.5rem;
+  cursor: pointer;
+}
