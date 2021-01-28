@@ -7,20 +7,25 @@
   padding: 1rem 2rem;
   border-radius: 40px;
   &--name {
-    font-size: 1.2rem;
-    font-weight: 500;
+    font-size: 1.4rem;
+    font-weight: 600;
     color: $violet-1;
-    width: 70%;
+    text-align: center;
   }
   &--points {
     text-align: center;
     font-weight: 500;
     color: $text-gray;
   }
-  &--name--points{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+  &--name--points {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &--edit {
+    font-size: 1.5rem;
+    color: $violet-1;
+    cursor: pointer;
   }
 }
 .top-buttons {
@@ -30,8 +35,8 @@
 
 .unlockButton {
   display: flex;
-  &--icon{
-      margin-right: 0.5rem;
+  &--icon {
+    margin-right: 0.5rem;
   }
 }
 
@@ -45,21 +50,18 @@
   }
   .unlockButton {
     flex-direction: column-reverse;
-    &--icon{
-        margin-right: 0;
+    &--icon {
+      margin-right: 0;
     }
   }
-  .reward{
-      &--name{
-          width: 100%;
-          text-align: center;
-      }
-      &--points{
-          width: 100%;
-          text-align: center;
-      }
-      &--name--points{
-          flex-direction: column;
-      }
+  .reward {
+    &--name {
+      width: 100%;
+      text-align: center;
+    }
+    &--points {
+      width: 100%;
+      text-align: center;
+    }
   }
 }

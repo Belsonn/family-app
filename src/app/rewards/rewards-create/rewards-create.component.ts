@@ -1,3 +1,5 @@
+import { Reward } from './../../utils/reward.models';
+import { FamilyService } from './../../family.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RewardsService } from './../rewards.service';
 import { Component, OnInit } from '@angular/core';
@@ -12,6 +14,7 @@ export class RewardsCreateComponent implements OnInit {
   isLoading = false;
 
   editMode = false;
+  rewardToUpdate: string;
 
   timeoutHandler;
 
@@ -20,13 +23,16 @@ export class RewardsCreateComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private rewardService: RewardsService,
+    private familyService: FamilyService,
+    private rewardsService: RewardsService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.initFormGroup();
+    this.checkQueryParams();
   }
 
   initFormGroup() {
@@ -34,6 +40,32 @@ export class RewardsCreateComponent implements OnInit {
       name: ['', Validators.required],
       points: [0, Validators.min(0)],
     });
+  }
+
+  checkQueryParams() {
+    this.route.queryParams.subscribe((param) => {
+      if (param.id) {
+        this.isLoading = true;
+        this.rewardsService.getSingleReward(param.id).subscribe(
+          (res) => {
+            this.editMode = true;
+            this.rewardToUpdate = param.id;
+            this.fillRewardData(res.data.reward);
+            this.isLoading = false;
+          },
+          (err) => {
+            this.router.navigate(['', 'app', 'rewards']);
+          }
+        );
+      } else {
+        this.isLoading = false;
+      }
+    });
+  }
+
+  fillRewardData(reward: Reward) {
+    this.rewardFormGroup.get('name').setValue(reward.name);
+    this.rewardFormGroup.get('points').setValue(reward.points);
   }
 
   onHold(mark: string) {
@@ -85,5 +117,47 @@ export class RewardsCreateComponent implements OnInit {
 
   fillPoints(points: Number) {
     this.rewardFormGroup.get('points').setValue(points);
+  }
+
+  checkModeAndSubmit() {
+    if (this.rewardFormGroup.controls.name.invalid) {
+      this.familyService.scrollSub.next({ top: 0, duration: 1000 });
+      return;
+    } else if (this.editMode) {
+      this.editReward();
+    } else {
+      this.addReward();
+    }
+  }
+
+  getRewardFromForm(): Reward {
+    let reward: Reward = {
+      name: this.rewardFormGroup.controls.name.value,
+      points: this.rewardFormGroup.controls.points.value,
+    };
+
+    return reward;
+  }
+
+  addReward() {
+    let reward = this.getRewardFromForm();
+
+    this.isLoading = true;
+
+    this.rewardsService.addNewReward(reward).subscribe((res) => {
+      this.router.navigate(['', 'app', 'rewards']);
+    });
+  }
+
+  editReward() {
+    let reward = this.getRewardFromForm();
+
+    this.isLoading = true;
+
+    this.rewardsService
+      .updateReward(this.rewardToUpdate, reward)
+      .subscribe((res) => {
+        this.router.navigate(['', 'app', 'rewards']);
+      });
   }
 }
