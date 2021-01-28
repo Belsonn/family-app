@@ -39,6 +39,12 @@ export class TasksService {
     );
   }
 
+  deleteTask(id: string) {
+    return this.http.delete<TaskResponse>(
+      `${environment.apiURL}tasks/task/${id}`
+    );
+  }
+
   getDailyTasksOnDate(date: Date) {
     return this.http.get<TasksResponse>(
       `${environment.apiURL}tasks/dailyWithTask?date=${date.toISOString()}`
@@ -87,9 +93,7 @@ export class TasksService {
     );
   }
 
-  deleteDailyTask(id: string){
-    return this.http.delete<null>(
-      `${environment.apiURL}tasks/daily/${id}`
-    );
+  deleteDailyTask(id: string) {
+    return this.http.delete<null>(`${environment.apiURL}tasks/daily/${id}`);
   }
 }

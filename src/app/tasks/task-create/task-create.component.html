@@ -20,6 +20,13 @@
     </div>
   </div>
 
+  <div *ngIf="editMode" class="wrapper-flex-center mtb-1rem">
+    <div (click)="deleteTaskConfirm()" class="bttn bttn-clickable bttn-red bttn-small uppercase wrapper-flex-center">
+      <ic-icon class="font-size-14rem mr-05rem" icon="trashOutline"></ic-icon>
+      <div>Remove task</div>
+    </div>
+  </div>
+
   <form
     class="flex-column wrapper-flex-center mt-1rem"
     [formGroup]="taskFormGroup"

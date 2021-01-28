@@ -1,3 +1,5 @@
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDeleteTaskComponent } from './../confirm-delete-task/confirm-delete-task.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TasksService } from './../tasks.service';
 import { Task, TaskUser } from './../../utils/tasks.models';
@@ -37,7 +39,8 @@ export class TaskCreateComponent implements OnInit {
     private familyService: FamilyService,
     private taskService: TasksService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -330,5 +333,21 @@ export class TaskCreateComponent implements OnInit {
         this.error = true;
       }
     );
+  }
+
+  deleteTaskConfirm() {
+    const dialogRef = this.dialog.open(ConfirmDeleteTaskComponent, {
+      autoFocus: false,
+      restoreFocus: false,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.taskService
+          .deleteTask(this.taskToUpdate)
+          .subscribe((res) => {
+            this.router.navigate(['', 'app', 'tasks']);
+          });
+      }
+    });
   }
 }

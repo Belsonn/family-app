@@ -66,6 +66,7 @@ import { DailyTaskConfirmChangesComponent } from './tasks/daily-task/daily-task-
 import { CompleteTaskComponent } from './tasks/CompleteAbandon/complete-task/complete-task.component';
 import { AbandonTaskComponent } from './tasks/CompleteAbandon/abandon-task/abandon-task.component';
 import { ConfirmDeleteDailyTaskComponent } from './tasks/daily-task/confirm-delete-daily-task/confirm-delete-daily-task.component';
+import { ConfirmDeleteTaskComponent } from './tasks/confirm-delete-task/confirm-delete-task.component';
 
 @NgModule({
   declarations: [
@@ -100,6 +101,7 @@ import { ConfirmDeleteDailyTaskComponent } from './tasks/daily-task/confirm-dele
     CompleteTaskComponent,
     AbandonTaskComponent,
     ConfirmDeleteDailyTaskComponent,
+    ConfirmDeleteTaskComponent,
   ],
   imports: [
     HttpClientModule,
