@@ -1,0 +1,22 @@
+@import "~src/scss/main.scss";
+
+.header {
+  //   font-size: 1.3rem;
+  color: $violet-1;
+  text-align: center;
+  font-weight: 500;
+}
+
+.reward {
+  &--text {
+    color: $violet-1;
+    text-align: center;
+    font-weight: 500;
+  }
+  &--name {
+    font-size: 1.5rem;
+  }
+  &--points {
+    font-size: 1.3rem;
+  }
+}

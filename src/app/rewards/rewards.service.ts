@@ -37,4 +37,10 @@ export class RewardsService {
       reward
     );
   }
+  unlockReward(reward: Reward) {
+    return this.http.post<RewardResponse>(
+      `${environment.apiURL}rewards/unlock`,
+      reward
+    );
+  }
 }

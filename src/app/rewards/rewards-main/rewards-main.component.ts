@@ -1,9 +1,11 @@
+import { UnlockRewardComponent } from './../unlock-reward/unlock-reward.component';
 import { Router } from '@angular/router';
 import { RewardsService } from './../rewards.service';
 import { Component, OnInit } from '@angular/core';
 import { Reward } from 'src/app/utils/reward.models';
 import { FamilyService } from 'src/app/family.service';
 import { FamilyUser } from 'src/app/utils/family.models';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-rewards-main',
@@ -15,12 +17,15 @@ export class RewardsMainComponent implements OnInit {
 
   me: FamilyUser;
 
+  unlockedInfo: boolean = false;
+
   basicRewards: Reward[];
 
   constructor(
     private rewardsService: RewardsService,
     private router: Router,
-    private familyService: FamilyService
+    private familyService: FamilyService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -41,9 +46,45 @@ export class RewardsMainComponent implements OnInit {
     });
   }
 
+  canUnlock(reward: Reward): Boolean {
+    return this.me.points >= reward.points ? true : false;
+  }
+
   editReward(reward: Reward) {
     this.router.navigate(['', 'app', 'rewards', 'add'], {
       queryParams: { id: reward._id },
+    });
+  }
+
+  unlockReward(reward: Reward) {
+    const dialogRef = this.dialog.open(UnlockRewardComponent, {
+      data: {
+        reward: reward,
+        points: this.me.points,
+      },
+      autoFocus: false,
+      restoreFocus: false,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.createReward(reward);
+      }
+    });
+  }
+
+  createReward(reward: Reward) {
+    this.isLoading = true;
+    let newReward: Reward = {
+      name: reward.name,
+      points: reward.points,
+      unlockedAt: new Date(),
+      unlockedBy: this.me._id,
+    };
+    this.rewardsService.unlockReward(newReward).subscribe((res) => {
+      this.familyService.familyUser.points = this.me.points - newReward.points;
+      this.me = this.getMe();
+      this.unlockedInfo = true;
+      this.isLoading = false;
     });
   }
 }

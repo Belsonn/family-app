@@ -1,5 +1,6 @@
 import { FamilyUser } from './family.models';
 export interface Reward {
+  _id?: string;
   name: string;
   points: number;
   unlockedBy?: FamilyUser | string;

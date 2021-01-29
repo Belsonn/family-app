@@ -1,0 +1,36 @@
+<mat-dialog-content>
+  <p class="header">Are you sure you want to unlock this reward?</p>
+  <p class="reward--text reward--name mt-05rem">
+    {{ data.reward.name }}
+  </p>
+  <div class="wrapper-flex-center">
+    <div class="reward--text reward--points">
+      Cost: {{ data.reward.points }}
+    </div>
+    <ic-icon class="font-size-2rem ml-05rem" icon="glowingStar"></ic-icon>
+  </div>
+  <div class="wrapper-flex-center mt-15rem">
+    <div class="reward--text">Left: {{ data.points - data.reward.points }}</div>
+    <ic-icon class="font-size-15rem ml-05rem" icon="glowingStar"></ic-icon>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <div class="wrapper-flex-center width-100 mtb-1rem">
+    <button
+      class="bttn bttn-clickable bttn-violet bttn-small mr-05rem"
+      [mat-dialog-close]="false"
+    >
+      Cancel
+    </button>
+    <button
+      class="bttn bttn-clickable bttn-blue bttn-small ml-05rem flex"
+      [mat-dialog-close]="true"
+    >
+      <ic-icon
+        class="font-size-15rem mr-05rem"
+        icon="bxLockOpenAlt"
+      ></ic-icon>
+      <div>Unlock</div>
+    </button>
+  </div>
+</mat-dialog-actions>

@@ -66,8 +66,8 @@ import lightBulb from '@iconify-icons/emojione/light-bulb';
 import leftSpeechBubble from '@iconify-icons/emojione/left-speech-bubble';
 import trophyIcon from '@iconify-icons/noto-v1/trophy';
 import bxLockOpenAlt from '@iconify-icons/bx/bx-lock-open-alt';
+import bxLockAlt from '@iconify-icons/bx/bx-lock-alt';
 import glowingStar from '@iconify-icons/emojione/glowing-star';
-
 
 export const appIcons = {
   planner, // Menu
@@ -77,14 +77,14 @@ export const appIcons = {
   todoList, // Menu
   settingsIcon, // Menu
   trophyIcon, // Menu
-  baselineEvent, // ? ? ? 
+  baselineEvent, // ? ? ?
   menuGridO, // Calendar Menu Icon
   arrowRightAlt2, // Calendar
   arrowLeftAlt2, // Calendar
   plusLine, // Calendar
   bxCalendarCheck, // Calendar
   bxCalendarX, // Calendar
-  outlineAccessTime, // ? ? ? 
+  outlineAccessTime, // ? ? ?
   emailLine, // Login/Signup
   lockPasswordLine, // Login/Signup
   batteryFull, // PhoneBar
@@ -103,15 +103,15 @@ export const appIcons = {
   userEdit, // Edit user
   birthdayCake, // Configure
   cameraChange, // Configure
-  peopleIcon, // ? ? ? 
+  peopleIcon, // ? ? ?
   baselineAddShoppingCart, // Add item
   cardText, // ? ?
   editIcon, // Edit List
-  trashOutline,  // Edit List
+  trashOutline, // Edit List
   checkCircle, // ? ? ?
-  circleIcon, // Dep ? 
-  confirmIcon, // Dep ? 
-  enterIcon,  // Dep ?
+  circleIcon, // Dep ?
+  confirmIcon, // Dep ?
+  enterIcon, // Dep ?
   doubleArrowRight, // LIST-VIEW
   closeCircleOutlined, // LIST-DETAILS ? ? ? DEP
   checkCircleOutlined, // LIST-DETAILS ? ? ? DEP
@@ -119,7 +119,7 @@ export const appIcons = {
   bxLeftArrow, // bottom bar
   bxListPlus, // add new shopping list
   arrowDownAlt2, // Shopping
-  arrowUpAlt2, //Shopping 
+  arrowUpAlt2, //Shopping
   xIcon, // Shoppinh DailyTask
   baselineRemoveShoppingCart, // shopping
   arrowRight, // CHAT
@@ -136,5 +136,6 @@ export const appIcons = {
   textChangeCase24Regular, // dailyTask Create
   lightBulb, // dailyTask Create
   bxLockOpenAlt, // rewards
+  bxLockAlt, //rewards
   glowingStar, //POINTS
 };

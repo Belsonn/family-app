@@ -38,10 +38,12 @@
       </div>
     </div>
   </div>
+  <div *ngIf="unlockedInfo" class="wrapper-flex-center mt-2rem">
+    <div class="infoBox">You have successfully unlocked a reward!</div>
+  </div>
+
   <div class="wrapper-flex-center flex-column mt-1rem">
-    <div class="font-size-14rem violet font-500">
-      You have:
-    </div>
+    <div class="font-size-14rem violet font-500">You have:</div>
     <div class="wrapper-flex-center">
       <div class="font-size-12rem violet font-500">{{ me.points }}</div>
       <ic-icon class="font-size-2rem ml-05rem" icon="glowingStar"></ic-icon>
@@ -50,7 +52,7 @@
 
   <div class="flex flex-column mt-1rem">
     <div *ngFor="let reward of basicRewards" class="wrapper-flex-center">
-      <div class="reward mt-1rem">
+      <div class="reward mt-2rem">
         <div class="flex-column">
           <div class="reward--name--points">
             <div class="wrapper-flex-center">
@@ -66,17 +68,33 @@
             <div class="reward--points--wrapper mt-1rem">
               <div class="wrapper-flex-center">
                 <div class="reward--points">{{ reward.points }}</div>
-                <ic-icon class="font-size-2rem ml-05rem" icon="glowingStar"></ic-icon>
+                <ic-icon
+                  class="font-size-2rem ml-05rem"
+                  icon="glowingStar"
+                ></ic-icon>
               </div>
             </div>
           </div>
-          <div class="wrapper-flex-center mt-2rem">
+          <div
+            *ngIf="canUnlock(reward)"
+            (click)="unlockReward(reward)"
+            class="wrapper-flex-center mt-2rem"
+          >
             <div class="bttn bttn-small bttn-blue bttn-clickable unlockButton">
               <ic-icon
                 class="font-size-15rem unlockButton--icon"
                 icon="bxLockOpenAlt"
               ></ic-icon>
               <div>Unlock reward</div>
+            </div>
+          </div>
+          <div *ngIf="!canUnlock(reward)" class="wrapper-flex-center mt-2rem">
+            <div class="bttn bttn-small bttn-red bttn-clickable unlockButton">
+              <ic-icon
+                class="font-size-15rem unlockButton--icon"
+                icon="bxLockAlt"
+              ></ic-icon>
+              <div>Reward locked</div>
             </div>
           </div>
         </div>
