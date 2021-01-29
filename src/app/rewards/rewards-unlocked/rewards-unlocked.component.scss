@@ -1,0 +1,59 @@
+@import "~src/scss/main.scss";
+
+.reward {
+  box-shadow: $box-shadow-secondary;
+  width: 80%;
+  padding: 1rem 2rem;
+  border-radius: 40px;
+  &--name {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: $violet-1;
+    text-align: center;
+  }
+  &--points {
+    text-align: center;
+    font-weight: 500;
+    color: $text-gray;
+  }
+  &--name--points {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &--date{
+      text-align: center;
+      color: $text-gray;
+      font-weight: 500;
+  }
+}
+
+.child{
+    &--name{
+        font-weight: 500;
+        color: $violet-1;
+        font-size: 1.1rem;
+    }
+}
+
+.childAndPoints {
+  justify-content: space-between;
+}
+
+@media (max-width: 400px) {
+  .reward {
+    &--points {
+      &--wrapper {
+        margin-top: 1rem;
+      }
+    }
+  }
+  .child {
+    margin-top: 1rem;
+  }
+
+  .childAndPoints {
+    justify-content: center;
+    flex-direction: column;
+  }
+}

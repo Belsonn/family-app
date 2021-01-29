@@ -5,6 +5,7 @@ export interface Reward {
   points: number;
   unlockedBy?: FamilyUser | string;
   unlockedAt?: Date;
+  confirmed? : Boolean
 }
 
 export interface RewardResponse {

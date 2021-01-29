@@ -2,7 +2,6 @@
 
 .reward {
   box-shadow: $box-shadow-secondary;
-  padding: 0.5rem;
   width: 80%;
   padding: 1rem 2rem;
   border-radius: 40px;
@@ -48,13 +47,14 @@
       margin-top: 1rem;
     }
   }
-  .unlockButton {
-    flex-direction: column-reverse;
-    &--icon {
-      margin-right: 0;
-    }
-  }
+  // .unlockButton {
+  //   flex-direction: column-reverse;
+  //   &--icon {
+  //     margin-right: 0;
+  //   }
+  // }
   .reward {
+    padding: 1rem 0.5rem;
     &--name {
       width: 100%;
       text-align: center;

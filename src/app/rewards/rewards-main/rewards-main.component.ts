@@ -79,6 +79,7 @@ export class RewardsMainComponent implements OnInit {
       points: reward.points,
       unlockedAt: new Date(),
       unlockedBy: this.me._id,
+      confirmed: false,
     };
     this.rewardsService.unlockReward(newReward).subscribe((res) => {
       this.familyService.familyUser.points = this.me.points - newReward.points;
