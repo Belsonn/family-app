@@ -1,4 +1,4 @@
-import { UnlockRewardComponent } from './../unlock-reward/unlock-reward.component';
+import { UnlockRewardComponent } from '../dialogs/unlock-reward/unlock-reward.component';
 import { Router } from '@angular/router';
 import { RewardsService } from './../rewards.service';
 import { Component, OnInit } from '@angular/core';
