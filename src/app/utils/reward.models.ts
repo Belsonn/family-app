@@ -21,3 +21,11 @@ export interface RewardsResponse {
     rewards: Reward[];
   };
 }
+
+export interface RewardsConfirmedResponse{
+  status: string;
+  data: {
+    rewardsUnlocked: Reward[];
+    rewardsConfirmed: Reward[];
+  };
+}

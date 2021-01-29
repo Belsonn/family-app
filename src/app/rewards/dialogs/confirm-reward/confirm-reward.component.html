@@ -1,0 +1,23 @@
+<mat-dialog-content>
+  <p class="header font-size-13rem">
+    Are you sure you want to approve this reward?
+  </p>
+  <p class="header text-center">Your child will be informed.</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <div class="wrapper-flex-center width-100 mtb-1rem">
+    <button
+      class="bttn bttn-clickable bttn-violet bttn-small mr-05rem"
+      [mat-dialog-close]="false"
+    >
+      Cancel
+    </button>
+    <button
+      class="bttn bttn-clickable bttn-blue bttn-small ml-05rem flex"
+      [mat-dialog-close]="true"
+    >
+      <ic-icon class="font-size-15rem mr-05rem" icon="checkOutlined"></ic-icon>
+      <div>Approve</div>
+    </button>
+  </div>
+</mat-dialog-actions>

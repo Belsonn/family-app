@@ -3,25 +3,131 @@
 </div>
 
 <div *ngIf="!isLoading">
-  <div class="flex flex-align-center">
-    <ic-icon
-      [routerLink]="['', 'app', 'rewards']"
-      mat-ripple
-      class="font-size-16rem ml-1rem mt-1rem border-radius-10 p-05rem"
-      icon="arrowBackUp"
-    ></ic-icon>
-  </div>
-  <div class="wrapper-flex-center">
-    <div class="flex flex-column">
-      <div class="wrapper-flex-center">
-        <ic-icon class="font-size-4rem" icon="trophyIcon"></ic-icon>
+  <div #scroll>
+    <div class="flex flex-align-center">
+      <ic-icon
+        [routerLink]="['', 'app', 'rewards']"
+        mat-ripple
+        class="font-size-16rem ml-1rem mt-1rem border-radius-10 p-05rem"
+        icon="arrowBackUp"
+      ></ic-icon>
+    </div>
+    <div class="wrapper-flex-center">
+      <div class="flex flex-column">
+        <div class="wrapper-flex-center">
+          <ic-icon class="font-size-4rem" icon="trophyIcon"></ic-icon>
+        </div>
+        <div class="font-size-14rem violet text-center mt-1rem">Unlocked rewards</div>
       </div>
-      <!-- <div class="font-size-14rem violet text-center mt-1rem">Rewards</div> -->
+    </div>
+
+    <div class="wrapper-flex-center flex-column mt-2rem">
+      <div class="wrapper-flex-center">
+        <ic-icon class="font-size-2rem" icon="lightBulb"></ic-icon>
+      </div>
+      <div class="mytooltip mt-1rem">
+        You can approve awards to let your kids know you've noticed when they
+        unlocked.
+      </div>
+    </div>
+
+    <div
+      *ngIf="rewardsUnlocked.length == 0"
+      class="wrapper-flex-center flex-column mt-3rem"
+    >
+      <div class="wrapper-flex-center">
+        <ic-icon
+          class="font-size-4rem mr-1rem"
+          icon="manGesturingNoLightSkinTone"
+        ></ic-icon>
+        <ic-icon
+          class="font-size-4rem ml-1rem"
+          icon="womanGesturingNoLightSkinTone"
+        ></ic-icon>
+      </div>
+      <div class="wrapper-flex-center mt-1rem noRewards">
+        There are no unlocked rewards.
+      </div>
+    </div>
+
+    <div *ngIf="rewardsUnlocked.length > 0" class="flex flex-column">
+      <div *ngFor="let reward of rewardsUnlocked" class="wrapper-flex-center">
+        <div class="reward mt-2rem">
+          <div class="flex-column">
+            <div class="reward--name">
+              {{ reward.name }}
+            </div>
+            <div class="flex flex-column">
+              <div class="flex flex-align-center childAndPoints">
+                <div class="wrapper-flex-center child">
+                  <img
+                    src="{{ reward.unlockedBy.photo }}"
+                    class="photo photo-50 photo-mobile white-border"
+                    alt="user-photo"
+                  />
+                  <div class="child--name ml-05rem">
+                    {{ reward.unlockedBy.name }}
+                  </div>
+                </div>
+
+                <div class="reward--points--wrapper">
+                  <div class="wrapper-flex-center">
+                    <div class="reward--points">{{ reward.points }}</div>
+                    <ic-icon
+                      class="font-size-2rem ml-05rem"
+                      icon="glowingStar"
+                    ></ic-icon>
+                  </div>
+                </div>
+              </div>
+              <div class="wrapper-flex-center mt-1rem">
+                <div class="reward--date">
+                  {{ reward.unlockedAt | date: "dd. MMMM HH:mm" }}
+                </div>
+              </div>
+            </div>
+            <div
+              (click)="confirmOpen(reward)"
+              class="wrapper-flex-center mt-15rem"
+            >
+              <div
+                class="bttn uppercase bttn-clickable bttn-blue bttn-small flex"
+              >
+                <ic-icon
+                  class="font-size-15rem mr-05rem"
+                  icon="checkOutlined"
+                ></ic-icon>
+                <div>Approve</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="rewardsConfirmed.length > 0" class="wrapper-flex-center mt-1rem">
+    <div
+      mat-ripple
+      (click)="showConfirmedClick()"
+      class="flex confirm-box mb-2rem mt-1rem"
+    >
+      <div class="confirm-box--name">
+        <span *ngIf="!showConfirmed">Show</span
+        ><span *ngIf="showConfirmed">Hide</span> confirmed
+      </div>
+      <ic-icon
+        [ngClass]="{
+          'arrow-to-top': showConfirmed,
+          'arrow-to-bot': !showConfirmed && confirmedClickedOnce
+        }"
+        class="ml-1rem"
+        icon="arrowDownAlt2"
+      ></ic-icon>
     </div>
   </div>
 
-  <div class="flex flex-column">
-    <div *ngFor="let reward of rewardsUnlocked" class="wrapper-flex-center">
+  <div *ngIf="showConfirmed" class="flex flex-column">
+    <div *ngFor="let reward of rewardsConfirmed" class="wrapper-flex-center">
       <div class="reward mt-2rem">
         <div class="flex-column">
           <div class="reward--name">
@@ -56,19 +162,9 @@
               </div>
             </div>
           </div>
-          <div class="wrapper-flex-center mt-15rem">
-            <div
-              class="bttn uppercase bttn-clickable bttn-blue bttn-small flex"
-            >
-              <ic-icon
-                class="font-size-15rem mr-05rem"
-                icon="checkOutlined"
-              ></ic-icon>
-              <div>Confirm</div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+<div class="mt-7rem"></div>

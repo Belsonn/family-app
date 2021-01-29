@@ -1,4 +1,4 @@
-import { Reward } from './../utils/reward.models';
+import { Reward, RewardsConfirmedResponse } from './../utils/reward.models';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -14,7 +14,7 @@ export class RewardsService {
     return this.http.get<RewardsResponse>(`${environment.apiURL}rewards/basic`);
   }
   getRewardsUnlocked() {
-    return this.http.get<RewardsResponse>(
+    return this.http.get<RewardsConfirmedResponse>(
       `${environment.apiURL}rewards/unlocked`
     );
   }
