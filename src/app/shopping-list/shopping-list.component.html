@@ -17,13 +17,11 @@
 </div> -->
 
 <div *ngIf="!isLoading">
-  <div class="flex mt-1rem">
-    <ic-icon
-      [routerLink]="['', 'app', 'shopping']"
-      mat-ripple
-      class="font-size-16rem ml-1rem text-left violet"
-      icon="arrowBackUp"
-    ></ic-icon>
+  <div class="flex">
+    <div mat-ripple [routerLink]="['', 'app', 'shopping']" class="back-button">
+      <ic-icon class="back-button--icon" icon="arrowBackUp"></ic-icon>
+      <div class="back-button--back">Back</div>
+    </div>
   </div>
   <div class="wrapper-flex-center">
     <ic-icon class="font-size-4rem" icon="shoppingCart"></ic-icon>

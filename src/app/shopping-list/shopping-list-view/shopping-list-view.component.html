@@ -3,13 +3,11 @@
 </div>
 
 <div *ngIf="!isLoading">
-  <div class="flex flex-align-center">
-    <ic-icon
-      [routerLink]="['', 'app', 'menu']"
-      mat-ripple
-      class="font-size-16rem ml-1rem mt-1rem"
-      icon="arrowBackUp"
-    ></ic-icon>
+  <div class="flex">
+    <div mat-ripple [routerLink]="['', 'app', 'menu']" class="back-button">
+      <ic-icon class="back-button--icon" icon="arrowBackUp"></ic-icon>
+      <div class="back-button--back">Back</div>
+    </div>
   </div>
   <div class="wrapper-flex-center">
     <ic-icon class="font-size-4rem" icon="shoppingCart"></ic-icon>

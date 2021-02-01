@@ -11,6 +11,17 @@
       icon="arrowBackUp"
     ></ic-icon>
   </div>
+  <div class="flex">
+    <div
+      mat-ripple
+      [routerLink]="['', 'app', 'shopping', 'list']"
+      queryParamsHandling="preserve"
+      class="back-button"
+    >
+      <ic-icon class="back-button--icon" icon="arrowBackUp"></ic-icon>
+      <div class="back-button--back">Back</div>
+    </div>
+  </div>
   <div
     (click)="showRecentlyClick()"
     mat-ripple
@@ -101,12 +112,7 @@
         <div class="wrapper-flex-center form-field-width mt-m-1rem">
           <mat-form-field class="width-90 mt-m-1rem mt-05rem">
             <mat-label>What do you need to buy?</mat-label>
-            <input
-              type="text"
-              formControlName="name"
-              matInput
-              required
-            />
+            <input type="text" formControlName="name" matInput required />
             <mat-error *ngIf="addFormGroup.controls.name.invalid"
               >Please provide a valid name.</mat-error
             >
@@ -133,7 +139,7 @@
         mat-ripple
         (click)="onAdd()"
         type="submit"
-        class="bttn  bttn-primary bttn-clickable bttn-gradient width-70 ptb-05rem"
+        class="bttn bttn-primary bttn-clickable bttn-gradient width-70 ptb-05rem"
       >
         <span *ngIf="mode !== 'edit'">Add to list</span>
         <span *ngIf="mode == 'edit'">Edit</span>

@@ -2,13 +2,11 @@
   <mat-spinner class="spinner"></mat-spinner>
 </div>
 <div *ngIf="!isLoading">
-  <div class="flex flex-align-center mt-1rem">
-    <ic-icon
-      [routerLink]="['', 'app', 'menu']"
-      mat-ripple
-      class="font-size-16rem ml-1rem mt-1rem border-radius-10"
-      icon="arrowBackUp"
-    ></ic-icon>
+  <div class="flex">
+    <div mat-ripple [routerLink]="['', 'app', 'menu']" class="back-button">
+      <ic-icon class="back-button--icon" icon="arrowBackUp"></ic-icon>
+      <div class="back-button--back">Back</div>
+    </div>
   </div>
   <div class="wrapper-flex-center">
     <img src="{{ familyUser.photo }}" class="photo photo-150" alt="" />
