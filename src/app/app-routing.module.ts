@@ -1,3 +1,4 @@
+import { MyRewardsComponent } from './rewards/my-rewards/my-rewards.component';
 import { RewardsUnlockedComponent } from './rewards/rewards-unlocked/rewards-unlocked.component';
 import { RewardsCreateComponent } from './rewards/rewards-create/rewards-create.component';
 import { RewardsMainComponent } from './rewards/rewards-main/rewards-main.component';
@@ -124,6 +125,11 @@ const routes: Routes = [
       {
         path: 'rewards/unlocked',
         component: RewardsUnlockedComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'rewards/my',
+        component: MyRewardsComponent,
         canActivate: [AuthGuard]
       },
       {

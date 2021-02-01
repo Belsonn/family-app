@@ -72,6 +72,7 @@ import { RewardsCreateComponent } from './rewards/rewards-create/rewards-create.
 import { RewardsUnlockedComponent } from './rewards/rewards-unlocked/rewards-unlocked.component';
 import { UnlockRewardComponent } from './rewards/dialogs/unlock-reward/unlock-reward.component';
 import { ConfirmRewardComponent } from './rewards/dialogs/confirm-reward/confirm-reward.component';
+import { MyRewardsComponent } from './rewards/my-rewards/my-rewards.component';
 
 @NgModule({
   declarations: [
@@ -112,6 +113,7 @@ import { ConfirmRewardComponent } from './rewards/dialogs/confirm-reward/confirm
     RewardsUnlockedComponent,
     UnlockRewardComponent,
     ConfirmRewardComponent,
+    MyRewardsComponent,
   ],
   imports: [
     HttpClientModule,

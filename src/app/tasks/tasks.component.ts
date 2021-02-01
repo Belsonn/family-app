@@ -90,6 +90,10 @@ export class TasksComponent implements OnInit, AfterViewInit {
 
       this.selected = this.me.name;
       this.selectChanged({ value: this.me.name });
+    } else {
+      this.me = this.familyService.familyUser;
+      this.selected = "showAll"
+      this.selectChanged({value: "showAll"})
     }
   }
 

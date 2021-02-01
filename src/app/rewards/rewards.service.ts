@@ -43,4 +43,10 @@ export class RewardsService {
       reward
     );
   }
+
+  getMyRewards(){
+    return this.http.get<RewardsResponse>(
+      `${environment.apiURL}rewards/my`
+    );
+  }
 }

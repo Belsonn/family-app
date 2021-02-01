@@ -38,6 +38,15 @@
       </div>
     </div>
   </div>
+  <div class="wrapper-flex-center mt-1rem">
+    <button
+      [routerLink]="['', 'app', 'rewards', 'my']"
+      mat-ripple
+      class="bttn bttn-clickable uppercase bttn-violet bttn-small top-buttons--button"
+    >
+      My rewards
+    </button>
+  </div>
   <div *ngIf="unlockedInfo" class="wrapper-flex-center mt-2rem">
     <div class="infoBox">You have successfully unlocked a reward!</div>
   </div>
