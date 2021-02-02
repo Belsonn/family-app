@@ -1,3 +1,5 @@
+import { ConfirmDeleteRewardComponent } from './../dialogs/confirm-delete-reward/confirm-delete-reward.component';
+import { MatDialog } from '@angular/material/dialog';
 import { Reward } from './../../utils/reward.models';
 import { FamilyService } from './../../family.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -26,7 +28,8 @@ export class RewardsCreateComponent implements OnInit {
     private familyService: FamilyService,
     private rewardsService: RewardsService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -159,5 +162,21 @@ export class RewardsCreateComponent implements OnInit {
       .subscribe((res) => {
         this.router.navigate(['', 'app', 'rewards']);
       });
+  }
+
+  deleteRewardConfirm() {
+    const dialogRef = this.dialog.open(ConfirmDeleteRewardComponent, {
+      autoFocus: false,
+      restoreFocus: false,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.rewardsService
+          .deleteReward(this.rewardToUpdate)
+          .subscribe((res) => {
+            this.router.navigate(['', 'app', 'rewards']);
+          });
+      }
+    });
   }
 }

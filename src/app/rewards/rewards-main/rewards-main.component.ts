@@ -88,4 +88,7 @@ export class RewardsMainComponent implements OnInit {
       this.isLoading = false;
     });
   }
+  deleteRewardConfirm(reward: Reward){
+
+  }
 }

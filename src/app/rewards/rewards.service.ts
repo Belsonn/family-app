@@ -44,9 +44,13 @@ export class RewardsService {
     );
   }
 
-  getMyRewards(){
-    return this.http.get<RewardsResponse>(
-      `${environment.apiURL}rewards/my`
+  getMyRewards() {
+    return this.http.get<RewardsResponse>(`${environment.apiURL}rewards/my`);
+  }
+
+  deleteReward(id: string) {
+    return this.http.delete<RewardResponse>(
+      `${environment.apiURL}rewards/reward/${id}`
     );
   }
 }
