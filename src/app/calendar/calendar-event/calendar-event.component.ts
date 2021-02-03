@@ -5,7 +5,7 @@ import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
 import { pickerTheme } from '../../utils/TimePickerTheme';
 import { CalendarEvent } from 'src/app/utils/CalendarEvent.model';
 import { CalendarService } from '../calendar.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-calendar-event',
@@ -19,6 +19,8 @@ export class CalendarEventComponent implements OnInit {
   editMode: boolean = false;
   minEndDate: Date;
 
+  eventToUpdate: string;
+
   //FormControls
   calendarEventFormGroup: FormGroup;
 
@@ -28,24 +30,15 @@ export class CalendarEventComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private calendarService: CalendarService,
     private familyService: FamilyService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
     this.isLoading = true;
     this.initAllFormGroups();
-
-    if (
-      this.calendarService.dayClicked &&
-      this.today < this.calendarService.dayClicked
-    ) {
-      this.calendarEventFormGroup
-        .get('startDate')
-        .setValue(this.calendarService.dayClicked);
-      this.calcEndDate();
-    }
-
-    this.isLoading = false;
+    this.checkStartDate();
+    this.checkQueryParams();
   }
 
   initAllFormGroups() {
@@ -57,6 +50,64 @@ export class CalendarEventComponent implements OnInit {
       startTime: [null, Validators.required],
       endTime: [null, Validators.required],
     });
+  }
+
+  checkQueryParams() {
+    this.route.queryParams.subscribe((param) => {
+      if (param.id) {
+        this.isLoading = true;
+        this.calendarService.getEvent(param.id).subscribe(
+          (res) => {
+            this.editMode = true;
+            this.eventToUpdate = param.id;
+            this.fillEventData(res.data.event);
+            this.isLoading = false;
+          },
+          (err) => {
+            this.router.navigate(['', 'app', 'calendar']);
+          }
+        );
+      } else {
+        this.isLoading = false;
+      }
+    });
+  }
+
+  fillEventData(event: CalendarEvent) {
+    this.calendarEventFormGroup.get('name').setValue(event.name);
+
+    this.calendarEventFormGroup.get('startDate').setValue(event.startDate);
+    this.calendarEventFormGroup.get('endDate').setValue(event.endDate);
+
+    event.startDate = new Date(event.startDate);
+    event.endDate = new Date(event.endDate);
+
+    let startTime = `${this.formatDate(
+      event.startDate.getHours()
+    )}:${this.formatDate(event.startDate.getMinutes())}`;
+
+    let endTime = `${this.formatDate(
+      event.endDate.getHours()
+    )}:${this.formatDate(event.endDate.getMinutes())}`;
+
+    this.calendarEventFormGroup.get('startTime').setValue(startTime);
+    this.calendarEventFormGroup.get('endTime').setValue(endTime);
+  }
+
+  formatDate(number: number) {
+    return number < 10 ? `0${number}` : `${number}`;
+  }
+
+  checkStartDate() {
+    if (
+      this.calendarService.dayClicked &&
+      this.today < this.calendarService.dayClicked
+    ) {
+      this.calendarEventFormGroup
+        .get('startDate')
+        .setValue(this.calendarService.dayClicked);
+      this.calcEndDate();
+    }
   }
 
   calcEndDate() {
@@ -91,13 +142,13 @@ export class CalendarEventComponent implements OnInit {
     } else if (this.calendarEventFormGroup.invalid) {
       return;
     } else if (this.editMode) {
-      // this.editEvent();
+      this.editEvent();
     } else {
       this.addEvent();
     }
   }
 
-  addEvent() {
+  getEventFromForm(): CalendarEvent {
     let event: CalendarEvent = {
       name: this.calendarEventFormGroup.controls.name.value,
       startDate: new Date(this.calendarEventFormGroup.controls.startDate.value),
@@ -119,7 +170,24 @@ export class CalendarEventComponent implements OnInit {
       event.endDate.setHours(parseInt(endTime[0]), parseInt(endTime[1]));
     }
 
+    return event;
+  }
+
+  addEvent() {
+    this.isLoading = true;
+
+    let event = this.getEventFromForm();
+
     this.calendarService.addEvent(event).subscribe((res) => {
+      this.router.navigate(['', 'app', 'calendar']);
+    });
+  }
+  editEvent() {
+    this.isLoading = true;
+
+    let event = this.getEventFromForm();
+
+    this.calendarService.updateEvent(this.eventToUpdate, event).subscribe((res) => {
       this.router.navigate(['', 'app', 'calendar']);
     });
   }

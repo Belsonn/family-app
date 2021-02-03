@@ -1,5 +1,5 @@
 import { FamilyResponse } from './../utils/family.models';
-import { EventsResponse } from './../utils/CalendarEvent.model';
+import { EventResponse, EventsResponse } from './../utils/CalendarEvent.model';
 import { HttpClient } from '@angular/common/http';
 import { FamilyService } from './../family.service';
 import { Injectable } from '@angular/core';
@@ -21,6 +21,25 @@ export class CalendarService {
     return this.http.post<EventsResponse>(
       `${environment.apiURL}events/addEvent`,
       event
+    );
+  }
+
+  getEvent(id: string) {
+    return this.http.get<EventResponse>(
+      `${environment.apiURL}events/event/${id}`
+    );
+  }
+
+  updateEvent(id: string, event: CalendarEvent) {
+    return this.http.patch<EventResponse>(
+      `${environment.apiURL}events/event/${id}`,
+      event
+    );
+  }
+
+  deleteEvent(id: string) {
+    return this.http.delete<EventResponse>(
+      `${environment.apiURL}events/event/${id}`
     );
   }
 }

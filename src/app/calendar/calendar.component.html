@@ -76,33 +76,60 @@
     {{ calendarDayInstance.date | date: "dd. MMMM" }}
   </p>
 
-  <div *ngIf="calendarDayInstance.events.length > 0" class="events mb-2rem">
+  <div *ngIf="calendarDayInstance.events.length > 0">
     <div class="wrapper-flex-center flex-column">
       <div
-        mat-ripple
         *ngFor="let event of calendarDayInstance.events; let i = index"
-        class="width-100 pointer mt-05rem"
+        class="width-100"
       >
-        <div class="flex flex-align-center flex-space-between">
-          <div class="events__row--title ml-1rem">{{ event.name }}</div>
-          <div class="events__row--date">
-            <span
-              ><span class="events__row--date--hours" *ngIf="isSingleDayEvent(event) || isFirstDayEvent(event)">
-                {{ event.startDate | date: "HH:mm" }}
-              </span>
-              <span *ngIf="!isSingleDayEvent(event) && !isFirstDayEvent(event)">
-                {{ event.startDate | date: "dd MMM" }}
-              </span>
-              -
-              <span *ngIf="isSingleDayEvent(event) || isLastDayEvent(event)">
-                {{ event.endDate | date: "HH:mm" }}
-              </span>
-              <span *ngIf="!isSingleDayEvent(event) && !isLastDayEvent(event)">
-                {{ event.endDate | date: "dd MMM" }}
-              </span> </span
-            ><span i18n="allDay" *ngIf="event.allDay">Whole day</span>
+        <div mat-ripple class="events">
+          <div (click)="clickEvent(i)" class="events__row pointer">
+            <div class="events__row--title">{{ event.name }}</div>
+            <div class="events__row--date">
+              <span
+                ><span
+                  class="events__row--date--hours"
+                  *ngIf="isSingleDayEvent(event) || isFirstDayEvent(event)"
+                >
+                  {{ event.startDate | date: "HH:mm" }}
+                </span>
+                <span
+                  *ngIf="!isSingleDayEvent(event) && !isFirstDayEvent(event)"
+                >
+                  {{ event.startDate | date: "dd MMM" }}
+                </span>
+                -
+                <span *ngIf="isSingleDayEvent(event) || isLastDayEvent(event)">
+                  {{ event.endDate | date: "HH:mm" }}
+                </span>
+                <span
+                  *ngIf="!isSingleDayEvent(event) && !isLastDayEvent(event)"
+                >
+                  {{ event.endDate | date: "dd MMM" }}
+                </span> </span
+              ><span i18n="allDay" *ngIf="event.allDay">Whole day</span>
+            </div>
+          </div>
+          <div
+            [@upAndDown]
+            *ngIf="eventClicked == i"
+            class="wrapper-flex-center mt-05rem"
+          >
+            <button
+              (click)="onEdit(event)"
+              class="bttn bttn-clickable bttn-small bttn-violet mr-05rem"
+            >
+              Edit
+            </button>
+            <button
+              (click)="onDeleteConfirm(event)"
+              class="bttn bttn-clickable bttn-small bttn-red ml-05rem"
+            >
+              Delete
+            </button>
           </div>
         </div>
+        <hr class="events__row--break" />
       </div>
     </div>
   </div>

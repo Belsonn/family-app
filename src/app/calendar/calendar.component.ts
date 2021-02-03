@@ -1,3 +1,4 @@
+import { ConfirmDeleteModalComponent } from './../common/confirm-delete-modal/confirm-delete-modal.component';
 import { FamilyService } from './../family.service';
 import { Component, OnInit } from '@angular/core';
 import { CalendarDay } from '../utils/CalendarDay.class';
@@ -6,11 +7,24 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { CalendarService } from './calendar.service';
 import { Router } from '@angular/router';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss'],
+  animations: [
+    trigger('upAndDown', [
+      transition(':enter', [
+        style({ height: 0, opacity: 0 }),
+        animate('0.2s ease-in', style({ height: '*', opacity: 1 })),
+      ]),
+      transition(':leave', [
+        style({ height: '*', opacity: 1 }),
+        animate('0.2s ease-out', style({ height: 0, opacity: 0 })),
+      ]),
+    ]),
+  ],
 })
 export class CalendarComponent implements OnInit {
   public calendar: CalendarDay[] = [];
@@ -21,6 +35,7 @@ export class CalendarComponent implements OnInit {
   today = new Date().setHours(0, 0, 0, 0);
 
   isLoading = false;
+  eventClicked: number;
 
   private monthIndex: number = 0;
   calendarDayInstance: CalendarDay;
@@ -157,6 +172,7 @@ export class CalendarComponent implements OnInit {
   }
 
   public onDateClick(calendarDay) {
+    this.eventClicked = -1;
     //Reset old day clicked
     if (this.calendarDayInstance) {
       this.calendarDayInstance.isClicked = false;
@@ -168,6 +184,34 @@ export class CalendarComponent implements OnInit {
   public addEvent() {
     this.calendarService.dayClicked = this.calendarDayInstance.date;
     this.router.navigate(['', 'app', 'calendar', 'event']);
+  }
+
+  public onEdit(event: CalendarEvent) {
+    this.router.navigate(['', 'app', 'calendar', 'event'], {
+      queryParams: { id: event._id },
+    });
+  }
+
+  public onDeleteConfirm(event: CalendarEvent) {
+    const dialogRef = this.dialog.open(ConfirmDeleteModalComponent, {
+      autoFocus: false,
+      restoreFocus: false,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.calendarService
+          .deleteEvent(event._id)
+          .subscribe((res) => {
+            this.ngOnInit();
+          });
+      }
+    });
+  }
+
+  public clickEvent(index: number) {
+    this.eventClicked === index
+      ? (this.eventClicked = -1)
+      : (this.eventClicked = index);
   }
 
   public increaseMonth() {
