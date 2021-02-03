@@ -50,6 +50,7 @@ export class ShoppingListAddComponent implements OnInit {
   isLoading = false;
   isLoadingInit = false;
   productsToShow: Grocery[] = [];
+  list: string;
 
   constructor(
     private familyService: FamilyService,
@@ -96,6 +97,7 @@ export class ShoppingListAddComponent implements OnInit {
         this.shoppingService.getList(params.id).subscribe(
           (res) => {
             this.id = params.id;
+            this.list = res.data.list.name;
             this.checkMode();
           },
           (err) => {

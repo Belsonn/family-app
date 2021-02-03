@@ -44,7 +44,7 @@ export class ShoppingService {
 
   editList(id, body) {
     return this.http.patch<ShoppingListResponse>(
-      `${environment.apiURL}shoppingLists/edit/${id}`,
+      `${environment.apiURL}shoppingLists/list/${id}`,
       body
     );
   }
@@ -58,7 +58,7 @@ export class ShoppingService {
 
   deleteList(id) {
     return this.http.delete<ShoppingListsResponse>(
-      `${environment.apiURL}shoppingLists/delete/${id}`
+      `${environment.apiURL}shoppingLists/list/${id}`
     );
   }
 }

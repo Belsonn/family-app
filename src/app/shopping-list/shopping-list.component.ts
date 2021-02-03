@@ -189,24 +189,3 @@ export class ShoppingListComponent implements OnInit {
     this.onSynchro();
   }
 }
-
-// sortList() {
-//   let incomplete = [];
-//   let complete = [];
-//   this.groceries.forEach((el) => {
-//     el.completedAt ? complete.push(el) : incomplete.push(el);
-//   });
-
-//   this.groceries = [...incomplete, ...complete];
-// }
-
-// moveItemToEnd(index){
-//   let item = this.groceries[index];
-//   this.groceries.splice(index,1);
-//   this.groceries.push(item);
-// }
-// moveItemToStart(index){
-//   let item = this.groceries[index];
-//   this.groceries.splice(index, 1);
-//   this.groceries.unshift(item);
-// }

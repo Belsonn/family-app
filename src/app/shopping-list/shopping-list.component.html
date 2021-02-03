@@ -2,20 +2,6 @@
   <app-custom-loading></app-custom-loading>
 </div>
 
-<!-- STRZAŁKA NA RÓWNO Z TYTUŁEM -->
-<!-- <div class="flex flex-align-center flex-space-between mt-1rem">
-  <ic-icon
-    [routerLink]="['', 'app', 'shopping']"
-    mat-ripple
-    class="font-size-16rem ml-1rem text-left violet"
-    icon="arrowBackUp"
-  ></ic-icon>
-  <div *ngIf="list" class="mr-15rem title violet">
-    {{ list.name }}
-  </div>
-  <div></div>
-</div> -->
-
 <div *ngIf="!isLoading">
   <div class="flex">
     <div mat-ripple [routerLink]="['', 'app', 'shopping']" class="back-button">
@@ -110,7 +96,7 @@
                     class="wrapper-flex-center flex-column box__description ml-1rem"
                   >
                     <div class="box__description-createdAt">
-                      Created: {{ item.createdAt | date: "dd/MM/yy HH:mm" }}
+                      Added: {{ item.createdAt | date: "dd/MM/yy HH:mm" }}
                     </div>
                     <div class="box__description-createdBy">
                       By: {{ item.createdBy.name }}

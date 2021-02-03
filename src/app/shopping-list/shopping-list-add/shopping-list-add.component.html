@@ -2,15 +2,6 @@
   <app-custom-loading></app-custom-loading>
 </div>
 <div *ngIf="!isLoading">
-  <div class="flex flex-align-center">
-    <ic-icon
-      [routerLink]="['', 'app', 'shopping', 'list']"
-      queryParamsHandling="preserve"
-      mat-ripple
-      class="font-size-16rem ml-1rem mt-1rem"
-      icon="arrowBackUp"
-    ></ic-icon>
-  </div>
   <div class="flex">
     <div
       mat-ripple
@@ -22,10 +13,16 @@
       <div class="back-button--back">Back</div>
     </div>
   </div>
+  <div class="wrapper-flex-center">
+    <ic-icon class="font-size-4rem" icon="shoppingCart"></ic-icon>
+  </div>
+  <div *ngIf="list" class="wrapper-flex-center font-size-14rem violet mt-1rem">
+    {{ list }}
+  </div>
   <div
     (click)="showRecentlyClick()"
     mat-ripple
-    class="wrapper-flex-center box-shadow-2 border-radius-20 mlr-2rem mtb-05rem p-05rem flex white-background pointer"
+    class="wrapper-flex-center box-shadow-2 border-radius-20 mlr-2rem p-05rem flex white-background pointer mt-2rem"
   >
     <div *ngIf="!showRecently" class="flex">
       <div class="text-center font-size-14rem">
@@ -147,3 +144,4 @@
     </div>
   </form>
 </div>
+<div class="mt-7rem"></div>
