@@ -1,82 +1,32 @@
 @import "~src/scss/main.scss";
 
-
-
-.stepper {
-  margin: 0 auto;
-
-  &__buttons {
-    margin-top: 2rem;
-  }
+.form__row {
+  width: 80%;
 }
 
 .formField {
-  margin-top: 0.3rem;
-  width: 90%;
+  width: 70%;
 }
 
-.name {
-  // font-size: 1.6rem;
+.form-text {
+  font-family: $font-family-2;
   font-weight: 500;
+  color: $violet-1;
 }
 
-.radio-label{
-  min-height: 90px;
-}
-.custom-width{
-  width: 100%;
-  height: 100%;
-}
-
-.overview {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  &__long {
-    &--icon {
-      font-size: 2rem;
-      margin-right: 0.5rem;
-      color: $light-blue-1;
-    }
-    &--date {
-      font-weight: 500;
-      margin-top: 0.7rem;
-    }
-  }
-}
-
-.desc{
-  font-size: 0.7rem;
-  margin-top: 0.5rem;
-  color: $text-gray;
-  margin-left: 0.2rem;
-}
-
-::ng-deep .mat-step-header {
-  .mat-step-icon-selected,
-  .mat-step-icon-state-edit {
-    background-color: $light-blue-1;
-  }
+.header {
+  font-size: 1.4rem;
+  color: $violet-1;
+  font-weight: 500;
 }
 
 :host ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
   background: $linear-gradient-90-1;
 }
-:host ::ng-deep .mat-stepper-horizontal, .mat-stepper-vertical {
-  background-color: $background-gray;
-}
 
 
-@media(max-width: 500px){
-  .box{
-    padding: 1rem;
-  }
-}
-
-@media(max-width:370px){
-  .radio-label{
-    width: 80px;
+@media (max-width: 370px) {
+  .bttn-big{
+    padding: 0.5rem 2rem;
   }
 }

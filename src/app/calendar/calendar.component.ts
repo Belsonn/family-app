@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CalendarDay } from '../utils/CalendarDay.class';
 import { CalendarEvent } from '../utils/CalendarEvent.model';
 import { MatDialog } from '@angular/material/dialog';
-import { MonthNames } from '../utils/CalendarMonthNames';
+
 import { CalendarService } from './calendar.service';
 import { Router } from '@angular/router';
 
@@ -13,24 +13,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./calendar.component.scss'],
 })
 export class CalendarComponent implements OnInit {
-
   public calendar: CalendarDay[] = [];
-  public monthNames = MonthNames;
-  public displayDate: string;
   monthSelected: number;
+
+  displayedDate: Date;
+
+  today = new Date().setHours(0, 0, 0, 0);
 
   isLoading = false;
 
   private monthIndex: number = 0;
-  calendarDayInstance;
+  calendarDayInstance: CalendarDay;
   calendarEvents: CalendarEvent[] = [];
   swipingRight = false;
   swipingLeft = false;
   swipingTimerRight;
   swipingTimerLeft;
-
-  
-  monthlyEventInstance;
 
   constructor(
     public dialog: MatDialog,
@@ -42,27 +40,20 @@ export class CalendarComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading = true;
 
-      this.calendarService.getEvents().subscribe(res => {
+    this.calendarService.getEvents().subscribe((res) => {
+      let events = res.data.events;
 
-        let events = res.data.events;
-  
-        for(let i = 0; i < res.data.events.length; i++){
-          events[i].startDate = new Date(events[i].startDate);
-          events[i].endDate = new Date(events[i].endDate);
-        }
-  
-        this.calendarEvents = events;
-  
-        
-        this.generateCalendarDays(this.monthIndex);
-        this.monthSelected = new Date().getMonth();
-        this.isLoading = false;
-      })
+      for (let i = 0; i < res.data.events.length; i++) {
+        events[i].startDate = new Date(events[i].startDate);
+        events[i].endDate = new Date(events[i].endDate);
+      }
 
-  }
+      this.calendarEvents = events;
 
-  onTest(c){
-    console.log(c);
+      this.generateCalendarDays(this.monthIndex);
+      this.monthSelected = new Date().getMonth();
+      this.isLoading = false;
+    });
   }
 
   private generateCalendarDays(monthIndex: number): void {
@@ -70,16 +61,15 @@ export class CalendarComponent implements OnInit {
     this.calendar = [];
 
     // we set the date
-    let day: Date = new Date(
+    this.displayedDate = new Date(
       new Date().setMonth(new Date().getMonth() + monthIndex)
     );
-    // set the dispaly date for UI
-    this.displayDate = `${
-      this.monthNames[day.getMonth()]
-    } ${day.getFullYear()}`;
-    this.monthSelected = day.getMonth();
 
-    let startingDateOfCalendar = this.getStartDateForCalendar(day);
+    this.monthSelected = this.displayedDate.getMonth();
+
+    let startingDateOfCalendar = this.getStartDateForCalendar(
+      new Date(this.displayedDate)
+    );
 
     let dateToAdd = startingDateOfCalendar;
     for (let i = 0; i < 42; i++) {
@@ -120,48 +110,16 @@ export class CalendarComponent implements OnInit {
           day.hasEvent = true;
           day.events.push(this.calendarEvents[i]);
         }
-
-        // REPEAT BLOCK
-        // ITS COMPLETELY BAD BUT IT WORKS XD
-        if (element.repeatType) {
-          let time;
-
-          // Set time differnce between dates
-          if(element.repeatType == 'Daily') {
-            time = 86400000 * element.repeatEvery
-          }
-          else if(element.repeatType == 'Weekly') {
-            time = 86400000 * 7 * element.repeatEvery
-          } 
-
-          //TODO
-          else if(element.repeatType == "Monthly"){
-            let startMonths = startDate.getFullYear() * 12 + startDate.getMonth();
-            let dayMonths = day.date.getFullYear() * 12 + day.date.getMonth();
-            if(day.date > startDate && day.date.getDate() == startDate.getDate() && (dayMonths - startMonths)%element.repeatEvery == 0){
-              day.hasEvent = true;
-              day.events.push(this.calendarEvents[i]);
-            }
-          }
-          
-          // Check if timezone is correctly set
-          if(time && day.date.getTimezoneOffset() != startDate.getTimezoneOffset()) {
-            let offset = (day.date.getTimezoneOffset() - startDate.getTimezoneOffset()) * 60 * 1000;
-            startDate.setTime(startDate.getTime() + offset);
-          }
-          // Check event startDate and substraction between dates must be 0 mod time
-          if(time && day.date > startDate && ((day.date.getTime() - startDate.getTime())%time == 0)){
-            day.hasEvent = true;
-            day.events.push(this.calendarEvents[i]);
-          }
-        }
       }
-      this.calendar.push(day);
+
       dateToAdd = new Date(dateToAdd.setDate(dateToAdd.getDate() + 1));
-    }
-    // Reset Month selected
-    if (this.monthSelected > 11 || this.monthSelected < 0) {
-      this.monthSelected = 0;
+
+      this.calendar.push(day);
+
+      // // Reset Month selected
+      // if (this.monthSelected > 11 || this.monthSelected < 0) {
+      //   this.monthSelected = 0;
+      // }
     }
   }
 
@@ -205,17 +163,6 @@ export class CalendarComponent implements OnInit {
     }
     this.calendarDayInstance = calendarDay;
     calendarDay.isClicked = true;
-  }
-
-  public eventLongerThan1Day(event: CalendarEvent) {
-    if (
-      event.startDate.getDate() !== event.endDate.getDate() &&
-      event.endDate.getTime() - event.startDate.getTime() > 86400000
-    ) {
-      return true;
-    } else {
-      return false;
-    }
   }
 
   public addEvent() {
@@ -272,5 +219,50 @@ export class CalendarComponent implements OnInit {
     this.monthIndex = 0;
     this.monthSelected = new Date().getMonth();
     this.generateCalendarDays(this.monthIndex);
+  }
+
+  isSingleDayEvent(event: CalendarEvent): boolean {
+    return new Date(event.startDate).setHours(0, 0, 0, 0) ===
+      new Date(event.endDate).setHours(0, 0, 0, 0)
+      ? true
+      : false;
+  }
+
+  isEventLongerThan1Day(event: CalendarEvent) {
+    return new Date(event.startDate).setHours(0, 0, 0, 0) !==
+      new Date(event.endDate).setHours(0, 0, 0, 0)
+      ? true
+      : false;
+  }
+
+  isStartingDayOfEvent(event: CalendarEvent) {
+    return new Date(this.calendarDayInstance.date).setHours(0, 0, 0, 0) ===
+      new Date(event.startDate).setHours(0, 0, 0, 0)
+      ? true
+      : false;
+  }
+
+  isLastDayOfEvent(event: CalendarEvent) {
+    return new Date(this.calendarDayInstance.date).setHours(0, 0, 0, 0) ===
+      new Date(event.endDate).setHours(0, 0, 0, 0)
+      ? true
+      : false;
+  }
+
+  isFirstDayEvent(event: CalendarEvent): boolean {
+    let isFirstDay = false;
+
+    if (this.isEventLongerThan1Day(event) && this.isStartingDayOfEvent(event)) {
+      isFirstDay = true;
+    }
+    return isFirstDay;
+  }
+  isLastDayEvent(event: CalendarEvent): boolean {
+    let isLastDay = false;
+
+    if (this.isEventLongerThan1Day(event) && this.isLastDayOfEvent(event)) {
+      isLastDay = true;
+    }
+    return isLastDay;
   }
 }

@@ -2,7 +2,6 @@ import { FamilyService } from './../../family.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxMaterialTimepickerTheme } from 'ngx-material-timepicker';
-import { MonthNames } from '../../utils/CalendarMonthNames';
 import { pickerTheme } from '../../utils/TimePickerTheme';
 import { CalendarEvent } from 'src/app/utils/CalendarEvent.model';
 import { CalendarService } from '../calendar.service';
@@ -14,36 +13,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./calendar-event.component.scss'],
 })
 export class CalendarEventComponent implements OnInit {
-  true = true;
-  apply = $localize`Apply`;
   isLoading = false;
 
-  longEvent: boolean = false;
-  color: string;
-
-  showRecently: boolean = false;
-
-
-  //SHORT
-  allDay: boolean = false;
-
-  //LONG
+  today = new Date();
+  editMode: boolean = false;
   minEndDate: Date;
 
   //FormControls
-  titleFormGroup: FormGroup;
-  taskFormGroup: FormGroup;
-  radioFormGroup: FormGroup;
-  shortEventFormGroup: FormGroup;
-  longEventFormGroup: FormGroup;
-  repeatFormGroup: FormGroup;
-
-
-  monthNames = MonthNames;
-  repeatTypes = [$localize`Daily`, $localize`Weekly`, $localize`Monthly`];
-  repeatDaily = [];
-  repeatWeekly = [];
-  repeatMonthly = [];
+  calendarEventFormGroup: FormGroup;
 
   pickerTheme: NgxMaterialTimepickerTheme = pickerTheme;
 
@@ -57,65 +34,28 @@ export class CalendarEventComponent implements OnInit {
   ngOnInit() {
     this.isLoading = true;
     this.initAllFormGroups();
-    this.fillRepeatArrays();
-    this.onRepeatChange();
 
-    if (this.calendarService.dayClicked) {
-      this.shortEventFormGroup.patchValue({
-        shortDateControl: this.calendarService.dayClicked,
-      });
-      this.longEventFormGroup.patchValue({
-        startDateControl: this.calendarService.dayClicked,
-      });
+    if (
+      this.calendarService.dayClicked &&
+      this.today < this.calendarService.dayClicked
+    ) {
+      this.calendarEventFormGroup
+        .get('startDate')
+        .setValue(this.calendarService.dayClicked);
       this.calcEndDate();
     }
 
-    this.color = '#9851b4';
     this.isLoading = false;
   }
 
   initAllFormGroups() {
-    this.titleFormGroup = this._formBuilder.group({
-      titleControl: ['', Validators.required],
-    });
-    this.shortEventFormGroup = this._formBuilder.group({
-      allDayControl: [''],
-      shortDateControl: ['', Validators.required],
-      startTimeControl: [null, Validators.required],
-      endTimeControl: [null, Validators.required],
-    });
-    this.longEventFormGroup = this._formBuilder.group({
-      startDateControl: ['', Validators.required],
-      endDateControl: ['', Validators.required],
-    });
-    this.repeatFormGroup = this._formBuilder.group({
-      repeatToggleControl: '',
-      repeatTypeControl: [
-        { value: 'Daily', disabled: true },
-        Validators.required,
-      ],
-      repeatEveryControl: [{ value: '', disabled: true }, Validators.required],
-    });
-    this.radioFormGroup = this._formBuilder.group({
-      longEvent: ['', Validators.required],
-    });
-    this.taskFormGroup = this._formBuilder.group({
-      isTask: ['', Validators.required],
-      points: [0, [Validators.required, Validators.min(0)]],
-    });
-  }
-
- 
-
-  onRepeatChange() {
-    this.radioFormGroup.get('longEvent').valueChanges.subscribe((value) => {
-      if (value) {
-        this.repeatFormGroup.get('repeatToggleControl').setValue(false);
-        this.repeatFormGroup.get('repeatToggleControl').disable();
-        this.repeatToggle({ checked: false });
-      } else {
-        this.repeatFormGroup.get('repeatToggleControl').enable();
-      }
+    this.calendarEventFormGroup = this._formBuilder.group({
+      name: ['', Validators.required],
+      allDay: [false],
+      startDate: [null, Validators.required],
+      endDate: [null, Validators.required],
+      startTime: [null, Validators.required],
+      endTime: [null, Validators.required],
     });
   }
 
@@ -124,119 +64,59 @@ export class CalendarEventComponent implements OnInit {
 
     //Setting minEnd to 1 day after start
     this.minEndDate.setDate(
-      this.longEventFormGroup.controls.startDateControl.value.getDate() + 1
+      this.calendarEventFormGroup.controls.startDate.value.getDate() + 1
     );
 
     // If startDate is after endDate -> change endDate
-    if (
-      this.longEventFormGroup.controls.endDateControl.value < this.minEndDate
-    ) {
-      this.longEventFormGroup.patchValue({ endDateControl: this.minEndDate });
+    if (this.calendarEventFormGroup.controls.endDate.value < this.minEndDate) {
+      this.calendarEventFormGroup.patchValue({ endDate: this.minEndDate });
     }
   }
 
   // Disabling time if event is allDay
   allDayChange(event) {
     if (event.checked) {
-      this.shortEventFormGroup.get('startTimeControl').disable();
-      this.shortEventFormGroup.get('endTimeControl').disable();
+      this.calendarEventFormGroup.get('startTime').disable();
+      this.calendarEventFormGroup.get('endTime').disable();
     } else {
-      this.shortEventFormGroup.get('startTimeControl').enable();
-      this.shortEventFormGroup.get('endTimeControl').enable();
+      this.calendarEventFormGroup.get('startTime').enable();
+      this.calendarEventFormGroup.get('endTime').enable();
     }
   }
 
-  fillRepeatArrays() {
-    for (let i = 1; i <= 12; i++) {
-      if (i <= 4) {
-        this.repeatDaily.push(i);
-        this.repeatWeekly.push(i);
-        this.repeatMonthly.push(i);
-      } else if (i <= 7) {
-        this.repeatDaily.push(i);
-        this.repeatMonthly.push(i);
-      } else {
-        this.repeatMonthly.push(i);
-      }
-    }
-  }
-
-  repeatToggle(event) {
-    if (event.checked) {
-      this.repeatFormGroup.get('repeatTypeControl').enable();
-      this.repeatFormGroup.get('repeatEveryControl').enable();
+  checkModeAndSubmit() {
+    if (this.calendarEventFormGroup.controls.name.invalid) {
+      this.familyService.scrollSub.next({ top: 0, duration: 1000 });
+      return;
+    } else if (this.calendarEventFormGroup.invalid) {
+      return;
+    } else if (this.editMode) {
+      // this.editEvent();
     } else {
-      this.repeatFormGroup.get('repeatTypeControl').disable();
-      this.repeatFormGroup.get('repeatEveryControl').disable();
+      this.addEvent();
     }
   }
-
-  onTest() {
-    console.log(this.repeatFormGroup);
-    console.log(this.color);
-  }
-
-
 
   addEvent() {
     let event: CalendarEvent = {
-      name: '',
-      startDate: new Date(),
-      endDate: new Date(),
-      users: [],
-      eventType: '',
-      allDay: false,
-      repeatEvery: null,
-      repeatType: null,
-      color: this.color,
+      name: this.calendarEventFormGroup.controls.name.value,
+      startDate: new Date(this.calendarEventFormGroup.controls.startDate.value),
+      endDate: new Date(this.calendarEventFormGroup.controls.endDate.value),
     };
 
-    event.name = this.titleFormGroup.controls.titleControl.value;
-
-    this.taskFormGroup.controls.isTask.value == true
-      ? (event.eventType = 'task')
-      : (event.eventType = 'event');
-
-    if (!this.radioFormGroup.controls.longEvent.value) {
-      // Set same date for start and end
-      let startDate = new Date(
-        this.shortEventFormGroup.controls.shortDateControl.value
-      );
-      let endDate = new Date(
-        this.shortEventFormGroup.controls.shortDateControl.value
-      );
-      event.allDay = true;
-
-      // If event is not allDay
-      if (!this.shortEventFormGroup.controls.allDayControl.value) {
-        event.allDay = false;
-
-        //Start - hours and minutes
-        const startTimeArray = this.shortEventFormGroup.controls.startTimeControl.value.split(
-          ':'
-        );
-        startDate.setHours(parseInt(startTimeArray[0]));
-        startDate.setMinutes(parseInt(startTimeArray[1]));
-
-        // End - hours and minutes
-        const endTimeArray = this.shortEventFormGroup.controls.endTimeControl.value.split(
-          ':'
-        );
-        endDate.setHours(parseInt(endTimeArray[0]));
-        endDate.setMinutes(parseInt(endTimeArray[1]));
-      }
-
-      // set event Date to modified date
-      event.startDate = startDate;
-      event.endDate = endDate;
+    if (this.calendarEventFormGroup.controls.allDay.value) {
+      event.startDate.setHours(0, 0, 0, 0);
+      event.endDate.setHours(23, 59, 59, 99);
     } else {
-      event.startDate = this.longEventFormGroup.controls.startDateControl.value;
-      event.endDate = this.longEventFormGroup.controls.endDateControl.value;
-    }
+      let startTime = this.calendarEventFormGroup.controls.startTime.value.split(
+        ':'
+      );
+      let endTime = this.calendarEventFormGroup.controls.endTime.value.split(
+        ':'
+      );
 
-    if (this.repeatFormGroup.controls.repeatToggleControl.value) {
-      event.repeatType = this.repeatFormGroup.controls.repeatTypeControl.value;
-      event.repeatEvery = this.repeatFormGroup.controls.repeatEveryControl.value;
+      event.startDate.setHours(parseInt(startTime[0]), parseInt(startTime[1]));
+      event.endDate.setHours(parseInt(endTime[0]), parseInt(endTime[1]));
     }
 
     this.calendarService.addEvent(event).subscribe((res) => {

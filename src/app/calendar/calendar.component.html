@@ -11,7 +11,7 @@
       <ic-icon icon="arrowLeftAlt2"></ic-icon>
     </div>
     <div (click)="setCurrentMonth()" class="calendar-header--date">
-      {{ displayDate }}
+      {{ displayedDate | date: "MMMM yyyy" }}
     </div>
     <div (click)="swipeLeft()" class="calendar-header--right-icon">
       <ic-icon icon="arrowRightAlt2"></ic-icon>
@@ -73,8 +73,7 @@
   </table>
 
   <p class="day-header">
-    {{ calendarDayInstance.date.getDate() }}
-    {{ monthNames[calendarDayInstance.date.getMonth()] }}
+    {{ calendarDayInstance.date | date: "dd. MMMM" }}
   </p>
 
   <div *ngIf="calendarDayInstance.events.length > 0" class="events mb-2rem">
@@ -82,47 +81,36 @@
       <div
         mat-ripple
         *ngFor="let event of calendarDayInstance.events; let i = index"
-        style="--animation-order:{{ i }};"
         class="width-100 pointer mt-05rem"
       >
-        <div class="flex flex-align-center">
-          <div class="wrapper-flex-center">
-            <ic-icon
-              [ngStyle]="{ color: event.color }"
-              class="font-size-18rem"
-              *ngIf="event.eventType == 'task'"
-              icon="medalLine"
-            ></ic-icon>
-            <ic-icon
-              [ngStyle]="{ color: event.color }"
-              class="font-size-18rem"
-              *ngIf="event.eventType == 'event'"
-              icon="bxCalendarStar"
-            ></ic-icon>
-          </div>
-          <!-- <div class="dot-wrapper">
-            <div
-              [ngStyle]="{ 'background-color': event.color }"
-              class="dot dot-medium ml-1rem mr-1rem"
-            ></div>
-          </div> -->
+        <div class="flex flex-align-center flex-space-between">
           <div class="events__row--title ml-1rem">{{ event.name }}</div>
-          <div *ngIf="!eventLongerThan1Day(event)" class="events__row--hours">
-            <span *ngIf="!event.allDay"
-              >{{ event.startDate | date: "HH:mm" }} -
-              {{ event.endDate | date: "HH:mm" }}</span
+          <div class="events__row--date">
+            <span
+              ><span class="events__row--date--hours" *ngIf="isSingleDayEvent(event) || isFirstDayEvent(event)">
+                {{ event.startDate | date: "HH:mm" }}
+              </span>
+              <span *ngIf="!isSingleDayEvent(event) && !isFirstDayEvent(event)">
+                {{ event.startDate | date: "dd MMM" }}
+              </span>
+              -
+              <span *ngIf="isSingleDayEvent(event) || isLastDayEvent(event)">
+                {{ event.endDate | date: "HH:mm" }}
+              </span>
+              <span *ngIf="!isSingleDayEvent(event) && !isLastDayEvent(event)">
+                {{ event.endDate | date: "dd MMM" }}
+              </span> </span
             ><span i18n="allDay" *ngIf="event.allDay">Whole day</span>
-          </div>
-          <div *ngIf="eventLongerThan1Day(event)" class="events__row--hours">
-            {{ event.startDate | date: "dd/MM/yy" }} -
-            {{ event.endDate | date: "dd/MM/yy" }}
           </div>
         </div>
       </div>
     </div>
   </div>
   <div
-    *ngIf="calendarDayInstance.events.length < 1"
+    *ngIf="
+      calendarDayInstance.events.length < 1 &&
+      !(calendarDayInstance.date.getTime() < today)
+    "
     class="wrapper-flex-center flex-column pb-3"
   >
     <div class="no-events__title">No events scheduled for this day</div>
@@ -133,23 +121,14 @@
       Add Event
     </button>
   </div>
-</div>
-<div class="mt-3rem opacity-0">Unlocker</div>
-
-<!-- <div class="dot-wrapper mr-1rem ml-1rem">
   <div
-  [ngStyle]="{ 'background-color': event.color }"
-  class="dot dot-medium dot-position"
-  ></div>
-</div>
-<div class="events__row--title">{{ event.title }}</div>
-<div *ngIf="!eventLongerThan1Day(event)" class="events__row--hours">
-  <span *ngIf="!event.allDay"
-  >{{ event.startDate | date: "HH:mm" }} -
-    {{ event.endDate | date: "HH:mm" }}</span
-    ><span i18n="allDay" *ngIf="event.allDay">Whole day</span>
+    *ngIf="
+      calendarDayInstance.events.length < 1 &&
+      calendarDayInstance.date.getTime() < today
+    "
+    class="wrapper-flex-center flex-column pb-3"
+  >
+    <div class="no-events__title">There was no events planned this day.</div>
   </div>
-  <div *ngIf="eventLongerThan1Day(event)" class="events__row--hours">
-    {{ event.startDate | date: "dd/MM/yy" }} -
-    {{ event.endDate | date: "dd/MM/yy" }}
-  </div> -->
+</div>
+<div class="mt-7rem"></div>

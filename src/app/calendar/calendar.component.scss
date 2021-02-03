@@ -1,42 +1,48 @@
 @import "~src/scss/main.scss";
 
-
-.calendar-header{
-  display:flex;
+.calendar-header {
+  display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 1rem;
+  cursor: pointer;
 
-  &--menu-icon{
+  &--menu-icon {
     color: $violet-1;
     font-size: 1.6rem;
     padding: 0 0.5rem;
     margin-right: auto;
+    cursor: pointer;
   }
-  &--left-icon{
+  &--left-icon {
     color: $violet-1;
     font-size: 1.6rem;
     padding: 0 0.5rem;
+    cursor: pointer;
   }
-  &--date{  
+  &--date {
     width: 130px;
     text-align: center;
     font-weight: 600;
     color: $violet-1;
+    cursor: pointer;
   }
-  &--right-icon{
+  &--right-icon {
     color: $violet-1;
     font-size: 1.6rem;
     padding: 0 0.5rem;
+    cursor: pointer;
   }
-  &--add-icon{
+  &--add-icon {
     color: $violet-1;
     font-size: 1.6rem;
     padding: 0 0.5rem;
     margin-left: auto;
+    cursor: pointer;
   }
 
-  &--left-icon:active, &--right-icon:active{
+  &--left-icon:active,
+  &--right-icon:active {
     animation-name: upToDownButton;
     animation-duration: 0.2s;
   }
@@ -63,10 +69,10 @@
     vertical-align: center;
   }
 
-  &--swipingRight{
+  &--swipingRight {
     animation: swipingRightCalendar 1s ease-in;
   }
-  &--swipingLeft{
+  &--swipingLeft {
     animation: swipingLeftCalendar 1s ease-in;
   }
 }
@@ -114,7 +120,7 @@
   }
 }
 
-.has-event{
+.has-event {
   position: relative;
   &::before {
     transform: translateX(-50%);
@@ -124,18 +130,18 @@
     height: 4px;
     width: 4px;
     bottom: 130%;
-    content: '';
+    content: "";
     left: 50%;
   }
 }
 
-
-.day-header{
+.day-header {
   overflow: hidden;
   color: $violet-1;
   text-align: center;
   font-weight: 600;
-  &::before, &::after {
+  &::before,
+  &::after {
     content: "";
     display: inline-block;
     height: 2px;
@@ -143,22 +149,20 @@
     vertical-align: middle;
     width: 50%;
   }
-  &::before{
+  &::before {
     // background-color: $linear-gradient-90-1-1half;
     background: $linear-gradient-90-1-1half;
     right: 1rem;
     margin-left: -50%;
   }
-  &::after{
+  &::after {
     background: $linear-gradient-90-1-2half;
     left: 1rem;
     margin-right: -50%;
   }
 }
 
-
 .events {
-
   &__row {
     display: flex;
     margin-bottom: 1rem;
@@ -169,47 +173,33 @@
     animation-delay: calc(var(--animation-order) * 100ms);
     animation-fill-mode: both;
     animation-timing-function: ease-in-out;
-    
-    &--icon{
-      position: relative;
-      margin-right: 2rem;
-      margin-left: 1rem;
 
-      &::before {
-        // transform: translateX(-50%);
-        border-radius: 100%;
-        position: absolute;
-        height: 12px;
-        width: 12px;
-        content: '';
-        top:35%;
-
-      }
-    }
 
     &--title {
-      font-weight: 600;
-      font-size: 0.9rem;
-      // text-align: center;
-      font-family: $font-family-1;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      font-weight: 500;
+      font-size: 1.2rem;
+      color: $violet-1;
       padding: 0.5rem;
+      width: 70%;
     }
-    &--hours{
-      overflow: hidden;
-      text-overflow: ellipsis;
-      margin-left: auto;
+    &--date {
+      text-align: center;
       padding: 0.5rem;
-      color: #a3a3a3;
-      font-size: 0.8rem;
-      min-width: 90px;
+      color: $violet-1;
+      font-size: 1rem;
+      font-weight: 500;
+      width: 30%;
+      // &--hours{
+      //   color: $violet-1;
+      //   font-size: 1rem;
+      //   font-weight: 500;
+      // }
     }
   }
 }
 
-.no-events{
-  &__title{
+.no-events {
+  &__title {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -220,4 +210,3 @@
     margin-top: 1.3rem;
   }
 }
-
