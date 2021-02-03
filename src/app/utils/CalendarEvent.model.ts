@@ -1,6 +1,5 @@
 import { FamilyUser } from './family.models';
 
-
 export interface CalendarEvent {
   _id?: string;
   name: string;
@@ -15,4 +14,9 @@ export interface EventsResponse {
     events: [CalendarEvent];
   };
 }
-
+export interface EventResponse {
+  status: string;
+  data: {
+    event: CalendarEvent;
+  };
+}
