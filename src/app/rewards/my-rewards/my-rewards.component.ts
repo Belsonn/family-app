@@ -22,7 +22,6 @@ export class MyRewardsComponent implements OnInit {
   getMyRewards() {
     this.rewardsService.getMyRewards().subscribe((res) => {
       this.rewards = res.data.rewards;
-      console.log(this.rewards);
       this.isLoading = false;
     });
   }

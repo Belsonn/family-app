@@ -55,8 +55,6 @@ export class RewardsUnlockedComponent implements OnInit, AfterViewInit {
     this.rewardsService.getRewardsUnlocked().subscribe((res) => {
       this.rewardsUnlocked = res.data.rewardsUnlocked;
       this.rewardsConfirmed = res.data.rewardsConfirmed;
-      console.log(this.rewardsUnlocked);
-      console.log(this.rewardsConfirmed);
       this.isLoading = false;
     });
   }
