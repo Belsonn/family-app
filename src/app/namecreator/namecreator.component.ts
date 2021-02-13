@@ -11,18 +11,29 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./namecreator.component.scss'],
 })
 export class NamecreatorComponent implements OnInit {
-
   constructor(
     private familyJoinCreateService: FamilyJoinCreateService,
     private authService: AuthService,
     private router: Router
   ) {}
 
+  isLoading = false;
   nameFormGroup: FormGroup;
   gender: string;
-  isLoading = false;
+
+  today: Date;
 
   ngOnInit(): void {
+    if (!this.familyJoinCreateService.type) {
+      this.router.navigate(['', 'app', 'join']);
+    }
+    this.isLoading = true;
+    this.today = new Date();
+    this.initForm();
+    this.isLoading = false;
+  }
+
+  initForm() {
     this.nameFormGroup = new FormGroup({});
     this.nameFormGroup.addControl(
       'name',
@@ -46,10 +57,6 @@ export class NamecreatorComponent implements OnInit {
     );
   }
 
-  onTest() {
-    console.log(this.nameFormGroup);
-  }
-
   onCreateUser() {
     if (this.nameFormGroup.invalid) {
       return;
@@ -59,10 +66,7 @@ export class NamecreatorComponent implements OnInit {
     this.familyJoinCreateService.gender = this.nameFormGroup.controls.gender.value;
     this.familyJoinCreateService.dateOfBirth = this.nameFormGroup.controls.dateOfBirth.value;
     this.familyJoinCreateService.role = this.nameFormGroup.controls.role.value;
-
-    if (this.nameFormGroup.controls.password.value) {
-      this.familyJoinCreateService.password = this.nameFormGroup.controls.password.value;
-    }
+    this.familyJoinCreateService.password = this.nameFormGroup.controls.password.value;
 
     if (this.familyJoinCreateService.type == 'create') {
       this.familyJoinCreateService.createFamily().subscribe((res) => {
@@ -70,12 +74,11 @@ export class NamecreatorComponent implements OnInit {
         this.router.navigate(['']);
       });
     }
-    if(this.familyJoinCreateService.type == 'join'){
-      this.familyJoinCreateService.joinFamily().subscribe(res => {
+    if (this.familyJoinCreateService.type == 'join') {
+      this.familyJoinCreateService.joinFamily().subscribe((res) => {
         this.authService.onAuth(res);
         this.router.navigate(['']);
-      })
-
+      });
     }
   }
 }

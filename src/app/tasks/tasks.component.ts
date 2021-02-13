@@ -1,3 +1,4 @@
+import { SettingsService } from './../settings/settings.service';
 import { Router } from '@angular/router';
 import { animate, animateChild, query, stagger, style, transition, trigger } from '@angular/animations';
 import { AbandonTaskComponent } from './CompleteAbandon/abandon-task/abandon-task.component';
@@ -53,6 +54,8 @@ export class TasksComponent implements OnInit, AfterViewInit {
   tasksToShow: Task[] = [];
   tasksCompleted: Task[] = [];
 
+  isParent: boolean;
+
   completedClickedOnce: boolean = false;
   showCompleted: boolean = false;
 
@@ -65,7 +68,8 @@ export class TasksComponent implements OnInit, AfterViewInit {
     private taskService: TasksService,
     private familyService: FamilyService,
     public dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private settingsService: SettingsService
   ) {}
   ngAfterViewInit(): void {
     
@@ -81,7 +85,12 @@ export class TasksComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.isLoading = true;
     this.findChildren();
+    this.getDataFromSettings()
     this.findAllTasks();
+  }
+
+  getDataFromSettings() {
+    this.isParent = this.settingsService.isParent;
   }
 
   checkMyRole() {

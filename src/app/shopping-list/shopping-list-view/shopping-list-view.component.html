@@ -20,6 +20,7 @@
       *ngIf="shoppingListsActive.length > 0"
       (click)="onAddNewList()"
       mat-ripple
+      [ngClass]="{'bttn-gray': !isParent && !settings.shoppingLists.childCanCreateList}"
       class="bttn bttn-violet bttn-small bttn-clickable wrapper-flex-center"
     >
       <ic-icon class="font-size-18rem mr-05rem" icon="bxListPlus"></ic-icon>
@@ -40,6 +41,7 @@
           <div *ngIf="!(editMode == i)" class="wrapper-flex-center list--title">
             {{ list.name }}
             <ic-icon
+              *ngIf="isParent || settings.shoppingLists.childCanEditList"
               (click)="runEditMode(i); $event.stopPropagation()"
               class="ml-1rem"
               icon="editIcon"
@@ -89,6 +91,7 @@
             mat-ripple
             [matRippleCentered]="true"
             [matRippleRadius]="20"
+            [ngClass]="{'bttn-icon--gray': !isParent && !settings.shoppingLists.childCanDeleteList}"
             class="bttn-icon bttn-icon--red"
           >
             <ic-icon
@@ -110,6 +113,7 @@
             mat-ripple
             [matRippleCentered]="true"
             [matRippleRadius]="20"
+            [ngClass]="{'bttn-icon--gray': !isParent && !settings.shoppingLists.childCanCompleteList}"
             class="bttn-icon bttn-icon--green"
           >
             <ic-icon
@@ -184,7 +188,7 @@
       <div
         @items
         *ngFor="let list of shoppingListsCompleted; let i = index"
-        class="wrapper-flex-center paper"
+        class="wrapper-flex-center paper pointer"
         (click)="onListClick(list)"
       >
         <div class="paper-content">
@@ -213,6 +217,7 @@
               mat-ripple
               [matRippleCentered]="true"
               [matRippleRadius]="20"
+              [ngClass]="{'bttn-icon--gray': !isParent && !settings.shoppingLists.childCanDeleteList}"
               class="bttn-icon bttn-icon--red"
             >
               <ic-icon

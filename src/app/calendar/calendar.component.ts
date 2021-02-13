@@ -1,3 +1,4 @@
+import { SettingsService } from './../settings/settings.service';
 import { ConfirmDeleteModalComponent } from './../common/confirm-delete-modal/confirm-delete-modal.component';
 import { FamilyService } from './../family.service';
 import { Component, OnInit } from '@angular/core';
@@ -8,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CalendarService } from './calendar.service';
 import { Router } from '@angular/router';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { Settings } from '../utils/settings.models';
 
 @Component({
   selector: 'app-calendar',
@@ -27,34 +29,51 @@ import { trigger, transition, style, animate } from '@angular/animations';
   ],
 })
 export class CalendarComponent implements OnInit {
+  isLoading = false;
   public calendar: CalendarDay[] = [];
+
   monthSelected: number;
 
   displayedDate: Date;
 
   today = new Date().setHours(0, 0, 0, 0);
 
-  isLoading = false;
   eventClicked: number;
 
   private monthIndex: number = 0;
+
   calendarDayInstance: CalendarDay;
+
   calendarEvents: CalendarEvent[] = [];
+
   swipingRight = false;
   swipingLeft = false;
   swipingTimerRight;
   swipingTimerLeft;
 
+  settings: Settings;
+  isParent: boolean;
+
   constructor(
     public dialog: MatDialog,
     private calendarService: CalendarService,
     private router: Router,
-    private familyService: FamilyService
+    private familyService: FamilyService,
+    private settingsService: SettingsService
   ) {}
 
   ngOnInit(): void {
     this.isLoading = true;
+    this.getDataFromSettings();
+    this.initCalendar();
+  }
 
+  getDataFromSettings() {
+    this.isParent = this.settingsService.isParent;
+    this.settings = this.settingsService.settings;
+  }
+
+  initCalendar() {
     this.calendarService.getEvents().subscribe((res) => {
       let events = res.data.events;
 
@@ -182,30 +201,34 @@ export class CalendarComponent implements OnInit {
   }
 
   public addEvent() {
-    this.calendarService.dayClicked = this.calendarDayInstance.date;
-    this.router.navigate(['', 'app', 'calendar', 'event']);
+    if (this.isParent || this.settings.calendar.childCanCreateEvents) {
+      this.calendarService.dayClicked = this.calendarDayInstance.date;
+      this.router.navigate(['', 'app', 'calendar', 'event']);
+    }
   }
 
   public onEdit(event: CalendarEvent) {
-    this.router.navigate(['', 'app', 'calendar', 'event'], {
-      queryParams: { id: event._id },
-    });
+    if (this.isParent || this.settings.calendar.childCanCreateEvents) {
+      this.router.navigate(['', 'app', 'calendar', 'event'], {
+        queryParams: { id: event._id },
+      });
+    }
   }
 
   public onDeleteConfirm(event: CalendarEvent) {
-    const dialogRef = this.dialog.open(ConfirmDeleteModalComponent, {
-      autoFocus: false,
-      restoreFocus: false,
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.calendarService
-          .deleteEvent(event._id)
-          .subscribe((res) => {
+    if (this.isParent || this.settings.calendar.childCanDeleteEvents){
+      const dialogRef = this.dialog.open(ConfirmDeleteModalComponent, {
+        autoFocus: false,
+        restoreFocus: false,
+      });
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result) {
+          this.calendarService.deleteEvent(event._id).subscribe((res) => {
             this.ngOnInit();
           });
-      }
-    });
+        }
+      });
+    }
   }
 
   public clickEvent(index: number) {

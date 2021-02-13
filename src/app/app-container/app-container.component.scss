@@ -27,6 +27,11 @@
   min-height: 100%;
 }
 
+.spacer {
+  height: 100%;
+  padding: 2rem 0;
+}
+
 @media (max-width: 500px) {
   .container {
     border-radius: 0;
@@ -37,8 +42,20 @@
   .footer{
     display: none;
   }
+  .spacer {
+    padding: 0;
+  }
+
 }
 @media(max-height:800px){
+  .spacer {
+    padding: 0.5rem 0;
+  }
+  .footer{
+    bottom: 0;
+  }
+}
+@media(max-height:700px){
   .spacer {
     padding: 0;
   }

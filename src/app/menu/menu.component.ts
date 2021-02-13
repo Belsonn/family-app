@@ -19,23 +19,14 @@ export class MenuComponent implements OnInit {
 
   user: FamilyUser;
 
+  today : Date;
+
   constructor(
     private authService: AuthService,
-    private familyService: FamilyService,
-    private router: Router
   ) {}
-  onTest() {
-    console.log('elo');
-  }
-  ngOnInit(): void {
-    // this.isLoading = true;
-    // this.familyService.getMeAndFamily().subscribe((res) => {
-    //   this.familyService.family = res.data.family;
-    //   this.familyService.familyUser = res.data.familyUser;
-    //   this.user = this.familyService.familyUser;
-    //   this.isLoading = false;
-    // });
 
+  ngOnInit(): void {
+    this.today = new Date();
   }
 
   onLogout() {

@@ -20,10 +20,7 @@
 .spinner {
   margin: 0 auto;
 }
-.spacer {
-  height: 100%;
-  padding: 2rem 0;
-}
+
 .dot {
   border-radius: 50%;
   display: inline-block;
@@ -100,6 +97,10 @@
 }
 .bttn-red {
   background-color: $red-1;
+  color: #fff;
+}
+.bttn-gray {
+  background-color: $text-gray;
   color: #fff;
 }
 
@@ -523,9 +524,6 @@
 }
 
 @media (max-width: 500px) {
-  .spacer {
-    padding: 0;
-  }
   .flex-column-m {
     flex-direction: column;
   }

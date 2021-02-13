@@ -1,3 +1,4 @@
+import { SettingsService } from './../../settings/settings.service';
 import { CompleteConfirmModalComponent } from './../complete-confirm-modal/complete-confirm-modal.component';
 import { ConfirmDeleteModalComponent } from './../../common/confirm-delete-modal/confirm-delete-modal.component';
 import { Router } from '@angular/router';
@@ -22,6 +23,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { Settings } from 'src/app/utils/settings.models';
 
 @Component({
   selector: 'app-shopping-list-view',
@@ -70,6 +72,10 @@ export class ShoppingListViewComponent implements OnInit {
 
   private createNew: boolean;
 
+  isParent: boolean;
+  settings: Settings;
+
+
   @ViewChildren('inputName') inputNames: QueryList<ElementRef>;
   @ViewChildren('list') DOMlists: QueryList<ElementRef>;
 
@@ -78,15 +84,21 @@ export class ShoppingListViewComponent implements OnInit {
     private shoppingService: ShoppingService,
     private router: Router,
     private changeDetector: ChangeDetectorRef,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private settingsService: SettingsService
   ) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
+    this.getDataFromSettings();
     this.getLists();
+  }
+  getDataFromSettings() {
+    this.isParent = this.settingsService.isParent;
+    this.settings = this.settingsService.settings;
   }
 
   getLists() {
-    this.isLoading = true;
 
     // Init List
     this.shoppingListsActive = [];
@@ -193,6 +205,9 @@ export class ShoppingListViewComponent implements OnInit {
     }
   }
   onAddNewList() {
+    if(!this.isParent && !this.settings.shoppingLists.childCanCreateList){
+      return;
+    }
     if (this.editMode != null) {
       this.exitEditMode();
     } else {
@@ -232,6 +247,9 @@ export class ShoppingListViewComponent implements OnInit {
   }
 
   deleteClick(list: ShoppingList) {
+    if(!this.isParent && !this.settings.shoppingLists.childCanDeleteList){
+      return;
+    }
     const dialogRef = this.dialog.open(ConfirmDeleteModalComponent, {
       autoFocus: false,
     });
@@ -260,9 +278,9 @@ export class ShoppingListViewComponent implements OnInit {
   }
 
   onCompleteClick(list: ShoppingList) {
-    if (list.completedAt) {
+    if (list.completedAt ||(!this.isParent && !this.settings.shoppingLists.childCanCompleteList)){
       return;
-    }
+    } 
     const dialogRef = this.dialog.open(CompleteConfirmModalComponent, {
       autoFocus: false,
     });

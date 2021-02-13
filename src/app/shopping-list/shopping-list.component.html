@@ -19,6 +19,7 @@
     <div
       (click)="onCreateClick()"
       mat-ripple
+      [ngClass]="{'bttn-gray': !isParent && !settings.shoppingLists.childCanAddItemToList}"
       class="bttn bttn-violet bttn-small bttn-clickable wrapper-flex-center mt-1rem"
     >
       <ic-icon
@@ -109,6 +110,7 @@
                         mat-ripple
                         [matRippleCentered]="true"
                         [matRippleRadius]="20"
+                        [ngClass]="{'bttn-icon--gray': !isParent && !settings.shoppingLists.childCanEditItemOnList}"
                         class="btn bttn-icon bttn-icon--violet mr-1rem rotate"
                       >
                         <ic-icon class="icon p-1rem" icon="editIcon"></ic-icon>
@@ -118,6 +120,7 @@
                         mat-ripple
                         [matRippleCentered]="true"
                         [matRippleRadius]="20"
+                        [ngClass]="{'bttn-icon--gray': !isParent && !settings.shoppingLists.childCanEditItemOnList}"
                         class="btn bttn-icon bttn-icon--red mr-05rem rotate"
                       >
                         <ic-icon

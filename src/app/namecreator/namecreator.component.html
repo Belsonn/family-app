@@ -42,6 +42,7 @@
         <input
           formControlName="dateOfBirth"
           matInput
+          [max]="today"
           [matDatepicker]="dateOfBirth"
           readonly
           required
@@ -54,6 +55,7 @@
         <mat-datepicker
           #dateOfBirth
           startView="multi-year"
+
           disabled="false"
         ></mat-datepicker>
         <mat-error *ngIf="nameFormGroup.controls.dateOfBirth.invalid"

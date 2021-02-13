@@ -1,14 +1,45 @@
 @import "~src/scss/main.scss";
 
-.dot{
-    background-color: $violet-1;
-    &-position{
-        top: 40%;
-    }
-}
-
 .box{
     box-shadow: $box-shadow-primary;
     border-radius: 20px;
     width: 90%;
+    &-flex{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &--desc{
+            display: flex;
+            align-items: center;
+        }
+        &--points{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 2rem;
+        }
+    }
+}
+
+.family{
+    font-size: 2rem;
+    color: $violet-1;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    margin: 0.7rem 0;
+}
+
+@media(max-width:400px){
+    .box-flex{
+        flex-direction: column;
+        justify-content: left;
+        &--desc{
+            width: 100%;
+        }
+        &--points{
+            margin-top: 1rem;
+            margin-right: 0;
+        }
+    }
 }

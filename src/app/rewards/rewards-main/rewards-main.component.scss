@@ -39,6 +39,12 @@
   }
 }
 
+.noreward--info {
+  font-weight: 500;
+  font-size: 1.4rem;
+  color: $violet-1;
+}
+
 @media (max-width: 400px) {
   .top-buttons {
     justify-content: center;

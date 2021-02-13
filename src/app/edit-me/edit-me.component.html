@@ -1,9 +1,9 @@
-<div *ngIf="isLoading" class="spinner-wrapper">
-  <mat-spinner class="spinner"></mat-spinner>
+<div *ngIf="isLoading">
+  <app-custom-loading></app-custom-loading>
 </div>
 <div *ngIf="!isLoading">
   <div class="flex">
-    <div mat-ripple [routerLink]="['', 'app', 'menu']" class="back-button">
+    <div mat-ripple [routerLink]="['', 'app', 'settings']" class="back-button">
       <ic-icon class="back-button--icon" icon="arrowBackUp"></ic-icon>
       <div class="back-button--back">Back</div>
     </div>

@@ -2,8 +2,6 @@ import { Router } from '@angular/router';
 import { FamilyService } from './../family.service';
 import { Family } from './../utils/family.models';
 import { Component, OnInit } from '@angular/core';
-import arrowBackUp from '@iconify/icons-tabler/arrow-back-up';
-import userEdit from '@iconify-icons/fa-solid/user-edit';
 
 @Component({
   selector: 'app-family',
@@ -12,30 +10,18 @@ import userEdit from '@iconify-icons/fa-solid/user-edit';
 })
 export class FamilyComponent implements OnInit {
 
-  arrowBackUp = arrowBackUp;
-  userEdit = userEdit;
-
   isLoading = false;
-  loggedUserId;
 
   family: Family
+
 
   constructor(private familyService : FamilyService, private router : Router) { }
 
   ngOnInit(): void {
     this.isLoading = true;
-
-    if(!this.familyService.family._id){
-      this.router.navigate(['','app', 'menu'])
-    } else {
-      this.loggedUserId = this.familyService.familyUser._id;
-      this.family = this.familyService.family;
-      this.isLoading = false;
-    }
-  }
-
-  onTest(){
-    console.log("XD");
+    this.family = this.familyService.family;
+    this.isLoading = false;
+  
   }
   onEdit(){
     this.router.navigate(['', 'app', 'updateAccount'])

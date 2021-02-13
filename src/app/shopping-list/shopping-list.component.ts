@@ -1,3 +1,4 @@
+import { SettingsService } from './../settings/settings.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ShoppingService } from './shopping.service';
 import { FamilyService } from './../family.service';
@@ -17,6 +18,7 @@ import { NgScrollbar } from 'ngx-scrollbar';
 import { SmoothScroll } from 'ngx-scrollbar/smooth-scroll';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDeleteModalComponent } from '../common/confirm-delete-modal/confirm-delete-modal.component';
+import { Settings } from '../utils/settings.models';
 
 @Component({
   selector: 'app-shopping-list',
@@ -78,17 +80,26 @@ export class ShoppingListComponent implements OnInit {
 
   addFormGroup: FormGroup;
 
+  isParent: boolean;
+  settings: Settings;
+
   constructor(
     private familyService: FamilyService,
     private shoppingService: ShoppingService,
     private router: Router,
     private route: ActivatedRoute,
-    private det: ChangeDetectorRef,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private settingsService: SettingsService
   ) {}
 
   ngOnInit(): void {
     this.isLoading = true;
+    this.initFormGroup();
+    this.getDataFromSettings();
+    this.checkQueryParams();
+  }
+
+  initFormGroup() {
     this.addFormGroup = new FormGroup({});
     this.addFormGroup.addControl(
       'name',
@@ -99,7 +110,9 @@ export class ShoppingListComponent implements OnInit {
       'quantity',
       new FormControl(0, [Validators.required, Validators.min(1)])
     );
+  }
 
+  checkQueryParams() {
     this.shoppingService.mode = null;
     this.shoppingService.itemToEditIndex = null;
     this.route.queryParams.subscribe((params) => {
@@ -123,9 +136,19 @@ export class ShoppingListComponent implements OnInit {
     });
   }
 
+  getDataFromSettings() {
+    this.isParent = this.settingsService.isParent;
+    this.settings = this.settingsService.settings;
+  }
+
   onCreateClick() {
     if (this.disabled) {
       this.showInfo = true;
+      return;
+    } else if (
+      !this.isParent &&
+      !this.settings.shoppingLists.childCanAddItemToList
+    ) {
       return;
     }
     this.router.navigate(['', 'app', 'shopping', 'add'], {
@@ -150,7 +173,10 @@ export class ShoppingListComponent implements OnInit {
   }
 
   onEdit(index) {
-    if (this.disabled) {
+    if (
+      this.disabled ||
+      (!this.isParent && !this.settings.shoppingLists.childCanEditItemOnList)
+    ) {
       return;
     }
     this.shoppingService.mode = 'edit';
@@ -170,7 +196,10 @@ export class ShoppingListComponent implements OnInit {
   }
 
   onDeleteClick(index) {
-    if (this.disabled) {
+    if (
+      this.disabled ||
+      (!this.isParent && !this.settings.shoppingLists.childCanEditItemOnList)
+    ) {
       return;
     }
     const dialogRef = this.dialog.open(ConfirmDeleteModalComponent, {

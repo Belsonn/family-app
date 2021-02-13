@@ -1,7 +1,13 @@
-<div *ngIf="isLoading" class="spinner-wrapper">
-  <mat-spinner class="spinner"></mat-spinner>
+<div *ngIf="isLoading">
+  <app-custom-loading></app-custom-loading>
 </div>
 <div *ngIf="!isLoading">
+  <div class="flex">
+    <div mat-ripple [routerLink]="['', 'app', 'join']" class="back-button">
+      <ic-icon class="back-button--icon" icon="arrowBackUp"></ic-icon>
+      <div class="back-button--back">Back</div>
+    </div>
+  </div>
   <div class="wrapper-flex-center mt-2rem">
     <div (click)="resetUser()" class="font-size-2rem">Enter as</div>
   </div>
@@ -74,7 +80,7 @@
         <button
           mat-ripple
           (click)="onLogin()"
-          class="bttn  bttn-primary bttn-clickable bttn-violet bttn-big"
+          class="bttn bttn-primary bttn-clickable bttn-violet bttn-big"
         >
           Enter
         </button>
@@ -82,7 +88,4 @@
     </form>
   </div>
 </div>
-<div class="mt-3rem opacity-0">
-  Unlocker
-</div>
-
+<div class="mt-7rem"></div>

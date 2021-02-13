@@ -27,7 +27,6 @@ import childIcon from '@iconify-icons/cil/child';
 import adultIcon from '@iconify-icons/el/adult';
 import calendarBlank from '@iconify-icons/mdi/calendar-blank';
 import calendarBlankMultiple from '@iconify-icons/mdi/calendar-blank-multiple';
-import userEdit from '@iconify-icons/fa-solid/user-edit';
 import birthdayCake from '@iconify-icons/cil/birthday-cake';
 import cameraChange from '@iconify/icons-uil/camera-change';
 import peopleIcon from '@iconify/icons-ion/people';
@@ -67,7 +66,11 @@ import leftSpeechBubble from '@iconify-icons/emojione/left-speech-bubble';
 import trophyIcon from '@iconify-icons/noto-v1/trophy';
 import bxLockOpenAlt from '@iconify-icons/bx/bx-lock-open-alt';
 import bxLockAlt from '@iconify-icons/bx/bx-lock-alt';
+import shutdownIcon from '@iconify-icons/icons8/shutdown';
 import glowingStar from '@iconify-icons/emojione/glowing-star';
+import userEdit from '@iconify-icons/la/user-edit';
+import sliderIcon from '@iconify-icons/radix-icons/slider';
+
 
 export const appIcons = {
   planner, // Menu
@@ -100,7 +103,6 @@ export const appIcons = {
   adultIcon, // Configure
   calendarBlank, //Calendar
   calendarBlankMultiple, //Calendar
-  userEdit, // Edit user
   birthdayCake, // Configure
   cameraChange, // Configure
   peopleIcon, // ? ? ?
@@ -138,4 +140,7 @@ export const appIcons = {
   bxLockOpenAlt, // rewards
   bxLockAlt, //rewards
   glowingStar, //POINTS
+  shutdownIcon, // MENU
+  userEdit, // Settings
+  sliderIcon, // Settings
 };

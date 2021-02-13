@@ -5,9 +5,6 @@
   <mat-spinner class="spinner"></mat-spinner>
 </div>
 <div *ngIf="!isLoading">
-  <div *ngIf="user" class="wrapper-flex-center mt-2rem font-size-15rem">
-    Hello {{ user.name }}
-  </div>
   <div class="boxes mt-2rem">
     <div class="boxes__row">
       <div
@@ -28,7 +25,7 @@
           i18n="menu_calendar_desc"
           class="boxes__row__box--description wrapper-flex-center"
         >
-          05 listopada 2020
+          {{today | date: "dd MMMM yyyy"}}
         </div>
       </div>
       <div
@@ -46,7 +43,7 @@
           Shopping
         </div>
         <div class="boxes__row__box--description wrapper-flex-center">
-          2 Banany, Śmietana
+          Complete your shopping lists
         </div>
       </div>
     </div>
@@ -101,32 +98,9 @@
         >
           Rewards
         </div>
-        <div class="boxes__row__box--description">Use your points to pick rewards!</div>
-      </div>
-      <div
-        [routerLink]="['', 'app', 'join']"
-        mat-ripple
-        class="boxes__row__box"
-      >
-        <div class="boxes__row__box--icon">
-          <ic-icon icon="settingsIcon"></ic-icon>
+        <div class="boxes__row__box--description">
+          Use your points to pick rewards!
         </div>
-        <div i18n="menu_settings" class="boxes__row__box--name">DOŁĄCZ</div>
-        <div class="boxes__row__box--description">Zmień ustawienia</div>
-      </div>
-    </div>
-    <div class="boxes__row pb-2rem">
-      <div mat-ripple class="boxes__row__box" (click)="onLogout()">
-        <div class="boxes__row__box--icon">
-          <ic-icon icon="familyManWomanGirlBoy"></ic-icon>
-        </div>
-        <div
-          i18n="menu_family"
-          class="boxes__row__box--name wrapper-flex-center"
-        >
-          WYLOGUJ SIE
-        </div>
-        <div class="boxes__row__box--description">4 członków</div>
       </div>
       <div
         [routerLink]="['', 'app', 'family']"
@@ -134,52 +108,39 @@
         class="boxes__row__box"
       >
         <div class="boxes__row__box--icon">
-          <ic-icon icon="settingsIcon"></ic-icon>
+          <ic-icon icon="familyManWomanGirlBoy"></ic-icon>
         </div>
         <div
-          i18n="menu_settings"
+          i18n="menu_family"
           class="boxes__row__box--name wrapper-flex-center"
         >
           Family
         </div>
-        <div class="boxes__row__box--description">Zmień ustawienia</div>
+        <div class="boxes__row__box--description">
+          See the complete family
+        </div>
       </div>
     </div>
     <div class="boxes__row pb-2rem">
       <div
-        [routerLink]="['', 'app', 'updateAccount']"
+        [routerLink]="['', 'app', 'settings']"
         mat-ripple
         class="boxes__row__box"
       >
         <div class="boxes__row__box--icon">
-          <ic-icon icon="familyManWomanGirlBoy"></ic-icon>
+          <ic-icon icon="settingsIcon"></ic-icon>
         </div>
-        <div
-          i18n="menu_family"
-          class="boxes__row__box--name wrapper-flex-center"
-        >
-          EditMe
-        </div>
-        <div class="boxes__row__box--description">4 członków</div>
+        <div i18n="menu_settings" class="boxes__row__box--name">Settings</div>
       </div>
-      <div
-        mat-ripple
-        class="boxes__row__box"
-        [routerLink]="['', 'app', 'login']"
-      >
+      <div mat-ripple class="boxes__row__box" (click)="onLogout()">
         <div class="boxes__row__box--icon">
-          <ic-icon icon="familyManWomanGirlBoy"></ic-icon>
+          <ic-icon class="red" icon="shutdownIcon"></ic-icon>
         </div>
-        <div
-          i18n="menu_family"
-          class="boxes__row__box--name wrapper-flex-center"
-        >
-          LOGIN
+        <div i18n="menu_logout" class="boxes__row__box--name wrapper-flex-center">
+          Logout
         </div>
-        <div class="boxes__row__box--description">4 członków</div>
       </div>
     </div>
   </div>
 </div>
-
-<div class="mt-3rem opacity-0">Unlocker</div>
+<div class="mt-7rem"></div>

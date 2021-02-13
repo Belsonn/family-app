@@ -1,3 +1,6 @@
+import { Settings } from './settings.models';
+import { Message } from './chat.models';
+import { Reward } from './reward.models';
 import { CalendarEvent } from './CalendarEvent.model';
 import { ShoppingList } from './shoppingList.models';
 import { Task } from './tasks.models';
@@ -24,6 +27,9 @@ export interface Family {
   shoppingLists?: ShoppingList[];
   events?: CalendarEvent[];
   tasks?: Task[];
+  rewards?: Reward[];
+  messages?: Message[];
+  settings?: Settings;
 }
 
 export interface FamilyResponse {

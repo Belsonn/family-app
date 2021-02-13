@@ -124,6 +124,9 @@ export class ChatComponent implements OnInit, OnDestroy {
   getInitMessages() {
     this.chatService.getInitMessages().subscribe((res) => {
       this.messages = res.data.messages;
+      if (this.messages.length == 0) {
+        this.noLongerLoadMessage = true;
+      }
       this.familyService.scrollSub.next({ bottom: 0, duration: 0 });
       this.isLoading = false;
     });

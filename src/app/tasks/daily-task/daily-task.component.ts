@@ -1,3 +1,5 @@
+import { DailyTaskConfirmChangesComponent } from './daily-task-confirm-changes/daily-task-confirm-changes.component';
+import { MatDialog } from '@angular/material/dialog';
 import { FamilyService } from './../../family.service';
 import { DailyTask, Task } from './../../utils/tasks.models';
 import { TasksService } from './../tasks.service';
@@ -20,17 +22,20 @@ export class DailyTaskComponent implements OnInit {
 
   tasksToCreate: Task[] = [];
 
-  date: Date = new Date();
+  changes: Boolean = false;
+
+  date: Date
 
   constructor(
     private tasksService: TasksService,
     private familyService: FamilyService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
+    this.date = new Date();
     this.getDailyTaskOnDate();
-
     this.findChildren();
   }
 
@@ -55,15 +60,12 @@ export class DailyTaskComponent implements OnInit {
       this.dailyTasks = res.data.dailyTasks;
 
       this.createTaskToCreate();
-      // console.log('TASK TO CREATE', this.tasksToCreate);
-      // console.log('Taski dnia', this.taskOnDate);
       this.isLoading = false;
     });
   }
 
   onDateChange(event) {
-    this.date = new Date(event.value);
-    this.getDailyTaskOnDate()
+    this.openConfirmChanges(event.value);
   }
 
   createTaskToCreate() {
@@ -124,10 +126,32 @@ export class DailyTaskComponent implements OnInit {
     return exists;
   }
 
+  openConfirmChanges(date: Date) {
+    if (this.changes) {
+      const dialogRef = this.dialog.open(DailyTaskConfirmChangesComponent, {
+        autoFocus: false,
+        restoreFocus: false,
+      });
+      dialogRef.afterClosed().subscribe((result) => {
+        this.changes = false;
+        if (result) {
+          this.updateDailyTasks(date);
+        } else {
+          this.date = date;
+          this.getDailyTaskOnDate();
+        }
+      });
+    } else{
+      this.date = date;
+      this.getDailyTaskOnDate();
+    }
+  }
+
   changeUser(dailyTask: Task, child: FamilyUser) {
     if (this.checkDateInPast()) {
       return;
     } else {
+      this.changes = true;
       let index = -1;
 
       for (let i = 0; i < dailyTask.users.length; i++) {
@@ -156,21 +180,17 @@ export class DailyTaskComponent implements OnInit {
   }
 
   dateYesterday() {
-    this.isLoading = true;
-
-    this.date.setDate(this.date.getDate() - 1);
-
-    this.getDailyTaskOnDate();
+    let newDate = new Date(this.date);
+    newDate.setDate(newDate.getDate() - 1)
+    this.openConfirmChanges(newDate);
   }
   dateTommorow() {
-    this.isLoading = true;
-
-    this.date.setDate(this.date.getDate() + 1);
-
-    this.getDailyTaskOnDate();
+    let newDate = new Date(this.date);
+    newDate.setDate(newDate.getDate() + 1)
+    this.openConfirmChanges(newDate);
   }
 
-  updateDailyTasks() {
+  updateDailyTasks(date? : Date) {
     if (this.checkDateInPast()) {
       return;
     } else {
@@ -179,6 +199,10 @@ export class DailyTaskComponent implements OnInit {
         .updateDailyTasks(this.date, this.tasksToCreate)
         .subscribe((res) => {
           this.isLoading = false;
+          if(date){
+            this.date = date;
+            this.getDailyTaskOnDate();
+          }
         });
     }
   }

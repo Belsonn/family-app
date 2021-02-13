@@ -1,3 +1,5 @@
+import { Settings } from './../../utils/settings.models';
+import { SettingsService } from './../../settings/settings.service';
 import { UnlockRewardComponent } from '../dialogs/unlock-reward/unlock-reward.component';
 import { Router } from '@angular/router';
 import { RewardsService } from './../rewards.service';
@@ -19,23 +21,33 @@ export class RewardsMainComponent implements OnInit {
 
   unlockedInfo: boolean = false;
 
+  isParent: boolean;
+  settings: Settings
+
   basicRewards: Reward[];
 
   constructor(
     private rewardsService: RewardsService,
     private router: Router,
     private familyService: FamilyService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private settingsService : SettingsService
   ) {}
 
   ngOnInit(): void {
     this.isLoading = true;
     this.me = this.getMe();
     this.getBasicRewards();
+    this.getDataFromSettings();
   }
 
   getMe(): FamilyUser {
     return this.familyService.familyUser;
+  }
+
+  getDataFromSettings() {
+    this.isParent = this.settingsService.isParent;
+    this.settings = this.settingsService.settings;
   }
 
   getBasicRewards() {

@@ -18,7 +18,26 @@
     </div>
   </div>
 
-  <div class="flex flex-column mt-1rem">
+  <div
+    *ngIf="rewards.length == 0"
+    class="wrapper-flex-center flex-column mt-2rem"
+  >
+    <div class="wrapper-flex-center">
+      <ic-icon
+        class="font-size-4rem mr-1rem"
+        icon="manGesturingNoLightSkinTone"
+      ></ic-icon>
+      <ic-icon
+        class="font-size-4rem ml-1rem"
+        icon="womanGesturingNoLightSkinTone"
+      ></ic-icon>
+    </div>
+    <div class="wrapper-flex-center mt-1rem noreward--info">
+      There are no rewards yet.
+    </div>
+  </div>
+
+  <div *ngIf="rewards.length > 0" class="flex flex-column mt-1rem">
     <div *ngFor="let reward of rewards" class="wrapper-flex-center mt-2rem">
       <div class="reward">
         <div class="flex flex-column">

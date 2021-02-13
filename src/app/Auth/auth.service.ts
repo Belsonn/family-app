@@ -1,3 +1,4 @@
+import { SettingsService } from './../settings/settings.service';
 import { FamilyService } from './../family.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -25,7 +26,8 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private familyService: FamilyService
+    private familyService: FamilyService,
+    private settingsService: SettingsService
   ) {}
 
   getToken() {
@@ -48,8 +50,7 @@ export class AuthService {
     if (response.token) {
       this.token = response.token;
       this.familyService.getMeAndFamily().subscribe((res) => {
-        this.familyService.family = res.data.family;
-        this.familyService.familyUser = res.data.familyUser;
+        this.saveDataToServices(res);
         this.saveAuthData(response.token, response.expiresIn);
         this.isAuthenticated = true;
         this.authStatus.next(true);
@@ -70,14 +71,22 @@ export class AuthService {
       if (expires > 0) {
         this.token = authInfo.token;
         this.familyService.getMeAndFamily().subscribe((res) => {
-          this.familyService.family = res.data.family;
-          this.familyService.familyUser = res.data.familyUser;
-          // this.familyService.familyUserId = res.data.familyUser._id
+          this.saveDataToServices(res);
           this.isAuthenticated = true;
           this.authStatus.next(true);
         });
       }
     }
+  }
+
+  saveDataToServices(res) {
+    this.familyService.family = res.data.family;
+    this.familyService.familyUser = res.data.familyUser;
+    this.settingsService.settings = res.data.family.settings;
+
+    this.familyService.familyUser.role === 'parent'
+      ? (this.settingsService.isParent = true)
+      : (this.settingsService.isParent = false);
   }
 
   signup(email: String, password: String, passwordConfirm: String) {

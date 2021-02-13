@@ -19,7 +19,7 @@
         <!-- <div class="font-size-14rem violet text-center mt-1rem">Tasks</div> -->
       </div>
     </div>
-    <div class="wrapper-flex-center mt-05rem">
+    <div *ngIf="isParent" class="wrapper-flex-center mt-05rem">
       <div class="flex flex-align-center width-80 top-buttons">
         <div
           [routerLink]="['', 'app', 'tasks', 'daily']"

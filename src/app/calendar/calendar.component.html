@@ -1,4 +1,3 @@
-<!-- <button mat-button (click)="onTest()">TESTUJ</button> -->
 <div *ngIf="isLoading">
   <app-custom-loading></app-custom-loading>
 </div>
@@ -16,8 +15,8 @@
     <div (click)="swipeLeft()" class="calendar-header--right-icon">
       <ic-icon icon="arrowRightAlt2"></ic-icon>
     </div>
-    <div (click)="addEvent()" class="calendar-header--add-icon">
-      <ic-icon icon="plusLine"></ic-icon>
+    <div (click)="addEvent()"  class="calendar-header--add-icon">
+      <ic-icon [ngClass]="{'gray': !isParent && !settings.calendar.childCanCreateEvents}" icon="plusLine"></ic-icon>
     </div>
   </div>
   <table
@@ -117,12 +116,14 @@
           >
             <button
               (click)="onEdit(event)"
+              [ngClass]="{'bttn-gray': !isParent && !settings.calendar.childCanEditEvents}"
               class="bttn bttn-clickable bttn-small bttn-violet mr-05rem"
             >
               Edit
             </button>
             <button
               (click)="onDeleteConfirm(event)"
+              [ngClass]="{'bttn-gray': !isParent && !settings.calendar.childCanDeleteEvents}"
               class="bttn bttn-clickable bttn-small bttn-red ml-05rem"
             >
               Delete
@@ -143,6 +144,7 @@
     <div class="no-events__title">No events scheduled for this day</div>
     <button
       (click)="addEvent()"
+      [ngClass]="{'bttn-gray': !isParent && !settings.calendar.childCanCreateEvents}"
       class="bttn bttn-primary bttn-violet bttn-clickable bttn-medium mt-2rem"
     >
       Add Event
