@@ -75,6 +75,7 @@ import { ConfirmRewardComponent } from './rewards/dialogs/confirm-reward/confirm
 import { MyRewardsComponent } from './rewards/my-rewards/my-rewards.component';
 import { ConfirmDeleteRewardComponent } from './rewards/dialogs/confirm-delete-reward/confirm-delete-reward.component';
 import { SettingsMainComponent } from './settings/settings-main/settings-main.component';
+import { ChildrenPermissionComponent } from './settings/children-permission/children-permission.component';
 
 @NgModule({
   declarations: [
@@ -118,6 +119,7 @@ import { SettingsMainComponent } from './settings/settings-main/settings-main.co
     MyRewardsComponent,
     ConfirmDeleteRewardComponent,
     SettingsMainComponent,
+    ChildrenPermissionComponent,
   ],
   imports: [
     HttpClientModule,

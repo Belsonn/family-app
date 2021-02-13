@@ -1,3 +1,5 @@
+import { ChildrenPermissionComponent } from './settings/children-permission/children-permission.component';
+import { SettingsMainComponent } from './settings/settings-main/settings-main.component';
 import { MyRewardsComponent } from './rewards/my-rewards/my-rewards.component';
 import { RewardsUnlockedComponent } from './rewards/rewards-unlocked/rewards-unlocked.component';
 import { RewardsCreateComponent } from './rewards/rewards-create/rewards-create.component';
@@ -130,6 +132,16 @@ const routes: Routes = [
       {
         path: 'rewards/my',
         component: MyRewardsComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'settings',
+        component: SettingsMainComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'settings/children',
+        component: ChildrenPermissionComponent,
         canActivate: [AuthGuard]
       },
       {

@@ -1,0 +1,150 @@
+<div *ngIf="isLoading">
+  <app-custom-loading></app-custom-loading>
+</div>
+
+<div *ngIf="!isLoading">
+  <div class="flex">
+    <div mat-ripple [routerLink]="['', 'app', 'settings']" class="back-button">
+      <ic-icon class="back-button--icon" icon="arrowBackUp"></ic-icon>
+      <div class="back-button--back">Back</div>
+    </div>
+  </div>
+
+  <div class="wrapper-flex-center">
+    <div class="flex flex-column">
+      <div class="wrapper-flex-center">
+        <ic-icon class="font-size-4rem" icon="settingsIcon"></ic-icon>
+      </div>
+      <div class="font-size-17rem violet text-center mt-1rem">Settings</div>
+    </div>
+  </div>
+
+  <div class="settings">
+    <div class="settings__header--logo">
+      <ic-icon class="font-size-4rem" icon="planner"></ic-icon>
+    </div>
+    <div
+      (click)="showCalendarSettings = !showCalendarSettings"
+      mat-ripple
+      class="settings__header"
+    >
+      <div class="settings__header--title">Calendar</div>
+      <ic-icon
+        [ngClass]="{
+          'arrow-to-top': showCalendarSettings,
+          'arrow-to-bot': !showCalendarSettings
+        }"
+        class="settings__header--icon"
+        icon="arrowDownAlt2"
+      ></ic-icon>
+    </div>
+    <div *ngIf="showCalendarSettings" class="settings__main">
+      <div class="setting">
+        <div class="setting--title">Children can create events</div>
+        <div class="setting--slide">
+          <mat-slide-toggle
+            [(ngModel)]="settings.calendar.childCanCreateEvents"
+          >
+          </mat-slide-toggle>
+        </div>
+      </div>
+      <div class="setting">
+        <div class="setting--title">Children can edit events</div>
+        <div class="setting--slide">
+          <mat-slide-toggle [(ngModel)]="settings.calendar.childCanEditEvents">
+          </mat-slide-toggle>
+        </div>
+      </div>
+      <div class="setting">
+        <div class="setting--title">Children can delete events</div>
+        <div class="setting--slide">
+          <mat-slide-toggle
+            [(ngModel)]="settings.calendar.childCanDeleteEvents"
+          >
+          </mat-slide-toggle>
+        </div>
+      </div>
+    </div>
+    <div class="settings__header--logo">
+      <ic-icon class="font-size-4rem" icon="shoppingCart"></ic-icon>
+    </div>
+    <div
+      (click)="showShoppingListSettings = !showShoppingListSettings"
+      mat-ripple
+      class="settings__header"
+    >
+      <div class="settings__header--title">Shopping Lists</div>
+      <ic-icon
+        [ngClass]="{
+          'arrow-to-top': showShoppingListSettings,
+          'arrow-to-bot': !showShoppingListSettings
+        }"
+        class="settings__header--icon"
+        icon="arrowDownAlt2"
+      ></ic-icon>
+    </div>
+    <div *ngIf="showShoppingListSettings" class="settings__main">
+      <div class="setting">
+        <div class="setting--title">Children can create shopping list</div>
+        <div class="setting--slide">
+          <mat-slide-toggle
+            [(ngModel)]="settings.shoppingLists.childCanCreateList"
+          >
+          </mat-slide-toggle>
+        </div>
+      </div>
+      <div class="setting">
+        <div class="setting--title">Children can edit name of the list</div>
+        <div class="setting--slide">
+          <mat-slide-toggle
+            [(ngModel)]="settings.shoppingLists.childCanEditList"
+          >
+          </mat-slide-toggle>
+        </div>
+      </div>
+      <div class="setting">
+        <div class="setting--title">Children can mark list as completed</div>
+        <div class="setting--slide">
+          <mat-slide-toggle
+            [(ngModel)]="settings.shoppingLists.childCanCompleteList"
+          >
+          </mat-slide-toggle>
+        </div>
+      </div>
+      <div class="setting">
+        <div class="setting--title">Children can delete list</div>
+        <div class="setting--slide">
+          <mat-slide-toggle
+            [(ngModel)]="settings.shoppingLists.childCanDeleteList"
+          >
+          </mat-slide-toggle>
+        </div>
+      </div>
+      <div class="setting">
+        <div class="setting--title">Children can add new item to list</div>
+        <div class="setting--slide">
+          <mat-slide-toggle
+            [(ngModel)]="settings.shoppingLists.childCanAddItemToList"
+          >
+          </mat-slide-toggle>
+        </div>
+      </div>
+      <div class="setting">
+        <div class="setting--title">Children can edit items on list</div>
+        <div class="setting--slide">
+          <mat-slide-toggle
+            [(ngModel)]="settings.shoppingLists.childCanEditItemOnList"
+          >
+          </mat-slide-toggle>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div (click)="editSettings()" class="wrapper-flex-center mt-3rem">
+    <button class="bttn bttn-primary bttn-gradient clickable bttn-medium">
+      Confirm changes
+    </button>
+  </div>
+</div>
+
+<div class="mt-7rem"></div>

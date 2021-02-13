@@ -1,1 +1,41 @@
-<p>settings-main works!</p>
+<div *ngIf="isLoading">
+  <app-custom-loading></app-custom-loading>
+</div>
+
+<div *ngIf="!isLoading">
+  <div class="flex">
+    <div mat-ripple [routerLink]="['', 'app', 'menu']" class="back-button">
+      <ic-icon class="back-button--icon" icon="arrowBackUp"></ic-icon>
+      <div class="back-button--back">Back</div>
+    </div>
+  </div>
+
+  <div class="wrapper-flex-center">
+    <div class="flex flex-column">
+      <div class="wrapper-flex-center">
+        <ic-icon class="font-size-4rem" icon="settingsIcon"></ic-icon>
+      </div>
+      <div class="font-size-17rem violet text-center mt-1rem">Settings</div>
+    </div>
+  </div>
+
+  <div class="wrapper-flex-center flex-column mt-1rem">
+    <div
+      [routerLink]="['', 'app', 'updateAccount']"
+      mat-ripple
+      class="flex flex-align-center box mt-1rem"
+    >
+      <ic-icon class="font-size-2rem ml-1rem" icon="userEdit"></ic-icon>
+      <div class="ml-2rem settings-title">Update your account</div>
+    </div>
+    <div
+      *ngIf="isParent"
+      [routerLink]="['', 'app', 'settings', 'children']"
+      mat-ripple
+      class="flex flex-align-center box mt-1rem"
+    >
+      <ic-icon class="font-size-2rem ml-1rem" icon="sliderIcon"></ic-icon>
+      <div class="ml-2rem settings-title">Give your children permission</div>
+    </div>
+  </div>
+</div>

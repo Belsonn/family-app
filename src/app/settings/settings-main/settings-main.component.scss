@@ -1,0 +1,9 @@
+@import "~src/scss/main.scss";
+
+.box{
+    border-radius: 40px;
+    box-shadow: $box-shadow-primary;
+    cursor: pointer;
+    padding: 1.5rem 1rem;
+    width: 90%;
+}
