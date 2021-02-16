@@ -1,14 +1,15 @@
 <mat-dialog-content>
-  <p class="font-size-13rem">Do you want to mark this list as complete?</p>
-  <p style="font-weight: bold;">You will no longer be able to add or edit items on the list.</p>
+  <p i18n class="font-size-13rem">Do you want to mark this list as complete?</p>
+  <p i18n style="font-weight: bold;">You will no longer be able to add or edit items on the list.</p>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button
     mat-raised-button
+    i18n="complete"
     class="green-background white"
     [mat-dialog-close]="true"
   >
     Complete
   </button>
-  <button mat-raised-button [mat-dialog-close]="false">Cancel</button>
+  <button i18n="cancel" mat-raised-button [mat-dialog-close]="false">Cancel</button>
 </mat-dialog-actions>

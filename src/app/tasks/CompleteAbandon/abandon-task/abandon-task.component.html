@@ -1,5 +1,5 @@
 <mat-dialog-content>
-  <p class="task task--header">Do you want to abandon this task?</p>
+  <p i18n class="task task--header">Do you want to abandon this task?</p>
   <div class="wrapper-flex-center flex-column">
     <div class="task task--name">
       {{ data.name }}
@@ -21,22 +21,27 @@
         {{ data.endDate | date: "dd. MMMM HH:mm" }}
       </div>
     </div>
-    <div class="task task--info mt-1rem">
+    <div i18n class="task task--info mt-1rem">
       You will no longer have the option to earn
-      <span class="task--info--points">{{ data.points }} points</span> for this
-      task.
+      <span class="task--info--points">
+        {{ data.points }} 
+        <ic-icon class="font-size-15rem" icon="glowingStar"></ic-icon> 
+      </span>
+      for this task.
     </div>
   </div>
 </mat-dialog-content>
 <mat-dialog-actions class="mt-2rem">
   <div class="buttons">
     <button
+      i18n
       class="bttn bttn-primary bttn-clickable bttn-pink bttn-small buttons--left"
       [mat-dialog-close]="true"
     >
       Abandon
     </button>
     <button
+      i18n="cancel"
       class="bttn bttn-primary bttn-clickable bttn-blue bttn-small buttons--right"
       [mat-dialog-close]="false"
     >

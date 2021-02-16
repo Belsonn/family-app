@@ -108,8 +108,12 @@
   color: $violet-1;
 }
 .top-buttons {
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  &--button{
+    margin-top: 1rem;
+  }
 }
 
 @media (max-width: 400px) {

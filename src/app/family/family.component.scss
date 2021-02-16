@@ -30,6 +30,20 @@
     margin: 0.7rem 0;
 }
 
+.token{
+    color: $violet-1;
+    font-weight: 500;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    margin-left: 0.5rem;
+}
+
+.invite{
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: $violet-1;
+}
+
 @media(max-width:400px){
     .box-flex{
         flex-direction: column;

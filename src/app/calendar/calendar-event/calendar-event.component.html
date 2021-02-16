@@ -5,18 +5,18 @@
   <div class="flex">
     <div mat-ripple [routerLink]="['', 'app', 'calendar']" class="back-button">
       <ic-icon class="back-button--icon" icon="arrowBackUp"></ic-icon>
-      <div class="back-button--back">Back</div>
+      <div i18n="backButton" class="back-button--back">Back</div>
     </div>
   </div>
   <div class="wrapper-flex-center flex-column">
     <ic-icon class="font-size-4rem" icon="planner"></ic-icon>
-    <div class="wrapper-flex-center header mt-1rem">
-      <span class="whitespace" *ngIf="!editMode">New </span
-      ><span class="whitespace" *ngIf="editMode">Edit </span>
-      event
+    <div i18n *ngIf="!editMode" class="wrapper-flex-center header mt-1rem">
+      New event
+    </div>
+    <div i18n *ngIf="editMode" class="wrapper-flex-center header mt-1rem">
+      Edit event
     </div>
   </div>
-
 
   <form
     class="flex-column wrapper-flex-center mt-1rem"
@@ -34,7 +34,7 @@
         icon="textChangeCase24Regular"
       ></ic-icon>
       <mat-form-field class="form__row--form-field form-text">
-        <mat-label>Event name</mat-label>
+        <mat-label i18n>Event name</mat-label>
         <input
           matInput
           name="name"
@@ -42,14 +42,14 @@
           formControlName="name"
           required
         />
-        <mat-error *ngIf="calendarEventFormGroup.controls.name.invalid"
-          >Task should have at least 3 characters.</mat-error
+        <mat-error i18n *ngIf="calendarEventFormGroup.controls.name.invalid"
+          >Event should have at least 3 characters.</mat-error
         >
       </mat-form-field>
     </div>
 
     <div class="wrapper-flex-center width-100 flex-column mt-1rem">
-      <div class="header mt-2rem">Start / End time</div>
+      <div i18n class="header mt-2rem">Start / End time</div>
       <mat-form-field class="formField form-text mt-1rem" appearance="outline">
         <mat-label i18n="event_startDate">Start date</mat-label>
         <input
@@ -132,10 +132,19 @@
     </div>
     <button
       type="submit"
+      *ngIf="!editMode"
+      i18n
       class="bttn bttn-primary bttn-clickable bttn-gradient bttn-big mt-1rem"
     >
-      <span *ngIf="!editMode">Add new</span
-      ><span *ngIf="editMode">Edit</span> event
+      Add new event
+    </button>
+    <button
+      type="submit"
+      *ngIf="editMode"
+      i18n
+      class="bttn bttn-primary bttn-clickable bttn-gradient bttn-big mt-1rem"
+    >
+      Edit event
     </button>
   </form>
 </div>

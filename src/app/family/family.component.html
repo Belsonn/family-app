@@ -13,7 +13,10 @@
       {{ family.name }}
     </p>
   </div>
-  <div class="wrapper-flex-center flex-column mb-2rem pr-1rem pl-1rem">
+  <div class="wrapper-flex-center mt-1rem">
+    <span i18n class="invite">Invite Code:</span> <span class="whitespace token"> {{ family.inviteToken }}</span>
+  </div>
+  <div class="wrapper-flex-center flex-column mt-1rem pr-1rem pl-1rem">
     <div
       *ngFor="let familyuser of family.users; let i = index"
       mat-ripple
@@ -31,10 +34,7 @@
             </div>
           </div>
         </div>
-        <div
-          *ngIf="familyuser.role == 'child'"
-          class="box-flex--points"
-        >
+        <div *ngIf="familyuser.role == 'child'" class="box-flex--points">
           <ic-icon class="font-size-2rem mr-05rem" icon="glowingStar"></ic-icon>
           <div class="font-size-12rem violet">
             {{ familyuser.points }}
@@ -44,4 +44,4 @@
     </div>
   </div>
 </div>
-<div class="mt-3rem opacity-0">Unlocker</div>
+<div class="mt-4rem"></div>

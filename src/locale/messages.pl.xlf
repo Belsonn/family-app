@@ -1,303 +1,439 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en-US" datatype="plaintext" original="ng2.template">
     <body>
       <trans-unit id="ngb.alert.close" datatype="html">
         <source>Close</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/alert/alert.d.ts</context>
-          <context context-type="linenumber">3</context>
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/alert/alert.ts</context>
+          <context context-type="linenumber">74</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ngb.carousel.previous" datatype="html">
         <source>Previous</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/carousel/carousel.d.ts</context>
-          <context context-type="linenumber">13</context>
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/carousel/carousel.ts</context>
+          <context context-type="linenumber">90,97</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ngb.carousel.next" datatype="html">
         <source>Next</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/carousel/carousel.d.ts</context>
-          <context context-type="linenumber">17</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="ngb.datepicker.previous-month" datatype="html">
-        <source>Previous month</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.d.ts</context>
-          <context context-type="linenumber">4</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.d.ts</context>
-          <context context-type="linenumber">5</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="ngb.datepicker.next-month" datatype="html">
-        <source>Next month</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.d.ts</context>
-          <context context-type="linenumber">26</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.d.ts</context>
-          <context context-type="linenumber">27</context>
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/carousel/carousel.ts</context>
+          <context context-type="linenumber">109,121</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ngb.datepicker.select-month" datatype="html">
         <source>Select month</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.d.ts</context>
-          <context context-type="linenumber">5</context>
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.ts</context>
+          <context context-type="linenumber">42,41</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.d.ts</context>
-          <context context-type="linenumber">6</context>
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.ts</context>
+          <context context-type="linenumber">74</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ngb.datepicker.select-year" datatype="html">
         <source>Select year</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.d.ts</context>
-          <context context-type="linenumber">13</context>
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.ts</context>
+          <context context-type="linenumber">74</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.d.ts</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.ts</context>
+          <context context-type="linenumber">74</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.datepicker.previous-month" datatype="html">
+        <source>Previous month</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.ts</context>
+          <context context-type="linenumber">24,30</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.ts</context>
+          <context context-type="linenumber">36,44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.datepicker.next-month" datatype="html">
+        <source>Next month</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.ts</context>
+          <context context-type="linenumber">52,60</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.ts</context>
+          <context context-type="linenumber">69</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ngb.pagination.first" datatype="html">
         <source>««</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts</context>
-          <context context-type="linenumber">2</context>
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/pagination/pagination.ts</context>
+          <context context-type="linenumber">147,152</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ngb.pagination.previous" datatype="html">
         <source>«</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts</context>
-          <context context-type="linenumber">3</context>
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/pagination/pagination.ts</context>
+          <context context-type="linenumber">155,158</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ngb.pagination.next" datatype="html">
         <source>»</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts</context>
-          <context context-type="linenumber">4</context>
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/pagination/pagination.ts</context>
+          <context context-type="linenumber">163,165</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ngb.pagination.last" datatype="html">
         <source>»»</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts</context>
-          <context context-type="linenumber">5</context>
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/pagination/pagination.ts</context>
+          <context context-type="linenumber">171,174</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ngb.pagination.first-aria" datatype="html">
         <source>First</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/pagination/pagination.ts</context>
+          <context context-type="linenumber">180,183</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ngb.pagination.previous-aria" datatype="html">
         <source>Previous</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts</context>
-          <context context-type="linenumber">24</context>
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/pagination/pagination.ts</context>
+          <context context-type="linenumber">404</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ngb.pagination.next-aria" datatype="html">
         <source>Next</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts</context>
-          <context context-type="linenumber">44</context>
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/pagination/pagination.ts</context>
+          <context context-type="linenumber">404</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ngb.pagination.last-aria" datatype="html">
         <source>Last</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts</context>
-          <context context-type="linenumber">53</context>
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/pagination/pagination.ts</context>
+          <context context-type="linenumber">404</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ngb.progressbar.value" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{getValue() / max | percent}}"/></source>
+        <source>
+          <x id="INTERPOLATION" />
+        </source>
         <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/progressbar/progressbar.d.ts</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="ngb.timepicker.increment-hours" datatype="html">
-        <source>Increment hours</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context>
-          <context context-type="linenumber">9</context>
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/progressbar/progressbar.ts</context>
+          <context context-type="linenumber">23,101</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ngb.timepicker.HH" datatype="html">
         <source>HH</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context>
-          <context context-type="linenumber">13</context>
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.ts</context>
+          <context context-type="linenumber">46,48</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ngb.timepicker.hours" datatype="html">
         <source>Hours</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context>
-          <context context-type="linenumber">15</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="ngb.timepicker.decrement-hours" datatype="html">
-        <source>Decrement hours</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context>
-          <context context-type="linenumber">23</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="ngb.timepicker.increment-minutes" datatype="html">
-        <source>Increment minutes</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context>
-          <context context-type="linenumber">32</context>
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.ts</context>
+          <context context-type="linenumber">52,55</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ngb.timepicker.MM" datatype="html">
         <source>MM</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.ts</context>
+          <context context-type="linenumber">61,64</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ngb.timepicker.minutes" datatype="html">
         <source>Minutes</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context>
-          <context context-type="linenumber">37</context>
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.ts</context>
+          <context context-type="linenumber">67,70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.increment-hours" datatype="html">
+        <source>Increment hours</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.ts</context>
+          <context context-type="linenumber">74,77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.decrement-hours" datatype="html">
+        <source>Decrement hours</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.ts</context>
+          <context context-type="linenumber">83,88</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.increment-minutes" datatype="html">
+        <source>Increment minutes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.ts</context>
+          <context context-type="linenumber">91,94</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ngb.timepicker.decrement-minutes" datatype="html">
         <source>Decrement minutes</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context>
-          <context context-type="linenumber">45</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="ngb.timepicker.increment-seconds" datatype="html">
-        <source>Increment seconds</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context>
-          <context context-type="linenumber">54</context>
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.ts</context>
+          <context context-type="linenumber">98,104</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ngb.timepicker.SS" datatype="html">
         <source>SS</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context>
-          <context context-type="linenumber">57</context>
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.ts</context>
+          <context context-type="linenumber">108,113</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ngb.timepicker.seconds" datatype="html">
         <source>Seconds</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context>
-          <context context-type="linenumber">59</context>
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.ts</context>
+          <context context-type="linenumber">129,121</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.increment-seconds" datatype="html">
+        <source>Increment seconds</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.ts</context>
+          <context context-type="linenumber">139,151</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ngb.timepicker.decrement-seconds" datatype="html">
         <source>Decrement seconds</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context>
-          <context context-type="linenumber">67</context>
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.ts</context>
+          <context context-type="linenumber">296</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ngb.timepicker.PM" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{ i18n.getAfternoonPeriod() }}"/></source>
+        <source>
+          <x id="INTERPOLATION" />
+        </source>
         <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context>
-          <context context-type="linenumber">76</context>
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.ts</context>
+          <context context-type="linenumber">296</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ngb.timepicker.AM" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{ i18n.getMorningPeriod() }}"/></source>
+        <source>
+          <x id="INTERPOLATION" />
+        </source>
         <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context>
-          <context context-type="linenumber">77</context>
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.ts</context>
+          <context context-type="linenumber">296</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ngb.toast.close-aria" datatype="html">
         <source>Close</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/toast/toast.d.ts</context>
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm5/@ng-bootstrap/ng-bootstrap/toast/toast.ts</context>
+          <context context-type="linenumber">71,81</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cda31dbd724cf5f4fa7a4274d9120651490c8a8c" datatype="html">
+        <source>Back</source>
+        <target>Powrót</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
           <context context-type="linenumber">8</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/edit-me/edit-me.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pick-user/pick-user.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/my-rewards/my-rewards.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/rewards-create/rewards-create.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/rewards-main/rewards-main.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/rewards-unlocked/rewards-unlocked.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/settings/children-permission/children-permission.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/settings/settings-main/settings-main.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/shopping-list-add/shopping-list-add.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/shopping-list-view/shopping-list-view.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/shopping-list.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/daily-task/daily-task-create/daily-task-create.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/daily-task/daily-task.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/task-create/task-create.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/tasks.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <note priority="1" from="description">backButton</note>
       </trans-unit>
-      <trans-unit id="33629999fd41361c48d5a60a5783dfdbd09276b7" datatype="html">
-        <source>Calendar</source>
-        <target>Kalendarz</target>
+      <trans-unit id="4bff500b453fbeeb83fd633fd92f8db8ae840055" datatype="html">
+        <source>Are you sure you want to delete?</source>
+        <target>Jesteś pewny, że chcesz usunąć?</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/menu/menu.component.html</context>
-          <context context-type="linenumber">29</context>
+          <context context-type="sourcefile">src/app/common/confirm-delete-modal/confirm-delete-modal.component.html</context>
+          <context context-type="linenumber">2</context>
         </context-group>
-        <note priority="1" from="description">menu_calendar</note>
       </trans-unit>
-      <trans-unit id="0e4d3100aa6d694b13ff74edf125447d1fa2edd1" datatype="html">
-        <source>05 listopada 2020</source>
+      <trans-unit id="826b25211922a1b46436589233cb6f1a163d89b7" datatype="html">
+        <source>Delete</source>
+        <target>Usuń</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/menu/menu.component.html</context>
-          <context context-type="linenumber">30</context>
+          <context context-type="sourcefile">src/app/common/confirm-delete-modal/confirm-delete-modal.component.html</context>
+          <context context-type="linenumber">6</context>
         </context-group>
-        <note priority="1" from="description">menu_calendar_desc</note>
+        <note priority="1" from="description">delete</note>
       </trans-unit>
-      <trans-unit id="1386baf7d07caa5bac3b9fa80f282a31238d8e57" datatype="html">
-        <source>Shopping Cart</source>
-        <target>Koszyk</target>
+      <trans-unit id="31a40b79b869ef4771d6ba6817fd2deb6b084caf" datatype="html">
+        <source> New event </source>
+        <target>Nowe wydarzenie</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/menu/menu.component.html</context>
-          <context context-type="linenumber">36</context>
+          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
+          <context context-type="linenumber">14,15</context>
         </context-group>
-        <note priority="1" from="description">menu_shoppingCart</note>
       </trans-unit>
-      <trans-unit id="e64b7c7f0ef9c0a6adc7fe4f6b304c108026b5ee" datatype="html">
-        <source>Family</source>
-        <target>Rodzina</target>
+      <trans-unit id="4baf4b4bbc37b11608c913ed0927e27aa2db4fcc" datatype="html">
+        <source> Add new event </source>
+        <target>Dodaj nowe wydarzenie</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/menu/menu.component.html</context>
-          <context context-type="linenumber">45</context>
+          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
+          <context context-type="linenumber">139,140</context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/menu/menu.component.html</context>
-          <context context-type="linenumber">63</context>
-        </context-group>
-        <note priority="1" from="description">menu_family</note>
       </trans-unit>
-      <trans-unit id="586a5fd72602b5b14ec0c55f84814de47bb21e3a" datatype="html">
-        <source>Tasks</source>
-        <target>Lista Zadań</target>
+      <trans-unit id="4e90180ca71676f0d26594748f3edf45fc038abb" datatype="html">
+        <source> Edit event </source>
+        <target>Edycja wydarzenia</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/menu/menu.component.html</context>
-          <context context-type="linenumber">52</context>
+          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
+          <context context-type="linenumber">17,18</context>
         </context-group>
-        <note priority="1" from="description">menu_tasks</note>
       </trans-unit>
-      <trans-unit id="121cc5391cd2a5115bc2b3160379ee5b36cd7716" datatype="html">
-        <source>Settings</source>
-        <target>Ustawienia</target>
+      <trans-unit id="5859c64c8efdb42bc097621f55348ea8ac42ddca" datatype="html">
+        <source>Event name</source>
+        <target>Nazwa</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/menu/menu.component.html</context>
-          <context context-type="linenumber">70</context>
+          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
+          <context context-type="linenumber">37</context>
         </context-group>
-        <note priority="1" from="description">menu_settings</note>
+      </trans-unit>
+      <trans-unit id="6e340280b8be255a6a8bcac6281e6c7159ce17a2" datatype="html">
+        <source>Event should have at least 3 characters.</source>
+        <target>Nazwa powinna mieć co najmniej 3 znaki.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="77bbe324b08f6636fb50f673cea05313b86fb692" datatype="html">
+        <source>Start date</source>
+        <target>Data startowa</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+        <note priority="1" from="description">event_startDate</note>
+      </trans-unit>
+      <trans-unit id="f60960faa2cd3e0db11e48688774d05dfa9d715b" datatype="html">
+        <source>End date</source>
+        <target>Data zakończenia</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+        <note priority="1" from="description">event_endDate</note>
+      </trans-unit>
+      <trans-unit id="a6b4e9400105a7a48b6d8a733be42cb672a19e73" datatype="html">
+        <source> Whole day(s) </source>
+        <target>Cały dzień(dni)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
+          <context context-type="linenumber">95,96</context>
+        </context-group>
+        <note priority="1" from="description">event_allday</note>
+      </trans-unit>
+      <trans-unit id="7c0a71d337783e527c1c8e91e433b301c5b1d8a8" datatype="html">
+        <source>Start Time</source>
+        <target>Godzina startu</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
+          <context context-type="linenumber">99</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/daily-task/daily-task-create/daily-task-create.component.html</context>
+          <context context-type="linenumber">145</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/task-create/task-create.component.html</context>
+          <context context-type="linenumber">212</context>
+        </context-group>
+        <note priority="1" from="description">event_startTime</note>
+      </trans-unit>
+      <trans-unit id="e1f10d9bf4d3c37490cd5bf82007444ae7af46b1" datatype="html">
+        <source>End Time</source>
+        <target>Godzina zakończenia</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
+          <context context-type="linenumber">116</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/daily-task/daily-task-create/daily-task-create.component.html</context>
+          <context context-type="linenumber">162</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/task-create/task-create.component.html</context>
+          <context context-type="linenumber">229</context>
+        </context-group>
+        <note priority="1" from="description">event_endTime</note>
       </trans-unit>
       <trans-unit id="388144af7ac7651d2615b9be0e84f43ae71d9fb3" datatype="html">
         <source>Mo</source>
-        <target>Po</target>
+        <target>Pn</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/calendar/calendar.component.html</context>
-          <context context-type="linenumber">13</context>
+          <context context-type="linenumber">39</context>
         </context-group>
         <note priority="1" from="description">1Day</note>
       </trans-unit>
@@ -306,7 +442,7 @@
         <target>Wt</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/calendar/calendar.component.html</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">40</context>
         </context-group>
         <note priority="1" from="description">2Day</note>
       </trans-unit>
@@ -315,7 +451,7 @@
         <target>Śr</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/calendar/calendar.component.html</context>
-          <context context-type="linenumber">15</context>
+          <context context-type="linenumber">41</context>
         </context-group>
         <note priority="1" from="description">3Day</note>
       </trans-unit>
@@ -324,228 +460,1555 @@
         <target>Cz</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/calendar/calendar.component.html</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="linenumber">42</context>
         </context-group>
         <note priority="1" from="description">4Day</note>
       </trans-unit>
       <trans-unit id="42dfe37169f8471367c31489155229bbe1747ea5" datatype="html">
         <source>Fr</source>
-        <target>Pi</target>
+        <target>Pt</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/calendar/calendar.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">43</context>
         </context-group>
         <note priority="1" from="description">5Day</note>
       </trans-unit>
       <trans-unit id="1b64ea3e04ceeb512e8974eb0019dee4f211c7a0" datatype="html">
         <source>Sa</source>
-        <target>So</target>
+        <target>Sb</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/calendar/calendar.component.html</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">44</context>
         </context-group>
         <note priority="1" from="description">6Day</note>
       </trans-unit>
       <trans-unit id="2fba8448ff13105c57665a9a6ffcfe9615d855dd" datatype="html">
         <source>Su</source>
-        <target>Ni</target>
+        <target>Nd</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/calendar/calendar.component.html</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">45</context>
         </context-group>
         <note priority="1" from="description">7Day</note>
       </trans-unit>
-      <trans-unit id="f76ff43cb4e8d818b0c86442472329966e64521d" datatype="html">
-        <source>Whole day</source>
-        <target>Cały dzień</target>
+      <trans-unit id="ea4c05412416db713ff75f3f914ab50268289f1e" datatype="html">
+        <source>No events scheduled for this day</source>
+        <target>Brak wydarzeń zaplanowanych tego dnia.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/calendar/calendar.component.html</context>
-          <context context-type="linenumber">50</context>
+          <context context-type="linenumber">154</context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
-          <context context-type="linenumber">182</context>
-        </context-group>
-        <note priority="1" from="description">allDay</note>
       </trans-unit>
-      <trans-unit id="290fda95504ea12dfef385581166c78341280f03" datatype="html">
-        <source>Event title</source>
-        <target>Nazwa wydarzenia</target>
+      <trans-unit id="cab1f74f1d0f7f9061a1967ff3216cdea2d97f17" datatype="html">
+        <source> There was no events planned this day. </source>
+        <target>Na ten dzień nie było zaplanowanych żadnych wydarzeń.</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
-          <context context-type="linenumber">5</context>
+          <context context-type="sourcefile">src/app/calendar/calendar.component.html</context>
+          <context context-type="linenumber">173,174</context>
         </context-group>
-        <note priority="1" from="description">event_stepper_title</note>
       </trans-unit>
-      <trans-unit id="fdf7cbdc140d0aab0f0b6c06065a0fd448ed6a2e" datatype="html">
-        <source>Title</source>
-        <target>Nazwa</target>
+      <trans-unit id="c2f30b214cb31c742f081cbce2806e7add8d21b7" datatype="html">
+        <source> Add Event </source>
+        <target>Dodaj wydarzenie</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
-          <context context-type="linenumber">7</context>
+          <context context-type="sourcefile">src/app/calendar/calendar.component.html</context>
+          <context context-type="linenumber">163,164</context>
         </context-group>
-        <note priority="1" from="description">event_title</note>
       </trans-unit>
-      <trans-unit id="dc3dd6b17e672f1d35fc03242de314324fe2358b" datatype="html">
-        <source>
-            Please provide a title.
-          </source>
-          <target>Prosze wprowadź nazwę.</target>
+      <trans-unit id="089f2d52678e79c76c57388a621bbc9b003052c0" datatype="html">
+        <source> There are no messages yet. Start your conversation now. </source>
+        <target>Brak wiadomości. Spróbuj coś napisać.</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
-          <context context-type="linenumber">9</context>
+          <context context-type="sourcefile">src/app/chat/chat.component.html</context>
+          <context context-type="linenumber">38,39</context>
         </context-group>
-        <note priority="1" from="description">event_title_error</note>
       </trans-unit>
-      <trans-unit id="f732c304c7433e5a83ffcd862c3dce709a0f4982" datatype="html">
-        <source>Next</source>
-        <target>Dalej</target>
+      <trans-unit id="f49d1f62b7a415453b2467cf3b0beb8e8ae2775a" datatype="html">
+        <source>Update photo</source>
+        <target>Aktualizuj zdjęcie</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="sourcefile">src/app/edit-me/edit-me.component.html</context>
+          <context context-type="linenumber">23</context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
-          <context context-type="linenumber">30</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
-          <context context-type="linenumber">104</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
-          <context context-type="linenumber">157</context>
-        </context-group>
-        <note priority="1" from="description">event_button_next</note>
       </trans-unit>
-      <trans-unit id="e4d4deeed694108158cccb3889f9c119d8a1f6a8" datatype="html">
-        <source>Event type</source>
-        <target>Typ wydarzenia</target>
+      <trans-unit id="82f0e19ac208b3adc102d4f801ba9cb7e6aba1a3" datatype="html">
+        <source>Your first name</source>
+        <target>Imię</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="sourcefile">src/app/edit-me/edit-me.component.html</context>
+          <context context-type="linenumber">46</context>
         </context-group>
-        <note priority="1" from="description">event_stepper_type</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/namecreator/namecreator.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <note priority="1" from="description">firstName</note>
       </trans-unit>
-      <trans-unit id="f593b41a08e1b40ee7b2d59324e78b997df5a244" datatype="html">
-        <source>One day</source>
-        <target>Jeden dzień</target>
+      <trans-unit id="445f2a5472d15c3b59093a62cc7ab762e01ba964" datatype="html">
+        <source>Name should have at least 3 characters</source>
+        <target>Imię powinno mieć co najmniej 3 znaki.</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="sourcefile">src/app/edit-me/edit-me.component.html</context>
+          <context context-type="linenumber">55</context>
         </context-group>
-        <note priority="1" from="description">event_type_short</note>
       </trans-unit>
-      <trans-unit id="705d1350212d57c9777e61e80a415a5d920e3dba" datatype="html">
-        <source>More days</source>
-        <target>Więcej dni</target>
+      <trans-unit id="4dfbe8e9e0b5fd0f16d3d888ba2359495c7f996f" datatype="html">
+        <source>Date of birth</source>
+        <target>Data urodzenia</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="sourcefile">src/app/edit-me/edit-me.component.html</context>
+          <context context-type="linenumber">70</context>
         </context-group>
-        <note priority="1" from="description">event_type_long</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/namecreator/namecreator.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
       </trans-unit>
-      <trans-unit id="cda31dbd724cf5f4fa7a4274d9120651490c8a8c" datatype="html">
-        <source>Back</source>
-        <target>Powrót</target>
+      <trans-unit id="d65023f1d1c0a4a35c1d1cdf9abd797a4020d99b" datatype="html">
+        <source>Please provide date of birth.</source>
+        <target>Proszę wprowadź datę urodzenia.</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
-          <context context-type="linenumber">29</context>
+          <context context-type="sourcefile">src/app/edit-me/edit-me.component.html</context>
+          <context context-type="linenumber">89</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
-          <context context-type="linenumber">103</context>
+          <context context-type="sourcefile">src/app/namecreator/namecreator.component.html</context>
+          <context context-type="linenumber">61</context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
-          <context context-type="linenumber">156</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
-          <context context-type="linenumber">206</context>
-        </context-group>
-        <note priority="1" from="description">event_button_previous</note>
       </trans-unit>
-      <trans-unit id="be8b692a344722e73855bdde9c97418f6584701c" datatype="html">
-        <source>When?</source>
-        <target>Kiedy?</target>
-                <context-group purpose="location">
-          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
-          <context context-type="linenumber">35</context>
+      <trans-unit id="4bd9485eac0de21ec8c1075a670a20107ab21441" datatype="html">
+        <source> Update </source>
+        <target>Aktualizuj</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/edit-me/edit-me.component.html</context>
+          <context context-type="linenumber">99,100</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="910eaf79357d842fe46221ef00e41dfb61ef675a" datatype="html">
+        <source>Invite Code:</source>
+        <target>Kod do dołączania:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/family/family.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5f20f16dd679f50574ae8a1397dc78529c3c8d55" datatype="html">
+        <source>Family Time</source>
+        <target>Czas dla rodziny</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home-screen/home-screen.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="774ab9292c74611c80835bbbec12f9614443610c" datatype="html">
+        <source> Plan events, organize tasks with your children. </source>
+        <target>Planuj wydarzenia, organizuj zadania wraz ze swoimi dziećmi.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home-screen/home-screen.component.html</context>
+          <context context-type="linenumber">23,24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ddb098c7521b90b606ebf4450c17def84f47014e" datatype="html">
+        <source> Create an account </source>
+        <target>Stwórz konto</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home-screen/home-screen.component.html</context>
+          <context context-type="linenumber">32,33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0e8dc1739c712a619346a20d4a04812014c66770" datatype="html">
+        <source> Enter </source>
+        <target>Rozpocznij</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home-screen/home-screen.component.html</context>
+          <context context-type="linenumber">39,40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dc2a7e7436ceff705e106df1c5a425cdc4340e17" datatype="html">
+        <source> Calendar </source>
+        <target>Kalendarz</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/menu/menu.component.html</context>
+          <context context-type="linenumber">22,23</context>
+        </context-group>
+        <note priority="1" from="description">menu_calendar</note>
+      </trans-unit>
+      <trans-unit id="7ad4a2bcd83ba6ad724da98d6c90a75f2380ead6" datatype="html">
+        <source> Shopping </source>
+        <target>Zakupy</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/menu/menu.component.html</context>
+          <context context-type="linenumber">42,43</context>
+        </context-group>
+        <note priority="1" from="description">menu_shoppingCart</note>
+      </trans-unit>
+      <trans-unit id="69b87bf1977b18eacccce7bad9227793f0c13fda" datatype="html">
+        <source> Complete your shopping lists </source>
+        <target> Kompletuj listy zakupów</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/menu/menu.component.html</context>
+          <context context-type="linenumber">45,46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d6ba72922a2bdad1443a154cd44f34e7c52b2256" datatype="html">
+        <source> Chat </source>
+        <target>Czat</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/menu/menu.component.html</context>
+          <context context-type="linenumber">62,63</context>
+        </context-group>
+        <note priority="1" from="description">menu_family</note>
+      </trans-unit>
+      <trans-unit id="e0dd65e0447db62ccdec853edb585a3795226553" datatype="html">
+        <source> Send messages to your family </source>
+        <target>Wysyłaj wiadomości do swojej rodziny.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/menu/menu.component.html</context>
+          <context context-type="linenumber">63,64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6962ba4fcf8be78d4661178dfa92a8a84f7411c0" datatype="html">
+        <source> Tasks </source>
+        <target>Zadania</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/menu/menu.component.html</context>
+          <context context-type="linenumber">78,79</context>
+        </context-group>
+        <note priority="1" from="description">menu_tasks</note>
+      </trans-unit>
+      <trans-unit id="6683660405d160070031250871347ef455944f03" datatype="html">
+        <source> Earn points to unlock rewards! </source>
+        <target>Zdobywaj punkty by odblokowywać nagrody!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/menu/menu.component.html</context>
+          <context context-type="linenumber">81,82</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dc328e2194f193706a569688894bcda812f9fe98" datatype="html">
+        <source> Rewards </source>
+        <target> Nagrody </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/menu/menu.component.html</context>
+          <context context-type="linenumber">98,99</context>
+        </context-group>
+        <note priority="1" from="description">menu_rewards</note>
+      </trans-unit>
+      <trans-unit id="4eedfd08743d3bbcc280a302dcdade092e3de4a1" datatype="html">
+        <source> Use your points to pick rewards! </source>
+        <target>Korzystaj z punktów by odblokować nagrody!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/menu/menu.component.html</context>
+          <context context-type="linenumber">101,102</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bb294b35acd4abd5e9aeea89ff403132031f1ffe" datatype="html">
+        <source> Family </source>
+        <target>Rodzina </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/menu/menu.component.html</context>
+          <context context-type="linenumber">116,117</context>
+        </context-group>
+        <note priority="1" from="description">menu_family</note>
+      </trans-unit>
+      <trans-unit id="79f55c4b80d3df1e4c2fa85a2fb1b4accde8e9d9" datatype="html">
+        <source> See the complete family </source>
+        <target>Zobacz swoją rodzinę w komplecie</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/menu/menu.component.html</context>
+          <context context-type="linenumber">119,120</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="121cc5391cd2a5115bc2b3160379ee5b36cd7716" datatype="html">
+        <source>Settings</source>
+        <target>Ustawienia</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/menu/menu.component.html</context>
+          <context context-type="linenumber">132</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
+          <context context-type="sourcefile">src/app/settings/children-permission/children-permission.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/settings/settings-main/settings-main.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <note priority="1" from="description">menu_settings</note>
+      </trans-unit>
+      <trans-unit id="7d31bc3039a96d3a3c86a16e2fe4a3ae78b08b14" datatype="html">
+        <source> Logout </source>
+        <target>Wyloguj się</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/menu/menu.component.html</context>
+          <context context-type="linenumber">139,140</context>
+        </context-group>
+        <note priority="1" from="description">menu_logout</note>
+      </trans-unit>
+      <trans-unit id="3264699278a9318173b5277be9128b1ce02b015b" datatype="html">
+        <source> Configure your account. </source>
+        <target> Stwórz swój profil </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/namecreator/namecreator.component.html</context>
+          <context context-type="linenumber">3,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c32ef07f8803a223a83ed17024b38e8d82292407" datatype="html">
+        <source>Password</source>
+        <target>Hasło</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/namecreator/namecreator.component.html</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pick-user/pick-user.component.html</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+        <note priority="1" from="description">password</note>
+      </trans-unit>
+      <trans-unit id="1b1653fb3a5adb94fb2463cb72c299dc8a06ed35" datatype="html">
+        <source>Password should have at least 6 characters</source>
+        <target>Hasło powinno mieć co najmniej 6 znaków.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/namecreator/namecreator.component.html</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pick-user/pick-user.component.html</context>
+          <context context-type="linenumber">77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="097b5dfee5665aa0f7daba8b696acecde6445474" datatype="html">
+        <source>Male</source>
+        <target>Mężczyzna</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/namecreator/namecreator.component.html</context>
           <context context-type="linenumber">110</context>
         </context-group>
-        <note priority="1" from="description">event_stepper_when</note>
       </trans-unit>
-      <trans-unit id="3e6acd589d8b82cafd8546409da0a36469d297a0" datatype="html">
-        <source>Start Date</source>
-        <target>Data początkowa</target>
+      <trans-unit id="18f3bafdc69b800737e303bc1cb0753bd9dd3f32" datatype="html">
+        <source>Female</source>
+        <target>Kobieta</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
+          <context context-type="sourcefile">src/app/namecreator/namecreator.component.html</context>
+          <context context-type="linenumber">131</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3a4c2a9e76634ff14a60d52a718296f722d47c67" datatype="html">
+        <source>Parent</source>
+        <target>Rodzic</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/namecreator/namecreator.component.html</context>
+          <context context-type="linenumber">159</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="da184ea9abfcf4bbfe5008ead06ccae686a59e84" datatype="html">
+        <source>Child</source>
+        <target>Dziecko</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/namecreator/namecreator.component.html</context>
+          <context context-type="linenumber">180</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="37e52bf9d86a1f5da1c699e8bed84187965a0163" datatype="html">
+        <source> Continue </source>
+        <target>Kontynuuj</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/namecreator/namecreator.component.html</context>
+          <context context-type="linenumber">191,192</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="aab9122b5afccb85a2baf97bb68aff2f8ff03ade" datatype="html">
+        <source> The invite code you entered is incorrect. </source>
+        <target>Wprowadzony kod jest niepoprawny.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/nofamily/nofamily.component.html</context>
+          <context context-type="linenumber">8,9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a0de4594a5c371a22a6213a308d2c066f1bd1419" datatype="html">
+        <source>Join your family...</source>
+        <target>Dołącz do swojej rodziny...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/nofamily/nofamily.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d877caf09380b7978704598ce319949dead01fa3" datatype="html">
+        <source>Invite code</source>
+        <target>Kod do dołączania</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/nofamily/nofamily.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="362596e3c63f7b07551369f71237dcea591cd380" datatype="html">
+        <source>Please provide a valid invite code.</source>
+        <target>Wprowadź proszę poprawny kod.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/nofamily/nofamily.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1f334e950eef9cacc0d1b257029c3045dd42a516" datatype="html">
+        <source> Join </source>
+        <target>Dołącz</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/nofamily/nofamily.component.html</context>
+          <context context-type="linenumber">41,42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a8268ff1427a5854c175e37579aff701f54c1a87" datatype="html">
+        <source> ...or create a new one. </source>
+        <target>... lub stwórz nową.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/nofamily/nofamily.component.html</context>
+          <context context-type="linenumber">46,47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="77b8e7c1a5096e0698915348965749bd52dd247e" datatype="html">
+        <source>Family name</source>
+        <target>Nazwa rodziny</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/nofamily/nofamily.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e54983f05ab4e2d02836346d58aaa3c91d73c137" datatype="html">
+        <source>Please provide a name of your family.</source>
+        <target>Proszę wprowadź nazwę.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/nofamily/nofamily.component.html</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0f8d412b21b180c72c06ba7b5bb3f19a705965b3" datatype="html">
+        <source> Create </source>
+        <target> Stwórz </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/nofamily/nofamily.component.html</context>
+          <context context-type="linenumber">73,74</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="90edf595c5a8158f97c0f72501602cfd7aef6465" datatype="html">
+        <source>Enter as</source>
+        <target>Dołącz jako</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pick-user/pick-user.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d26383b3c0614e4c1445b8d5f82560cfb7253cce" datatype="html">
+        <source>Create new</source>
+        <target>Stwórz nową listę</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/shopping-list-view/shopping-list-view.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3aa3a309e153c75f864099854ea9f2a9d8281919" datatype="html">
+        <source>Create new profile</source>
+        <target>Stwórz nowy profil</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pick-user/pick-user.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9b3bfb0f8799a09960338e66030a1de259ca66bd" datatype="html">
+        <source> Wrong password. Please try again. </source>
+        <target>Wprowadzone hasło jest nieprawidłowe. Spróbuj ponownie.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pick-user/pick-user.component.html</context>
+          <context context-type="linenumber">39,40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9b7354907e19990ba26da49c5cd29d94683a68d8" datatype="html">
+        <source> Enter </source>
+        <target> Rozpocznij </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pick-user/pick-user.component.html</context>
+          <context context-type="linenumber">88,89</context>
+        </context-group>
+        <note priority="1" from="description">enter</note>
+      </trans-unit>
+      <trans-unit id="6837ef5d5ef17e6a70fdf2b3f5cc6acd8f17ba06" datatype="html">
+        <source>Are you sure you want to delete this reward?</source>
+        <target>Jesteś pewny, że chcesz usunąć tę nagrodę?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/dialogs/confirm-delete-reward/confirm-delete-reward.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="231f381dbc1622f3f5c7bd2ab23ad8aa111b46ee" datatype="html">
+        <source>This process is irreversible.</source>
+        <target>Ten proces jest nieodwracalny.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/dialogs/confirm-delete-reward/confirm-delete-reward.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/confirm-delete-task/confirm-delete-task.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="da44efc7b658c318651866454d258bbbe57ff21c" datatype="html">
+        <source> Cancel </source>
+        <target>Anuluj</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/dialogs/confirm-delete-reward/confirm-delete-reward.component.html</context>
+          <context context-type="linenumber">14,15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/dialogs/confirm-reward/confirm-reward.component.html</context>
+          <context context-type="linenumber">14,15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/dialogs/unlock-reward/unlock-reward.component.html</context>
+          <context context-type="linenumber">26,27</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/CompleteAbandon/abandon-task/abandon-task.component.html</context>
+          <context context-type="linenumber">48,49</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/CompleteAbandon/complete-task/complete-task.component.html</context>
+          <context context-type="linenumber">48,49</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/confirm-delete-task/confirm-delete-task.component.html</context>
+          <context context-type="linenumber">14,15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/daily-task/confirm-delete-daily-task/confirm-delete-daily-task.component.html</context>
+          <context context-type="linenumber">14,15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/daily-task/daily-task-confirm-changes/daily-task-confirm-changes.component.html</context>
+          <context context-type="linenumber">13,14</context>
+        </context-group>
+        <note priority="1" from="description">cancel</note>
+      </trans-unit>
+      <trans-unit id="d9797b7f7d130802253f3bdd06f7da9f474816af" datatype="html">
+        <source> Delete </source>
+        <target>Usuń</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/dialogs/confirm-delete-reward/confirm-delete-reward.component.html</context>
+          <context context-type="linenumber">21,22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/confirm-delete-task/confirm-delete-task.component.html</context>
+          <context context-type="linenumber">21,22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/daily-task/confirm-delete-daily-task/confirm-delete-daily-task.component.html</context>
+          <context context-type="linenumber">21,22</context>
+        </context-group>
+        <note priority="1" from="description">delete</note>
+      </trans-unit>
+      <trans-unit id="97f4860493c679ce361212a9307b588430e94106" datatype="html">
+        <source> Are you sure you want to approve this reward? </source>
+        <target>Jesteś pewny, że chcesz zatwierdzić tę nagrodę?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/dialogs/confirm-reward/confirm-reward.component.html</context>
+          <context context-type="linenumber">3,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="350d4f0387f4f16289b2ef40235fea32d2fbc378" datatype="html">
+        <source>Your child will be informed.</source>
+        <target>Twoje dziecko dostanie tę informację.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/dialogs/confirm-reward/confirm-reward.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="73a83c0db2dbf61230eba62e1d22a6da3d190c4c" datatype="html">
+        <source>Approve</source>
+        <target>Zatwierdź</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/dialogs/confirm-reward/confirm-reward.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/rewards-unlocked/rewards-unlocked.component.html</context>
+          <context context-type="linenumber">100</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="aa0b268ed18a4a163c2b1d4245625dfed0a8b0b0" datatype="html">
+        <source>Are you sure you want to unlock this reward?</source>
+        <target>Jesteś pewny, że chcesz odblokować tę nagrodę?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/dialogs/unlock-reward/unlock-reward.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fd1e9c21c031c9394f68070c035acd0e0b5bc9e1" datatype="html">
+        <source>Cost:</source>
+        <target>Cena:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/dialogs/unlock-reward/unlock-reward.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2d1d01fb93a9e590b40799b23b7549ae231ff6a7" datatype="html">
+        <source>Left:</source>
+        <target>Pozostanie Ci:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/dialogs/unlock-reward/unlock-reward.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="aac99820b81b63dd081ef9449080e545df8b03cd" datatype="html">
+        <source>Unlock</source>
+        <target>Odblokuj</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/dialogs/unlock-reward/unlock-reward.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d07d5120df29c19bdf271f99a2aabbb1401e851c" datatype="html">
+        <source>My rewards</source>
+        <target>Odblokowane</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/my-rewards/my-rewards.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="935277c9c5ee06e93d77e853b04c2e2c30207b71" datatype="html">
+        <source> There are no rewards yet. </source>
+        <target>Brak nagród.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/my-rewards/my-rewards.component.html</context>
+          <context context-type="linenumber">36,37</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/rewards-main/rewards-main.component.html</context>
+          <context context-type="linenumber">78,79</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e6a27066251ca1e04c5be86ad758380856df2506" datatype="html">
+        <source>Pending</source>
+        <target>Oczekujące</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/my-rewards/my-rewards.component.html</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="48f6d7edad116a39618612c19d20ed2089b54acb" datatype="html">
+        <source>Approved</source>
+        <target>Zatwierdzone</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/my-rewards/my-rewards.component.html</context>
+          <context context-type="linenumber">68</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d593506cf87387d5123085f204539c0da2f7772c" datatype="html">
+        <source> Edit reward </source>
+        <target>Edycja nagrody</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/rewards-create/rewards-create.component.html</context>
+          <context context-type="linenumber">19,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="34fd2ba422bdcb1063e7e2a49e7b9e80e6658c2b" datatype="html">
+        <source> New reward </source>
+        <target> Nowa nagroda </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/rewards-create/rewards-create.component.html</context>
+          <context context-type="linenumber">22,23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fbca12ed6c6ce98d1501385b9d0d988ca4db4a8d" datatype="html">
+        <source>Remove reward</source>
+        <target>Usuń nagrodę</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/rewards-create/rewards-create.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="12f86e6747a5ad39e62d3480ddc472b1aeab5b76" datatype="html">
+        <source>Reward</source>
+        <target>Nagroda</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/rewards-create/rewards-create.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="14b4fc338bc82e11651ebf6e9a40c5cdfcc69051" datatype="html">
+        <source>Reward should have at least 3 characters.</source>
+        <target>Nazwa nagrody powinna mieć co najmniej 3 znaki.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/rewards-create/rewards-create.component.html</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8b4bb9bd0228fff7fc4f4da2a0f8037763ae5bf7" datatype="html">
+        <source>Points</source>
+        <target>Punkty</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/rewards-create/rewards-create.component.html</context>
+          <context context-type="linenumber">68</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/daily-task/daily-task-create/daily-task-create.component.html</context>
+          <context context-type="linenumber">68</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/task-create/task-create.component.html</context>
+          <context context-type="linenumber">118</context>
+        </context-group>
+        <note priority="1" from="description">points</note>
+      </trans-unit>
+      <trans-unit id="69cf2eea8333507f5a7d34b844d50bad728d21b8" datatype="html">
+        <source> Your children can unlock this reward with points earned by completing tasks. You can decide how many points will be needed. </source>
+        <target>Twoje dzieci mogą odblokowywać nagrody za punkty zdobywane przy wykonywaniu zadań. Możesz zdecydować ile punktów będzie potrzebnych.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/rewards-create/rewards-create.component.html</context>
+          <context context-type="linenumber">76,78</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ac0e4e20838d32cc12e503fe44d34554fce743cf" datatype="html">
+        <source> Edit reward </source>
+        <target>Edytuj nagrodę</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/rewards-create/rewards-create.component.html</context>
+          <context context-type="linenumber">128,129</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="70a33a49b75659702b3c87aa148090e19deb5103" datatype="html">
+        <source> Add reward </source>
+        <target>Dodaj nagrodę</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/rewards-create/rewards-create.component.html</context>
+          <context context-type="linenumber">136,137</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9141579156b435c7be59df6e592df4b93c134297" datatype="html">
+        <source>Rewards</source>
+        <target>Nagrody</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/rewards-main/rewards-main.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6ad68f6e8d029b6fa2b2488b3a82d6b2569a2eeb" datatype="html">
+        <source> Unlocked </source>
+        <target>Odblokowane</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/rewards-main/rewards-main.component.html</context>
+          <context context-type="linenumber">29,30</context>
+        </context-group>
+        <note priority="1" from="description">unlockedRewards</note>
+      </trans-unit>
+      <trans-unit id="b1f44d04274f89848c5f3772a075d3fdc1c263cc" datatype="html">
+        <source> Create new </source>
+        <target>Stwórz nową</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/rewards-main/rewards-main.component.html</context>
+          <context context-type="linenumber">37,38</context>
+        </context-group>
+        <note priority="1" from="description">createNewReward</note>
+      </trans-unit>
+      <trans-unit id="bb2d3a47a9c513122da8e6ad46148d2e4e4e3c2b" datatype="html">
+        <source> My rewards </source>
+        <target>Odblokowane</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/rewards-main/rewards-main.component.html</context>
+          <context context-type="linenumber">48,49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="976cb43e4d5a89b7d50124e698c06a73c53ab6a7" datatype="html">
+        <source>You have successfully unlocked a reward!</source>
+        <target>Udało ci się odblokować nagrodę!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/rewards-main/rewards-main.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="700bbd4109b47c8aa513fc09e78ec891a0b0bf87" datatype="html">
+        <source>You have:</source>
+        <target>Posiadasz: </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/rewards-main/rewards-main.component.html</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+        <note priority="1" from="description">Masz X punktów</note>
+      </trans-unit>
+      <trans-unit id="5aa0a654dd30ee63d6147952c823f1cfa5cd8978" datatype="html">
+        <source>Unlock reward</source>
+        <target>Odblokuj nagrodę</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/rewards-main/rewards-main.component.html</context>
+          <context context-type="linenumber">116</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b689e7ec505ec3d64ba08a02c9900919a9711bb0" datatype="html">
+        <source>Reward locked</source>
+        <target>Nagroda zablokowana</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/rewards-main/rewards-main.component.html</context>
+          <context context-type="linenumber">128</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="969f146b329628c69231396860a28fbbc13f6146" datatype="html">
+        <source> Unlocked rewards </source>
+        <target>Odblokowane nagrody</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/rewards-unlocked/rewards-unlocked.component.html</context>
+          <context context-type="linenumber">19,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2f5bc9727a780a412523b05fb110c02e206e992e" datatype="html">
+        <source> You can approve awards to let your kids know you&apos;ve noticed when they unlocked. </source>
+        <target>Możesz zatwierdzać nagrody, by Twoje dzieci wiedziały, że to widzisz.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/rewards-unlocked/rewards-unlocked.component.html</context>
+          <context context-type="linenumber">29,31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ec9cf5b5789f0e97726d53f69cf1e2466e4166cc" datatype="html">
+        <source> There are no unlocked rewards. </source>
+        <target>Brak odblokowanych nagród.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/rewards-unlocked/rewards-unlocked.component.html</context>
+          <context context-type="linenumber">49,50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a010f1a10cef66932ff35871c1a557ae908b99f7" datatype="html">
+        <source>Show confirmed</source>
+        <target>Pokaż zatwierdzone</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/rewards-unlocked/rewards-unlocked.component.html</context>
+          <context context-type="linenumber">114</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9bf22139991f0d0a54a0fcfd1ec7beccc7e10c54" datatype="html">
+        <source>Hide confirmed</source>
+        <target>Ukryj zatwierdzone</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/rewards/rewards-unlocked/rewards-unlocked.component.html</context>
+          <context context-type="linenumber">115</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="33629999fd41361c48d5a60a5783dfdbd09276b7" datatype="html">
+        <source>Calendar</source>
+        <target>Kalendarz</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/settings/children-permission/children-permission.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0ad2cb633da76d982ec6e856bbe1a81b572f6453" datatype="html">
+        <source>Children can create events</source>
+        <target>Dzieci mogą tworzyć wydarzenia</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/settings/children-permission/children-permission.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="454d15c95233e876d99ad5578de4c9d09fbaa43d" datatype="html">
+        <source>Children can edit events</source>
+        <target>Dzieci mogą edytować wydarzenia</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/settings/children-permission/children-permission.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ba7b2caa71fa5e6794c57abc9e54f5024e6c3c9c" datatype="html">
+        <source>Children can delete events</source>
+        <target>Dzieci mogą usuwać wydarzenia</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/settings/children-permission/children-permission.component.html</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1c7f09b7e82e57df0592453b4adc505545d1a0ed" datatype="html">
+        <source>Shopping Lists</source>
+        <target>Zakupy</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/settings/children-permission/children-permission.component.html</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a185e0e396c6de87d8a4a6d4d2aa7f90733b0bed" datatype="html">
+        <source>Children can create shopping list</source>
+        <target>Dzieci mogą tworzyć listy zakupów</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/settings/children-permission/children-permission.component.html</context>
+          <context context-type="linenumber">88</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ab4f7bd54c361e9e94713d79cc741ccdece4c5d5" datatype="html">
+        <source>Children can edit name of the list</source>
+        <target>Dzieci mogą zmieniać nazwy list</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/settings/children-permission/children-permission.component.html</context>
+          <context context-type="linenumber">97</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="597fe6b324320c3917bfea74e3a39e6df9dcbb15" datatype="html">
+        <source>Children can mark list as completed</source>
+        <target>Dzieci mogą zatwierdzać listy jako kompletne</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/settings/children-permission/children-permission.component.html</context>
+          <context context-type="linenumber">106</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d17c0b2876a504ea1532f0bea874d3a46af539d3" datatype="html">
+        <source>Children can delete list</source>
+        <target>Dzieci mogą usuwać listy zakupów</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/settings/children-permission/children-permission.component.html</context>
+          <context context-type="linenumber">115</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b02d65dd9dafbf3425d7274a0232b37d13ae7403" datatype="html">
+        <source>Children can add new item to list</source>
+        <target>Dzieci mogą dodawać nowe produkty do list</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/settings/children-permission/children-permission.component.html</context>
+          <context context-type="linenumber">124</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="04dc0c17cbb8adada7aef1a520ff93a134e0766b" datatype="html">
+        <source>Children can edit items on list</source>
+        <target>Dzieci mogą edytować produkty na liście</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/settings/children-permission/children-permission.component.html</context>
+          <context context-type="linenumber">133</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="742023a7c32c7781dd1b4ce1b15a74863b876183" datatype="html">
+        <source> Confirm changes </source>
+        <target>Zatwierdź zmiany</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/settings/children-permission/children-permission.component.html</context>
+          <context context-type="linenumber">145,146</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/daily-task/daily-task.component.html</context>
+          <context context-type="linenumber">134,135</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e358e428b03b73fd1cea4e7c9f9fc083683131f8" datatype="html">
+        <source>Update your account</source>
+        <target>Zaktualizuj swoje konto</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/settings/settings-main/settings-main.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="15a1a17f4ca2348cfa7afdb582ae5e5733b7f48f" datatype="html">
+        <source>Give your children permission</source>
+        <target>Zmień przyzwolenia swoim dzieciom.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/settings/settings-main/settings-main.component.html</context>
           <context context-type="linenumber">38</context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
-          <context context-type="linenumber">113</context>
-        </context-group>
-        <note priority="1" from="description">event_startDate</note>
       </trans-unit>
-      <trans-unit id="358b19b870c670e686248ebfcf91f00a8ad12e53" datatype="html">
-        <source>
-              Whole day
-          </source>
-          <target>Cały dzień</target>
+      <trans-unit id="783c0e35d5105a9c6b9e93b7fdada368f498fa90" datatype="html">
+        <source>Do you want to mark this list as complete?</source>
+        <target>Chcesz oznaczyć tę listę jako kompletną?</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
+          <context context-type="sourcefile">src/app/shopping-list/complete-confirm-modal/complete-confirm-modal.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="62bb5d1cc17371eecb281d907c51df0741173b30" datatype="html">
+        <source>You will no longer be able to add or edit items on the list.</source>
+        <target>Nie będziesz już w stanie dodawać oraz edytować produktów na tej liście.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/complete-confirm-modal/complete-confirm-modal.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="402df24ffa102ace58b222b5104a4ae1a0b13e7e" datatype="html">
+        <source> Complete </source>
+        <target>Kompletna</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/complete-confirm-modal/complete-confirm-modal.component.html</context>
+          <context context-type="linenumber">12,13</context>
+        </context-group>
+        <note priority="1" from="description">complete</note>
+      </trans-unit>
+      <trans-unit id="d7b35c384aecd25a516200d6921836374613dfe7" datatype="html">
+        <source>Cancel</source>
+        <target>Anuluj</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/complete-confirm-modal/complete-confirm-modal.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <note priority="1" from="description">cancel</note>
+      </trans-unit>
+      <trans-unit id="22328bf7f94a98ffd8d2a7cdeb5a32ac4efa0d86" datatype="html">
+        <source>Show recently added</source>
+        <target>Pokaż ostatnio dodane</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/shopping-list-add/shopping-list-add.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="aae9d57290ff2e3b0fc5344d81ec2a4e88d01960" datatype="html">
+        <source>Hide recently added</source>
+        <target>Ukryj ostatnio dodane</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/shopping-list-add/shopping-list-add.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="166d5cc5170d61472319f7ad8e67eac560151b21" datatype="html">
+        <source>Add product</source>
+        <target>Dodaj produkt</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/shopping-list-add/shopping-list-add.component.html</context>
           <context context-type="linenumber">63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ae3a25af7891e88c027808a9e8d3dbe26cc2ad93" datatype="html">
+        <source>Edit product</source>
+        <target>Edytuj produkt</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/shopping-list-add/shopping-list-add.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="58562d37f8e2ee6b736d63f380fd430f9e4ee6c9" datatype="html">
+        <source>What do you need to buy?</source>
+        <target>Co potrzebujesz kupić?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/shopping-list-add/shopping-list-add.component.html</context>
+          <context context-type="linenumber">111</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f2eb1722fdd1ead833af6e9f92b67108c0175d8f" datatype="html">
+        <source>Please provide a valid name.</source>
+        <target>Wprowadź prawidłową nazwę.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/shopping-list-add/shopping-list-add.component.html</context>
+          <context context-type="linenumber">114</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="64b9fc0867ec08f47735ceb7e5e6b36d648e9776" datatype="html">
+        <source>Additional information</source>
+        <target>Dodatkowe informacje</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/shopping-list-add/shopping-list-add.component.html</context>
+          <context context-type="linenumber">123</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ba2be93563361c94207929cbace93da052bc45c3" datatype="html">
+        <source>Add to list</source>
+        <target>Dodaj do listy</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/shopping-list-add/shopping-list-add.component.html</context>
+          <context context-type="linenumber">141</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="28f86ffd419b869711aa13f5e5ff54be6d70731c" datatype="html">
+        <source>Edit</source>
+        <target>Edytuj</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/shopping-list-add/shopping-list-add.component.html</context>
+          <context context-type="linenumber">142</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="95db5a6ede7137e453d3eeba8b3447f524efc9f5" datatype="html">
+        <source> Click on the list to see details and add new products to buy </source>
+        <target>Kliknij na listę by zobaczyć szczegóły i dodać nowe produkty</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/shopping-list-view/shopping-list-view.component.html</context>
+          <context context-type="linenumber">37,38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3c9246b53524feea8b89a2f97bc620a79c2f95bd" datatype="html">
+        <source>Created By:</source>
+        <target>Stworzona przez:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/shopping-list-view/shopping-list-view.component.html</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/shopping-list-view/shopping-list-view.component.html</context>
+          <context context-type="linenumber">223</context>
+        </context-group>
+        <note priority="1" from="description">slCreatedBy</note>
+      </trans-unit>
+      <trans-unit id="ef36f0dc0067decf548cc11905ef3100f5bbd004" datatype="html">
+        <source>At:</source>
+        <target>Dnia:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/shopping-list-view/shopping-list-view.component.html</context>
+          <context context-type="linenumber">88</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/shopping-list-view/shopping-list-view.component.html</context>
+          <context context-type="linenumber">227</context>
+        </context-group>
+        <note priority="1" from="description">slAt</note>
+      </trans-unit>
+      <trans-unit id="502e1c27d4e9533cdf8e42c1a4f8f2735e4c3fb2" datatype="html">
+        <source>Completed:</source>
+        <target>Produkty:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/shopping-list-view/shopping-list-view.component.html</context>
+          <context context-type="linenumber">92</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/shopping-list-view/shopping-list-view.component.html</context>
+          <context context-type="linenumber">231</context>
+        </context-group>
+        <note priority="1" from="description">slCompleted</note>
+      </trans-unit>
+      <trans-unit id="c3ddd56d266b507b45fe520168b075199ec347bf" datatype="html">
+        <source> Currently you do not have any products to buy. </source>
+        <target>Obecnie nie masz nic do kupienia.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/shopping-list-view/shopping-list-view.component.html</context>
+          <context context-type="linenumber">176,177</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fa5a7184e9f7fc113d8c95206a8e9593884210f9" datatype="html">
+        <source> Create new list </source>
+        <target>Stwórz nową listę</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/shopping-list-view/shopping-list-view.component.html</context>
+          <context context-type="linenumber">184,185</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="98c4864a48fcee54b9e3d9a0c582fe5071a8ee67" datatype="html">
+        <source>Show complete</source>
+        <target>Pokaż kompletne</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/shopping-list-view/shopping-list-view.component.html</context>
+          <context context-type="linenumber">196</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0a83245a9d136129586ad0df5bd9c79a9742dcda" datatype="html">
+        <source>Add new product</source>
+        <target>Dodaj nowy produkt</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/shopping-list.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1ff9fd51092fcbcda07ca9c752220389ae45169c" datatype="html">
+        <source> This list is completed and you cannot make any changes. </source>
+        <target>Ta lista jest kompletna i nie możesz dokonywać w niej zmian.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/shopping-list.component.html</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="469c49e587812c1a9fd0a00f52b9ec3c1cb3b514" datatype="html">
+        <source> No details provided. </source>
+        <target>Nie podano szczegółów.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/shopping-list.component.html</context>
+          <context context-type="linenumber">95</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1a010841b2fb8c247d0c4c591d46099e1a8427e3" datatype="html">
+        <source>Added:</source>
+        <target>Dodano:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/shopping-list.component.html</context>
+          <context context-type="linenumber">102</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1a1a70f061470907f4ae15b850988d2c64203a4e" datatype="html">
+        <source>By:</source>
+        <target>Przez:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/shopping-list.component.html</context>
+          <context context-type="linenumber">106</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8a10cd7a495fb2bd4e02e057391d5918c90b82b0" datatype="html">
+        <source>Do you want to abandon this task?</source>
+        <target>Czy chcesz porzucić to zadanie?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/CompleteAbandon/abandon-task/abandon-task.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e98dc7d31ba3e0604d3d46876eca3f6693ccfda5" datatype="html">
+        <source>
+          You will no longer have the option to earn
+          <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;task--info--points whitespace&quot;&gt;" />
+          <x id="INTERPOLATION" equiv-text="{{ data.points }}" />
+          <x id="START_TAG_IC_ICON" ctype="x-ic_icon" equiv-text="&lt;ic-icon class=&quot;font-size-15rem&quot; icon=&quot;glowingStar&quot;&gt;" />
+          <x id="CLOSE_TAG_IC_ICON" ctype="x-ic_icon" equiv-text="&lt;/ic-icon&gt;" />
+          <x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;
+      " />
+          for this task.
+        </source>
+        <target>
+          Nie będziesz miał szansy na otrzymanie
+          <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;task--info--points whitespace&quot;&gt;" />
+          <x id="INTERPOLATION" equiv-text="{{ data.points }}" />
+          <x id="START_TAG_IC_ICON" ctype="x-ic_icon" equiv-text="&lt;ic-icon class=&quot;font-size-15rem&quot; icon=&quot;glowingStar&quot;&gt;" />
+          <x id="CLOSE_TAG_IC_ICON" ctype="x-ic_icon" equiv-text="&lt;/ic-icon&gt;" />
+          <x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;
+      " />
+          za to zadanie.
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/CompleteAbandon/abandon-task/abandon-task.component.html</context>
+          <context context-type="linenumber">25,31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="39882b406bb1e28fa3a10a7b346c13a5296a44f4" datatype="html">
+        <source> Abandon </source>
+        <target>Porzuć</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/CompleteAbandon/abandon-task/abandon-task.component.html</context>
+          <context context-type="linenumber">41,42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="002fbc1fb55e2abe6ab89cd3736e7a4dedb17cd2" datatype="html">
+        <source>Have you finished this task?</source>
+        <target>Udało Ci się skończyć to zadanie?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/CompleteAbandon/complete-task/complete-task.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4567a84b4b829b4d352fe98108582859725f282d" datatype="html">
+        <source>
+          You will receive
+          <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;task--points-number&quot;
+        &gt;" />
+          <x id="INTERPOLATION" equiv-text="{{ data.points }}" />
+          <x id="START_TAG_IC_ICON" ctype="x-ic_icon" equiv-text="&lt;ic-icon class=&quot;font-size-15rem&quot; icon=&quot;glowingStar&quot;&gt;" />
+          <x id="CLOSE_TAG_IC_ICON" ctype="x-ic_icon" equiv-text="&lt;/ic-icon&gt;" />
+          <x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;
+      " />
+          for completing the task.
+        </source>
+        <target>
+          Otrzymasz
+          <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;task--points-number&quot;
+        &gt;" />
+          <x id="INTERPOLATION" equiv-text="{{ data.points }}" />
+          <x id="START_TAG_IC_ICON" ctype="x-ic_icon" equiv-text="&lt;ic-icon class=&quot;font-size-15rem&quot; icon=&quot;glowingStar&quot;&gt;" />
+          <x id="CLOSE_TAG_IC_ICON" ctype="x-ic_icon" equiv-text="&lt;/ic-icon&gt;" />
+          <x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;
+      " />
+          za wykonanie zadania.
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/CompleteAbandon/complete-task/complete-task.component.html</context>
+          <context context-type="linenumber">25,31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="65253e20a37c659fd131a10f866aaf0c089066da" datatype="html">
+        <source> Complete </source>
+        <target>Zakończ</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/CompleteAbandon/complete-task/complete-task.component.html</context>
+          <context context-type="linenumber">41,42</context>
+        </context-group>
+        <note priority="1" from="description">completeTask</note>
+      </trans-unit>
+      <trans-unit id="029d202ff3afc49db542b2fc0dfaf7a4a00a96c0" datatype="html">
+        <source>Are you sure you want to delete this task?</source>
+        <target>Jesteś pewny, że chcesz usunąć to zadanie?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/confirm-delete-task/confirm-delete-task.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="73c5472263bc9b34da2f378a5d47a6248e03b79f" datatype="html">
+        <source>Are you sure you want to delete this daily task?</source>
+        <target>Jesteś pewny, że chcesz usunąć to codzienne zadanie?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/daily-task/confirm-delete-daily-task/confirm-delete-daily-task.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d45a92fd877d387c297bf2a59b19cd971ac3ded1" datatype="html">
+        <source> All tasks created using this daily task will be deleted! </source>
+        <target>Wszystkie zadania przydzielone za pomocą tego codziennego zadania zostaną usunięte. </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/daily-task/confirm-delete-daily-task/confirm-delete-daily-task.component.html</context>
+          <context context-type="linenumber">4,5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bb5a857fddb904e361e4d40b29024f8b771924e4" datatype="html">
+        <source>Confirm changes?</source>
+        <target>Zatwierdź zmiany</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/daily-task/daily-task-confirm-changes/daily-task-confirm-changes.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f67b7d4f5da8c5e3b9baf2af577d5b264a05b3b6" datatype="html">
+        <source> Confirm </source>
+        <target>Zatwierdź</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/daily-task/daily-task-confirm-changes/daily-task-confirm-changes.component.html</context>
+          <context context-type="linenumber">20,21</context>
+        </context-group>
+        <note priority="1" from="description">confirm</note>
+      </trans-unit>
+      <trans-unit id="218e96a1a939907b6e8ee00e00a3ec731b81b0b0" datatype="html">
+        <source>Remove daily task</source>
+        <target>Usuń codzienne zadanie</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/daily-task/daily-task-create/daily-task-create.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="61435c6c3b3cca0c204ef9f5369027565d327acb" datatype="html">
+        <source>Task</source>
+        <target>Nazwa</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/daily-task/daily-task-create/daily-task-create.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="300349f0f4e4f336388d04e6ccb88a2688b91097" datatype="html">
+        <source>Task should have at least 3 characters.</source>
+        <target>Nazwa powinna mieć co najmniej 3 znaki.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/daily-task/daily-task-create/daily-task-create.component.html</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/task-create/task-create.component.html</context>
+          <context context-type="linenumber">57</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7ed6c73440dd9f6adf48c77588e7ba2065dd0d99" datatype="html">
+        <source> Each assigned child will receive points(on task complete) that can be used in the rewards tab. </source>
+        <target>Każde przydzielone dziecko otrzyma punkty(po zakończeniu), które mogą zostać użyte w zakładce nagród.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/daily-task/daily-task-create/daily-task-create.component.html</context>
+          <context context-type="linenumber">76,78</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/task-create/task-create.component.html</context>
+          <context context-type="linenumber">126,128</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="61808fa6d9a2e713cb7717fbc2ffd3c07c90f98a" datatype="html">
+        <source>Start / End time</source>
+        <target>Czas rozpoczęcia i zakończenia</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/daily-task/daily-task-create/daily-task-create.component.html</context>
+          <context context-type="linenumber">122</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/task-create/task-create.component.html</context>
+          <context context-type="linenumber">172</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e41d58eddf40344d7fb88085964bf7a7bbd41659" datatype="html">
+        <source> Setting a start and end time can help your child understand the task correctly. </source>
+        <target>Ustawienie godziny startu i zakończenia może pomóc lepiej zrozumieć zadanie Twojemu dziecku.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/daily-task/daily-task-create/daily-task-create.component.html</context>
+          <context context-type="linenumber">128,130</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="97dcbba2f28b89af288ab780345cda8a3c382bf7" datatype="html">
+        <source> Whole day </source>
+        <target>Cały dzień</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/daily-task/daily-task-create/daily-task-create.component.html</context>
+          <context context-type="linenumber">141,142</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/task-create/task-create.component.html</context>
+          <context context-type="linenumber">208,209</context>
         </context-group>
         <note priority="1" from="description">event_allday</note>
       </trans-unit>
-      <trans-unit id="7c0a71d337783e527c1c8e91e433b301c5b1d8a8" datatype="html">
-        <source>Start Time</source>
-        <target>Czas rozpoczęcia</target>
+      <trans-unit id="1d9fa3641cd6ad33ebd75988f4450e1392823ae0" datatype="html">
+        <source> Create new </source>
+        <target>Stwórz nowe</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
-          <context context-type="linenumber">68</context>
+          <context context-type="sourcefile">src/app/tasks/daily-task/daily-task.component.html</context>
+          <context context-type="linenumber">24,25</context>
         </context-group>
-        <note priority="1" from="description">event_startTime</note>
       </trans-unit>
-      <trans-unit id="e1f10d9bf4d3c37490cd5bf82007444ae7af46b1" datatype="html">
-        <source>End Time</source>
-        <target>Czas zakończenia</target>
+      <trans-unit id="310a2f877204ba45510761807858b3d8ab19b009" datatype="html">
+        <source> You can assign tasks to your children separately for each day and task. </source>
+        <target>Codzienne zadania możesz przydzielać swoim dzieciom osobno dla każdego dnia i zadania</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
-          <context context-type="linenumber">85</context>
+          <context context-type="sourcefile">src/app/tasks/daily-task/daily-task.component.html</context>
+          <context context-type="linenumber">32,33</context>
         </context-group>
-        <note priority="1" from="description">event_startTime</note>
       </trans-unit>
-      <trans-unit id="0f551576faafbd2806d4af653469655f1b35afe1" datatype="html">
-        <source>End Date</source>
-        <target>Data zakończenia</target>
+      <trans-unit id="9865e8b0526d0866be16f17a2510b89a73c4e208" datatype="html">
+        <source> Clicking on date above will open the calendar! </source>
+        <target>Kliknięcie na datę powyżej otworzy kalendarz!</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
-          <context context-type="linenumber">134</context>
+          <context context-type="sourcefile">src/app/tasks/daily-task/daily-task.component.html</context>
+          <context context-type="linenumber">60,61</context>
         </context-group>
-        <note priority="1" from="description">event_endDate</note>
       </trans-unit>
-      <trans-unit id="0b0901877d837d3fda16ba161eb74368d1c75b7a" datatype="html">
-        <source>Ready</source>
-        <target>Gotowe</target>
+      <trans-unit id="b52519c699af3e1df803f53b12c926818e96f16c" datatype="html">
+        <source>You cannot set tasks in the past.</source>
+        <target>Nie możesz ustawiać zadań w przeszłości.</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
-          <context context-type="linenumber">162</context>
+          <context context-type="sourcefile">src/app/tasks/daily-task/daily-task.component.html</context>
+          <context context-type="linenumber">64</context>
         </context-group>
-        <note priority="1" from="description">event_stepper_rdy</note>
       </trans-unit>
-      <trans-unit id="f6755cff4957d5c3c89bafce5651f1b6fa2b1fd9" datatype="html">
-        <source>Add</source>
+      <trans-unit id="e3e01fbe6c639696e3dbc6e250219fad8e37ff1a" datatype="html">
+        <source> New task </source>
+        <target>Nowe zadanie</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/calendar/calendar-event/calendar-event.component.html</context>
-          <context context-type="linenumber">207</context>
+          <context context-type="sourcefile">src/app/tasks/task-create/task-create.component.html</context>
+          <context context-type="linenumber">15,16</context>
         </context-group>
-        <note priority="1" from="description">event_button_confirm</note>
+      </trans-unit>
+      <trans-unit id="84bd0d23726c088d8837647ece00085de8d8e191" datatype="html">
+        <source> Edit task </source>
+        <target>Edycja zadania</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/task-create/task-create.component.html</context>
+          <context context-type="linenumber">18,19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/task-create/task-create.component.html</context>
+          <context context-type="linenumber">260,261</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bb2d8d481e6e5f460e1e58d3a6a15923ca06d02b" datatype="html">
+        <source>Remove task</source>
+        <target>Usuń zadanie</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/task-create/task-create.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="370fd71e1460d7eadddee2d5f6ce80a973e12599" datatype="html">
+        <source>Assign children</source>
+        <target>Przydziel dzieci</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/task-create/task-create.component.html</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bc08457222c2125b4599759f034cade9fbeaf150" datatype="html">
+        <source> Choose which of your children should perform this task. </source>
+        <target>Wybierz, które z Twoich dzieci powinny wykonać to zadanie.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/task-create/task-create.component.html</context>
+          <context context-type="linenumber">68,69</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3712ced6503bc97ab20db76eb097e789efe5a431" datatype="html">
+        <source> Someone has to be assigned. </source>
+        <target>Ktoś musi zostać wybrany!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/task-create/task-create.component.html</context>
+          <context context-type="linenumber">72,73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f9c914216e61a2821f7abcba4316fb3e7cea4b7b" datatype="html">
+        <source>Assign all</source>
+        <target>Przydziel wszystkich.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/task-create/task-create.component.html</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5fc6415e870d863aca1cbb35aabd808f0efaebb4" datatype="html">
+        <source> Setting a start and end time may help your child understand the task correctly. </source>
+        <target>Ustawienie godziny startu i zakończenia może pomóc lepiej zrozumieć zadanie Twojemu dziecku</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/task-create/task-create.component.html</context>
+          <context context-type="linenumber">178,180</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2f933b826a570836cab04f683970a2d22068458c" datatype="html">
+        <source>Date</source>
+        <target>Data</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/task-create/task-create.component.html</context>
+          <context context-type="linenumber">183</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3c804bc01b6f69b63e3921acc1274af42d7d3856" datatype="html">
+        <source> Add new task </source>
+        <target>Dodaj nowe zadanie</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/task-create/task-create.component.html</context>
+          <context context-type="linenumber">252,253</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="96ff30700f7d617e5fe6f1f58b62e5f4b72b74f5" datatype="html">
+        <source> Create new </source>
+        <target>Stwórz zadanie</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/tasks.component.html</context>
+          <context context-type="linenumber">37,38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e2c4b0ff2e5a0ea1129d635b0d61f6849878fb9e" datatype="html">
+        <source> Daily Tasks </source>
+        <target>Codzienne zadania</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/tasks.component.html</context>
+          <context context-type="linenumber">30,31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="586a5fd72602b5b14ec0c55f84814de47bb21e3a" datatype="html">
+        <source>Tasks</source>
+        <target>Zadania</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/tasks.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8490806b87b3809e31272a981770c6b242dd3fda" datatype="html">
+        <source> Show all </source>
+        <target>Wszystkie</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/tasks.component.html</context>
+          <context context-type="linenumber">51,52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="804ee9e8fc7a542f4ae46fb637db13c779782173" datatype="html">
+        <source> Mine </source>
+        <target> Moje </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/tasks.component.html</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7187f6e029d990190dbd386cb2b1d0be0a2a7e7d" datatype="html">
+        <source> There are no active tasks. </source>
+        <target>Brak aktywnych zadań.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/tasks.component.html</context>
+          <context context-type="linenumber">82,83</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="82cba502371f2013abffec815fda0b352e030e49" datatype="html">
+        <source> Show completed </source>
+        <target> Pokaż skończone </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/tasks.component.html</context>
+          <context context-type="linenumber">202,203</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="966cb39d56b20edd0c33b4a5bc1ca651552c7454" datatype="html">
+        <source> Hide completed </source>
+        <target>Ukryj skończone</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/tasks.component.html</context>
+          <context context-type="linenumber">205,206</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4cabda0ba2cc0a3a596fab2bb01bbdac50624694" datatype="html">
+        <source> There are no completed tasks. </source>
+        <target> Brak skończonych zadań</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/tasks.component.html</context>
+          <context context-type="linenumber">233,234</context>
+        </context-group>
       </trans-unit>
     </body>
   </file>

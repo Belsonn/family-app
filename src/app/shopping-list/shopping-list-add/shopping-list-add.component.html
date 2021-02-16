@@ -10,7 +10,7 @@
       class="back-button"
     >
       <ic-icon class="back-button--icon" icon="arrowBackUp"></ic-icon>
-      <div class="back-button--back">Back</div>
+      <div i18n="backButton" class="back-button--back">Back</div>
     </div>
   </div>
   <div class="wrapper-flex-center">
@@ -26,7 +26,7 @@
   >
     <div *ngIf="!showRecently" class="flex">
       <div class="text-center font-size-14rem">
-        Show recently added({{ productsToShow.length }})
+        <span i18n>Show recently added</span>({{ productsToShow.length }})
       </div>
       <ic-icon
         class="font-size-14rem mlr-1rem mt-05rem"
@@ -35,7 +35,7 @@
     </div>
     <div *ngIf="showRecently" class="flex">
       <div class="text-center font-size-14rem">
-        Hide recently added({{ productsToShow.length }})
+        <span i18n>Hide recently added</span>({{ productsToShow.length }})
       </div>
       <ic-icon
         class="font-size-14rem mlr-1rem mt-05rem"
@@ -60,8 +60,8 @@
     </div>
   </div>
 
-  <div *ngIf="mode != 'edit'" class="title">Add product</div>
-  <div *ngIf="mode == 'edit'" class="title">Edit product</div>
+  <div i18n *ngIf="mode != 'edit'" class="title">Add product</div>
+  <div i18n *ngIf="mode == 'edit'" class="title">Edit product</div>
   <form class="form" [formGroup]="addFormGroup">
     <div class="wrapper-flex-center flex-column">
       <div class="custom-flex width-100">
@@ -108,9 +108,9 @@
         <div class="width-10 flex flex-center x mlr-05rem mt-m-2rem">X</div>
         <div class="wrapper-flex-center form-field-width mt-m-1rem">
           <mat-form-field class="width-90 mt-m-1rem mt-05rem">
-            <mat-label>What do you need to buy?</mat-label>
+            <mat-label i18n>What do you need to buy?</mat-label>
             <input type="text" formControlName="name" matInput required />
-            <mat-error *ngIf="addFormGroup.controls.name.invalid"
+            <mat-error i18n *ngIf="addFormGroup.controls.name.invalid"
               >Please provide a valid name.</mat-error
             >
           </mat-form-field>
@@ -120,7 +120,7 @@
 
     <div class="wrapper-flex-center flex-column mt-2rem">
       <mat-form-field class="width-70 mt-05rem">
-        <mat-label>Additional information</mat-label>
+        <mat-label i18n>Additional information</mat-label>
         <textarea
           matInput
           cdkTextareaAutosize
@@ -138,8 +138,8 @@
         type="submit"
         class="bttn bttn-primary bttn-clickable bttn-gradient width-70 ptb-05rem"
       >
-        <span *ngIf="mode !== 'edit'">Add to list</span>
-        <span *ngIf="mode == 'edit'">Edit</span>
+        <span i18n *ngIf="mode !== 'edit'">Add to list</span>
+        <span i18n *ngIf="mode == 'edit'">Edit</span>
       </button>
     </div>
   </form>

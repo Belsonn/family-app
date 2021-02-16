@@ -19,7 +19,13 @@
   }
   &--points {
     font-size: 1.2rem;
+    display: flex;
+
+    align-items: center;
     &-number {
+      display: flex;
+      align-items: center;
+      margin: 0 0.3rem;
       color: $light-blue-1;
       font-weight: 700;
       font-size: 1.5rem;

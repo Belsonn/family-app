@@ -6,30 +6,39 @@
   <div class="flex">
     <div mat-ripple [routerLink]="['', 'app', 'menu']" class="back-button">
       <ic-icon class="back-button--icon" icon="arrowBackUp"></ic-icon>
-      <div class="back-button--back">Back</div>
+      <div i18n="backButton" class="back-button--back">Back</div>
     </div>
   </div>
   <div class="wrapper-flex-center">
     <ic-icon class="font-size-4rem" icon="shoppingCart"></ic-icon>
   </div>
-  <!-- <div *ngIf="!isLoading" class="mtb-1rem">
-    <app-small-loading></app-small-loading>
-  </div> -->
   <div class="wrapper-flex-center mtb-1rem">
     <div
       *ngIf="shoppingListsActive.length > 0"
       (click)="onAddNewList()"
       mat-ripple
-      [ngClass]="{'bttn-gray': !isParent && !settings.shoppingLists.childCanCreateList}"
+      [ngClass]="{
+        'bttn-gray': !isParent && !settings.shoppingLists.childCanCreateList
+      }"
       class="bttn bttn-violet bttn-small bttn-clickable wrapper-flex-center"
     >
       <ic-icon class="font-size-18rem mr-05rem" icon="bxListPlus"></ic-icon>
-      <div class="create">
-        Create new
-      </div>
+      <div i18n class="create">Create new</div>
     </div>
   </div>
-  <div @list class="mb-2rem" *ngIf="shoppingListsActive.length > 0">
+  <div
+    *ngIf="shoppingListsActive.length > 0"
+    class="wrapper-flex-center flex-column mt-2rem"
+  >
+    <div class="wrapper-flex-center">
+      <ic-icon class="font-size-2rem" icon="lightBulb"></ic-icon>
+    </div>
+    <div i18n class="mytooltip mt-1rem">
+      Click on the list to see details and add new products to buy
+    </div>
+  </div>
+
+  <div @list class="mt-1rem" *ngIf="shoppingListsActive.length > 0">
     <div
       @items
       *ngFor="let list of shoppingListsActive; let i = index"
@@ -51,7 +60,7 @@
             <textarea
               style="overflow: hidden"
               #inputName
-              (click)="$event.stopPropagation();"
+              (click)="$event.stopPropagation()"
               (keyup.enter)="exitEditMode(); $event.stopPropagation()"
               (keydown.enter)="$event.preventDefault()"
               minlength="1"
@@ -72,13 +81,16 @@
           </div>
           <div class="paper-content-line line-break">EMPTY</div>
           <div class="paper-content-line">
-            Created By: {{ list.createdBy.name }}
+            <span i18n="slCreatedBy">Created By:</span>
+            {{ list.createdBy.name }}
           </div>
           <div class="paper-content-line">
-            At: {{ list.createdAt | date: "dd/MM/yyyy" }}
+            <span i18n="slAt">At:</span>
+            {{ list.createdAt | date: "dd/MM/yyyy" }}
           </div>
           <div class="paper-content-line">
-            Completed: {{ calcCompletedItems(list) }}
+            <span i18n="slCompleted">Completed:</span>
+            {{ calcCompletedItems(list) }}
           </div>
         </div>
       </div>
@@ -91,7 +103,10 @@
             mat-ripple
             [matRippleCentered]="true"
             [matRippleRadius]="20"
-            [ngClass]="{'bttn-icon--gray': !isParent && !settings.shoppingLists.childCanDeleteList}"
+            [ngClass]="{
+              'bttn-icon--gray':
+                !isParent && !settings.shoppingLists.childCanDeleteList
+            }"
             class="bttn-icon bttn-icon--red"
           >
             <ic-icon
@@ -113,7 +128,10 @@
             mat-ripple
             [matRippleCentered]="true"
             [matRippleRadius]="20"
-            [ngClass]="{'bttn-icon--gray': !isParent && !settings.shoppingLists.childCanCompleteList}"
+            [ngClass]="{
+              'bttn-icon--gray':
+                !isParent && !settings.shoppingLists.childCanCompleteList
+            }"
             class="bttn-icon bttn-icon--green"
           >
             <ic-icon
@@ -147,88 +165,98 @@
     </div>
   </div>
 
-
-    <div *ngIf="shoppingListsActive.length == 0">
-      <div class="wrapper-flex-center mt-2rem">
-        <ic-icon
-          class="no-title--icon"
-          icon="baselineRemoveShoppingCart"
-        ></ic-icon>
-      </div>
-      <div class="no-title mtb-1rem">
-        Currently you do not have any products to buy.
-      </div>
-      <div class="wrapper-flex-center mtb-2rem">
-        <div
-          (click)="onAddNewList()"
-          class="bttn bttn-primary text-center bttn-violet bttn-clickable bttn-big"
-        >
-          Create new list
-        </div>
-      </div>
-    </div>
-
-    <div
-      *ngIf="shoppingListsCompleted.length > 0"
-      (click)="showCompleteClick()"
-      mat-ripple
-      class="wrapper-flex-center box-shadow-2 border-radius-20 pointer mlr-2rem ptb-1rem plr-05rem mb-m-3rem"
-    >
-      <div class="font-size-14rem">
-        Show complete({{ shoppingListsCompleted.length }})
-      </div>
+  <div *ngIf="shoppingListsActive.length == 0">
+    <div class="wrapper-flex-center mt-2rem">
       <ic-icon
-        class="font-size-14rem ml-05rem mt-05rem"
-        icon="arrowDownAlt2"
+        class="no-title--icon"
+        icon="baselineRemoveShoppingCart"
       ></ic-icon>
     </div>
-
-
-    <div @list class="mb-2rem" *ngIf="shoppingListsCompleted.length > 0 && showComplete">
+    <div i18n class="no-title mtb-1rem">
+      Currently you do not have any products to buy.
+    </div>
+    <div class="wrapper-flex-center mtb-2rem">
       <div
-        @items
-        *ngFor="let list of shoppingListsCompleted; let i = index"
-        class="wrapper-flex-center paper pointer"
-        (click)="onListClick(list)"
+        i18n
+        (click)="onAddNewList()"
+        class="bttn bttn-primary text-center bttn-violet bttn-clickable bttn-big"
       >
-        <div class="paper-content">
+        Create new list
+      </div>
+    </div>
+  </div>
+
+  <div
+    *ngIf="shoppingListsCompleted.length > 0"
+    (click)="showCompleteClick()"
+    mat-ripple
+    class="wrapper-flex-center box-shadow-2 border-radius-20 pointer mlr-2rem ptb-1rem plr-05rem mb-m-3rem"
+  >
+    <div class="font-size-14rem">
+      <span i18n>Show complete</span>
+      ({{ shoppingListsCompleted.length }})
+    </div>
+    <ic-icon
+      class="font-size-14rem ml-05rem mt-05rem"
+      icon="arrowDownAlt2"
+    ></ic-icon>
+  </div>
+
+  <div
+    @list
+    class="mb-2rem"
+    *ngIf="shoppingListsCompleted.length > 0 && showComplete"
+  >
+    <div
+      @items
+      *ngFor="let list of shoppingListsCompleted; let i = index"
+      class="wrapper-flex-center paper pointer"
+      (click)="onListClick(list)"
+    >
+      <div class="paper-content">
+        <div class="paper-content-line">
+          <div class="wrapper-flex-center list--title">
+            {{ list.name }}
+          </div>
+          <div class="paper-content-line line-break">EMPTY</div>
           <div class="paper-content-line">
-            <div class="wrapper-flex-center list--title">
-              {{ list.name }}
-            </div>
-            <div class="paper-content-line line-break">EMPTY</div>
-            <div class="paper-content-line">
-              Created By: {{ list.createdBy.name }}
-            </div>
-            <div class="paper-content-line">
-              At: {{ list.createdAt | date: "dd/MM/yyyy" }}
-            </div>
-            <div class="paper-content-line">
-              Completed: {{ calcCompletedItems(list) }}
-            </div>
+            <span i18n="slCreatedBy">Created By:</span>
+            {{ list.createdBy.name }}
+          </div>
+          <div class="paper-content-line">
+            <span i18n="slAt">At:</span>
+            {{ list.createdAt | date: "dd/MM/yyyy" }}
+          </div>
+          <div class="paper-content-line">
+            <span i18n="slCompleted">Completed:</span>
+            {{ calcCompletedItems(list) }}
           </div>
         </div>
-        <div class="paper-delete">
+      </div>
+      <div class="paper-delete">
+        <div
+          (click)="deleteClick(list); $event.stopPropagation()"
+          class="width-100 height-100 wrapper-flex-center"
+        >
           <div
-            (click)="deleteClick(list); $event.stopPropagation()"
-            class="width-100 height-100 wrapper-flex-center"
+            mat-ripple
+            [matRippleCentered]="true"
+            [matRippleRadius]="20"
+            [ngClass]="{
+              'bttn-icon--gray':
+                !isParent && !settings.shoppingLists.childCanDeleteList
+            }"
+            class="bttn-icon bttn-icon--red"
           >
-            <div
-              mat-ripple
-              [matRippleCentered]="true"
-              [matRippleRadius]="20"
-              [ngClass]="{'bttn-icon--gray': !isParent && !settings.shoppingLists.childCanDeleteList}"
-              class="bttn-icon bttn-icon--red"
-            >
-              <ic-icon
-                class="font-size-15rem p-d-1rem p-m-05rem"
-                icon="trashOutline"
-              ></ic-icon>
-            </div>
+            <ic-icon
+              class="font-size-15rem p-d-1rem p-m-05rem"
+              icon="trashOutline"
+            ></ic-icon>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-  <div class="mt-3rem opacity-0">Unlocker</div>
+  <div class="mt-7rem"></div>
 </div>

@@ -21,11 +21,8 @@
         >
           Calendar
         </div>
-        <div
-          i18n="menu_calendar_desc"
-          class="boxes__row__box--description wrapper-flex-center"
-        >
-          {{today | date: "dd MMMM yyyy"}}
+        <div class="boxes__row__box--description wrapper-flex-center">
+          {{ today | date: "dd MMMM yyyy" }}
         </div>
       </div>
       <div
@@ -42,7 +39,7 @@
         >
           Shopping
         </div>
-        <div class="boxes__row__box--description wrapper-flex-center">
+        <div i18n class="boxes__row__box--description wrapper-flex-center">
           Complete your shopping lists
         </div>
       </div>
@@ -62,7 +59,9 @@
         >
           Chat
         </div>
-        <div class="boxes__row__box--description">Message with your family</div>
+        <div i18n class="boxes__row__box--description">
+          Send messages to your family
+        </div>
       </div>
       <div
         mat-ripple
@@ -78,7 +77,7 @@
         >
           Tasks
         </div>
-        <div class="boxes__row__box--description">
+        <div i18n class="boxes__row__box--description">
           Earn points to unlock rewards!
         </div>
       </div>
@@ -98,7 +97,7 @@
         >
           Rewards
         </div>
-        <div class="boxes__row__box--description">
+        <div i18n class="boxes__row__box--description">
           Use your points to pick rewards!
         </div>
       </div>
@@ -116,7 +115,7 @@
         >
           Family
         </div>
-        <div class="boxes__row__box--description">
+        <div i18n class="boxes__row__box--description">
           See the complete family
         </div>
       </div>
@@ -136,7 +135,10 @@
         <div class="boxes__row__box--icon">
           <ic-icon class="red" icon="shutdownIcon"></ic-icon>
         </div>
-        <div i18n="menu_logout" class="boxes__row__box--name wrapper-flex-center">
+        <div
+          i18n="menu_logout"
+          class="boxes__row__box--name wrapper-flex-center"
+        >
           Logout
         </div>
       </div>

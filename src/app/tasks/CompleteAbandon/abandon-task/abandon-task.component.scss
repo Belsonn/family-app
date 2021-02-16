@@ -18,9 +18,14 @@
     font-size: 1.1rem;
   }
   &--info {
+    display: flex;
+    align-items: center;
     color: $red-1;
     font-size: 1.2rem;
     &--points {
+      display: flex;
+      align-items: center;
+      margin: 0 0.3rem;
       font-weight: 700;
       font-size: 1.5rem;
     }

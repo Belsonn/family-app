@@ -18,20 +18,22 @@
         />
       </div>
       <div class="wrapper-flex-center flex-column heading">
-        <h2 class="heading--primary">Family Time</h2>
-        <h4 class="heading--secondary">
+        <h2 i18n class="heading--primary">Family Time</h2>
+        <h4 i18n class="heading--secondary">
           Plan events, organize tasks with your children.
         </h4>
         <div  class="custom-flex mt-4rem">
           <button
             [routerLink]="['app', 'login']"
             style="display: none;"
+            i18n
             class="bttn bttn-primary bttn-white bttn-animated bttn-big bttn-clickable custom-padding custom-margin"
           >
             Create an account
           </button>
           <button
             [routerLink]="['app', 'join']"
+            i18n
             class="bttn bttn-primary bttn-white bttn-animated bttn-big bttn-clickable custom-padding custom-margin"
           >
             Enter

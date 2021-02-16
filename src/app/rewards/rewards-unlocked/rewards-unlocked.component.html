@@ -7,7 +7,7 @@
     <div class="flex">
       <div mat-ripple [routerLink]="['', 'app', 'rewards']" class="back-button">
         <ic-icon class="back-button--icon" icon="arrowBackUp"></ic-icon>
-        <div class="back-button--back">Back</div>
+        <div i18n="backButton" class="back-button--back">Back</div>
       </div>
     </div>
     <div class="wrapper-flex-center">
@@ -15,7 +15,7 @@
         <div class="wrapper-flex-center">
           <ic-icon class="font-size-4rem" icon="trophyIcon"></ic-icon>
         </div>
-        <div class="font-size-14rem violet text-center mt-1rem">
+        <div i18n class="font-size-14rem violet text-center mt-1rem">
           Unlocked rewards
         </div>
       </div>
@@ -25,7 +25,7 @@
       <div class="wrapper-flex-center">
         <ic-icon class="font-size-2rem" icon="lightBulb"></ic-icon>
       </div>
-      <div class="mytooltip mt-1rem">
+      <div i18n class="mytooltip mt-1rem">
         You can approve awards to let your kids know you've noticed when they
         unlocked.
       </div>
@@ -45,7 +45,7 @@
           icon="womanGesturingNoLightSkinTone"
         ></ic-icon>
       </div>
-      <div class="wrapper-flex-center mt-1rem noRewards">
+      <div i18n class="wrapper-flex-center mt-1rem noRewards">
         There are no unlocked rewards.
       </div>
     </div>
@@ -97,7 +97,7 @@
                   class="font-size-15rem mr-05rem"
                   icon="checkOutlined"
                 ></ic-icon>
-                <div>Approve</div>
+                <div i18n>Approve</div>
               </div>
             </div>
           </div>
@@ -111,10 +111,8 @@
       (click)="showConfirmedClick()"
       class="flex confirm-box mb-2rem mt-1rem"
     >
-      <div class="confirm-box--name">
-        <span *ngIf="!showConfirmed">Show</span
-        ><span *ngIf="showConfirmed">Hide</span> confirmed
-      </div>
+      <div i18n *ngIf="!showConfirmed" class="confirm-box--name">Show confirmed</div>
+      <div i18n *ngIf="showConfirmed" class="confirm-box--name">Hide confirmed</div>
       <ic-icon
         [ngClass]="{
           'arrow-to-top': showConfirmed,

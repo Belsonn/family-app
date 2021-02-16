@@ -6,7 +6,7 @@
   <div class="flex">
     <div mat-ripple [routerLink]="['', 'app', 'shopping']" class="back-button">
       <ic-icon class="back-button--icon" icon="arrowBackUp"></ic-icon>
-      <div class="back-button--back">Back</div>
+      <div i18n="backButton" class="back-button--back">Back</div>
     </div>
   </div>
   <div class="wrapper-flex-center">
@@ -19,17 +19,19 @@
     <div
       (click)="onCreateClick()"
       mat-ripple
-      [ngClass]="{'bttn-gray': !isParent && !settings.shoppingLists.childCanAddItemToList}"
+      [ngClass]="{
+        'bttn-gray': !isParent && !settings.shoppingLists.childCanAddItemToList
+      }"
       class="bttn bttn-violet bttn-small bttn-clickable wrapper-flex-center mt-1rem"
     >
       <ic-icon
         class="font-size-18rem mr-05rem"
         icon="baselineAddShoppingCart"
       ></ic-icon>
-      <div class="font-size-12rem">Add new product</div>
+      <div i18n class="font-size-12rem">Add new product</div>
     </div>
   </div>
-  <div *ngIf="showInfo" class="error mtb-1rem">
+  <div i18n *ngIf="showInfo" class="error mtb-1rem">
     This list is completed and you cannot make any changes.
   </div>
   <div @list *ngIf="list && list.list.length > 0" class="mb-2rem">
@@ -90,17 +92,19 @@
                   <span *ngIf="item.details">
                     {{ item.details }}
                   </span>
-                  <span *ngIf="!item.details"> No details provided. </span>
+                  <span i18n *ngIf="!item.details"> No details provided. </span>
                 </div>
                 <div class="flex custom-flex mt-15rem">
                   <div
                     class="wrapper-flex-center flex-column box__description ml-1rem"
                   >
                     <div class="box__description-createdAt">
-                      Added: {{ item.createdAt | date: "dd/MM/yy HH:mm" }}
+                      <span i18n>Added:</span>
+                      {{ item.createdAt | date: "dd/MM/yy HH:mm" }}
                     </div>
                     <div class="box__description-createdBy">
-                      By: {{ item.createdBy.name }}
+                      <span i18n>By:</span>
+                      {{ item.createdBy.name }}
                     </div>
                   </div>
                   <div class="box__clicked-content--buttons">
@@ -110,7 +114,11 @@
                         mat-ripple
                         [matRippleCentered]="true"
                         [matRippleRadius]="20"
-                        [ngClass]="{'bttn-icon--gray': !isParent && !settings.shoppingLists.childCanEditItemOnList}"
+                        [ngClass]="{
+                          'bttn-icon--gray':
+                            !isParent &&
+                            !settings.shoppingLists.childCanEditItemOnList
+                        }"
                         class="btn bttn-icon bttn-icon--violet mr-1rem rotate"
                       >
                         <ic-icon class="icon p-1rem" icon="editIcon"></ic-icon>
@@ -120,7 +128,11 @@
                         mat-ripple
                         [matRippleCentered]="true"
                         [matRippleRadius]="20"
-                        [ngClass]="{'bttn-icon--gray': !isParent && !settings.shoppingLists.childCanEditItemOnList}"
+                        [ngClass]="{
+                          'bttn-icon--gray':
+                            !isParent &&
+                            !settings.shoppingLists.childCanEditItemOnList
+                        }"
                         class="btn bttn-icon bttn-icon--red mr-05rem rotate"
                       >
                         <ic-icon

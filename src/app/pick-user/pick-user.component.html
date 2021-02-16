@@ -5,11 +5,11 @@
   <div class="flex">
     <div mat-ripple [routerLink]="['', 'app', 'join']" class="back-button">
       <ic-icon class="back-button--icon" icon="arrowBackUp"></ic-icon>
-      <div class="back-button--back">Back</div>
+      <div i18n="backButton" class="back-button--back">Back</div>
     </div>
   </div>
   <div class="wrapper-flex-center mt-2rem">
-    <div (click)="resetUser()" class="font-size-2rem">Enter as</div>
+    <div i18n (click)="resetUser()" class="font-size-2rem">Enter as</div>
   </div>
   <div
     mat-ripple
@@ -32,10 +32,10 @@
       class="btn add-button flex"
     >
       <ic-icon class="font-size-15rem mr-1rem" icon="plusLine"></ic-icon>
-      Create new
+      <span i18n>Create new profile</span>
     </div>
   </div>
-  <div *ngIf="error" class="error mt-1rem">
+  <div i18n *ngIf="error" class="error mt-1rem">
     Wrong password. Please try again.
   </div>
   <div [ngClass]="{ animate: users.length <= 6 }" *ngIf="selectedUser">
@@ -63,7 +63,7 @@
           icon="lockPasswordLine"
         ></ic-icon>
         <mat-form-field class="form__row--form-field">
-          <mat-label>Password</mat-label>
+          <mat-label i18n="password">Password</mat-label>
           <input
             formControlName="password"
             type="password"
@@ -71,7 +71,9 @@
             matInput
             required
           />
-          <mat-error *ngIf="loggingFormGroup.controls.password.invalid"
+          <mat-error
+            i18n="passwordInfo"
+            *ngIf="loggingFormGroup.controls.password.invalid"
             >Password should have at least 6 characters</mat-error
           >
         </mat-form-field>
@@ -79,6 +81,7 @@
       <div class="form__button mt-3rem mb-1rem">
         <button
           mat-ripple
+          i18n="enter"
           (click)="onLogin()"
           class="bttn bttn-primary bttn-clickable bttn-violet bttn-big"
         >

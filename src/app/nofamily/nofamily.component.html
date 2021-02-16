@@ -3,10 +3,11 @@
     *ngIf="inviteError"
     class="wrapper-flex-center error mt-2rem mb-1rem"
     role="alert"
+    i18n
   >
     The invite code you entered is incorrect.
   </div>
-  <div class="text-center mt-3rem font-size-2rem">Join your family...</div>
+  <div i18n class="text-center mt-3rem font-size-2rem">Join your family...</div>
   <form class="form" [formGroup]="inviteFormGroup">
     <div class="form__row">
       <ic-icon
@@ -19,14 +20,14 @@
         icon="keyIcon"
       ></ic-icon>
       <mat-form-field class="form__row--form-field">
-        <mat-label>Invite code</mat-label>
+        <mat-label i18n>Invite code</mat-label>
         <input
           formControlName="inviteCode"
           minlength="6"
           maxlength="6"
           matInput
         />
-        <mat-error *ngIf="inviteFormGroup.controls.inviteCode.invalid"
+        <mat-error i18n *ngIf="inviteFormGroup.controls.inviteCode.invalid"
           >Please provide a valid invite code.</mat-error
         >
       </mat-form-field>
@@ -34,13 +35,16 @@
     <div class="form__button mt-2rem">
       <button
         (click)="onJoin()"
+        i18n
         class="bttn bttn-primary bttn-clickable bttn-violet bttn-medium"
       >
         Join
       </button>
     </div>
   </form>
-  <div class="text-center mt-7rem font-size-2rem">...or create a new one.</div>
+  <div i18n class="text-center mt-7rem font-size-2rem">
+    ...or create a new one.
+  </div>
   <form class="form" [formGroup]="familyFormGroup">
     <div class="form__row">
       <ic-icon
@@ -53,23 +57,22 @@
         icon="usergroupAddOutlined"
       ></ic-icon>
       <mat-form-field class="form__row--form-field">
-        <mat-label>Family name</mat-label>
+        <mat-label i18n>Family name</mat-label>
         <input formControlName="familyName" maxlength="20" matInput />
-        <mat-error *ngIf="familyFormGroup.controls.familyName.invalid"
+        <mat-error i18n *ngIf="familyFormGroup.controls.familyName.invalid"
           >Please provide a name of your family.</mat-error
         >
       </mat-form-field>
     </div>
     <div class="form__button mt-2rem mb-1rem">
       <button
+        i18n
         (click)="onCreate()"
-        class="bttn  bttn-primary bttn-clickable bttn-violet bttn-medium"
+        class="bttn bttn-primary bttn-clickable bttn-violet bttn-medium"
       >
         Create
       </button>
     </div>
   </form>
 </div>
-<div class="mt-3rem opacity-0">
-  Unlocker
-</div>
+<div class="mt-7rem"></div>

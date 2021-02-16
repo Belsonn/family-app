@@ -6,7 +6,7 @@
   <div class="flex">
     <div mat-ripple [routerLink]="['', 'app', 'menu']" class="back-button">
       <ic-icon class="back-button--icon" icon="arrowBackUp"></ic-icon>
-      <div class="back-button--back">Back</div>
+      <div i18n="backButton" class="back-button--back">Back</div>
     </div>
   </div>
 
@@ -15,7 +15,7 @@
       <div class="wrapper-flex-center">
         <ic-icon class="font-size-4rem" icon="trophyIcon"></ic-icon>
       </div>
-      <div class="font-size-14rem violet text-center mt-1rem">Rewards</div>
+      <div i18n class="font-size-14rem violet text-center mt-1rem">Rewards</div>
     </div>
   </div>
   <div *ngIf="isParent" class="wrapper-flex-center mt-1rem">
@@ -23,6 +23,7 @@
       <div
         [routerLink]="['', 'app', 'rewards', 'unlocked']"
         mat-ripple
+        i18n="unlockedRewards"
         class="bttn bttn-clickable bttn-violet uppercase bttn-small top-buttons--button"
       >
         Unlocked
@@ -30,6 +31,7 @@
       <div
         [routerLink]="['', 'app', 'rewards', 'add']"
         mat-ripple
+        i18n="createNewReward"
         class="bttn bttn-clickable uppercase bttn-violet bttn-small top-buttons--button"
       >
         Create new
@@ -40,17 +42,18 @@
     <button
       [routerLink]="['', 'app', 'rewards', 'my']"
       mat-ripple
+      i18n
       class="bttn bttn-clickable uppercase bttn-violet bttn-small top-buttons--button"
     >
       My rewards
     </button>
   </div>
   <div *ngIf="unlockedInfo" class="wrapper-flex-center mt-2rem">
-    <div class="infoBox">You have successfully unlocked a reward!</div>
+    <div i18n class="infoBox">You have successfully unlocked a reward!</div>
   </div>
 
   <div *ngIf="!isParent" class="wrapper-flex-center flex-column mt-1rem">
-    <div class="font-size-14rem violet font-500">You have:</div>
+    <div i18n="Masz X punktów" class="font-size-14rem violet font-500">You have:</div>
     <div class="wrapper-flex-center">
       <div class="font-size-12rem violet font-500">{{ me.points }}</div>
       <ic-icon class="font-size-2rem ml-05rem" icon="glowingStar"></ic-icon>
@@ -71,7 +74,7 @@
         icon="womanGesturingNoLightSkinTone"
       ></ic-icon>
     </div>
-    <div class="wrapper-flex-center mt-1rem noreward--info">
+    <div i18n class="wrapper-flex-center mt-1rem noreward--info">
       There are no rewards yet.
     </div>
   </div>
@@ -110,7 +113,7 @@
                 class="font-size-15rem unlockButton--icon"
                 icon="bxLockOpenAlt"
               ></ic-icon>
-              <div>Unlock reward</div>
+              <div i18n>Unlock reward</div>
             </div>
           </div>
           <div
@@ -122,7 +125,7 @@
                 class="font-size-15rem unlockButton--icon"
                 icon="bxLockAlt"
               ></ic-icon>
-              <div>Reward locked</div>
+              <div i18n>Reward locked</div>
             </div>
           </div>
         </div>

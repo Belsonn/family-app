@@ -1,14 +1,23 @@
 <mat-dialog-content>
-    <div class="wrapper-flex-center">
-        <p class="title">Confirm changes?</p>
-    </div>
-  </mat-dialog-content>
-  <mat-dialog-actions>
-      <div class="wrapper-flex-center width-100 mtb-05rem">
-          <button class="bttn bttn-clickable bttn-red bttn-small mr-1rem" [mat-dialog-close]="false">Cancel</button>
-          <button class="bttn bttn-clickable bttn-violet bttn-small ml-1rem" [mat-dialog-close]="true">
-            Confirm
-          </button>
-      </div>
-  </mat-dialog-actions>
-  
+  <div class="wrapper-flex-center">
+    <p i18n class="title">Confirm changes?</p>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <div class="wrapper-flex-center width-100 mtb-05rem">
+    <button
+      i18n="cancel"
+      class="bttn bttn-clickable bttn-red bttn-small mr-1rem"
+      [mat-dialog-close]="false"
+    >
+      Cancel
+    </button>
+    <button
+      i18n="confirm"
+      class="bttn bttn-clickable bttn-violet bttn-small ml-1rem"
+      [mat-dialog-close]="true"
+    >
+      Confirm
+    </button>
+  </div>
+</mat-dialog-actions>

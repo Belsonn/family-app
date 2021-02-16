@@ -21,7 +21,26 @@
   ></ic-icon>
   </div>
 
-  <div class="messages">
+  
+  <div *ngIf="messages.length == 0" class="messages p-1rem">
+    <div class="flex flex-column mt-4rem">
+      <div class="wrapper-flex-center">
+        <ic-icon
+          class="font-size-4rem mr-1rem"
+          icon="manGesturingNoLightSkinTone"
+        ></ic-icon>
+        <ic-icon
+          class="font-size-4rem ml-1rem"
+          icon="womanGesturingNoLightSkinTone"
+        ></ic-icon>
+      </div>
+      <div i18n class="wrapper-flex-center font-size-16rem violet text-center">
+        There are no messages yet. Start your conversation now.
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="messages.length > 0" class="messages mb-1rem">
     <div *ngFor="let message of messages; let i = index">
       <p *ngIf="i == 0" class="date-header">
         {{message.date | date: "dd MMMM"}}
@@ -92,8 +111,6 @@
     </div>
   </div>
 
-  <div style="opacity: 0" class="mt-d-3rem">Unlocker</div>
-
   <div class="sticky-input">
     <div class="flex">
       <div style="display: none;" [@inOutAnimation] *ngIf="!focusedInput" class="flex mr-1rem inputMenu">
@@ -127,3 +144,4 @@
     </div>
   </div>
 </div>
+<div style="margin-top: 3rem;" *ngIf="messages.length > 0" ></div>

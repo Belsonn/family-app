@@ -7,7 +7,7 @@
     <div class="flex">
       <div mat-ripple [routerLink]="['', 'app', 'menu']" class="back-button">
         <ic-icon class="back-button--icon" icon="arrowBackUp"></ic-icon>
-        <div class="back-button--back">Back</div>
+        <div i18n="backButton" class="back-button--back">Back</div>
       </div>
     </div>
 
@@ -24,6 +24,7 @@
         <div
           [routerLink]="['', 'app', 'tasks', 'daily']"
           mat-ripple
+          i18n
           class="bttn bttn-clickable bttn-violet uppercase bttn-small top-buttons--button"
         >
           Daily Tasks
@@ -31,6 +32,7 @@
         <div
           [routerLink]="['', 'app', 'tasks', 'add']"
           mat-ripple
+          i18n
           class="bttn bttn-clickable uppercase bttn-violet bttn-small top-buttons--button"
         >
           Create new
@@ -40,13 +42,13 @@
 
     <div class="wrapper-flex-center mt-2rem select-text">
       <mat-form-field class="select-text" appearance="outline">
-        <mat-label class="select-text">Tasks</mat-label>
+        <mat-label i18n class="select-text">Tasks</mat-label>
         <mat-select
           [(value)]="selected"
           (selectionChange)="selectChanged($event)"
           class="select-text"
         >
-          <mat-option class="select-text" [value]="'showAll'">
+          <mat-option i18n class="select-text" [value]="'showAll'">
             Show all
           </mat-option>
           <mat-option
@@ -57,7 +59,7 @@
             <span *ngIf="child._id !== me._id">
               {{ child.name }}
             </span>
-            <span *ngIf="child._id === me._id"> Mine </span>
+            <span i18n *ngIf="child._id === me._id"> Mine </span>
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -77,7 +79,7 @@
           icon="womanGesturingNoLightSkinTone"
         ></ic-icon>
       </div>
-      <div class="wrapper-flex-center mt-1rem notask--info">
+      <div i18n class="wrapper-flex-center mt-1rem notask--info">
         There are no active tasks.
       </div>
     </div>
@@ -197,9 +199,11 @@
       (click)="showCompleteClick()"
       class="flex complete-box mb-2rem"
     >
-      <div class="complete-box--name">
-        <span *ngIf="!showCompleted">Show</span
-        ><span *ngIf="showCompleted">Hide</span> completed
+      <div i18n *ngIf="!showCompleted" class="complete-box--name">
+        Show completed
+      </div>
+      <div i18n *ngIf="showCompleted" class="complete-box--name">
+        Hide completed
       </div>
       <ic-icon
         [ngClass]="{
@@ -226,7 +230,7 @@
         icon="manGesturingNoLightSkinTone"
       ></ic-icon>
     </div>
-    <div class="wrapper-flex-center mt-1rem notask--info">
+    <div i18n class="wrapper-flex-center mt-1rem notask--info">
       There are no completed tasks.
     </div>
   </div>

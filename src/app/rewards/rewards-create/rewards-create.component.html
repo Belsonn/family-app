@@ -6,7 +6,7 @@
   <div class="flex">
     <div mat-ripple [routerLink]="['', 'app', 'rewards']" class="back-button">
       <ic-icon class="back-button--icon" icon="arrowBackUp"></ic-icon>
-      <div class="back-button--back">Back</div>
+      <div i18n="backButton" class="back-button--back">Back</div>
     </div>
   </div>
 
@@ -15,10 +15,11 @@
       <div class="wrapper-flex-center">
         <ic-icon class="font-size-4rem" icon="trophyIcon"></ic-icon>
       </div>
-      <div class="wrapper-flex-center header mt-1rem">
-        <span class="whitespace" *ngIf="!editMode">New </span
-        ><span class="whitespace" *ngIf="editMode">Edit </span>
-        reward
+      <div *ngIf="editMode" i18n class="wrapper-flex-center header mt-1rem">
+        Edit reward
+      </div>
+      <div *ngIf="!editMode" i18n class="wrapper-flex-center header mt-1rem">
+        New reward
       </div>
     </div>
   </div>
@@ -29,7 +30,7 @@
       class="bttn bttn-clickable bttn-red bttn-small uppercase wrapper-flex-center"
     >
       <ic-icon class="font-size-14rem mr-05rem" icon="trashOutline"></ic-icon>
-      <div>Remove reward</div>
+      <div i18n>Remove reward</div>
     </div>
   </div>
 
@@ -49,7 +50,7 @@
         icon="textChangeCase24Regular"
       ></ic-icon>
       <mat-form-field class="form__row--form-field form-text">
-        <mat-label>Reward</mat-label>
+        <mat-label i18n>Reward</mat-label>
         <input
           matInput
           name="name"
@@ -57,21 +58,21 @@
           formControlName="name"
           required
         />
-        <mat-error *ngIf="rewardFormGroup.controls.name.invalid"
+        <mat-error i18n *ngIf="rewardFormGroup.controls.name.invalid"
           >Reward should have at least 3 characters.</mat-error
         >
       </mat-form-field>
     </div>
     <div class="wrapper-flex-center flex-column mt-1rem">
       <div class="wrapper-flex-center">
-        <div class="header">Points</div>
+        <div i18n="points" class="header">Points</div>
         <ic-icon class="font-size-2rem ml-05rem" icon="glowingStar"></ic-icon>
       </div>
       <div class="wrapper-flex-center flex-column mt-2rem">
         <div class="wrapper-flex-center">
           <ic-icon class="font-size-2rem" icon="lightBulb"></ic-icon>
         </div>
-        <div class="mytooltip mt-1rem">
+        <div i18n class="mytooltip mt-1rem">
           Your children can unlock this reward with points earned by completing
           tasks. You can decide how many points will be needed.
         </div>
@@ -120,10 +121,19 @@
     </div>
     <button
       type="submit"
+      i18n
+      *ngIf="editMode"
       class="bttn bttn-primary bttn-clickable bttn-gradient bttn-big mt-2rem"
     >
-      <span *ngIf="!editMode">Add</span
-      ><span *ngIf="editMode">Edit</span> reward
+      Edit reward
+    </button>
+    <button
+      *ngIf="!editMode"
+      type="submit"
+      i18n
+      class="bttn bttn-primary bttn-clickable bttn-gradient bttn-big mt-2rem"
+    >
+      Add reward
     </button>
   </form>
 </div>

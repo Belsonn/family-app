@@ -6,7 +6,7 @@
   <div class="flex">
     <div mat-ripple [routerLink]="['', 'app', 'rewards']" class="back-button">
       <ic-icon class="back-button--icon" icon="arrowBackUp"></ic-icon>
-      <div class="back-button--back">Back</div>
+      <div i18n="backButton" class="back-button--back">Back</div>
     </div>
   </div>
   <div class="wrapper-flex-center">
@@ -14,7 +14,7 @@
       <div class="wrapper-flex-center">
         <ic-icon class="font-size-4rem" icon="trophyIcon"></ic-icon>
       </div>
-      <div class="font-size-14rem violet text-center mt-1rem">My rewards</div>
+      <div i18n class="font-size-14rem violet text-center mt-1rem">My rewards</div>
     </div>
   </div>
 
@@ -32,7 +32,7 @@
         icon="womanGesturingNoLightSkinTone"
       ></ic-icon>
     </div>
-    <div class="wrapper-flex-center mt-1rem noreward--info">
+    <div i18n class="wrapper-flex-center mt-1rem noreward--info">
       There are no rewards yet.
     </div>
   </div>
@@ -58,14 +58,14 @@
                   class="reward--pending mr-05rem"
                   icon="dotsThreeHorizontal"
                 ></ic-icon>
-                <div class="reward--pending--text">Pending</div>
+                <div i18n class="reward--pending--text">Pending</div>
               </div>
               <div *ngIf="reward.confirmed" class="wrapper-flex-center">
                 <ic-icon
                   class="reward--approved mr-05rem"
                   icon="checkOutlined"
                 ></ic-icon>
-                <div class="reward--approved--text">Approved</div>
+                <div i18n class="reward--approved--text">Approved</div>
               </div>
             </div>
             <div class="wrapper-flex-center reward--points--wrapper">
