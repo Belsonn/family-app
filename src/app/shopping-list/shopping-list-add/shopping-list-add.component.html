@@ -20,6 +20,7 @@
     {{ list }}
   </div>
   <div
+    *ngIf="productsToShow.length > 0"
     (click)="showRecentlyClick()"
     mat-ripple
     class="wrapper-flex-center box-shadow-2 border-radius-20 mlr-2rem p-05rem flex white-background pointer mt-2rem"

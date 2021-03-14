@@ -112,6 +112,18 @@ export class ShoppingListComponent implements OnInit {
     );
   }
 
+  allItemsComplete(): boolean {
+    if (this.list.list.length == 0) {
+      return true;
+    } else {
+      let complete = true;
+      for (let i = 0; i < this.list.list.length; i++) {
+        !this.list.list[i].completedAt ? (complete = false) : null;
+      }
+      return complete;
+    }
+  }
+
   checkQueryParams() {
     this.shoppingService.mode = null;
     this.shoppingService.itemToEditIndex = null;

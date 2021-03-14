@@ -86,7 +86,7 @@
           </div>
           <div class="paper-content-line">
             <span i18n="slAt">At:</span>
-            {{ list.createdAt | date: "dd/MM/yyyy" }}
+            {{ list.createdAt | date: "shortDate" }}
           </div>
           <div class="paper-content-line">
             <span i18n="slCompleted">Completed:</span>
@@ -166,10 +166,14 @@
   </div>
 
   <div *ngIf="shoppingListsActive.length == 0">
-    <div class="wrapper-flex-center mt-2rem">
+    <div class="wrapper-flex-center">
       <ic-icon
-        class="no-title--icon"
-        icon="baselineRemoveShoppingCart"
+        class="font-size-4rem mr-1rem"
+        icon="manGesturingNoLightSkinTone"
+      ></ic-icon>
+      <ic-icon
+        class="font-size-4rem ml-1rem"
+        icon="womanGesturingNoLightSkinTone"
       ></ic-icon>
     </div>
     <div i18n class="no-title mtb-1rem">
