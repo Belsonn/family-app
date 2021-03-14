@@ -100,8 +100,7 @@ export class CalendarEventComponent implements OnInit {
 
   checkStartDate() {
     if (
-      this.calendarService.dayClicked &&
-      this.today < this.calendarService.dayClicked
+      this.calendarService.dayClicked
     ) {
       this.calendarEventFormGroup
         .get('startDate')
@@ -113,9 +112,9 @@ export class CalendarEventComponent implements OnInit {
   calcEndDate() {
     this.minEndDate = new Date();
 
-    //Setting minEnd to 1 day after start
+    //Setting minEnd to same day
     this.minEndDate.setDate(
-      this.calendarEventFormGroup.controls.startDate.value.getDate() + 1
+      this.calendarEventFormGroup.controls.startDate.value.getDate()
     );
 
     // If startDate is after endDate -> change endDate

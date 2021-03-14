@@ -26,6 +26,7 @@
     font-weight: 600;
     color: $violet-1;
     cursor: pointer;
+    text-transform: capitalize;
   }
   &--right-icon {
     color: $violet-1;
@@ -65,8 +66,11 @@
   td,
   th {
     // border: 1px solid #dee2e6;
-    padding: 1rem;
+    // padding: 1rem;
     vertical-align: center;
+  }
+  th{
+    padding: 1rem;
   }
 
   &--swipingRight {
@@ -79,13 +83,14 @@
 
 .calendar-day {
   height: 7vh;
-  // max-height: 7vh;
+  position: relative;
 
   cursor: pointer;
   &-number {
     font-weight: 600;
     text-align: center;
     margin: 0;
+    width: 100%;
   }
 }
 
@@ -126,10 +131,60 @@
     transform: translateX(-50%);
     border-radius: 100%;
     position: absolute;
-    background: #e620dc;
-    height: 4px;
-    width: 4px;
-    bottom: 130%;
+    height: 5px;
+    width: 5px;
+    top: -13px;
+    content: "";
+  }
+}
+
+.has-event-1-1{
+  &::before{
+    background: $dot-1;
+    left: 50%;
+  }
+}
+.has-event-2-1 {
+  &::before {
+    background: $dot-1;
+    left: 37%;
+  }
+}
+.has-event-2-2 {
+  &::before {
+    background: $dot-2;
+    left: 62%;
+  }
+}
+.has-event-3-1 {
+  &::before {
+    background: $dot-1;
+    left: 25%;
+  }
+}
+.has-event-3-2 {
+  &::before {
+    background: $dot-2;
+    left: 50%;
+  }
+}
+.has-event-3-3 {
+  &::before {
+    background: $dot-3;
+    left: 75%;
+  }
+}
+
+.has-event-big {
+  position: relative;
+  &::before {
+    transform: translateX(-50%);
+    border-radius: 100%;
+    position: absolute;
+    background: $dot-4;
+    height: 8px;
+    width: 8px;
+    top: -16px;
     content: "";
     left: 50%;
   }
@@ -199,7 +254,7 @@
   }
 }
 
-.bttn-icon{
+.bttn-icon {
   width: auto;
 }
 
@@ -213,6 +268,34 @@
     font-family: $font-family-2;
     font-size: 1.3rem;
     margin-top: 1.3rem;
+  }
+}
+
+@media(min-width: 450px){
+  .has-event-2-1 {
+    &::before {
+      left: 41%;
+    }
+  }
+  .has-event-2-2 {
+    &::before {
+      left: 58%;
+    }
+  }
+  .has-event-3-1 {
+    &::before {
+      left: 33%;
+    }
+  }
+  .has-event-3-2 {
+    &::before {
+      left: 50%;
+    }
+  }
+  .has-event-3-3 {
+    &::before {
+      left: 66%;
+    }
   }
 }
 

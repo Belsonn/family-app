@@ -64,12 +64,34 @@
               'active-date': c.isClicked
             }"
           >
-            <p
-              [ngClass]="{ 'has-event': c.hasEvent }"
-              class="calendar-day-number"
-            >
+            <div class="calendar-day-number">
+              <div
+                *ngIf="c.events.length == 1"
+                class="has-event has-event-1-1"
+              ></div>
+              <div
+                *ngIf="c.events.length == 2"
+                class="has-event has-event-2-1"
+              ></div>
+              <div
+                *ngIf="c.events.length == 2"
+                class="has-event has-event-2-2"
+              ></div>
+              <div
+                *ngIf="c.events.length == 3"
+                class="has-event has-event-3-1"
+              ></div>
+              <div
+                *ngIf="c.events.length == 3"
+                class="has-event has-event-3-2"
+              ></div>
+              <div
+                *ngIf="c.events.length == 3"
+                class="has-event has-event-3-3"
+              ></div>
+              <div *ngIf="c.events.length > 3" class="has-event-big"></div>
               {{ c.date.getDate() }}
-            </p>
+            </div>
           </div>
         </td>
       </tr>
@@ -77,7 +99,7 @@
   </table>
 
   <p class="day-header">
-    {{ calendarDayInstance.date | date: "dd. MMMM" }}
+    {{ calendarDayInstance.date | date: "dd MMMM" }}
   </p>
 
   <div *ngIf="calendarDayInstance.events.length > 0">
@@ -120,6 +142,7 @@
             class="wrapper-flex-center mt-05rem"
           >
             <button
+              i18n
               (click)="onEdit(event)"
               [ngClass]="{
                 'bttn-gray': !isParent && !settings.calendar.childCanEditEvents
@@ -129,6 +152,7 @@
               Edit
             </button>
             <button
+              i18n
               (click)="onDeleteConfirm(event)"
               [ngClass]="{
                 'bttn-gray':
@@ -144,14 +168,27 @@
       </div>
     </div>
   </div>
-  <div
-    *ngIf="
-      calendarDayInstance.events.length < 1 &&
-      !(calendarDayInstance.date.getTime() < today)
-    "
-    class="wrapper-flex-center flex-column pb-3"
-  >
-    <div i18n class="no-events__title">No events scheduled for this day</div>
+  <div class="wrapper-flex-center flex-column pb-3">
+    <div
+      *ngIf="
+        calendarDayInstance.events.length < 1 &&
+        !(calendarDayInstance.date.getTime() < today)
+      "
+      i18n
+      class="no-events__title"
+    >
+      No events scheduled for this day
+    </div>
+    <div
+      *ngIf="
+        calendarDayInstance.events.length < 1 &&
+        calendarDayInstance.date.getTime() < today
+      "
+      i18n
+      class="no-events__title"
+    >
+      There was no events planned this day.
+    </div>
     <button
       (click)="addEvent()"
       i18n
@@ -162,17 +199,6 @@
     >
       Add Event
     </button>
-  </div>
-  <div
-    *ngIf="
-      calendarDayInstance.events.length < 1 &&
-      calendarDayInstance.date.getTime() < today
-    "
-    class="wrapper-flex-center flex-column pb-3"
-  >
-    <div i18n class="no-events__title">
-      There was no events planned this day.
-    </div>
   </div>
 </div>
 <div class="mt-7rem"></div>
