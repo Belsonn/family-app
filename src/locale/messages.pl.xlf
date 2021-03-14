@@ -312,7 +312,7 @@
       </trans-unit>
       <trans-unit id="4bff500b453fbeeb83fd633fd92f8db8ae840055" datatype="html">
         <source>Are you sure you want to delete?</source>
-        <target>Jesteś pewny, że chcesz usunąć?</target>
+        <target>Jesteś pewny/a, że chcesz usunąć?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/common/confirm-delete-modal/confirm-delete-modal.component.html</context>
           <context context-type="linenumber">2</context>
@@ -491,20 +491,43 @@
         </context-group>
         <note priority="1" from="description">7Day</note>
       </trans-unit>
-      <trans-unit id="ea4c05412416db713ff75f3f914ab50268289f1e" datatype="html">
-        <source>No events scheduled for this day</source>
-        <target>Brak wydarzeń zaplanowanych tego dnia.</target>
+      <trans-unit id="cab1f74f1d0f7f9061a1967ff3216cdea2d97f17" datatype="html">
+        <source> There was no events planned this day. </source>
+        <target>Na ten dzień nie były zaplanowane żadne wydarzenia.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/calendar/calendar.component.html</context>
-          <context context-type="linenumber">154</context>
+          <context context-type="linenumber">173,174</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4cace7c289176caa64c27952824301b9fc20e70d" datatype="html">
+        <source> Edit </source>
+        <target>Edytuj</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/calendar/calendar.component.html</context>
+          <context context-type="linenumber">152,153</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a3cf13c419f9f37a2b338ed0617d72137051b910" datatype="html">
+        <source> Delete </source>
+        <target> Usuń </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/calendar/calendar.component.html</context>
+          <context context-type="linenumber">163,164</context>
         </context-group>
       </trans-unit>
       <trans-unit id="cab1f74f1d0f7f9061a1967ff3216cdea2d97f17" datatype="html">
         <source> There was no events planned this day. </source>
-        <target>Na ten dzień nie było zaplanowanych żadnych wydarzeń.</target>
+        <target> Nie było żadnych wydarzeń zaplanowanych tego dnia.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/calendar/calendar.component.html</context>
-          <context context-type="linenumber">173,174</context>
+          <context context-type="linenumber">186,187</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ac1bd98523ec97d3a38d16778db7f5292d6186e7" datatype="html">
+        <source> Na ten dzień nie zaplanowano żadnych wydarzeń. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/calendar/calendar.component.html</context>
+          <context context-type="linenumber">180,181</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c2f30b214cb31c742f081cbce2806e7add8d21b7" datatype="html">
@@ -932,7 +955,7 @@
       </trans-unit>
       <trans-unit id="6837ef5d5ef17e6a70fdf2b3f5cc6acd8f17ba06" datatype="html">
         <source>Are you sure you want to delete this reward?</source>
-        <target>Jesteś pewny, że chcesz usunąć tę nagrodę?</target>
+        <target>Jesteś pewny/a, że chcesz usunąć tę nagrodę?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/rewards/dialogs/confirm-delete-reward/confirm-delete-reward.component.html</context>
           <context context-type="linenumber">3</context>
@@ -1006,7 +1029,7 @@
       </trans-unit>
       <trans-unit id="97f4860493c679ce361212a9307b588430e94106" datatype="html">
         <source> Are you sure you want to approve this reward? </source>
-        <target>Jesteś pewny, że chcesz zatwierdzić tę nagrodę?</target>
+        <target>Jesteś pewny/a, że chcesz zatwierdzić tę nagrodę?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/rewards/dialogs/confirm-reward/confirm-reward.component.html</context>
           <context context-type="linenumber">3,4</context>
@@ -1034,7 +1057,7 @@
       </trans-unit>
       <trans-unit id="aa0b268ed18a4a163c2b1d4245625dfed0a8b0b0" datatype="html">
         <source>Are you sure you want to unlock this reward?</source>
-        <target>Jesteś pewny, że chcesz odblokować tę nagrodę?</target>
+        <target>Jesteś pewny/a, że chcesz odblokować tę nagrodę?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/rewards/dialogs/unlock-reward/unlock-reward.component.html</context>
           <context context-type="linenumber">2</context>
@@ -1472,7 +1495,7 @@
       </trans-unit>
       <trans-unit id="58562d37f8e2ee6b736d63f380fd430f9e4ee6c9" datatype="html">
         <source>What do you need to buy?</source>
-        <target>Co potrzebujesz kupić?</target>
+        <target>Co potrzebujesz?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shopping-list/shopping-list-add/shopping-list-add.component.html</context>
           <context context-type="linenumber">111</context>
@@ -1597,6 +1620,22 @@
           <context context-type="linenumber">35,36</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="c933b5cd9e76556e1beb39b682c2d0fc134f39cc" datatype="html">
+        <source> Clicking on the 3 dots on the right side of a product will mark the product as purchased </source>
+        <target> Kliknięcie na 3 kropki po prawej stronie produktu oznaczy go jako kupiony.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/shopping-list.component.html</context>
+          <context context-type="linenumber">42,43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9a2c105e1af7c803314c1d9dac161dcc790928d0" datatype="html">
+        <source> The shopping list is empty. </source>
+        <target>Lista zakupów jest pusta.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shopping-list/shopping-list.component.html</context>
+          <context context-type="linenumber">60,61</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="469c49e587812c1a9fd0a00f52b9ec3c1cb3b514" datatype="html">
         <source> No details provided. </source>
         <target>Nie podano szczegółów.</target>
@@ -1710,7 +1749,7 @@
       </trans-unit>
       <trans-unit id="029d202ff3afc49db542b2fc0dfaf7a4a00a96c0" datatype="html">
         <source>Are you sure you want to delete this task?</source>
-        <target>Jesteś pewny, że chcesz usunąć to zadanie?</target>
+        <target>Jesteś pewny/a, że chcesz usunąć to zadanie?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tasks/confirm-delete-task/confirm-delete-task.component.html</context>
           <context context-type="linenumber">3</context>
@@ -1718,7 +1757,7 @@
       </trans-unit>
       <trans-unit id="73c5472263bc9b34da2f378a5d47a6248e03b79f" datatype="html">
         <source>Are you sure you want to delete this daily task?</source>
-        <target>Jesteś pewny, że chcesz usunąć to codzienne zadanie?</target>
+        <target>Jesteś pewny/a, że chcesz usunąć to codzienne zadanie?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/tasks/daily-task/confirm-delete-daily-task/confirm-delete-daily-task.component.html</context>
           <context context-type="linenumber">2</context>
@@ -1748,6 +1787,22 @@
           <context context-type="linenumber">20,21</context>
         </context-group>
         <note priority="1" from="description">confirm</note>
+      </trans-unit>
+      <trans-unit id="821f8178dcc5b1133b7fbd864dad349496eb3443" datatype="html">
+        <source> New daily task </source>
+        <target>Nowe codzienne zadanie</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/daily-task/daily-task-create/daily-task-create.component.html</context>
+          <context context-type="linenumber">20,21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bdb2a2de8273cc332829ace8086f65ba6b020722" datatype="html">
+        <source> Edit daily task </source>
+        <target>Edycja codziennego zadania</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tasks/daily-task/daily-task-create/daily-task-create.component.html</context>
+          <context context-type="linenumber">23,24</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="218e96a1a939907b6e8ee00e00a3ec731b81b0b0" datatype="html">
         <source>Remove daily task</source>
