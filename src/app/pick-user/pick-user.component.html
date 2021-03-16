@@ -22,7 +22,12 @@
     </div>
     <div class="flex flex-column ml-1rem">
       <div class="box--name">{{ user.name }}</div>
-      <div class="box--year">{{ user.dateOfBirth | date: "dd/MM/yyyy" }}</div>
+      <div class="flex flex-align-center mt-05rem">
+        <div class="box--icon">
+          <ic-icon class="font-size-11rem violet" icon="birthdayCake"></ic-icon>
+        </div>
+        <div class="box--year ml-05rem violet">{{ user.dateOfBirth | date: "shortDate" }}</div>
+      </div>
     </div>
   </div>
   <div class="wrapper-flex-center mt-2rem">

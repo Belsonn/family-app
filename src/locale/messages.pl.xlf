@@ -1680,7 +1680,7 @@
           for this task.
         </source>
         <target>
-          Nie będziesz miał szansy na otrzymanie
+          Nie będziesz miał/a szansy na otrzymanie
           <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;task--info--points whitespace&quot;&gt;" />
           <x id="INTERPOLATION" equiv-text="{{ data.points }}" />
           <x id="START_TAG_IC_ICON" ctype="x-ic_icon" equiv-text="&lt;ic-icon class=&quot;font-size-15rem&quot; icon=&quot;glowingStar&quot;&gt;" />

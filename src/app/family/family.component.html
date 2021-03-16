@@ -5,7 +5,7 @@
   <div class="flex">
     <div mat-ripple [routerLink]="['', 'app', 'menu']" class="back-button">
       <ic-icon class="back-button--icon" icon="arrowBackUp"></ic-icon>
-      <div class="back-button--back">Back</div>
+      <div i18n="backButton" class="back-button--back">Back</div>
     </div>
   </div>
   <div class="wrapper-flex-center">
@@ -29,8 +29,11 @@
           </div>
           <div class="flex flex-column ml-1rem">
             <div class="box--name">{{ familyuser.name }}</div>
-            <div class="box--year">
-              {{ familyuser.dateOfBirth | date: "dd/MM/yyyy" }}
+            <div class="flex flex-align-center mt-05rem">
+              <ic-icon class="font-size-11rem violet" icon="birthdayCake"></ic-icon>
+              <div class="box--year ml-05rem violet">
+                {{ familyuser.dateOfBirth | date: "shortDate" }}
+              </div>
             </div>
           </div>
         </div>
@@ -44,4 +47,4 @@
     </div>
   </div>
 </div>
-<div class="mt-4rem"></div>
+<div class="mt-7rem"></div>

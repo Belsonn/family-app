@@ -97,7 +97,7 @@
         <div class="flex flex-column width-100">
           <div class="wrapper-flex-center">
             <div *ngIf="showDate(i, 'active')" class="date">
-              {{ task.startDate | date: "dd. MMMM" }}
+              {{ task.startDate | date: "dd MMMM" }}
             </div>
           </div>
           <div class="wrapper-flex-center">
@@ -108,7 +108,7 @@
                     {{ task.name }}
                   </div>
                   <ic-icon
-                    *ngIf="!task.dailyTask"
+                    *ngIf="!task.dailyTask && isParent"
                     (click)="editTask(task); $event.stopPropagation()"
                     class="taskbox--edit mlr-05rem"
                     icon="editIcon"

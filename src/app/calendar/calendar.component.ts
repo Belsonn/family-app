@@ -216,7 +216,7 @@ export class CalendarComponent implements OnInit {
   }
 
   public onDeleteConfirm(event: CalendarEvent) {
-    if (this.isParent || this.settings.calendar.childCanDeleteEvents){
+    if (this.isParent || this.settings.calendar.childCanDeleteEvents) {
       const dialogRef = this.dialog.open(ConfirmDeleteModalComponent, {
         autoFocus: false,
         restoreFocus: false,
@@ -331,5 +331,8 @@ export class CalendarComponent implements OnInit {
       isLastDay = true;
     }
     return isLastDay;
+  }
+  resetEvent() {
+    this.eventClicked = -1;
   }
 }
