@@ -113,11 +113,11 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   loadAudio() {
     this.messageSendSound = new Audio();
-    this.messageSendSound.src = '../../assets/MessageSend.mp3';
+    this.messageSendSound.src = './assets/MessageSend.mp3';
     this.messageSendSound.load();
 
     this.newMessageSound = new Audio();
-    this.newMessageSound.src = '../../assets/soft_notification.mp3';
+    this.newMessageSound.src = './assets/soft_notification.mp3';
     this.messageSendSound.load();
   }
 
