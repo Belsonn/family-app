@@ -66,4 +66,10 @@ export interface FamilyUserResponse {
     familyUser: FamilyUser;
   };
 }
+export interface FamilyUserResponse2 {
+  status: string;
+  data: {
+    user: FamilyUser;
+  };
+}
 

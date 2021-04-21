@@ -1,3 +1,4 @@
+import { FamilyUserResponse2 } from './../utils/family.models';
 import { SettingsService } from './../settings/settings.service';
 import { FamilyService } from './../family.service';
 import { HttpClient } from '@angular/common/http';
@@ -8,6 +9,7 @@ import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthResponse } from './../utils/authResponse.model';
 import { UserModelResponse } from './../utils/user.model';
+import { FamilyUserResponse } from '../utils/family.models';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -122,7 +124,7 @@ export class AuthService {
   }
 
   getMe() {
-    return this.http.get<UserModelResponse>(`${environment.apiURL}users/me`);
+    return this.http.get<FamilyUserResponse2>(`${environment.apiURL}familyuser/me`);
   }
 
   private saveAuthData(token: string, expirationDate: any) {

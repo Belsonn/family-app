@@ -524,10 +524,11 @@
         </context-group>
       </trans-unit>
       <trans-unit id="ac1bd98523ec97d3a38d16778db7f5292d6186e7" datatype="html">
-        <source> Na ten dzień nie zaplanowano żadnych wydarzeń. </source>
+        <source> No events scheduled for this day </source>
+        <target>Na ten dzień nie zaplanowano żadnych wydarzeń.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/calendar/calendar.component.html</context>
-          <context context-type="linenumber">180,181</context>
+          <context context-type="linenumber">181,182</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c2f30b214cb31c742f081cbce2806e7add8d21b7" datatype="html">

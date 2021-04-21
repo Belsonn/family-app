@@ -105,6 +105,9 @@ export class CalendarEventComponent implements OnInit {
       this.calendarEventFormGroup
         .get('startDate')
         .setValue(this.calendarService.dayClicked);
+      this.calendarEventFormGroup
+        .get('endDate')
+        .setValue(this.calendarService.dayClicked);
       this.calcEndDate();
     }
   }

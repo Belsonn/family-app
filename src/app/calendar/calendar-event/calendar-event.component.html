@@ -53,6 +53,7 @@
       <mat-form-field class="formField form-text mt-1rem" appearance="outline">
         <mat-label i18n="event_startDate">Start date</mat-label>
         <input
+          (change)="calcEndDate()"
           matInput
           name="startDate"
           formControlName="startDate"
