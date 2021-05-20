@@ -29,7 +29,6 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "localize": false,
-            "aot": true,
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -42,7 +41,13 @@
             "allowedCommonJsDependencies": [
               "socket.io-client",
               "socket.io-parser"
-            ]
+            ],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
