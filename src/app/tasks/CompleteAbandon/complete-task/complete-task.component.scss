@@ -11,7 +11,7 @@
     font-size: 1.6rem;
   }
   &--date {
-    text-align: left;
+    text-align: center;
     font-size: 1.3rem;
   }
   &--hours {
@@ -20,7 +20,7 @@
   &--points {
     font-size: 1.2rem;
     display: flex;
-
+    flex-direction: column;
     align-items: center;
     &-number {
       display: flex;

@@ -5,7 +5,7 @@
   height: 100%;
   width: 100%;
   background-image: $linear-gradient-180-08,
-    url(./../assets/Family-background2.jpg);
+    url("/assets/Family-background2.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -362,6 +362,10 @@
   width: 80px;
   height: 80px;
 }
+.photo-90 {
+  width: 90px;
+  height: 90px;
+}
 .photo-100 {
   width: 100px;
   height: 100px;
@@ -560,7 +564,7 @@
 @media (min-width: 800px) {
   .background {
     background-image: $linear-gradient-180-08,
-      url(./../assets/Optimized-Family-background.jpg);
+      url("/assets/Optimized-Family-background.jpg");
   }
 }
 @media (max-height: 900px) {

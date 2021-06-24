@@ -70,6 +70,10 @@ import shutdownIcon from '@iconify-icons/icons8/shutdown';
 import glowingStar from '@iconify-icons/emojione/glowing-star';
 import userEdit from '@iconify-icons/la/user-edit';
 import sliderIcon from '@iconify-icons/radix-icons/slider';
+import shiftsDay20Regular from '@iconify-icons/fluent/shifts-day-20-regular';
+import taskListSquareAdd20Regular from '@iconify-icons/fluent/task-list-square-add-20-regular';
+
+
 
 
 export const appIcons = {
@@ -143,4 +147,6 @@ export const appIcons = {
   shutdownIcon, // MENU
   userEdit, // Settings
   sliderIcon, // Settings
+  shiftsDay20Regular,
+  taskListSquareAdd20Regular, 
 };

@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatRadioModule } from '@angular/material/radio';
@@ -148,6 +149,7 @@ import { ChildrenPermissionComponent } from './settings/children-permission/chil
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatAutocompleteModule,
+    MatToolbarModule,
     NgxMaterialTimepickerModule,
     AngularColorfulModule,
     SmoothScrollModule,

@@ -4,145 +4,123 @@
 <div *ngIf="isLoading" class="spinner-wrapper">
   <mat-spinner class="spinner"></mat-spinner>
 </div>
-<div *ngIf="!isLoading">
-  <div class="boxes mt-2rem">
-    <div class="boxes__row">
-      <div
-        mat-ripple
-        class="boxes__row__box"
-        [routerLink]="['', 'app', 'calendar']"
-      >
-        <div class="boxes__row__box--icon">
-          <ic-icon icon="planner"></ic-icon>
-        </div>
-        <div
-          i18n="menu_calendar"
-          class="boxes__row__box--name wrapper-flex-center"
-        >
-          Calendar
-        </div>
-        <div class="boxes__row__box--description wrapper-flex-center">
-          {{ today | date: "dd MMMM yyyy" }}
-        </div>
+<div style="min-height: 80vh" *ngIf="!isLoading">
+  <div class="boxes">
+    <div
+      mat-ripple
+      class="boxes__row__box"
+      [routerLink]="['', 'app', 'calendar']"
+    >
+      <div class="boxes__row__box--icon">
+        <ic-icon icon="planner"></ic-icon>
       </div>
       <div
-        [routerLink]="['', 'app', 'shopping']"
-        mat-ripple
-        class="boxes__row__box"
+        i18n="menu_calendar"
+        class="boxes__row__box--name wrapper-flex-center"
       >
-        <div class="boxes__row__box--icon">
-          <ic-icon icon="shoppingCart"></ic-icon>
-        </div>
-        <div
-          i18n="menu_shoppingCart"
-          class="boxes__row__box--name wrapper-flex-center"
-        >
-          Shopping
-        </div>
-        <div i18n class="boxes__row__box--description wrapper-flex-center">
-          Complete your shopping lists
-        </div>
+        Calendar
+      </div>
+      <div class="boxes__row__box--description wrapper-flex-center">
+        {{ today | date: "dd MMMM yyyy" }}
       </div>
     </div>
-    <div class="boxes__row">
-      <div
-        mat-ripple
-        class="boxes__row__box"
-        [routerLink]="['', 'app', 'chat']"
-      >
-        <div class="boxes__row__box--icon">
-          <ic-icon icon="leftSpeechBubble"></ic-icon>
-        </div>
-        <div
-          i18n="menu_family"
-          class="boxes__row__box--name wrapper-flex-center"
-        >
-          Chat
-        </div>
-        <div i18n class="boxes__row__box--description">
-          Send messages to your family
-        </div>
+    <div
+      [routerLink]="['', 'app', 'shopping']"
+      mat-ripple
+      class="boxes__row__box"
+    >
+      <div class="boxes__row__box--icon">
+        <ic-icon icon="shoppingCart"></ic-icon>
       </div>
       <div
-        mat-ripple
-        class="boxes__row__box"
-        [routerLink]="['', 'app', 'tasks']"
+        i18n="menu_shoppingCart"
+        class="boxes__row__box--name wrapper-flex-center"
       >
-        <div class="boxes__row__box--icon">
-          <ic-icon icon="sportsMedal"></ic-icon>
-        </div>
-        <div
-          i18n="menu_tasks"
-          class="boxes__row__box--name wrapper-flex-center"
-        >
-          Tasks
-        </div>
-        <div i18n class="boxes__row__box--description">
-          Earn points to unlock rewards!
-        </div>
+        Shopping
+      </div>
+      <div i18n class="boxes__row__box--description wrapper-flex-center">
+        Complete your shopping lists
       </div>
     </div>
-    <div class="boxes__row pb-2rem">
-      <div
-        mat-ripple
-        class="boxes__row__box"
-        [routerLink]="['', 'app', 'rewards']"
-      >
-        <div class="boxes__row__box--icon">
-          <ic-icon icon="trophyIcon"></ic-icon>
-        </div>
-        <div
-          i18n="menu_rewards"
-          class="boxes__row__box--name wrapper-flex-center"
-        >
-          Rewards
-        </div>
-        <div i18n class="boxes__row__box--description">
-          Use your points to pick rewards!
-        </div>
+    <div mat-ripple class="boxes__row__box" [routerLink]="['', 'app', 'chat']">
+      <div class="boxes__row__box--icon">
+        <ic-icon icon="leftSpeechBubble"></ic-icon>
       </div>
-      <div
-        [routerLink]="['', 'app', 'family']"
-        mat-ripple
-        class="boxes__row__box"
-      >
-        <div class="boxes__row__box--icon">
-          <ic-icon icon="familyManWomanGirlBoy"></ic-icon>
-        </div>
-        <div
-          i18n="menu_family"
-          class="boxes__row__box--name wrapper-flex-center"
-        >
-          Family
-        </div>
-        <div i18n class="boxes__row__box--description">
-          See the complete family
-        </div>
+      <div i18n="menu_family" class="boxes__row__box--name wrapper-flex-center">
+        Chat
+      </div>
+      <div i18n class="boxes__row__box--description">
+        Send messages to your family
       </div>
     </div>
-    <div class="boxes__row pb-2rem">
-      <div
-        [routerLink]="['', 'app', 'settings']"
-        mat-ripple
-        class="boxes__row__box"
-      >
-        <div class="boxes__row__box--icon">
-          <ic-icon icon="settingsIcon"></ic-icon>
-        </div>
-        <div i18n="menu_settings" class="boxes__row__box--name">Settings</div>
+    <div mat-ripple class="boxes__row__box" [routerLink]="['', 'app', 'tasks']">
+      <div class="boxes__row__box--icon">
+        <ic-icon icon="sportsMedal"></ic-icon>
       </div>
-      <div mat-ripple class="boxes__row__box" (click)="onLogout()">
-        <div class="boxes__row__box--icon">
-          <ic-icon class="red" icon="shutdownIcon"></ic-icon>
-        </div>
-        <div
-          i18n="menu_logout"
-          class="boxes__row__box--name wrapper-flex-center"
-        >
-          Logout
-        </div>
+      <div i18n="menu_tasks" class="boxes__row__box--name wrapper-flex-center">
+        Tasks
+      </div>
+      <div i18n class="boxes__row__box--description">
+        Earn points to unlock rewards!
+      </div>
+    </div>
+    <div
+      mat-ripple
+      class="boxes__row__box"
+      [routerLink]="['', 'app', 'rewards']"
+    >
+      <div class="boxes__row__box--icon">
+        <ic-icon icon="trophyIcon"></ic-icon>
+      </div>
+      <div
+        i18n="menu_rewards"
+        class="boxes__row__box--name wrapper-flex-center"
+      >
+        Rewards
+      </div>
+      <div i18n class="boxes__row__box--description">
+        Use your points to pick rewards!
+      </div>
+    </div>
+    <div
+      [routerLink]="['', 'app', 'family']"
+      mat-ripple
+      class="boxes__row__box"
+    >
+      <div class="boxes__row__box--icon">
+        <ic-icon icon="familyManWomanGirlBoy"></ic-icon>
+      </div>
+      <div i18n="menu_family" class="boxes__row__box--name wrapper-flex-center">
+        Family
+      </div>
+      <div i18n class="boxes__row__box--description">
+        See the complete family
+      </div>
+    </div>
+    <div
+      [routerLink]="['', 'app', 'settings']"
+      mat-ripple
+      class="boxes__row__box"
+    >
+      <div class="boxes__row__box--icon">
+        <ic-icon icon="settingsIcon"></ic-icon>
+      </div>
+      <div i18n="menu_settings" class="boxes__row__box--name">Settings</div>
+      <div i18n class="boxes__row__box--description">
+        Change your account details
+      </div>
+    </div>
+    <div mat-ripple class="boxes__row__box" (click)="onLogout()">
+      <div class="boxes__row__box--icon">
+        <ic-icon class="red" icon="shutdownIcon"></ic-icon>
+      </div>
+      <div i18n="menu_logout" class="boxes__row__box--name wrapper-flex-center">
+        Logout
+      </div>
+      <div i18n class="boxes__row__box--description">
+        You'll be back again, right?
       </div>
     </div>
   </div>
 </div>
-<div class="mt-7rem"></div>
+<div class="mt-3rem"></div>

@@ -1,10 +1,11 @@
 /* Importing Bootstrap SCSS file. */
+@use '~@angular/material' as mat;
 @import "~bootstrap/scss/bootstrap";
 @import "~src/scss/variables.scss";
 @import '~@angular/material/theming';
 
-$custom-typography: mat-typography-config($font-family: '"Quicksand", sans-serif;');
-@include mat-core($custom-typography);
+$custom-typography: mat.define-typography-config($font-family: '"Quicksand", sans-serif;');
+@include mat.core($custom-typography);
 
 html,
 body {

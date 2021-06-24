@@ -100,3 +100,44 @@ span {
     width: 100%;
   }
 }
+@media (max-height: 750px) and (min-width: 500px) {
+  .paper {
+    width: 60%;
+    min-height: 300px;
+  }
+}
+@media (max-height: 1400px) and (min-width: 500px) {
+  .back-button {
+    margin: 0;
+  }
+  .form{
+    width: 100%;
+  }
+  .sides {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    display: flex;
+    // margin-top: 2rem;
+    justify-content: space-around;
+    align-items: flex-start;
+    // border-top: 2px solid $violet-1;
+  }
+  .side-left {
+    padding-top: 2rem;
+    width: 50%;
+    top: 10px;
+  }
+  .side-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 10px;
+    width: 70%;
+    min-height: 70vh;
+    left: 55%;
+    // border-left: 2px #d1cae3 solid;
+  }
+}

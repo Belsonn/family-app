@@ -1,205 +1,226 @@
 <div *ngIf="isLoading">
   <app-custom-loading></app-custom-loading>
 </div>
-<div *ngIf="!isLoading">
-  <div class="calendar-header">
-    <div [routerLink]="['', 'app', 'menu']" class="calendar-header--menu-icon">
-      <ic-icon icon="menuGridO"></ic-icon>
-    </div>
-    <div (click)="swipeRight()" class="calendar-header--left-icon">
-      <ic-icon icon="arrowLeftAlt2"></ic-icon>
-    </div>
-    <div (click)="setCurrentMonth()" class="calendar-header--date">
-      {{ displayedDate | date: "LLLL yyyy" }}
-    </div>
-    <div (click)="swipeLeft()" class="calendar-header--right-icon">
-      <ic-icon icon="arrowRightAlt2"></ic-icon>
-    </div>
-    <div (click)="addEvent()" class="calendar-header--add-icon">
-      <ic-icon
-        [ngClass]="{
-          gray: !isParent && !settings.calendar.childCanCreateEvents
-        }"
-        icon="plusLine"
-      ></ic-icon>
-    </div>
-  </div>
-  <table
-    (swipeleft)="swipeLeft()"
-    (swipeRight)="swipeRight()"
-    class="calendar-table"
-    [ngClass]="{
-      'calendar-table--swipingRight': swipingRight,
-      'calendar-table--swipingLeft': swipingLeft
-    }"
-    *ngIf="calendar"
-  >
-    <thead>
-      <tr>
-        <th i18n="1Day">Mo</th>
-        <th i18n="2Day">Tu</th>
-        <th i18n="3Day">We</th>
-        <th i18n="4Day">Th</th>
-        <th i18n="5Day">Fr</th>
-        <th i18n="6Day">Sa</th>
-        <th i18n="7Day">Su</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let row of calendar | chunk: 7; let i = index">
-        <td
-          matRipple
-          [matRippleCentered]="true"
-          [matRippleRadius]="15"
-          (click)="onDateClick(c)"
-          class="calendar-day"
-          [ngClass]="{ 'past-date': c.isPastDate, today: c.isToday }"
-          *ngFor="let c of row; let j = index"
+<div class="height-100" *ngIf="!isLoading">
+  <div class="sides">
+    <div class="side-left">
+      <div class="calendar-header">
+        <div
+          [routerLink]="['', 'app', 'menu']"
+          class="calendar-header--menu-icon"
         >
-          <div
-            class="calendar-day-header"
+          <ic-icon icon="menuGridO"></ic-icon>
+        </div>
+        <div (click)="swipeRight()" class="calendar-header--left-icon">
+          <ic-icon icon="arrowLeftAlt2"></ic-icon>
+        </div>
+        <div (click)="setCurrentMonth()" class="calendar-header--date">
+          {{ displayedDate | date: "LLLL yyyy" }}
+        </div>
+        <div (click)="swipeLeft()" class="calendar-header--right-icon">
+          <ic-icon icon="arrowRightAlt2"></ic-icon>
+        </div>
+        <div (click)="addEvent()" class="calendar-header--add-icon">
+          <ic-icon
             [ngClass]="{
-              'blue-date': c.isToday,
-              'not-this-month': c.date.getMonth() !== monthSelected,
-              'active-date': c.isClicked
+              gray: !isParent && !settings.calendar.childCanCreateEvents
             }"
-          >
-            <div class="calendar-day-number">
-              <div
-                *ngIf="c.events.length == 1"
-                class="has-event has-event-1-1"
-              ></div>
-              <div
-                *ngIf="c.events.length == 2"
-                class="has-event has-event-2-1"
-              ></div>
-              <div
-                *ngIf="c.events.length == 2"
-                class="has-event has-event-2-2"
-              ></div>
-              <div
-                *ngIf="c.events.length == 3"
-                class="has-event has-event-3-1"
-              ></div>
-              <div
-                *ngIf="c.events.length == 3"
-                class="has-event has-event-3-2"
-              ></div>
-              <div
-                *ngIf="c.events.length == 3"
-                class="has-event has-event-3-3"
-              ></div>
-              <div *ngIf="c.events.length > 3" class="has-event-big"></div>
-              {{ c.date.getDate() }}
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  <p class="day-header">
-    {{ calendarDayInstance.date | date: "dd MMMM" }}
-  </p>
-
-  <div *ngIf="calendarDayInstance.events.length > 0">
-    <div class="wrapper-flex-center flex-column">
-      <div
-        *ngFor="let event of calendarDayInstance.events; let i = index"
-        class="width-100"
+            icon="plusLine"
+          ></ic-icon>
+        </div>
+      </div>
+      <table
+        (swipeleft)="swipeLeft()"
+        (swipeRight)="swipeRight()"
+        class="calendar-table"
+        [ngClass]="{
+          'calendar-table--swipingRight': swipingRight,
+          'calendar-table--swipingLeft': swipingLeft
+        }"
+        *ngIf="calendar"
       >
-        <div mat-ripple class="events">
-          <div (click)="clickEvent(i)" class="events__row pointer">
-            <div class="events__row--title">{{ event.name }}</div>
-            <div class="events__row--date">
-              <span
-                ><span
-                  class="events__row--date--hours"
-                  *ngIf="isSingleDayEvent(event) || isFirstDayEvent(event)"
-                >
-                  {{ event.startDate | date: "HH:mm" }}
-                </span>
-                <span
-                  *ngIf="!isSingleDayEvent(event) && !isFirstDayEvent(event)"
-                >
-                  {{ event.startDate | date: "dd MMM" }}
-                </span>
-                -
-                <span *ngIf="isSingleDayEvent(event) || isLastDayEvent(event)">
-                  {{ event.endDate | date: "HH:mm" }}
-                </span>
-                <span
-                  *ngIf="!isSingleDayEvent(event) && !isLastDayEvent(event)"
-                >
-                  {{ event.endDate | date: "dd MMM" }}
-                </span>
-              </span>
-            </div>
-          </div>
+        <thead>
+          <tr>
+            <th i18n="1Day">Mo</th>
+            <th i18n="2Day">Tu</th>
+            <th i18n="3Day">We</th>
+            <th i18n="4Day">Th</th>
+            <th i18n="5Day">Fr</th>
+            <th i18n="6Day">Sa</th>
+            <th i18n="7Day">Su</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of calendar | chunk: 7; let i = index">
+            <td
+              matRipple
+              [matRippleCentered]="true"
+              [matRippleRadius]="15"
+              (click)="onDateClick(c)"
+              class="calendar-day"
+              [ngClass]="{ 'past-date': c.isPastDate, today: c.isToday }"
+              *ngFor="let c of row; let j = index"
+            >
+              <div
+                class="calendar-day-header"
+                [ngClass]="{
+                  'blue-date': c.isToday,
+                  'not-this-month': c.date.getMonth() !== monthSelected,
+                  'active-date': c.isClicked
+                }"
+              >
+                <div class="calendar-day-number">
+                  <div
+                    *ngIf="c.events.length == 1"
+                    class="has-event has-event-1-1"
+                  ></div>
+                  <div
+                    *ngIf="c.events.length == 2"
+                    class="has-event has-event-2-1"
+                  ></div>
+                  <div
+                    *ngIf="c.events.length == 2"
+                    class="has-event has-event-2-2"
+                  ></div>
+                  <div
+                    *ngIf="c.events.length == 3"
+                    class="has-event has-event-3-1"
+                  ></div>
+                  <div
+                    *ngIf="c.events.length == 3"
+                    class="has-event has-event-3-2"
+                  ></div>
+                  <div
+                    *ngIf="c.events.length == 3"
+                    class="has-event has-event-3-3"
+                  ></div>
+                  <div *ngIf="c.events.length > 3" class="has-event-big"></div>
+                  {{ c.date.getDate() }}
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="side-right">
+      <p class="day-header">
+        {{ calendarDayInstance.date | date: "dd MMMM" }}
+      </p>
+
+      <div class="width-100" *ngIf="calendarDayInstance.events.length > 0">
+        <div class="wrapper-flex-center width-100 flex-column">
           <div
-            (click)="resetEvent()"
-            [@upAndDown]
-            *ngIf="eventClicked == i"
-            class="wrapper-flex-center mt-05rem"
+            *ngFor="let event of calendarDayInstance.events; let i = index"
+            class="width-100"
           >
-            <button
-              i18n
-              (click)="onEdit(event)"
-              [ngClass]="{
-                'bttn-gray': !isParent && !settings.calendar.childCanEditEvents
-              }"
-              class="bttn bttn-clickable bttn-small bttn-violet mr-05rem"
-            >
-              Edit
-            </button>
-            <button
-              i18n
-              (click)="onDeleteConfirm(event)"
-              [ngClass]="{
-                'bttn-gray':
-                  !isParent && !settings.calendar.childCanDeleteEvents
-              }"
-              class="bttn bttn-clickable bttn-small bttn-red ml-05rem"
-            >
-              Delete
-            </button>
+            <div mat-ripple class="events">
+              <div (click)="clickEvent(i)" class="events__row pointer">
+                <div class="events__row--title">{{ event.name }}</div>
+                <div class="events__row--date">
+                  <span
+                    ><span
+                      class="events__row--date--hours"
+                      *ngIf="isSingleDayEvent(event) || isFirstDayEvent(event)"
+                    >
+                      {{ event.startDate | date: "HH:mm" }}
+                    </span>
+                    <span
+                      *ngIf="
+                        !isSingleDayEvent(event) && !isFirstDayEvent(event)
+                      "
+                    >
+                      {{ event.startDate | date: "dd MMM" }}
+                    </span>
+                    -
+                    <span
+                      *ngIf="isSingleDayEvent(event) || isLastDayEvent(event)"
+                    >
+                      {{ event.endDate | date: "HH:mm" }}
+                    </span>
+                    <span
+                      *ngIf="!isSingleDayEvent(event) && !isLastDayEvent(event)"
+                    >
+                      {{ event.endDate | date: "dd MMM" }}
+                    </span>
+                  </span>
+                </div>
+              </div>
+              <div
+                (click)="resetEvent()"
+                [@upAndDown]
+                *ngIf="eventClicked == i"
+                class="wrapper-flex-center mt-05rem"
+              >
+                <button
+                  i18n
+                  (click)="onEdit(event)"
+                  [ngClass]="{
+                    'bttn-gray':
+                      !isParent && !settings.calendar.childCanEditEvents
+                  }"
+                  class="bttn bttn-clickable bttn-small bttn-violet mr-05rem"
+                >
+                  Edit
+                </button>
+                <button
+                  i18n
+                  (click)="onDeleteConfirm(event)"
+                  [ngClass]="{
+                    'bttn-gray':
+                      !isParent && !settings.calendar.childCanDeleteEvents
+                  }"
+                  class="bttn bttn-clickable bttn-small bttn-red ml-05rem"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+            <hr class="events__row--break" />
           </div>
         </div>
-        <hr class="events__row--break" />
+      </div>
+      <div
+        [ngClass]="{
+          'no-events__wrapper': calendarDayInstance.events.length < 1
+        }"
+        class="wrapper-flex-center flex-column pb-3"
+      >
+        <div
+          *ngIf="
+            calendarDayInstance.events.length < 1 &&
+            !(calendarDayInstance.date.getTime() < today)
+          "
+          i18n
+          class="no-events__title"
+        >
+          No events scheduled for this day
+        </div>
+        <div
+          *ngIf="
+            calendarDayInstance.events.length < 1 &&
+            calendarDayInstance.date.getTime() < today
+          "
+          i18n
+          class="no-events__title"
+        >
+          There was no events planned this day.
+        </div>
+        <button
+          (click)="addEvent()"
+          i18n
+          [ngClass]="{
+            'bttn-gray': !isParent && !settings.calendar.childCanCreateEvents
+          }"
+          class="
+            bttn bttn-primary bttn-violet bttn-clickable bttn-medium
+            mt-2rem
+          "
+        >
+          Add Event
+        </button>
       </div>
     </div>
   </div>
-  <div class="wrapper-flex-center flex-column pb-3">
-    <div
-      *ngIf="
-        calendarDayInstance.events.length < 1 &&
-        !(calendarDayInstance.date.getTime() < today)
-      "
-      i18n
-      class="no-events__title"
-    >
-      No events scheduled for this day
-    </div>
-    <div
-      *ngIf="
-        calendarDayInstance.events.length < 1 &&
-        calendarDayInstance.date.getTime() < today
-      "
-      i18n
-      class="no-events__title"
-    >
-      There was no events planned this day.
-    </div>
-    <button
-      (click)="addEvent()"
-      i18n
-      [ngClass]="{
-        'bttn-gray': !isParent && !settings.calendar.childCanCreateEvents
-      }"
-      class="bttn bttn-primary bttn-violet bttn-clickable bttn-medium mt-2rem"
-    >
-      Add Event
-    </button>
-  </div>
 </div>
-<div class="mt-7rem"></div>
+<!-- <div class="mt-4rem"></div> -->

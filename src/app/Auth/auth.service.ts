@@ -72,11 +72,19 @@ export class AuthService {
       const expires = authInfo.expirationDate.getTime() - now.getTime();
       if (expires > 0) {
         this.token = authInfo.token;
-        this.familyService.getMeAndFamily().subscribe((res) => {
-          this.saveDataToServices(res);
-          this.isAuthenticated = true;
-          this.authStatus.next(true);
-        });
+        this.familyService.getMeAndFamily().subscribe(
+          (res) => {
+            this.saveDataToServices(res);
+            this.isAuthenticated = true;
+            this.authStatus.next(true);
+          },
+          (err) => {
+            console.log('XD');
+            this.logout();
+          }
+        );
+      } else {
+        this.logout();
       }
     }
   }
@@ -124,7 +132,9 @@ export class AuthService {
   }
 
   getMe() {
-    return this.http.get<FamilyUserResponse2>(`${environment.apiURL}familyuser/me`);
+    return this.http.get<FamilyUserResponse>(
+      `${environment.apiURL}familyUser/me`
+    );
   }
 
   private saveAuthData(token: string, expirationDate: any) {

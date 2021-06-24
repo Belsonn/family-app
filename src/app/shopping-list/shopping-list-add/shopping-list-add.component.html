@@ -2,147 +2,176 @@
   <app-custom-loading></app-custom-loading>
 </div>
 <div *ngIf="!isLoading">
-  <div class="flex">
-    <div
-      mat-ripple
-      [routerLink]="['', 'app', 'shopping', 'list']"
-      queryParamsHandling="preserve"
-      class="back-button"
-    >
-      <ic-icon class="back-button--icon" icon="arrowBackUp"></ic-icon>
-      <div i18n="backButton" class="back-button--back">Back</div>
-    </div>
-  </div>
-  <div class="wrapper-flex-center">
-    <ic-icon class="font-size-4rem" icon="shoppingCart"></ic-icon>
-  </div>
-  <div *ngIf="list" class="wrapper-flex-center font-size-14rem violet mt-1rem">
-    {{ list }}
-  </div>
-  <div
-    *ngIf="productsToShow.length > 0"
-    (click)="showRecentlyClick()"
-    mat-ripple
-    class="wrapper-flex-center box-shadow-2 border-radius-20 mlr-2rem p-05rem flex white-background pointer mt-2rem"
-  >
-    <div *ngIf="!showRecently" class="flex">
-      <div class="text-center font-size-14rem">
-        <span i18n>Show recently added</span>({{ productsToShow.length }})
+  <div class="sides">
+    <div class="side-left">
+      <div class="flex">
+        <div
+          mat-ripple
+          [routerLink]="['', 'app', 'shopping', 'list']"
+          queryParamsHandling="preserve"
+          class="back-button"
+        >
+          <ic-icon class="back-button--icon" icon="arrowBackUp"></ic-icon>
+          <div i18n="backButton" class="back-button--back">Back</div>
+        </div>
       </div>
-      <ic-icon
-        class="font-size-14rem mlr-1rem mt-05rem"
-        icon="arrowDownAlt2"
-      ></ic-icon>
-    </div>
-    <div *ngIf="showRecently" class="flex">
-      <div class="text-center font-size-14rem">
-        <span i18n>Hide recently added</span>({{ productsToShow.length }})
+      <div class="wrapper-flex-center">
+        <ic-icon class="font-size-4rem" icon="shoppingCart"></ic-icon>
       </div>
-      <ic-icon
-        class="font-size-14rem mlr-1rem mt-05rem"
-        icon="arrowUpAlt2"
-      ></ic-icon>
-    </div>
-  </div>
-  <div @list *ngIf="showRecently" class="flex flex-wrap flex-space-around">
-    <div
-      @items
-      *ngFor="let item of productsToShow; let i = index"
-      (click)="onProductClick(i)"
-      mat-ripple
-      class="width-40 box mt-1rem border-radius-20 box-shadow-2"
-    >
       <div
-        class="wrapper-flex-center width-100 height-100 font-size-12rem p-05rem violet"
+        *ngIf="list"
+        class="wrapper-flex-center font-size-14rem violet mt-1rem"
       >
-        {{ item.name }}
-        <!-- {{ item.quantity }}<span class="mlr-05rem">X</span> -->
+        {{ list }}
+      </div>
+      <div
+        *ngIf="productsToShow.length > 0"
+        (click)="showRecentlyClick()"
+        mat-ripple
+        class="
+          wrapper-flex-center
+          box-shadow-2
+          border-radius-20
+          mlr-2rem
+          p-05rem
+          flex
+          white-background
+          pointer
+          mt-2rem
+        "
+      >
+        <div *ngIf="!showRecently" class="flex">
+          <div class="text-center font-size-14rem">
+            <span i18n>Show recently added</span>({{ productsToShow.length }})
+          </div>
+          <ic-icon
+            class="font-size-14rem mlr-1rem mt-05rem"
+            icon="arrowDownAlt2"
+          ></ic-icon>
+        </div>
+        <div *ngIf="showRecently" class="flex">
+          <div class="text-center font-size-14rem">
+            <span i18n>Hide recently added</span>({{ productsToShow.length }})
+          </div>
+          <ic-icon
+            class="font-size-14rem mlr-1rem mt-05rem"
+            icon="arrowUpAlt2"
+          ></ic-icon>
+        </div>
+      </div>
+      <div @list *ngIf="showRecently" class="flex flex-wrap flex-space-around">
+        <div
+          @items
+          *ngFor="let item of productsToShow; let i = index"
+          (click)="onProductClick(i)"
+          mat-ripple
+          class="width-40 box mt-1rem border-radius-20 box-shadow-2"
+        >
+          <div
+            class="
+              wrapper-flex-center
+              width-100
+              height-100
+              font-size-12rem
+              p-05rem
+              violet
+            "
+          >
+            {{ item.name }}
+            <!-- {{ item.quantity }}<span class="mlr-05rem">X</span> -->
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-
-  <div i18n *ngIf="mode != 'edit'" class="title">Add product</div>
-  <div i18n *ngIf="mode == 'edit'" class="title">Edit product</div>
-  <form class="form" [formGroup]="addFormGroup">
-    <div class="wrapper-flex-center flex-column">
-      <div class="custom-flex width-100">
-        <div class="wrapper-flex-center width-30 mt-m-1rem">
-          <div
-            [ngClass]="{
-              'input-invalid':
-                buttonTouched && addFormGroup.controls.quantity.invalid
-            }"
-            class="box-quantity custom-flex transition"
-          >
-            <div class="flex space-between">
+    <div class="side-right">
+      <div i18n *ngIf="mode != 'edit'" class="title">Add product</div>
+      <div i18n *ngIf="mode == 'edit'" class="title">Edit product</div>
+      <form class="form" [formGroup]="addFormGroup">
+        <div class="wrapper-flex-center flex-column">
+          <div class="custom-flex width-100">
+            <div class="wrapper-flex-center width-30 mt-m-1rem">
               <div
-                (click)="onMarkClick('minus')"
-                (mousedown)="onHold('minus')"
-                (mouseup)="onStopHold()"
-                mat-ripple
-                class="box-quantity--button"
-              >
-                -
-              </div>
-              <input
                 [ngClass]="{
                   'input-invalid':
                     buttonTouched && addFormGroup.controls.quantity.invalid
                 }"
-                type="number"
-                formControlName="quantity"
-                class="custom-input-list-quantity transition"
-                (change)="checkValid()"
-              />
-              <div
-                (click)="onMarkClick('plus')"
-                (mousedown)="onHold('plus')"
-                (mouseup)="onStopHold()"
-                mat-ripple
-                class="box-quantity--button"
+                class="box-quantity custom-flex transition"
               >
-                +
+                <div class="flex space-between">
+                  <div
+                    (click)="onMarkClick('minus')"
+                    (mousedown)="onHold('minus')"
+                    (mouseup)="onStopHold()"
+                    mat-ripple
+                    class="box-quantity--button"
+                  >
+                    -
+                  </div>
+                  <input
+                    [ngClass]="{
+                      'input-invalid':
+                        buttonTouched && addFormGroup.controls.quantity.invalid
+                    }"
+                    type="number"
+                    formControlName="quantity"
+                    class="custom-input-list-quantity transition"
+                    (change)="checkValid()"
+                  />
+                  <div
+                    (click)="onMarkClick('plus')"
+                    (mousedown)="onHold('plus')"
+                    (mouseup)="onStopHold()"
+                    mat-ripple
+                    class="box-quantity--button"
+                  >
+                    +
+                  </div>
+                </div>
               </div>
+            </div>
+            <div class="width-10 flex flex-center x mlr-05rem mt-m-2rem">X</div>
+            <div class="wrapper-flex-center form-field-width mt-m-1rem">
+              <mat-form-field appearance="outline" class="width-90 mt-m-1rem mt-05rem">
+                <mat-label i18n>What do you need to buy?</mat-label>
+                <input type="text" formControlName="name" matInput required />
+                <mat-error i18n *ngIf="addFormGroup.controls.name.invalid"
+                  >Please provide a valid name.</mat-error
+                >
+              </mat-form-field>
             </div>
           </div>
         </div>
-        <div class="width-10 flex flex-center x mlr-05rem mt-m-2rem">X</div>
-        <div class="wrapper-flex-center form-field-width mt-m-1rem">
-          <mat-form-field class="width-90 mt-m-1rem mt-05rem">
-            <mat-label i18n>What do you need to buy?</mat-label>
-            <input type="text" formControlName="name" matInput required />
-            <mat-error i18n *ngIf="addFormGroup.controls.name.invalid"
-              >Please provide a valid name.</mat-error
-            >
+
+        <div class="wrapper-flex-center flex-column mt-2rem">
+          <mat-form-field appearance="outline" class="width-70 mt-05rem">
+            <mat-label i18n>Additional information</mat-label>
+            <textarea
+              matInput
+              cdkTextareaAutosize
+              formControlName="details"
+              #autosize="cdkTextareaAutosize"
+              cdkAutosizeMinRows="2"
+              cdkAutosizeMaxRows="7"
+            ></textarea>
           </mat-form-field>
         </div>
-      </div>
+        <div class="form__button mt-3rem mb-2rem">
+          <button
+            mat-ripple
+            (click)="onAdd()"
+            type="submit"
+            class="
+              bttn bttn-primary bttn-clickable bttn-gradient
+              width-70
+              ptb-05rem
+            "
+          >
+            <span i18n *ngIf="mode !== 'edit'">Add to list</span>
+            <span i18n *ngIf="mode == 'edit'">Edit</span>
+          </button>
+        </div>
+      </form>
     </div>
-
-    <div class="wrapper-flex-center flex-column mt-2rem">
-      <mat-form-field class="width-70 mt-05rem">
-        <mat-label i18n>Additional information</mat-label>
-        <textarea
-          matInput
-          cdkTextareaAutosize
-          formControlName="details"
-          #autosize="cdkTextareaAutosize"
-          cdkAutosizeMinRows="2"
-          cdkAutosizeMaxRows="7"
-        ></textarea>
-      </mat-form-field>
-    </div>
-    <div class="form__button mt-3rem mb-2rem">
-      <button
-        mat-ripple
-        (click)="onAdd()"
-        type="submit"
-        class="bttn bttn-primary bttn-clickable bttn-gradient width-70 ptb-05rem"
-      >
-        <span i18n *ngIf="mode !== 'edit'">Add to list</span>
-        <span i18n *ngIf="mode == 'edit'">Edit</span>
-      </button>
-    </div>
-  </form>
+  </div>
 </div>
-<div class="mt-7rem"></div>
+<div class="mt-3rem"></div>

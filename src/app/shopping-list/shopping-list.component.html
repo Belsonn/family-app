@@ -3,168 +3,208 @@
 </div>
 
 <div *ngIf="!isLoading">
-  <div class="flex">
-    <div mat-ripple [routerLink]="['', 'app', 'shopping']" class="back-button">
-      <ic-icon class="back-button--icon" icon="arrowBackUp"></ic-icon>
-      <div i18n="backButton" class="back-button--back">Back</div>
-    </div>
-  </div>
-  <div class="wrapper-flex-center">
-    <ic-icon class="font-size-4rem" icon="shoppingCart"></ic-icon>
-  </div>
-  <div *ngIf="list" class="wrapper-flex-center title violet mt-1rem">
-    {{ list.name }}
-  </div>
-  <div class="wrapper-flex-center mb-1rem">
-    <div
-      (click)="onCreateClick()"
-      mat-ripple
-      [ngClass]="{
-        'bttn-gray': !isParent && !settings.shoppingLists.childCanAddItemToList
-      }"
-      class="bttn bttn-violet bttn-small bttn-clickable wrapper-flex-center mt-1rem"
-    >
-      <ic-icon
-        class="font-size-18rem mr-05rem"
-        icon="baselineAddShoppingCart"
-      ></ic-icon>
-      <div i18n class="font-size-12rem">Add new product</div>
-    </div>
-  </div>
-  <div i18n *ngIf="showInfo" class="error mtb-1rem">
-    This list is completed and you cannot make any changes.
-  </div>
-  <div class="wrapper-flex-center flex-column mt-1rem" *ngIf="!showInfo && !allItemsComplete()">
-    <div class="wrapper-flex-center">
-      <ic-icon class="font-size-2rem" icon="lightBulb"></ic-icon>
-    </div>
-    <div i18n class="mytooltip mt-1rem">
-      Clicking on the 3 dots on the right side of a product will mark the product as purchased
-    </div>
-  </div>
-  <div
-  *ngIf="list.list.length == 0"
-  class="wrapper-flex-center flex-column mt-3rem"
->
-  <div class="wrapper-flex-center">
-    <ic-icon
-      class="font-size-4rem mr-1rem"
-      icon="manGesturingNoLightSkinTone"
-    ></ic-icon>
-    <ic-icon
-      class="font-size-4rem ml-1rem"
-      icon="womanGesturingNoLightSkinTone"
-    ></ic-icon>
-  </div>
-  <div i18n class="wrapper-flex-center mt-1rem emptylist">
-    The shopping list is empty.
-  </div>
-</div>
-  <div @list *ngIf="list && list.list.length > 0" class="mb-2rem mt-1rem">
-    <div @items *ngFor="let item of list.list; let i = index">
-      <div class="wrapper-flex-center flex-column">
+  <div class="sides">
+    <div class="side-left">
+      <div class="flex">
         <div
-          id="box-{{ i }}"
           mat-ripple
-          (click)="onClickItem(i)"
-          class="box btn mtb-05rem"
+          [routerLink]="['', 'app', 'shopping']"
+          class="back-button"
         >
-          <div class="flex flex-column">
-            <div class="custom-flex-2">
-              <div class="width-80-m mlr-1rem">
-                <div
-                  [ngClass]="{ 'line-through1': item.completedAt }"
-                  class="box__title width-90 wrapper-flex-center-med"
-                >
-                  {{ item.quantity }} x {{ item.name }}
-                </div>
-              </div>
-              <div class="width-20-m wrapper-flex-center">
-                <div
-                  *ngIf="!item.completedAt"
-                  mat-ripple
-                  [matRippleCentered]="true"
-                  [matRippleRadius]="20"
-                  class="wrapper-flex-center width-100 bttn-icon bttn-icon--gray"
-                  (click)="onCheck(i); $event.stopPropagation()"
-                >
-                  <ic-icon
-                    class="font-size-15rem p-d-1rem p-m-05rem"
-                    icon="dotsThreeHorizontal"
-                  ></ic-icon>
-                </div>
-                <div
-                  *ngIf="item.completedAt"
-                  mat-ripple
-                  [matRippleCentered]="true"
-                  [matRippleRadius]="20"
-                  class="wrapper-flex-center width-100 bttn-icon bttn-icon--green"
-                  (click)="onCheck(i); $event.stopPropagation()"
-                >
-                  <ic-icon
-                    class="font-size-15rem p-d-1rem p-m-05rem"
-                    icon="confirmIcon"
-                  ></ic-icon>
-                </div>
-              </div>
-            </div>
+          <ic-icon class="back-button--icon" icon="arrowBackUp"></ic-icon>
+          <div i18n="backButton" class="back-button--back">Back</div>
+        </div>
+      </div>
+      <div class="wrapper-flex-center">
+        <ic-icon class="font-size-4rem" icon="shoppingCart"></ic-icon>
+      </div>
+      <div *ngIf="list" class="wrapper-flex-center title violet mt-1rem">
+        {{ list.name }}
+      </div>
+      <div class="wrapper-flex-center mb-1rem">
+        <div
+          (click)="onCreateClick()"
+          mat-ripple
+          [ngClass]="{
+            'bttn-gray':
+              !isParent && !settings.shoppingLists.childCanAddItemToList
+          }"
+          class="
+            bttn bttn-violet bttn-small bttn-clickable
+            wrapper-flex-center
+            mt-1rem
+          "
+        >
+          <ic-icon
+            class="font-size-18rem mr-05rem"
+            icon="baselineAddShoppingCart"
+          ></ic-icon>
+          <div i18n class="font-size-12rem">Add new product</div>
+        </div>
+      </div>
+      <div i18n *ngIf="showInfo" class="error mtb-1rem">
+        This list is completed and you cannot make any changes.
+      </div>
+      <div
+        class="wrapper-flex-center flex-column mt-1rem"
+        *ngIf="!showInfo && !allItemsComplete()"
+      >
+        <div class="wrapper-flex-center">
+          <ic-icon class="font-size-2rem" icon="lightBulb"></ic-icon>
+        </div>
+        <div i18n class="mytooltip mt-1rem">
+          Clicking on the 3 dots on the right side of a product will mark the
+          product as purchased
+        </div>
+      </div>
+    </div>
+    <div class="side-right">
+      <div
+        *ngIf="list.list.length == 0"
+        class="wrapper-flex-center flex-column mt-3rem"
+      >
+        <div class="wrapper-flex-center">
+          <ic-icon
+            class="font-size-4rem mr-1rem"
+            icon="manGesturingNoLightSkinTone"
+          ></ic-icon>
+          <ic-icon
+            class="font-size-4rem ml-1rem"
+            icon="womanGesturingNoLightSkinTone"
+          ></ic-icon>
+        </div>
+        <div i18n class="wrapper-flex-center mt-1rem emptylist">
+          The shopping list is empty.
+        </div>
+      </div>
+      <div @list *ngIf="list && list.list.length > 0" class="mb-2rem mt-1rem">
+        <div @items *ngFor="let item of list.list; let i = index">
+          <div class="wrapper-flex-center flex-column">
             <div
-              *ngIf="clicked == i"
-              [@moveUpDown]
-              class="box__clicked-content mt-1rem"
+              id="box-{{ i }}"
+              mat-ripple
+              (click)="onClickItem(i)"
+              class="box btn mtb-05rem"
             >
               <div class="flex flex-column">
-                <div class="box__clicked-content--details ml-d-1rem">
-                  <span *ngIf="item.details">
-                    {{ item.details }}
-                  </span>
-                  <span i18n *ngIf="!item.details"> No details provided. </span>
-                </div>
-                <div class="flex custom-flex mt-15rem">
-                  <div
-                    class="wrapper-flex-center flex-column box__description ml-1rem"
-                  >
-                    <div class="box__description-createdAt">
-                      <span i18n>Added:</span>
-                      {{ item.createdAt | date: "short" }}
-                    </div>
-                    <div class="box__description-createdBy">
-                      <span i18n>By:</span>
-                      {{ item.createdBy.name }}
+                <div class="custom-flex-2">
+                  <div class="width-80-m mlr-1rem">
+                    <div
+                      [ngClass]="{ 'line-through1': item.completedAt }"
+                      class="box__title width-90 wrapper-flex-center-med"
+                    >
+                      {{ item.quantity }} x {{ item.name }}
                     </div>
                   </div>
-                  <div class="box__clicked-content--buttons">
-                    <div class="wrapper-flex-center ml-1rem-m">
+                  <div class="width-20-m wrapper-flex-center">
+                    <div
+                      *ngIf="!item.completedAt"
+                      mat-ripple
+                      [matRippleCentered]="true"
+                      [matRippleRadius]="20"
+                      class="
+                        wrapper-flex-center
+                        bttn-icon bttn-icon--gray
+                      "
+                      (click)="onCheck(i); $event.stopPropagation()"
+                    >
+                      <ic-icon
+                        class="font-size-15rem p-d-1rem p-m-05rem"
+                        icon="dotsThreeHorizontal"
+                      ></ic-icon>
+                    </div>
+                    <div
+                      *ngIf="item.completedAt"
+                      mat-ripple
+                      [matRippleCentered]="true"
+                      [matRippleRadius]="20"
+                      class="
+                        wrapper-flex-center
+                        bttn-icon bttn-icon--green
+                      "
+                      (click)="onCheck(i); $event.stopPropagation()"
+                    >
+                      <ic-icon
+                        class="font-size-15rem p-d-1rem p-m-05rem"
+                        icon="confirmIcon"
+                      ></ic-icon>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  *ngIf="clicked == i"
+                  [@moveUpDown]
+                  class="box__clicked-content mt-1rem"
+                >
+                  <div class="flex flex-column">
+                    <div class="box__clicked-content--details ml-d-1rem">
+                      <span *ngIf="item.details">
+                        {{ item.details }}
+                      </span>
+                      <span i18n *ngIf="!item.details">
+                        No details provided.
+                      </span>
+                    </div>
+                    <div class="flex custom-flex mt-15rem">
                       <div
-                        (click)="onEdit(i); $event.stopPropagation()"
-                        mat-ripple
-                        [matRippleCentered]="true"
-                        [matRippleRadius]="20"
-                        [ngClass]="{
-                          'bttn-icon--gray':
-                            !isParent &&
-                            !settings.shoppingLists.childCanEditItemOnList
-                        }"
-                        class="btn bttn-icon bttn-icon--violet mr-1rem rotate"
+                        class="
+                          wrapper-flex-center
+                          flex-column
+                          box__description
+                          ml-1rem
+                        "
                       >
-                        <ic-icon class="icon p-1rem" icon="editIcon"></ic-icon>
+                        <div class="box__description-createdAt">
+                          <span i18n>Added:</span>
+                          {{ item.createdAt | date: "short" }}
+                        </div>
+                        <div class="box__description-createdBy">
+                          <span i18n>By:</span>
+                          {{ item.createdBy.name }}
+                        </div>
                       </div>
-                      <div
-                        (click)="onDeleteClick(i); $event.stopPropagation()"
-                        mat-ripple
-                        [matRippleCentered]="true"
-                        [matRippleRadius]="20"
-                        [ngClass]="{
-                          'bttn-icon--gray':
-                            !isParent &&
-                            !settings.shoppingLists.childCanEditItemOnList
-                        }"
-                        class="btn bttn-icon bttn-icon--red mr-05rem rotate"
-                      >
-                        <ic-icon
-                          class="icon p-1rem"
-                          icon="trashOutline"
-                        ></ic-icon>
+                      <div class="box__clicked-content--buttons">
+                        <div class="wrapper-flex-center ml-1rem-m">
+                          <div
+                            (click)="onEdit(i); $event.stopPropagation()"
+                            mat-ripple
+                            [matRippleCentered]="true"
+                            [matRippleRadius]="20"
+                            [ngClass]="{
+                              'bttn-icon--gray':
+                                !isParent &&
+                                !settings.shoppingLists.childCanEditItemOnList
+                            }"
+                            class="
+                              btn
+                              bttn-icon bttn-icon--violet
+                              mr-1rem
+                              rotate
+                            "
+                          >
+                            <ic-icon
+                              class="icon p-1rem"
+                              icon="editIcon"
+                            ></ic-icon>
+                          </div>
+                          <div
+                            (click)="onDeleteClick(i); $event.stopPropagation()"
+                            mat-ripple
+                            [matRippleCentered]="true"
+                            [matRippleRadius]="20"
+                            [ngClass]="{
+                              'bttn-icon--gray':
+                                !isParent &&
+                                !settings.shoppingLists.childCanEditItemOnList
+                            }"
+                            class="btn bttn-icon bttn-icon--red mr-05rem rotate"
+                          >
+                            <ic-icon
+                              class="icon p-1rem"
+                              icon="trashOutline"
+                            ></ic-icon>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -177,4 +217,4 @@
     </div>
   </div>
 </div>
-<div class="mt-7rem"></div>
+<div class="mt-3rem"></div>

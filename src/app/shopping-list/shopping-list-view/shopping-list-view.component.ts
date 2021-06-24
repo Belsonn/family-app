@@ -52,7 +52,7 @@ import { Settings } from 'src/app/utils/settings.models';
       ]),
     ]),
     trigger('list', [
-      transition(':enter', [query('@items', stagger(300, animateChild()))]),
+      transition(':enter', [query('@items', stagger(150, animateChild()))]),
     ]),
   ],
 })
@@ -74,7 +74,6 @@ export class ShoppingListViewComponent implements OnInit {
 
   isParent: boolean;
   settings: Settings;
-
 
   @ViewChildren('inputName') inputNames: QueryList<ElementRef>;
   @ViewChildren('list') DOMlists: QueryList<ElementRef>;
@@ -99,7 +98,6 @@ export class ShoppingListViewComponent implements OnInit {
   }
 
   getLists() {
-
     // Init List
     this.shoppingListsActive = [];
     this.shoppingListsCompleted = [];
@@ -129,24 +127,17 @@ export class ShoppingListViewComponent implements OnInit {
   }
 
   onListClick(list: ShoppingList) {
-    // this.shoppingService.listClicked = this.shoppingLists[index];
-    this.router.navigate(['', 'app', 'shopping', 'list'], {
-      queryParams: { id: list._id },
-    });
+    if (!this.editMode) {
+      // this.shoppingService.listClicked = this.shoppingLists[index];
+      this.router.navigate(['', 'app', 'shopping', 'list'], {
+        queryParams: { id: list._id },
+      });
+    }
   }
 
   showCompleteClick() {
     if (!this.showComplete) {
       this.showComplete = !this.showComplete;
-      this.changeDetector.detectChanges();
-      let scroll = 340;
-      this.DOMlists.forEach((el) => {
-        scroll += el.nativeElement.offsetHeight;
-      });
-      if (this.DOMlists.length == 0) {
-        scroll += 200;
-      }
-      this.familyService.scrollSub.next({ top: scroll, duration: 1000 });
     } else {
       this.showComplete = !this.showComplete;
       this.familyService.scrollSub.next({ top: 0, duration: 1000 });
@@ -205,7 +196,8 @@ export class ShoppingListViewComponent implements OnInit {
     }
   }
   onAddNewList() {
-    if(!this.isParent && !this.settings.shoppingLists.childCanCreateList){
+    console.log(this.editMode);
+    if (!this.isParent && !this.settings.shoppingLists.childCanCreateList) {
       return;
     }
     if (this.editMode != null) {
@@ -247,7 +239,7 @@ export class ShoppingListViewComponent implements OnInit {
   }
 
   deleteClick(list: ShoppingList) {
-    if(!this.isParent && !this.settings.shoppingLists.childCanDeleteList){
+    if (!this.isParent && !this.settings.shoppingLists.childCanDeleteList) {
       return;
     }
     const dialogRef = this.dialog.open(ConfirmDeleteModalComponent, {
@@ -278,9 +270,12 @@ export class ShoppingListViewComponent implements OnInit {
   }
 
   onCompleteClick(list: ShoppingList) {
-    if (list.completedAt ||(!this.isParent && !this.settings.shoppingLists.childCanCompleteList)){
+    if (
+      list.completedAt ||
+      (!this.isParent && !this.settings.shoppingLists.childCanCompleteList)
+    ) {
       return;
-    } 
+    }
     const dialogRef = this.dialog.open(CompleteConfirmModalComponent, {
       autoFocus: false,
     });

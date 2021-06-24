@@ -2,102 +2,127 @@
   <app-custom-loading></app-custom-loading>
 </div>
 <div *ngIf="!isLoading">
-  <div class="flex">
-    <div mat-ripple [routerLink]="['', 'app', 'settings']" class="back-button">
-      <ic-icon class="back-button--icon" icon="arrowBackUp"></ic-icon>
-      <div i18n="backButton" class="back-button--back">Back</div>
-    </div>
-  </div>
-  <div class="wrapper-flex-center">
-    <img src="{{ familyUser.photo }}" class="photo photo-150" alt="" />
-  </div>
+  <div class="sides">
+    <div class="side-left">
+      <div class="flex">
+        <div
+          mat-ripple
+          [routerLink]="['', 'app', 'settings']"
+          class="back-button"
+        >
+          <ic-icon class="back-button--icon" icon="arrowBackUp"></ic-icon>
+          <div i18n="backButton" class="back-button--back">Back</div>
+        </div>
+      </div>
+      <div class="wrapper-flex-center mt-3rem">
+        <img src="{{ familyUser.photo }}" class="photo photo-150" alt="" />
+      </div>
 
-  <div class="wrapper-flex-center mt-1rem">
-    <form [formGroup]="photoFormGroup">
-      <label
-        mat-ripple
-        for="file-upload"
-        class="violet photo-upload border-radius-20 flex flex-align-center"
-      >
-        <ic-icon class="font-size-2rem mr-05rem" icon="cameraChange"></ic-icon>
-        <span i18n>Update photo</span>
-      </label>
-      <input
-        (change)="onImageUpload($event.target.files[0])"
-        id="file-upload"
-        formControlName="photo"
-        type="file"
-        accept=".jpg,.jpeg,.png"
-      />
-    </form>
+      <div class="wrapper-flex-center mt-1rem">
+        <form [formGroup]="photoFormGroup">
+          <label
+            mat-ripple
+            for="file-upload"
+            class="violet photo-upload border-radius-20 flex flex-align-center"
+          >
+            <ic-icon
+              class="font-size-2rem mr-05rem"
+              icon="cameraChange"
+            ></ic-icon>
+            <span i18n>Update photo</span>
+          </label>
+          <input
+            (change)="onImageUpload($event.target.files[0])"
+            id="file-upload"
+            formControlName="photo"
+            type="file"
+            accept=".jpg,.jpeg,.png"
+          />
+        </form>
+      </div>
+      <div class="wrapper-flex-center">
+        <div class="icons-container">
+          <div *ngFor="let icon of icons">
+            <img
+              (click)="onIconSet(icon)"
+              class="icon"
+              src="{{ icon.file }}"
+              alt="Icon"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="side-right">
+      <form class="form" [formGroup]="editFormGroup">
+        <div class="form__row">
+          <ic-icon
+            [ngClass]="{
+              'form__row--icon--red':
+                editFormGroup.controls.name.invalid &&
+                editFormGroup.controls.name.touched
+            }"
+            class="form__row--icon"
+            icon="userOutlined"
+          ></ic-icon>
+          <mat-form-field appearance="outline" class="form__row--form-field">
+            <mat-label i18n="firstName">Your first name</mat-label>
+            <input
+              formControlName="name"
+              minlength="3"
+              maxlength="20"
+              matInput
+              required
+            />
+            <mat-error i18n *ngIf="editFormGroup.controls.name.invalid"
+              >Name should have at least 3 characters</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div class="form__row">
+          <ic-icon
+            [ngClass]="{
+              'form__row--icon--red':
+                editFormGroup.controls.dateOfBirth.invalid &&
+                editFormGroup.controls.dateOfBirth.touched
+            }"
+            class="form__row--icon"
+            icon="birthdayCake"
+          ></ic-icon>
+          <mat-form-field appearance="outline" class="form__row--form-field">
+            <mat-label i18n>Date of birth</mat-label>
+            <input
+              formControlName="dateOfBirth"
+              matInput
+              [matDatepicker]="dateOfBirth"
+              readonly
+              required
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="dateOfBirth"
+            ></mat-datepicker-toggle>
+            <mat-datepicker
+              #dateOfBirth
+              startView="multi-year"
+              disabled="false"
+            ></mat-datepicker>
+            <mat-error i18n *ngIf="editFormGroup.controls.dateOfBirth.invalid"
+              >Please provide date of birth.</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div class="wrapper-flex-center mt-2rem">
+          <button
+            (click)="onUpdate()"
+            i18n
+            class="bttn bttn-primary bttn-violet bttn-clickable bttn-medium"
+          >
+            Update
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
-  <form class="form" [formGroup]="editFormGroup">
-    <div class="form__row">
-      <ic-icon
-        [ngClass]="{
-          'form__row--icon--red':
-            editFormGroup.controls.name.invalid &&
-            editFormGroup.controls.name.touched
-        }"
-        class="form__row--icon"
-        icon="userOutlined"
-      ></ic-icon>
-      <mat-form-field class="form__row--form-field">
-        <mat-label i18n="firstName">Your first name</mat-label>
-        <input
-          formControlName="name"
-          minlength="3"
-          maxlength="20"
-          matInput
-          required
-        />
-        <mat-error i18n *ngIf="editFormGroup.controls.name.invalid"
-          >Name should have at least 3 characters</mat-error
-        >
-      </mat-form-field>
-    </div>
-    <div class="form__row">
-      <ic-icon
-        [ngClass]="{
-          'form__row--icon--red':
-            editFormGroup.controls.dateOfBirth.invalid &&
-            editFormGroup.controls.dateOfBirth.touched
-        }"
-        class="form__row--icon"
-        icon="birthdayCake"
-      ></ic-icon>
-      <mat-form-field class="form__row--form-field">
-        <mat-label i18n>Date of birth</mat-label>
-        <input
-          formControlName="dateOfBirth"
-          matInput
-          [matDatepicker]="dateOfBirth"
-          readonly
-          required
-        />
-        <mat-datepicker-toggle
-          class="font-size-2rem"
-          matSuffix
-          [for]="dateOfBirth"
-        ></mat-datepicker-toggle>
-        <mat-datepicker
-          #dateOfBirth
-          startView="multi-year"
-          disabled="false"
-        ></mat-datepicker>
-        <mat-error i18n *ngIf="editFormGroup.controls.dateOfBirth.invalid"
-          >Please provide date of birth.</mat-error
-        >
-      </mat-form-field>
-    </div>
-    <div class="wrapper-flex-center mt-2rem">
-      <button
-        (click)="onUpdate()"
-        i18n
-        class="bttn bttn-primary bttn-violet bttn-clickable bttn-medium"
-      >
-        Update
-      </button>
-    </div>
-  </form>
+  <div class="mt-3rem"></div>
 </div>

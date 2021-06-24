@@ -1,3 +1,4 @@
+import { IconResponse } from './utils/files.models';
 import {
   Family,
   FamilyResponse,
@@ -10,9 +11,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { Subject } from 'rxjs';
-import {
-  SmoothScrollToOptions,
-} from 'ngx-scrollbar/smooth-scroll';
+import { SmoothScrollToOptions } from 'ngx-scrollbar/smooth-scroll';
 
 @Injectable({ providedIn: 'root' })
 export class FamilyService {
@@ -23,7 +22,7 @@ export class FamilyService {
 
   scrollSub = new Subject<SmoothScrollToOptions>();
   scrollbarSub = new Subject<boolean>();
-  
+
   containerHeight: number;
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -42,6 +41,13 @@ export class FamilyService {
     );
   }
 
+  getMe(){
+    return this.http.get<FamilyUserResponse>(`${environment.apiURL}familyUser/me`)
+  }
+
+  getMyFamily(){
+    return this.http.get<FamilyResponse>(`${environment.apiURL}family/me`)
+  }
   updateMe(updateInfo) {
     return this.http.patch<FamilyUserResponse>(
       `${environment.apiURL}familyUser/updateMe`,
@@ -62,5 +68,7 @@ export class FamilyService {
     });
   }
 
-
+  getIcons() {
+    return this.http.get<IconResponse>(`${environment.apiURL}files/icons`);
+  }
 }

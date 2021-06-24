@@ -54,7 +54,7 @@
   table-layout: fixed;
   width: 100%;
   max-width: 100%;
-  margin: 2rem 0;
+  margin: 3rem 0;
   border: 1px solid #dee2e6;
   background-color: #fff;
   thead th {
@@ -82,7 +82,7 @@
 }
 
 .calendar-day {
-  height: 7vh;
+  height: 8vh;
   position: relative;
 
   cursor: pointer;
@@ -133,7 +133,7 @@
     position: absolute;
     height: 5px;
     width: 5px;
-    top: -13px;
+    top: -10px;
     content: "";
   }
 }
@@ -300,6 +300,43 @@
     &::before {
       left: 66%;
     }
+  }
+}
+
+@media (max-height: 1400px) and (min-width: 500px) {
+  .sides {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start
+  }
+  .side-left,
+  .side-right {
+    width: 45%;
+  }
+
+  .side-left{
+    position: sticky;
+    width: 40%;
+    // margin-top: 45px;
+    top: 45px;
+  }
+  .side-right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 70vh;
+    left: 55%;
+    // margin-top: 2rem;
+  }
+  .day-header{
+    display: none;
+  }
+  .no-events__wrapper{
+    height: 100%;
   }
 }
 

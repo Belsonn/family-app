@@ -13,7 +13,7 @@
 .taskbox {
   margin: 0.5rem;
   width: 80%;
-  box-shadow: $box-shadow-primary;
+  box-shadow: $box-shadow-3;
   border-radius: 20px;
   padding: 1rem;
   &--title {
@@ -49,10 +49,10 @@
   &::after {
     content: "";
     display: inline-block;
-    height: 2px;
+    height: 1px;
     position: relative;
     vertical-align: middle;
-    width: 50%;
+    width: 15%;
   }
   &::before {
     // background-color: $linear-gradient-90-1-1half;
@@ -68,7 +68,7 @@
 }
 
 .childBox {
-  padding: 0.5rem;
+  padding: 0.8rem;
   &--checkMark {
     font-size: 2rem;
     color: $green;
@@ -111,8 +111,27 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  &--button{
+  &--button {
     margin-top: 1rem;
+  }
+}
+
+.side-left__button {
+  padding: 0.5rem;
+  box-shadow: $box-shadow-secondary;
+  background: $violet-1-dark;
+  border-radius: 1rem;
+  cursor: pointer;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  &--icon {
+    color: white;
+  }
+  &--text {
+    // margin-top: 1rem;
+    text-align: center;
+    color: white;
   }
 }
 
@@ -123,5 +142,34 @@
     &--button {
       margin-top: 1rem;
     }
+  }
+}
+@media (max-height: 1400px) and (min-width: 500px) {
+  .back-button {
+    margin: 0;
+  }
+  .sides {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    display: flex;
+    // margin-top: 2rem;
+    justify-content: space-around;
+    align-items: flex-start;
+    // border-top: 2px solid $violet-1;
+  }
+  .side-left {
+    // padding-top: 2rem;
+    position: sticky;
+    width: 25%;
+    top: 10px;
+  }
+  .side-right {
+    width: 70%;
+    position: sticky;
+    height: 90%;
+    left: 55%;
+    border-left: 2px #d1cae3 solid;
+    top: 10%;
   }
 }

@@ -25,7 +25,7 @@ export class ChildrenPermissionComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading = true;
     this.authService.getMe().subscribe((res) => {
-      if (res.data.user.role == 'child')
+      if (res.data.familyUser.role == 'child')
         this.router.navigate(['', 'app', 'settings']);
     });
     this.settings = this.settingsService.settings;

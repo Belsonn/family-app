@@ -1,6 +1,6 @@
 @import "~src/scss/main.scss";
 
-.title{
+.title {
   font-size: 1.6rem;
   font-weight: 500;
   letter-spacing: 1px;
@@ -37,12 +37,12 @@
   }
 }
 
-.custom-flex{
+.custom-flex {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.custom-flex-2{
+.custom-flex-2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -53,21 +53,20 @@
   color: $violet-1;
 }
 
-.width-80-m{
+.width-80-m {
   width: 80%;
 }
 
-.width-20-m{
+.width-20-m {
   width: 20%;
 }
 
-
-.custom-btn{
+.custom-btn {
   background: $pink-1;
   color: white;
 }
 
-.btn{
+.btn {
   padding: 0.3rem 0.75rem;
 }
 
@@ -83,33 +82,62 @@
   background: $linear-gradient-90-1;
 }
 
-@media(max-width: 420px){
-  .custom-flex{
+@media (max-width: 420px) {
+  .custom-flex {
     justify-content: center;
     flex-direction: column-reverse;
   }
-  .custom-flex-2{
+  .custom-flex-2 {
     flex-direction: column;
     justify-content: flex-start;
   }
 
-  .width-80-m{
+  .width-80-m {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  
-  .width-20-m{
+
+  .width-20-m {
     width: 100%;
     margin-top: 0.7rem;
   }
-  .ml-1rem-m{
+  .ml-1rem-m {
     margin-left: 1rem;
   }
-  .box__clicked-content--details{
+  .box__clicked-content--details {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+}
+@media (max-height: 1400px) and (min-width: 500px) {
+  .back-button {
+    margin: 0;
+  }
+  .sides {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    display: flex;
+    // margin-top: 2rem;
+    justify-content: space-around;
+    align-items: flex-start;
+    // border-top: 2px solid $violet-1;
+  }
+  .side-left {
+    padding-top: 2rem;
+    position: sticky;
+    width: 40%;
+    top: 10px;
+  }
+  .side-right {
+    padding: 1rem;
+    width: 70%;
+    min-height: 80vh;
+    left: 55%;
+    // border-left: 2px #d1cae3 solid;
+    top: 10%;
   }
 }

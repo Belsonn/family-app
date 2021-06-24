@@ -6,27 +6,27 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-family',
   templateUrl: './family.component.html',
-  styleUrls: ['./family.component.scss']
+  styleUrls: ['./family.component.scss'],
 })
 export class FamilyComponent implements OnInit {
-
   isLoading = false;
 
-  family: Family
+  family: Family;
 
-
-  constructor(private familyService : FamilyService, private router : Router) { }
+  constructor(private familyService: FamilyService, private router: Router) {}
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.family = this.familyService.family;
-    this.isLoading = false;
-  
-  }
-  onEdit(){
-    this.router.navigate(['', 'app', 'updateAccount'])
+    this.getFamily();
   }
 
-
-
+  getFamily() {
+    this.familyService.getMyFamily().subscribe((res) => {
+      this.family = res.data.family;
+      this.isLoading = false;
+    });
+  }
+  onEdit() {
+    this.router.navigate(['', 'app', 'updateAccount']);
+  }
 }

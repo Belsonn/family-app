@@ -3,129 +3,158 @@
 </div>
 
 <div *ngIf="!isLoading">
-  <div class="flex">
-    <div mat-ripple [routerLink]="['', 'app', 'menu']" class="back-button">
-      <ic-icon class="back-button--icon" icon="arrowBackUp"></ic-icon>
-      <div i18n="backButton" class="back-button--back">Back</div>
-    </div>
-  </div>
+  <div class="sides">
+    <div class="side-left">
+      <div class="flex">
+        <div mat-ripple [routerLink]="['', 'app', 'menu']" class="back-button">
+          <ic-icon class="back-button--icon" icon="arrowBackUp"></ic-icon>
+          <div i18n="backButton" class="back-button--back">Back</div>
+        </div>
+      </div>
 
-  <div class="wrapper-flex-center">
-    <div class="flex flex-column">
       <div class="wrapper-flex-center">
-        <ic-icon class="font-size-4rem" icon="trophyIcon"></ic-icon>
+        <div class="flex flex-column">
+          <div class="wrapper-flex-center">
+            <ic-icon class="font-size-4rem" icon="trophyIcon"></ic-icon>
+          </div>
+          <div i18n class="font-size-14rem violet text-center mt-1rem">
+            Rewards
+          </div>
+        </div>
       </div>
-      <div i18n class="font-size-14rem violet text-center mt-1rem">Rewards</div>
+      <div *ngIf="isParent" class="wrapper-flex-center mt-1rem">
+        <div class="flex flex-align-center width-80 top-buttons">
+          <div
+            [routerLink]="['', 'app', 'rewards', 'unlocked']"
+            mat-ripple
+            i18n="unlockedRewards"
+            class="
+              bttn bttn-clickable bttn-violet
+              uppercase
+              bttn-small
+              top-buttons--button
+            "
+          >
+            Unlocked
+          </div>
+          <div
+            [routerLink]="['', 'app', 'rewards', 'add']"
+            mat-ripple
+            i18n="createNewReward"
+            class="
+              bttn bttn-clickable
+              uppercase
+              bttn-violet bttn-small
+              top-buttons--button
+            "
+          >
+            Create new
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!isParent" class="wrapper-flex-center mt-1rem">
+        <button
+          [routerLink]="['', 'app', 'rewards', 'my']"
+          mat-ripple
+          i18n
+          class="
+            bttn bttn-clickable
+            uppercase
+            bttn-violet bttn-small
+            top-buttons--button
+          "
+        >
+          My rewards
+        </button>
+      </div>
     </div>
-  </div>
-  <div *ngIf="isParent" class="wrapper-flex-center mt-1rem">
-    <div class="flex flex-align-center width-80 top-buttons">
+    <div class="side-right">
+      <div *ngIf="unlockedInfo" class="wrapper-flex-center mt-2rem">
+        <div i18n class="infoBox">You have successfully unlocked a reward!</div>
+      </div>
+
+      <div *ngIf="!isParent" class="wrapper-flex-center flex-column mt-1rem">
+        <div i18n="Masz X punktów" class="font-size-14rem violet font-500">
+          You have:
+        </div>
+        <div class="wrapper-flex-center">
+          <div class="font-size-12rem violet font-500">{{ me.points }}</div>
+          <ic-icon class="font-size-2rem ml-05rem" icon="glowingStar"></ic-icon>
+        </div>
+      </div>
+
       <div
-        [routerLink]="['', 'app', 'rewards', 'unlocked']"
-        mat-ripple
-        i18n="unlockedRewards"
-        class="bttn bttn-clickable bttn-violet uppercase bttn-small top-buttons--button"
+        *ngIf="basicRewards.length == 0"
+        class="wrapper-flex-center flex-column mt-2rem"
       >
-        Unlocked
+        <div class="wrapper-flex-center">
+          <ic-icon
+            class="font-size-4rem mr-1rem"
+            icon="manGesturingNoLightSkinTone"
+          ></ic-icon>
+          <ic-icon
+            class="font-size-4rem ml-1rem"
+            icon="womanGesturingNoLightSkinTone"
+          ></ic-icon>
+        </div>
+        <div i18n class="wrapper-flex-center mt-1rem noreward--info">
+          There are no rewards yet.
+        </div>
       </div>
-      <div
-        [routerLink]="['', 'app', 'rewards', 'add']"
-        mat-ripple
-        i18n="createNewReward"
-        class="bttn bttn-clickable uppercase bttn-violet bttn-small top-buttons--button"
-      >
-        Create new
-      </div>
-    </div>
-  </div>
-  <div *ngIf="!isParent" class="wrapper-flex-center mt-1rem">
-    <button
-      [routerLink]="['', 'app', 'rewards', 'my']"
-      mat-ripple
-      i18n
-      class="bttn bttn-clickable uppercase bttn-violet bttn-small top-buttons--button"
-    >
-      My rewards
-    </button>
-  </div>
-  <div *ngIf="unlockedInfo" class="wrapper-flex-center mt-2rem">
-    <div i18n class="infoBox">You have successfully unlocked a reward!</div>
-  </div>
 
-  <div *ngIf="!isParent" class="wrapper-flex-center flex-column mt-1rem">
-    <div i18n="Masz X punktów" class="font-size-14rem violet font-500">You have:</div>
-    <div class="wrapper-flex-center">
-      <div class="font-size-12rem violet font-500">{{ me.points }}</div>
-      <ic-icon class="font-size-2rem ml-05rem" icon="glowingStar"></ic-icon>
-    </div>
-  </div>
-
-  <div
-    *ngIf="basicRewards.length == 0"
-    class="wrapper-flex-center flex-column mt-2rem"
-  >
-    <div class="wrapper-flex-center">
-      <ic-icon
-        class="font-size-4rem mr-1rem"
-        icon="manGesturingNoLightSkinTone"
-      ></ic-icon>
-      <ic-icon
-        class="font-size-4rem ml-1rem"
-        icon="womanGesturingNoLightSkinTone"
-      ></ic-icon>
-    </div>
-    <div i18n class="wrapper-flex-center mt-1rem noreward--info">
-      There are no rewards yet.
-    </div>
-  </div>
-
-  <div *ngIf="basicRewards.length > 0" class="flex flex-column mt-1rem">
-    <div *ngFor="let reward of basicRewards" class="wrapper-flex-center">
-      <div class="reward mt-2rem">
-        <div class="flex-column">
-          <div class="reward--name--points">
-            <div class="wrapper-flex-center">
-              <div class="reward--name">
-                {{ reward.name }}
+      <div *ngIf="basicRewards.length > 0" class="flex flex-column mt-1rem">
+        <div *ngFor="let reward of basicRewards" class="wrapper-flex-center">
+          <div class="reward mt-2rem">
+            <div class="flex-column">
+              <div class="reward--name--points">
+                <div class="wrapper-flex-center">
+                  <div class="reward--name">
+                    {{ reward.name }}
+                  </div>
+                  <ic-icon
+                    *ngIf="isParent"
+                    (click)="editReward(reward)"
+                    class="reward--edit mlr-05rem"
+                    icon="editIcon"
+                  ></ic-icon>
+                </div>
+                <div class="wrapper-flex-center mt-1rem">
+                  <div class="reward--points">{{ reward.points }}</div>
+                  <ic-icon
+                    class="font-size-2rem ml-05rem"
+                    icon="glowingStar"
+                  ></ic-icon>
+                </div>
               </div>
-              <ic-icon
-                *ngIf="isParent"
-                (click)="editReward(reward)"
-                class="reward--edit mlr-05rem"
-                icon="editIcon"
-              ></ic-icon>
-            </div>
-            <div class="wrapper-flex-center mt-1rem">
-              <div class="reward--points">{{ reward.points }}</div>
-              <ic-icon
-                class="font-size-2rem ml-05rem"
-                icon="glowingStar"
-              ></ic-icon>
-            </div>
-          </div>
-          <div
-            *ngIf="canUnlock(reward) && !isParent"
-            (click)="unlockReward(reward)"
-            class="wrapper-flex-center mt-2rem"
-          >
-            <div class="bttn bttn-small bttn-blue bttn-clickable unlockButton">
-              <ic-icon
-                class="font-size-15rem unlockButton--icon"
-                icon="bxLockOpenAlt"
-              ></ic-icon>
-              <div i18n>Unlock reward</div>
-            </div>
-          </div>
-          <div
-            *ngIf="!canUnlock(reward) && !isParent"
-            class="wrapper-flex-center mt-2rem"
-          >
-            <div class="bttn bttn-small bttn-red bttn-clickable unlockButton">
-              <ic-icon
-                class="font-size-15rem unlockButton--icon"
-                icon="bxLockAlt"
-              ></ic-icon>
-              <div i18n>Reward locked</div>
+              <div
+                *ngIf="canUnlock(reward) && !isParent"
+                (click)="unlockReward(reward)"
+                class="wrapper-flex-center mt-2rem"
+              >
+                <div
+                  class="bttn bttn-small bttn-blue bttn-clickable unlockButton"
+                >
+                  <ic-icon
+                    class="font-size-15rem unlockButton--icon"
+                    icon="bxLockOpenAlt"
+                  ></ic-icon>
+                  <div i18n>Unlock reward</div>
+                </div>
+              </div>
+              <div
+                *ngIf="!canUnlock(reward) && !isParent"
+                class="wrapper-flex-center mt-2rem"
+              >
+                <div
+                  class="bttn bttn-small bttn-red bttn-clickable unlockButton"
+                >
+                  <ic-icon
+                    class="font-size-15rem unlockButton--icon"
+                    icon="bxLockAlt"
+                  ></ic-icon>
+                  <div i18n>Reward locked</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -133,4 +162,4 @@
     </div>
   </div>
 </div>
-<div class="mt-7rem"></div>
+<div class="mt-3rem"></div>

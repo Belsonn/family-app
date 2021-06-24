@@ -2,7 +2,7 @@ import { SettingsService } from './../settings/settings.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ShoppingService } from './shopping.service';
 import { FamilyService } from './../family.service';
-import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   animate,
   animateChild,
@@ -14,8 +14,6 @@ import {
 } from '@angular/animations';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ShoppingList } from '../utils/shoppingList.models';
-import { NgScrollbar } from 'ngx-scrollbar';
-import { SmoothScroll } from 'ngx-scrollbar/smooth-scroll';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDeleteModalComponent } from '../common/confirm-delete-modal/confirm-delete-modal.component';
 import { Settings } from '../utils/settings.models';
@@ -66,7 +64,7 @@ import { Settings } from '../utils/settings.models';
       ]),
     ]),
     trigger('list', [
-      transition(':enter', [query('@items', stagger(300, animateChild()))]),
+      transition(':enter', [query('@items', stagger(100, animateChild()))]),
     ]),
   ],
 })

@@ -2,49 +2,73 @@
   <app-custom-loading></app-custom-loading>
 </div>
 <div *ngIf="!isLoading">
-  <div class="flex">
-    <div mat-ripple [routerLink]="['', 'app', 'menu']" class="back-button">
-      <ic-icon class="back-button--icon" icon="arrowBackUp"></ic-icon>
-      <div i18n="backButton" class="back-button--back">Back</div>
+  <div class="sides">
+    <div class="side-left">
+      <div class="flex">
+        <div mat-ripple [routerLink]="['', 'app', 'menu']" class="back-button">
+          <ic-icon class="back-button--icon" icon="arrowBackUp"></ic-icon>
+          <div i18n="backButton" class="back-button--back">Back</div>
+        </div>
+      </div>
+      <div class="wrapper-flex-center">
+        <p class="family">
+          {{ family.name }}
+        </p>
+      </div>
+      <div class="wrapper-flex-center mt-1rem">
+        <span i18n class="invite">Invite Code:</span>
+        <span class="whitespace token"> {{ family.inviteToken }}</span>
+      </div>
     </div>
-  </div>
-  <div class="wrapper-flex-center">
-    <p class="family">
-      {{ family.name }}
-    </p>
-  </div>
-  <div class="wrapper-flex-center mt-1rem">
-    <span i18n class="invite">Invite Code:</span> <span class="whitespace token"> {{ family.inviteToken }}</span>
-  </div>
-  <div class="wrapper-flex-center flex-column mt-1rem pr-1rem pl-1rem">
-    <div
-      *ngFor="let familyuser of family.users; let i = index"
-      mat-ripple
-      class="box flex flex-align-center mt-1rem position-relative pt-1rem pb-1rem"
-    >
-      <div class="box-flex width-100">
-        <div class="box-flex--desc">
-          <div class="ml-1rem">
-            <img src="{{ familyuser.photo }}" class="photo photo-50" alt="" />
-          </div>
-          <div class="flex flex-column ml-1rem">
-            <div class="box--name">{{ familyuser.name }}</div>
-            <div class="flex flex-align-center mt-05rem">
-              <ic-icon class="font-size-11rem violet" icon="birthdayCake"></ic-icon>
-              <div class="box--year ml-05rem violet">
-                {{ familyuser.dateOfBirth | date: "shortDate" }}
+    <div class="side-right">
+      <div class="wrapper-flex-center width-100 flex-column">
+        <div
+          *ngFor="let familyuser of family.users; let i = index"
+          mat-ripple
+          class="
+            box
+            flex flex-align-center
+            mt-1rem
+            position-relative
+            pt-1rem
+            pb-1rem
+          "
+        >
+          <div class="box-flex width-100">
+            <div class="box-flex--desc">
+              <div class="ml-1rem">
+                <img
+                  src="{{ familyuser.photo }}"
+                  class="photo photo-50"
+                  alt=""
+                />
+              </div>
+              <div class="flex flex-column ml-1rem">
+                <div class="box--name">{{ familyuser.name }}</div>
+                <div class="flex flex-align-center mt-05rem">
+                  <ic-icon
+                    class="font-size-11rem violet"
+                    icon="birthdayCake"
+                  ></ic-icon>
+                  <div class="box--year ml-05rem violet">
+                    {{ familyuser.dateOfBirth | date: "shortDate" }}
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div *ngIf="familyuser.role == 'child'" class="box-flex--points">
-          <ic-icon class="font-size-2rem mr-05rem" icon="glowingStar"></ic-icon>
-          <div class="font-size-12rem violet">
-            {{ familyuser.points }}
+            <div *ngIf="familyuser.role == 'child'" class="box-flex--points">
+              <ic-icon
+                class="font-size-2rem mr-05rem"
+                icon="glowingStar"
+              ></ic-icon>
+              <div class="font-size-12rem violet">
+                {{ familyuser.points }}
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <div class="mt-3rem"></div>
 </div>
-<div class="mt-7rem"></div>

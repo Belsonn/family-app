@@ -1,9 +1,81 @@
 @import "~src/scss/main.scss";
 
 input[type="file"] {
-    display: none;
+  display: none;
 }
 
 .photo-upload {
-    padding: 0.5rem;
+  padding: 0.5rem;
+}
+
+.icons-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 320px;
+}
+.icon {
+  width: 64px;
+  height: 64px;
+  margin: 0.4rem;
+  border-radius: 50%;
+  padding: 0.3rem;
+  cursor: pointer;
+  border: 2px solid transparent;
+  &:hover {
+    border: 2px solid $violet-1;
+  }
+}
+
+@media (max-height: 1400px) and (min-width: 500px) {
+  .back-button {
+    margin: 0;
+  }
+  .form{
+      width: 90%;
+  }
+  .sides {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    display: flex;
+    // margin-top: 2rem;
+    justify-content: space-around;
+    align-items: flex-start;
+    // border-top: 2px solid $violet-1;
+  }
+  .side-left {
+    // padding-top: 2rem;
+    position: sticky;
+    width: 40%;
+    top: 10px;
+    &__button {
+      padding: 1rem;
+      box-shadow: $box-shadow-secondary;
+      border-radius: 1rem;
+      margin-top: 1rem;
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      &--icon {
+        color: $violet-1-dark;
+      }
+      &--text {
+        margin-top: 1rem;
+        text-align: center;
+        color: $violet-1;
+      }
+    }
+  }
+  .side-right {
+    padding-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55%;
+    height: 80vh;
+    left: 55%;
+    // border-left: 2px #d1cae3 solid;
+  }
 }

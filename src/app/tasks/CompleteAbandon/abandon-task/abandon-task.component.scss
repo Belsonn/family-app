@@ -11,7 +11,7 @@
     font-size: 1.6rem;
   }
   &--date {
-    text-align: left;
+    text-align: center;
     font-size: 1.3rem;
   }
   &--hours {
@@ -21,6 +21,7 @@
     display: flex;
     align-items: center;
     color: $red-1;
+    flex-direction: column;
     font-size: 1.2rem;
     &--points {
       display: flex;
@@ -46,7 +47,7 @@
   }
 }
 
-@media (max-width: 370px) {
+@media (max-width: 400px) {
   .buttons {
     flex-direction: column;
     &--left {

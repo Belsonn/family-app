@@ -41,12 +41,13 @@
   position: relative;
   min-height: 300px;
   width: 90%;
+  max-width: 600px;
   margin: 2rem auto 2rem auto;
   background: #fafafa;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   overflow: hidden;
-  color: $violet-1
+  color: $violet-1;
 }
 .paper:before {
   content: "";
@@ -67,7 +68,7 @@
   right: 0;
   bottom: 30px;
   left: 60px;
-  background: linear-gradient(transparent, transparent 29px,#d9d9d9 29px);
+  background: linear-gradient(transparent, transparent 29px, #d9d9d9 29px);
   background-size: 30px 30px;
 }
 
@@ -79,26 +80,25 @@
   z-index: 1;
 }
 
-.paper-router{
+.paper-router {
   position: absolute;
-  bottom:0;
+  bottom: 0;
   right: 0;
   height: 30px;
   width: 30px;
   background-color: transparent;
 }
 
-.paper-delete{
+.paper-delete {
   position: absolute;
   bottom: 0;
   left: 60px;
   height: 60px;
   width: 60px;
   background-color: transparent;
-
 }
 
-.paper-complete{
+.paper-complete {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -111,7 +111,17 @@
   opacity: 0;
 }
 
-
+.complete-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 320px;
+  padding: 1rem;
+  border-radius: 3rem;
+  cursor: pointer;
+  margin-top: 2rem;
+  box-shadow: $box-shadow-3;
+}
 
 .no-title {
   font-size: 2rem;
@@ -160,8 +170,46 @@
   }
 }
 
-@media(max-width: 400px){
-  .paper{
+@media (max-width: 400px) {
+  .paper {
     min-height: 360px;
+  }
+  .complete-box {
+    max-width: 280px;
+  }
+}
+@media (max-height: 750px) and (min-width: 500px) {
+  .paper {
+    width: 60%;
+    min-height: 300px;
+  }
+}
+@media (max-height: 1400px) and (min-width: 500px) {
+  .back-button {
+    margin: 0;
+  }
+  .sides {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    display: flex;
+    // margin-top: 2rem;
+    justify-content: space-around;
+    align-items: flex-start;
+    // border-top: 2px solid $violet-1;
+  }
+  .side-left {
+    padding-top: 2rem;
+    position: sticky;
+    width: 40%;
+    top: 10px;
+  }
+  .side-right {
+    padding: 1rem;
+    width: 70%;
+    min-height: 80vh;
+    left: 55%;
+    border-left: 2px #d1cae3 solid;
+    top: 10%;
   }
 }
