@@ -1,0 +1,71 @@
+<div class="tasks">
+  <div class="tasks-header">
+    <div class="tasks-header-1-wrapper">
+      <ic-icon class="font-size-3rem" icon="glowingStar"></ic-icon>
+      <div class="tasks-header-1">Recent Tasks</div>
+    </div>
+    <div class="tasks-header-2">Show all</div>
+  </div>
+  <div class="tasks-wrapper">
+    <div class="height-100" *ngIf="isTasksLoading">
+      <app-loading></app-loading>
+    </div>
+    <div *ngIf="!isTasksLoading">
+      <div *ngFor="let task of tasks; let i = index" class="task">
+        <div class="task-details">
+          <div class="task-top">
+            <div class="task-top-name">
+              {{ task.name }}
+            </div>
+          </div>
+          <div class="task-description">
+            <div class="task-date">
+              {{ task.endDate | timeago: live }}
+            </div>
+            <div class="dot-wrapper">
+              <div class="dot"></div>
+            </div>
+            <div class="task-users">
+              <div *ngFor="let user of tasks[i].users" class="task-user">
+                <img src="{{ user.user.photo }}" alt="" class="photo-20" />
+              </div>
+            </div>
+            <div class="dot-wrapper">
+              <div class="dot"></div>
+            </div>
+            <div class="task-top-points">
+              <div class="task-top-points-label">{{ task.points }}</div>
+              <ic-icon class="font-size-15rem" icon="glowingStar"></ic-icon>
+            </div>
+          </div>
+        </div>
+        <div class="task-buttons">
+          <div
+            mat-ripple
+            (click)="confirmTask(task)"
+            [matRippleCentered]="true"
+            [matRippleRadius]="20"
+            class="bttn-icon bttn-icon--light-blue pointer"
+          >
+            <ic-icon
+              class="font-size-15rem p-d-1rem p-m-05rem"
+              icon="checkOutlined"
+            ></ic-icon>
+          </div>
+          <div
+            (click)="abandonTask(task); $event.stopPropagation()"
+            mat-ripple
+            [matRippleCentered]="true"
+            [matRippleRadius]="20"
+            class="bttn-icon bttn-icon--pink pointer"
+          >
+            <ic-icon
+              class="font-size-15rem p-d-1rem p-m-05rem"
+              icon="xIcon"
+            ></ic-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
