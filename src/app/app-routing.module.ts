@@ -1,3 +1,4 @@
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { ChildrenPermissionComponent } from './settings/children-permission/children-permission.component';
 import { SettingsMainComponent } from './settings/settings-main/settings-main.component';
 import { MyRewardsComponent } from './rewards/my-rewards/my-rewards.component';
@@ -48,19 +49,19 @@ const routes: Routes = [
       {
         path: 'shopping',
         component: ShoppingListViewComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
       },
       {
         path: 'shopping/list',
         component: ShoppingListComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
       },
       {
         path: 'shopping/add',
         component: ShoppingListAddComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
       },
-    
+
       {
         path: 'configureAccount',
         component: NamecreatorComponent,
@@ -72,82 +73,82 @@ const routes: Routes = [
       {
         path: 'updateAccount',
         component: EditMeComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
       },
       {
         path: 'family',
         component: FamilyComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
       },
       {
         path: 'calendar',
         component: CalendarComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
       },
       {
         path: 'calendar/event',
         component: CalendarEventComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
       },
       {
         path: 'tasks',
         component: TasksComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
       },
       {
         path: 'tasks/add',
         component: TaskCreateComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
       },
       {
         path: 'tasks/daily',
         component: DailyTaskComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
       },
       {
         path: 'tasks/daily/add',
         component: DailyTaskCreateComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
       },
       {
         path: 'chat',
         component: ChatComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
       },
       {
         path: 'rewards',
         component: RewardsMainComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
       },
       {
         path: 'rewards/add',
         component: RewardsCreateComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
       },
       {
         path: 'rewards/unlocked',
         component: RewardsUnlockedComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
       },
       {
         path: 'rewards/my',
         component: MyRewardsComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
       },
       {
         path: 'settings',
         component: SettingsMainComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
       },
       {
         path: 'settings/children',
         component: ChildrenPermissionComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
       },
       {
         path: 'menu',
-        component: MenuComponent,
-        canActivate: [AuthGuard]
+        component: DashboardComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: '**',
@@ -168,6 +169,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule],
-  providers: [AuthGuard]
+  providers: [AuthGuard],
 })
 export class AppRoutingModule {}

@@ -96,4 +96,10 @@ export class TasksService {
   deleteDailyTask(id: string) {
     return this.http.delete<null>(`${environment.apiURL}tasks/daily/${id}`);
   }
+
+  getMyTasks() {
+    return this.http.get<TasksResponse>(
+      `${environment.apiURL}tasks/lastTasks`
+    );
+  }
 }

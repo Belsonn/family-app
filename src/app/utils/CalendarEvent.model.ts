@@ -11,7 +11,7 @@ export interface EventsResponse {
   status: string;
   results: Number;
   data: {
-    events: [CalendarEvent];
+    events: CalendarEvent[];
   };
 }
 export interface EventResponse {

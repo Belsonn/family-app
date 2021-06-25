@@ -14,8 +14,9 @@ body {
 }
 body {
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  background-color: $background-gray;
+  // background-color: $background-gray;
   font-family: $font-family-2 !important;
 }
 
@@ -34,17 +35,6 @@ input.active:focus {
   outline: none !important;
   outline-style: none !important;
 }
-
-.mat-progress-spinner circle, .mat-spinner circle {
-    stroke: #00d4ff!important;
-}
-// .mat-form-field-underline{
-//   background-color:$pink-1  !important;
-// }
-// .mat-form-field-label{
-//   color:$pink-1 !important;
-// }
-
 .mat-form-field.mat-form-field-invalid .mat-form-field-label {
   color: #f44336 !important;
 }

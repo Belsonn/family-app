@@ -22,14 +22,15 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { ColorPickerModule } from 'ngx-color-picker';
-import { AngularColorfulModule } from 'angular-colorful';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { SmoothScrollModule } from 'ngx-scrollbar/smooth-scroll';
-import { NgxSmoothDnDModule } from 'ngx-smooth-dnd';
+import { TimeagoModule } from 'ngx-timeago';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuComponent } from './menu/menu.component';
@@ -77,6 +78,10 @@ import { MyRewardsComponent } from './rewards/my-rewards/my-rewards.component';
 import { ConfirmDeleteRewardComponent } from './rewards/dialogs/confirm-delete-reward/confirm-delete-reward.component';
 import { SettingsMainComponent } from './settings/settings-main/settings-main.component';
 import { ChildrenPermissionComponent } from './settings/children-permission/children-permission.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoadingComponent } from './loading/loading.component';
+import { RecentTasksComponent } from './tasks/recent-tasks/recent-tasks.component';
+import { UpcomingEventsComponent } from './calendar/upcoming-events/upcoming-events.component';
 
 @NgModule({
   declarations: [
@@ -121,6 +126,10 @@ import { ChildrenPermissionComponent } from './settings/children-permission/chil
     ConfirmDeleteRewardComponent,
     SettingsMainComponent,
     ChildrenPermissionComponent,
+    DashboardComponent,
+    LoadingComponent,
+    RecentTasksComponent,
+    UpcomingEventsComponent,
   ],
   imports: [
     HttpClientModule,
@@ -131,7 +140,6 @@ import { ChildrenPermissionComponent } from './settings/children-permission/chil
     NgbModule,
     FormsModule,
     IconModule,
-    ColorPickerModule,
     MatButtonModule,
     MatRippleModule,
     MatBadgeModule,
@@ -149,13 +157,15 @@ import { ChildrenPermissionComponent } from './settings/children-permission/chil
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatAutocompleteModule,
+    MatSidenavModule,
     MatToolbarModule,
+    MatListModule,
+    MatGridListModule,
     NgxMaterialTimepickerModule,
-    AngularColorfulModule,
     SmoothScrollModule,
     HammerModule,
-    NgxSmoothDnDModule,
     NgScrollbarModule.withConfig({}),
+    TimeagoModule.forRoot(),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

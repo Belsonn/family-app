@@ -72,9 +72,13 @@ import userEdit from '@iconify-icons/la/user-edit';
 import sliderIcon from '@iconify-icons/radix-icons/slider';
 import shiftsDay20Regular from '@iconify-icons/fluent/shifts-day-20-regular';
 import taskListSquareAdd20Regular from '@iconify-icons/fluent/task-list-square-add-20-regular';
-
-
-
+import hamburgerMenu from '@iconify-icons/cil/hamburger-menu';
+import homeLine from '@iconify-icons/clarity/home-line';
+import calendarLine from '@iconify-icons/clarity/calendar-line';
+import shoppingCartLine from '@iconify-icons/clarity/shopping-cart-line';
+import tasksLine from '@iconify-icons/clarity/tasks-line';
+import starLine from '@iconify-icons/clarity/star-line';
+import settingsLine from '@iconify-icons/clarity/settings-line';
 
 export const appIcons = {
   planner, // Menu
@@ -147,6 +151,16 @@ export const appIcons = {
   shutdownIcon, // MENU
   userEdit, // Settings
   sliderIcon, // Settings
+  // UPDATE SIDES
   shiftsDay20Regular,
-  taskListSquareAdd20Regular, 
+  taskListSquareAdd20Regular,
+  // REBRAND
+  hamburgerMenu,
+  homeLine,
+  calendarLine,
+  shoppingCartLine,
+  tasksLine,
+  starLine,
+  chatBubbleLine,
+  settingsLine,
 };

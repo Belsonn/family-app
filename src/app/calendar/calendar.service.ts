@@ -13,8 +13,10 @@ export class CalendarService {
   calendarEvents: CalendarEvent[] = [];
   dayClicked: Date;
 
-  getEvents() {
-    return this.http.get<EventsResponse>(`${environment.apiURL}events/`);
+  getEvents(limit: number = -1, upcoming: boolean = false) {
+    return this.http.get<EventsResponse>(
+      `${environment.apiURL}events/?limit=${limit}&upcoming=${upcoming}`
+    );
   }
 
   addEvent(event: CalendarEvent) {
