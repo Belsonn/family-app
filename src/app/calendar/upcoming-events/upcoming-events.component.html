@@ -1,0 +1,31 @@
+<div class="events">
+    <div class="events-header">
+      <div class="events-header-1-wrapper">
+        <ic-icon class="font-size-3rem" icon="planner"></ic-icon>
+        <div class="events-header-1">Upcoming events</div>
+      </div>
+      <div class="events-header-2">Show all</div>
+    </div>
+    <div class="events-wrapper height-100">
+      <div class="height-100" *ngIf="isEventsLoading">
+        <app-loading></app-loading>
+      </div>
+      <div *ngIf="!isEventsLoading">
+        <div *ngFor="let event of events; let i = index" class="event">
+          <div class="event-details">
+            <div class="event-top">
+              <div class="event-top-name">
+                {{ event.name }}
+              </div>
+            </div>
+            <div class="event-description">
+              <div class="event-date">
+                {{ event.startDate | date: "medium" }} -
+                {{ event.endDate | date: "medium" }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
