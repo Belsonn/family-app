@@ -1,42 +1,110 @@
-<div class="background">
-  <div class="spacer">
-    <div #container class="container">
-      <ng-scrollbar [disabled]="isMobile" class="scrollbar">
-        <div class="phonebar">
-          <app-phone-bar></app-phone-bar>
+<mat-drawer-container class="wrapper" autosize>
+  <!-- <app-header></app-header> -->
+  <mat-drawer
+    class="menu"
+    #drawer
+    mode="side"
+    disableClose="true"
+    opened="true"
+  >
+    <ul class="menu-list">
+      <li>
+        <div class="menu-toggle" (click)="isExpanded = !isExpanded">
+          <ic-icon
+            class="menu-icon menu-toggle-icon"
+            icon="hamburgerMenu"
+          ></ic-icon>
         </div>
-        <div *ngIf="isMobile" style="opacity: 0" class="mt-05rem"></div>
-        <div class="height-100">
-          <router-outlet></router-outlet>
+      </li>
+      <li>
+        <div
+          [routerLink]="['/app/menu']"
+          routerLinkActive="menu-button-active"
+          class="menu-button"
+        >
+          <ic-icon class="menu-icon" icon="homeLine"></ic-icon>
+          <span *ngIf="isExpanded" class="nav-text">Home</span>
         </div>
-      </ng-scrollbar>
-      <!-- <div class="footer">
-        <div class="wrapper-flex-center height-100">
-          <div class="flex flex-space-between width-40">
-            <div
-              mat-ripple
-              [routerLink]="['', 'app', 'menu']"
-              routerLinkActive="router-link-active"
-              class="wrapper-flex-center border-radius-10"
-            >
-              <ic-icon
-                class="font-size-16rem p-05rem white"
-                icon="radioButtonOn"
-              ></ic-icon>
-            </div>
-            <div
-              (click)="onRouteBack()"
-              mat-ripple
-              class="wrapper-flex-center border-radius-10"
-            >
-              <ic-icon
-                class="font-size-16rem p-05rem white"
-                icon="bxLeftArrow"
-              ></ic-icon>
-            </div>
-          </div>
+      </li>
+      <li>
+        <div
+          [routerLink]="['/app/calendar']"
+          routerLinkActive="menu-button-active"
+          class="menu-button"
+        >
+          <ic-icon class="menu-icon" icon="calendarLine"></ic-icon>
+          <span *ngIf="isExpanded" class="nav-text">Calendar</span>
         </div>
-      </div> -->
-    </div>
-  </div>
-</div>
+      </li>
+      <li>
+        <div
+          [routerLink]="['/app/shopping']"
+          routerLinkActive="menu-button-active"
+          class="menu-button"
+        >
+          <ic-icon class="menu-icon" icon="shoppingCartLine"></ic-icon>
+          <span *ngIf="isExpanded" class="nav-text">Shopping</span>
+        </div>
+      </li>
+      <li>
+        <div
+          [routerLink]="['/app/tasks']"
+          routerLinkActive="menu-button-active"
+          class="menu-button"
+        >
+          <ic-icon class="menu-icon" icon="tasksLine"></ic-icon>
+          <span *ngIf="isExpanded" class="nav-text">Tasks</span>
+        </div>
+      </li>
+      <li>
+        <div
+          [routerLink]="['/app/rewards']"
+          class="menu-button"
+          routerLinkActive="menu-button-active"
+        >
+          <ic-icon class="menu-icon" icon="starLine"></ic-icon>
+          <span *ngIf="isExpanded" class="nav-text">Rewards</span>
+        </div>
+      </li>
+      <li>
+        <div
+          [routerLink]="['/app/chat']"
+          routerLinkActive="menu-button-active"
+          class="menu-button"
+        >
+          <ic-icon class="menu-icon" icon="chatBubbleLine"></ic-icon>
+          <div *ngIf="isExpanded" class="nav-text">Chat</div>
+        </div>
+      </li>
+      <li>
+        <div
+          [routerLink]="['/app/settings']"
+          routerLinkActive="menu-button-active"
+          class="menu-button"
+        >
+          <ic-icon class="menu-icon" icon="settingsLine"></ic-icon>
+          <div *ngIf="isExpanded" class="nav-text">Settings</div>
+        </div>
+      </li>
+      <li>
+        <div
+          (click)="onLogout()"
+          routerLinkActive="menu-button-active"
+          class="menu-button"
+        >
+          <ic-icon class="menu-icon" icon="settingsLine"></ic-icon>
+          <div *ngIf="isExpanded" class="nav-text">Logout</div>
+        </div>
+      </li>
+      <!-- <li class="logout">
+        <div class="menu-button">
+          <ic-icon class="menu-icon" icon="logoutIcon"></ic-icon>
+          <span class="nav-text">Log out</span>
+        </div>
+      </li> -->
+    </ul>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
