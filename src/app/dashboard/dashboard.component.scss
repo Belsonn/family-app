@@ -1,0 +1,19 @@
+@import "~src/scss/main.scss";
+
+.container-1 {
+  padding: 2rem;
+}
+.task_calendar_row {
+  display: flex;
+  // align-items: center;
+  justify-content: space-between;
+}
+
+.tasks{
+    width: 48%;
+}
+.events{
+    width: 48%;
+}
+
+
